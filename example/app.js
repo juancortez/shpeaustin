@@ -7,14 +7,15 @@ app.set('views', __dirname + '/views'); // defines where our HTML files are plac
 app.set('view engine', 'ejs'); // used for HTML rendering
 app.engine('html', require('ejs').renderFile); // rendering HTML files through EJS
 
-var server = app.listen(3000, function(){
-	console.log("We have started our server on port 3000");
+var server = app.listen(8000, function(){
+	console.log("We have started our server on port 8000");
 });
 
 
 
 
-
+// var http = require('http');
+// var fs = require('fs');
 // http.createServer(function(request, response){
 // 	var url = request.url;
 // 	switch(url){
