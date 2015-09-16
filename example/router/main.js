@@ -1,6 +1,6 @@
 // module.exports exposes functions that we want to use in a different file
 module.exports = function(app){
-	
+
 	app.get('/', function(req, res){
 		res.render('index.html');
 	});
@@ -13,16 +13,16 @@ module.exports = function(app){
 		res.render('contact.html');
 	});
 
-	app.get('/drinks', function(req, res){
-		var drinks = [
-				{ name: 'Bloody mary', drunkness: 3 },
-				{ name: 'Martini', drunkness: 5 },
-				{ name: 'Scotch', drunkness: 10 }
+	app.get('/classes', function(req, res){
+		var classes = [
+				{ abbr: 'EE302', name: "Introduction to Electrical Engineering" },
+				{ abbr: 'EE411', name: "Circuit Theory" },
+				{ abbr: 'EE461L', name: "Software Design & Implementation II" }
 		];
 		var tagline = "Insert a tagline here.";
 
-		res.render('drinks.ejs', {
-			drinks: drinks,
+		res.render('classes.ejs', {
+			classes: classes,
 			tagline: tagline
 		});
 	});
