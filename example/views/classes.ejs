@@ -1,0 +1,10 @@
+<h2> Variable </h2>
+
+<p><%= tagline %> </p>
+
+<h2> Loop </h2>
+<ul>
+	<% classes.forEach(function(classes) { %>
+		<li><%= classes.abbr %> - <%= classes.name %> </li>
+	<% }); %>
+</ul>
