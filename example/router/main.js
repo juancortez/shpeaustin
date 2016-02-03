@@ -1,7 +1,7 @@
 // module.exports exposes functions that we want to use in a different file
 module.exports = function(app){
 
-	app.get('/', function(req, res){
+	app.get('/', function(req, res){ 
 		res.render('index.html');
 	});
 
@@ -17,9 +17,10 @@ module.exports = function(app){
 		var classes = [
 				{ abbr: 'EE302', name: "Introduction to Electrical Engineering" },
 				{ abbr: 'EE411', name: "Circuit Theory" },
-				{ abbr: 'EE461L', name: "Software Design & Implementation II" }
+				{ abbr: 'EE461L', name: "Software Design & Implementation II" },
+				{ abbr: 'EE360', name: "Juanito"}
 		];
-		var tagline = "Insert a tagline here.";
+		var tagline = "Tagline.";
 
 		res.render('classes.ejs', {
 			classes: classes,

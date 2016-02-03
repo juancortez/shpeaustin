@@ -9,3 +9,12 @@ div#buttonWrapper{
 	width: 200px;
 	height: 60px;
 }
+div#parent{
+	width: 200px;
+	height: 200px;
+	background-color: red;
+}
+
+p#text{
+	display:none;
+}

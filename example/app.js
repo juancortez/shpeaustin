@@ -11,41 +11,25 @@ var server = app.listen(8000, function(){
 	console.log("We have started our server on port 8000");
 });
 
+var redis = require('redis');
+var client = redis.createClient();
+
+client.on('connect', function(){
+	console.log("connected");
+});
+
+client.set('purse', '1');
+
+client.exists('purse', function(err, reply) {
+	//res.render('index', {database: reply})
+    if (reply === 1) {
+        console.log('exists');
+    } else {
+        console.log('doesn\'t exist');
+    }
+});
 
 
-
-// var http = require('http');
-// var fs = require('fs');
-// http.createServer(function(request, response){
-// 	var url = request.url;
-// 	switch(url){
-// 		case '/':
-// 			getStaticFileContent(response, 'public/home.html', 'text/html');
-// 			break;
-// 		case '/about':
-// 			getStaticFileContent(response, 'public/about.html', 'text/html');
-// 			break;
-// 		case '/contact':
-// 			getStaticFileContent(response, 'public/contact.html', 'text/html');
-// 			break;
-// 		default:
-// 			response.writeHead(404, {'Content-Type': 'text/plain'});
-// 			response.end('404 - Page not found.');
-// 	}
-// }).listen(8000);
-
-// console.log('Server running at: http://localhost:8000');
-
-// function getStaticFileContent(response, filepath, content){
-// 	fs.readFile(filepath, function(error, data){
-// 		if(error){
-// 			response.writeHead(500, {'Content-Type':'text/plain'});
-// 			response.end('500 - Internal Server Error');
-// 		}
-// 		if(data){
-// 			response.writeHead(200, {'Content-Type': 'text/html'});
-// 			response.end(data);
-// 		}
-// 	});
-
-// }
+app.post('/test-page', function(req, res) {
+    console.log('hi');
+});
