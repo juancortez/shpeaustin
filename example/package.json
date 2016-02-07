@@ -11,6 +11,9 @@
   "dependencies": {
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "redis": "^2.4.2"
+    "grunt": "~0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-execute": "^0.2.2",
+    "mysql": "^2.10.2"
   }
 }

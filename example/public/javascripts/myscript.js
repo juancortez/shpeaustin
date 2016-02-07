@@ -1,7 +1,5 @@
 $( document ).ready(function() { // HTML has loaded
 
-
-
   $("#submit").click(function(){
   	$("#buttonText").text('Button has been clicked');
   	$("#buttonText").css('color', 'red');
@@ -13,5 +11,17 @@ $( document ).ready(function() { // HTML has loaded
 	  		$(this).css({ 'font-weight': 'bold', 'color' : 'green'});
 	  	});
   	});
+
+  $('#database').click(function(){
+	   $.get('http://localhost:8000/employees', {}, function(data){
+	        console.log("Data received: " + data);
+	        var employees = "";
+	        for (var i = 0; i < data.length; i++) {
+			  employees = employees.concat(data[i].name) + " ";
+			};
+			console.log(employees);
+			$( "<p>Employees found in database: "+employees+"</p>" ).insertAfter( "#database" );
+	   });
+	});
 
 });
