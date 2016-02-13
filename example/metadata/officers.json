@@ -1,0 +1,56 @@
+{  
+   "executive":[  
+      {  
+         "name":"Jeremy Benavides",
+         "position":"President",
+         "email":"jeremy@jeremy.com",
+         "phone":9872314567,
+         "hometown":"Austin, TX",
+         "company":"Accenture",
+         "executive": true,
+         "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/19515_10201051806974392_6769015767684186297_n.jpg"
+      },
+      {  
+         "name":"Rogelio Zavala",
+         "position":"Vice President",
+         "email":"John_Doe@utexas.edu",
+         "phone":9152276803,
+         "hometown":"McAllen, TX",
+         "company":"Google",
+         "executive": true,
+         "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/DSCN0738.jpg"
+      },
+      {  
+         "name":"Vera Sandoval",
+         "position":"Treasurer",
+         "email":"John_Doe@utexas.edu",
+         "phone":9152276803,
+         "hometown":"McAllen, TX",
+         "company":"Google",
+         "executive": true,
+         "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/430258_10100287235480360_180109698_n.jpg"
+      }
+   ],
+   "chairs":[  
+      {  
+         "name":"Juan Cortez",
+         "position":"Webmaster",
+         "email":"Juan_Cortez@utexas.edu",
+         "phone":9152276803,
+         "hometown":"El Paso, TX",
+         "company":"IBM",
+         "executive": false,
+         "image_url": "https://scontent-dfw1-1.xx.fbcdn.net/hphotos-xpa1/t31.0-8/12239292_10207606635582128_532069874107247044_o.jpg"
+      },
+      {  
+         "name":"Hugo Landaverde",
+         "position":"Secretary",
+         "email":"allen_poe@allen.edu",
+         "phone":9876289202,
+         "hometown":"San Francisco, CA",
+         "company":"Microsoft",
+         "executive": false,
+         "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/DSCN0729.jpg"
+      }
+   ]
+}

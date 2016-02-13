@@ -1,30 +1,45 @@
-<!DOCTYPE html>
 <html>
-	<head>
-		<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="/stylesheets/mystyle.css">
-		<script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
-		<script src = "/javascripts/myscript.js"></script>
-	</head>
+   <head>
+      <title>Home</title>
+      <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+      <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+      <script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
+      <script src = "/javascripts/index.js"></script>
+   </head>
 
 	<body>
-		<h1>We are in the Home Page.</h1>
-		<div>
-			<a href = 'contact'>Contact Us </a> <br>
-			<a href = 'about'>About Us </a> <br>
-			<a href = 'classes'>Classes </a>
-		</br>
+		<%include navigation.html%>
 
-			<div id = 'parent'>
-			<button id = 'Juan' style="margin:50px">CLICK</button>
-			<p id ="text">Juan Cortez</p>
+		<div id="info">
 		</div>
-			<div id='buttonWrapper'>
-				<button id='submit'>Convert</button>
-				<p id='buttonText'>Button has not been clicked. </p>
+
+<!-- https://desandro.github.io/3dtransforms/docs/carousel.html -->
+	<div id="newsletter">
+		<div id="carousel-container">
+		  <div id="carousel">
+		    <div class="item a"></div>
+		    <div class="item b"></div>
+		    <div class="item c"></div>
+		    <div class="item d"></div>
+		    <div class="item e"></div>
+		    <div class="item f"></div>
+		  </div>
+		  	<div id="prev">Prev</div>
+		 	<div id="next">Next</div>
+		</div>
+
+		
+
+		<div id ="outer-event-recap">
+			<div id="event-recap">
+				<p id = "title"></p>
+				<p id = "description"> </p>
 			</div>
 		</div>
+	</div>
 
-		<button id = "database">Get employees database data </button>
+	
+	
+
 	</body>
 </html>

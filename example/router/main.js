@@ -1,5 +1,6 @@
 // module.exports exposes functions that we want to use in a different file
 module.exports = function(app, con){
+	
 
 	/*************************************************************************/
 	// The following endpoints serve HTML pages
@@ -12,23 +13,22 @@ module.exports = function(app, con){
 		res.render('about.html');
 	});
 
+	app.get('/officers', function(req, res){
+		var officerList = require('../models/globals.js').officerList;
+		var executiveOfficerList = require('../models/globals.js').executiveOfficerList;
+
+		res.render('officers.ejs', {
+			executiveOfficerList: executiveOfficerList,
+			officerList: officerList
+		});
+	});
+
 	app.get('/contact', function(req, res){
 		res.render('contact.html');
 	});
 
-	app.get('/classes', function(req, res){
-		var classes = [
-				{ abbr: 'EE302', name: "Introduction to Electrical Engineering" },
-				{ abbr: 'EE411', name: "Circuit Theory" },
-				{ abbr: 'EE461L', name: "Software Design & Implementation II" },
-				{ abbr: 'EE360', name: "Juanito"}
-		];
-		var tagline = "Tagline.";
-
-		res.render('classes.ejs', {
-			classes: classes,
-			tagline: tagline
-		});
+	app.get('/membership', function(req, res){
+		res.render('membership.html');
 	});
 
 	/*************************************************************************/
@@ -43,6 +43,12 @@ module.exports = function(app, con){
 		  console.log(rows);
 		  res.send(rows); 
 		});
+	});
+
+	app.get('/views/newsletters/newsletters.html', function(req, res){
+		var path = require('path');
+		console.log("Loaded newsletter data.");
+		res.sendFile(path.resolve('views/newsletters/newsletters.html'));
 	});
 
 	// var employee = { name: 'Winnie', location: 'Australia' };
@@ -85,7 +91,8 @@ module.exports = function(app, con){
 	/*************************************************************************/
 
 	app.get('*', function(req, res){
-  		res.status(400).send({ error: 'HTML Error 404: Not Found!' });
+		res.render('404.html');
+  		//res.status(400).send({ error: 'HTML Error 404: Not Found!' });
 	});
 
 

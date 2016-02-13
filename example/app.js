@@ -15,10 +15,14 @@ app.use(express.static(__dirname + '/public')); // declare a static directory
 require('./router/main')(app, con); // adds the main.js file to send response to browser
 app.set('views', __dirname + '/views'); // defines where our HTML files are placed
 app.set('view engine', 'ejs'); // used for HTML rendering
-app.engine('html', require('ejs').renderFile); // rendering HTML files through EJS
+app.engine('html', require('ejs').__express); // rendering HTML files through EJS
+
+var officerList = require('./models/globals.js').officerList;
+var executiveOfficerList = require('./models/globals.js').executiveOfficerList;
 
 var server = app.listen(8000, function(){
 	console.log("We have started our server on port 8000");
+  parseOfficerJSON();
 });
 
 
@@ -26,11 +30,40 @@ var server = app.listen(8000, function(){
 // http://www.sitepoint.com/using-node-mysql-javascript-client/
 con.connect(function(err){
   if(err){
-    console.log('Error connecting to Db');
+   //console.log('Error connecting to Db');
     return;
   }
-  console.log('Connection established');
+  //console.log('Connection established');
 });
+
+function parseOfficerJSON(){
+  var Officer = require('./models/officers.js');
+
+      var data = [];
+      var file = "./metadata/officers.json"
+
+      try {
+          console.log("Loading officer data from " + file);
+          data = require(file);
+          console.log("Successfully loaded data from " + file);
+      } catch (ignore) {
+          console.error("Failed to load data from " + file);
+      }
+
+      //var executiveOfficerList = [];
+      for(var i = 0; i < data.executive.length; i++){
+        var current = data.executive[i];
+        var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
+        executiveOfficerList.push(officer);
+      }
+      
+      //var officerList = [];
+      for(var i = 0; i < data.chairs.length; i++){
+        var current = data.chairs[i];
+        var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
+        officerList.push(officer);
+      }
+}
 
 // var employee = { name: 'Winnie', location: 'Australia' };
 // con.query('INSERT INTO employees SET ?', employee, function(err,res){
