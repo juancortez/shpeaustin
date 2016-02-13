@@ -20,12 +20,25 @@ app.engine('html', require('ejs').__express); // rendering HTML files through EJ
 var officerList = require('./models/globals.js').officerList;
 var executiveOfficerList = require('./models/globals.js').executiveOfficerList;
 
-var server = app.listen(8000, function(){
-	console.log("We have started our server on port 8000");
+// cfenv provides access to your Cloud Foundry environment
+// for more info, see: https://www.npmjs.com/package/cfenv
+var cfenv = require('cfenv');
+
+// get the app environment from Cloud Foundry
+var appEnv = cfenv.getAppEnv();
+
+// var server = app.listen(8000, function(){
+// 	console.log("We have started our server on port 8000");
+//   parseOfficerJSON();
+// });
+
+// start server on the specified port and binding host
+app.listen(appEnv.port, '0.0.0.0', function() {
+
+  // print a message when the server starts listening
+  console.log("server starting on " + appEnv.url);
   parseOfficerJSON();
 });
-
-
 
 // http://www.sitepoint.com/using-node-mysql-javascript-client/
 con.connect(function(err){
@@ -43,9 +56,9 @@ function parseOfficerJSON(){
       var file = "./metadata/officers.json"
 
       try {
-          console.log("Loading officer data from " + file);
+          //console.log("Loading officer data from " + file);
           data = require(file);
-          console.log("Successfully loaded data from " + file);
+          //console.log("Successfully loaded data from " + file);
       } catch (ignore) {
           console.error("Failed to load data from " + file);
       }

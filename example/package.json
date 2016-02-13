@@ -1,19 +1,33 @@
 {
-  "name": "static",
+  "name": "SHPE_Austin_Website",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node.JS Application that hosts the SHPE Austin website.",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Juan Cortez",
+  "scripts": {
+    "start": "node app.js",
+    "predeploy": "echo im about to deploy",
+    "postdeploy": "echo ive deployed"
+   },
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/juancortez-ut/meerkat/tree/master/example"
+    },
+  "license": "MIT",
+  "analyze": true,
   "dependencies": {
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "grunt": "~0.4.5",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-execute": "^0.2.2",
-    "mysql": "^2.10.2"
-  }
+    "mysql": "^2.10.2",
+    "cfenv": "1.0.x"
+  },
+    "engines": {
+      "node": "0.12.7"
+    } 
 }
