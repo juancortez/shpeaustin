@@ -33,6 +33,11 @@
   overflow: scroll;
 }
 
+.row img{
+  max-height: 368px;
+  min-height: 368px;
+}
+
 
 /*div#info{
   height: 70px;

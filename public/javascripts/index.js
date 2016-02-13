@@ -19,16 +19,30 @@ $(document ).ready(function() { // HTML has loaded
         var title = $($($(eventRecap).closest('tbody')[i]).find('strong')[0]).text(); // title of Event Recap
         var description = $($($(eventRecap).closest('tbody')[i]).find('strong')[1]).text();
         var image = $(eventRecap[i]).find('img')[0].getAttribute('src');
-
-        // var img = $('<img class="dynamic">'); //Equivalent: $(document.createElement('img'))
-        // img.attr('src', image);
-        // img.appendTo($($('#carousel')[0].children[i]));
-        titles[i] = title;
-        descriptions[i] = description;
-        images[i] = image;
+        titles[populatedItems] = title;
+        descriptions[populatedItems] = description;
+        images[populatedItems] = image;
         populatedItems++;
       }
     }
+
+
+    var items = $(htmlDoc).find('.mcnCaptionBlockInner');
+    for(var i=1; i < items.length; i = i + 2){
+      var title = $($(items[i]).find('strong')[0]).text();
+      var description = $($(items[i+1]).find('h4')).text();
+      var image = $($(items)[i+1]).find('img')[0].getAttribute('src');
+      titles[populatedItems] = title;
+      descriptions[populatedItems] = description;
+      images[populatedItems] = image;
+      populatedItems++;
+      console.log("Title: " + title + "Description: " + description);
+
+    }
+
+
+
+    
 
     $("#title").append(titles[newsletterItem]);
     $("#description").append("<span class = 'bold'> Description: </span>" + descriptions[newsletterItem]);
@@ -68,6 +82,9 @@ $(document ).ready(function() { // HTML has loaded
   //var currdeg  = 0;  
   // var numPanels = 6;
 
+  // var img = $('<img class="dynamic">'); //Equivalent: $(document.createElement('img'))
+  // img.attr('src', image);
+  // img.appendTo($($('#carousel')[0].children[i]));
   // $("#next").on("click", { d: "n" }, rotateAndUpdate);
   // $("#prev").on("click", { d: "p" }, rotateAndUpdate);
 
