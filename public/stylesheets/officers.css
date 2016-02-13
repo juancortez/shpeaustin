@@ -31,6 +31,14 @@
   transform: rotateY( 180deg );
 }
 
+.card:hover{
+  transform: rotateY(180deg);
+}
+
+.card:focus{
+  transform: rotateY(180deg);
+}
+
 .card.flipped {
   transform: rotateY( 180deg );
 }
@@ -85,9 +93,4 @@ img.officers{
 .back .information div p{
   color: #06063e;
 }
-
-.front-officer-info{
-
-}
-
 
