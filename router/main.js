@@ -1,5 +1,6 @@
 // module.exports exposes functions that we want to use in a different file
-module.exports = function(app, con){
+//module.exports = function(app, con){
+module.exports = function(app){
 	
 
 	/*************************************************************************/
@@ -47,7 +48,7 @@ module.exports = function(app, con){
 
 	app.get('/views/newsletters/newsletters.html', function(req, res){
 		var path = require('path');
-		console.log("Loaded newsletter data.");
+		//console.log("Loaded newsletter data.");
 		res.sendFile(path.resolve('views/newsletters/newsletters.html'));
 	});
 

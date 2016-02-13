@@ -1,10 +1,6 @@
-html { 
-    height: 100%; 
-position: relative;
-    min-height: 100%;}
-
-body{
-	background: white;
+html,body{
+    width:100%;
+    background:white;
 }
 
 .center-text{

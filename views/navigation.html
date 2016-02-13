@@ -3,8 +3,42 @@
    <head>
       <link rel="stylesheet" type="text/css" href="/stylesheets/navigation.css">
       <link rel="stylesheet" href="/stylesheets/libs/font-awesome-4.5.0/css/font-awesome.css">
+      <script type="text/javascript">
+         jQuery(function($){
+           $( '.fa-bars' ).click(function(){
+              $('.responsive-menu').toggleClass('expand');
+              var size = {
+                 width: window.innerWidth || document.body.clientWidth,
+                 height: window.innerHeight || document.body.clientHeight
+               }
+              if($('.responsive-menu').hasClass('expand')){
+                  $("#newsletter").css({'margin-top':'145px'});
+              } else{
+                  $("#newsletter").css({'margin-top':'0px'});
+              }
+            });
+         }); 
+      </script>
    </head>
    <body>
+      <!-- This only shows on small browsers/mobile -->
+      <div class = "shpe-austin">
+         <a class="dark-shpe-blue mobile-shpe" href="/">SHPE Austin</a>
+         <i class="fa fa-bars fa-3x dark-shpe-blue responsive-menu"></i>
+      </div>
+
+      <div class="mobile-nav">
+           <div class="responsive-menu">
+              <ul class="ul-hamburger-nav">
+                 <li class = "li-hamburger-nav"> <a class="active" href="/">Home</a></li>
+                 <li class = "li-hamburger-nav"> <a href="/about">About</a></li>
+                 <li class = "li-hamburger-nav"> <a href="/officers">Contact</a></li>
+                 <li class = "li-hamburger-nav"> <a href="/membership">About</a></li>
+                 <li class = "li-hamburger-nav"> <a href="/contact">Contact Us</a></li>
+               </ul>
+           </div>
+      </div>
+      <!-- This only shows on small browsers/mobile -->
       <div class="navcontent sticky">
          <div id="shpenav" class="navleft">
             <!-- <a class = "dark-shpe-blue" href="/">Society of Hispanic<br>Professional Engineers</a> -->

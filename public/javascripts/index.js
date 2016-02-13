@@ -25,6 +25,10 @@ $(document ).ready(function() { // HTML has loaded
       currdeg = currdeg + 60;
     }
 
+    if(e.originalEvent){
+      clearInterval(turnCarousel); // only stop if it was a MouseEvent
+    }
+
     $("#title").empty()
     $("#description").empty();
 
@@ -46,7 +50,7 @@ $(document ).ready(function() { // HTML has loaded
     if ( status == "error" ) {
       console.error("Couldn't load newsletters.html");
     } else{
-      console.log("Newsletter successfully loaded.");
+      //console.log("Newsletter successfully loaded.");
       var parser=new DOMParser();
       var htmlDoc= parser.parseFromString(data, "text/html");
 
@@ -76,8 +80,9 @@ $(document ).ready(function() { // HTML has loaded
 
 
 
-  // var turnCarousel = setInterval(function(){ 
-  //   $("#next").trigger('click');
-  // }, 2000);
+
+  var turnCarousel = setInterval(function(){ 
+    $("#next").trigger('click');
+  }, 4000);
 
 });

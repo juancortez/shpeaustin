@@ -1,18 +1,19 @@
 var express = require('express');
 var app = express();
-var mysql = require("mysql");
+//var mysql = require("mysql");
 
-// First you need to create a connection to the db
-var con = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "root",
-  database: "sitepoint"
-});
+// // First you need to create a connection to the db
+// var con = mysql.createConnection({
+//   host: "localhost",
+//   port: 3306,
+//   user: "root",
+//   password: "root",
+//   database: "sitepoint"
+// });
 
 app.use(express.static(__dirname + '/public')); // declare a static directory
-require('./router/main')(app, con); // adds the main.js file to send response to browser
+//require('./router/main')(app, con); 
+require('./router/main')(app); // adds the main.js file to send response to browser
 app.set('views', __dirname + '/views'); // defines where our HTML files are placed
 app.set('view engine', 'ejs'); // used for HTML rendering
 app.engine('html', require('ejs').__express); // rendering HTML files through EJS
@@ -41,13 +42,13 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 });
 
 // http://www.sitepoint.com/using-node-mysql-javascript-client/
-con.connect(function(err){
-  if(err){
-   //console.log('Error connecting to Db');
-    return;
-  }
-  //console.log('Connection established');
-});
+// con.connect(function(err){
+//   if(err){
+//    //console.log('Error connecting to Db');
+//     return;
+//   }
+//   //console.log('Connection established');
+// });
 
 function parseOfficerJSON(){
   var Officer = require('./models/officers.js');
