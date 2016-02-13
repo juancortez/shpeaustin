@@ -4,8 +4,13 @@ $(document ).ready(function() { // HTML has loaded
   var titles = [];
   var descriptions = [];
   var images = [];
+  var imageLinks = [];
+
   var newsletterItem = 0;
   var populatedItems = 0;
+  var imageLinkIndex = 0;
+  var eventRecapNum = 0;
+
   $.get( "../views/newsletters/newsletters.html", function( data ) {
     if ( status == "error" ) {
       console.error("Couldn't load newsletters.html");
@@ -15,6 +20,7 @@ $(document ).ready(function() { // HTML has loaded
       var htmlDoc= parser.parseFromString(data, "text/html");
 
       var eventRecap = htmlDoc.getElementsByClassName('mcnImageCardBottomImageContent');
+      eventRecapNum = eventRecap.length;
       for(var i = 0; i < eventRecap.length; i++){
         var title = $($($(eventRecap).closest('tbody')[i]).find('strong')[0]).text(); // title of Event Recap
         var description = $($($(eventRecap).closest('tbody')[i]).find('strong')[1]).text();
@@ -32,11 +38,14 @@ $(document ).ready(function() { // HTML has loaded
       var title = $($(items[i]).find('strong')[0]).text();
       var description = $($(items[i+1]).find('h4')).text();
       var image = $($(items)[i+1]).find('img')[0].getAttribute('src');
+      var imageLink = $($($(items)[i+1]).find('img')[0]).parent()[0].getAttribute('href');
+
       titles[populatedItems] = title;
       descriptions[populatedItems] = description;
       images[populatedItems] = image;
+      imageLinks[imageLinkIndex++] = imageLink;
       populatedItems++;
-      console.log("Title: " + title + "Description: " + description);
+      //console.log("Title: " + title + " Description: " + description);
 
     }
 
@@ -70,7 +79,12 @@ $(document ).ready(function() { // HTML has loaded
     if(newsletterItem < populatedItems){
       $("#title").append(titles[newsletterItem]);
       $("#description").append("<span class = 'bold'> Description: </span>" + descriptions[newsletterItem]);
-       $("#image-newsletter").attr('src', images[newsletterItem]);
+      $("#image-newsletter").attr('src', images[newsletterItem]);
+      if(newsletterItem >= eventRecapNum){
+        var image_link = document.createElement('a');
+        image_link.href = imageLinks[newsletterItem - eventRecapNum]; // Insted of calling setAttribute 
+        $("#image-newsletter").wrap(image_link);
+      }
     }
   }
 
