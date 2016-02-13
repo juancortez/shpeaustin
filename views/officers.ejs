@@ -1,9 +1,31 @@
 <head>
 		<title>Officers</title>
-		<link rel="stylesheet" type="text/css" href="/stylesheets/officers.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/officers.css">
+
+
 		<script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
-		<script src = "/javascripts/officers.js"></script>
+		
+		<script type="text/javascript">
+        	jQuery(function($){
+				var showFlip = true;
+
+				$(".card").hover(function(){
+					$(this).toggleClass('flipped');
+				});
+
+				/* To show that the cards can be flipped */
+				if(showFlip == true){
+					setTimeout(function (){
+					  $($(document).find('.card')[0]).toggleClass('flipped-60');
+					}, 100);
+					setTimeout(function (){
+					  $($(document).find('.card')[0]).toggleClass('flipped-60');
+					}, 1100); 
+				}
+        	}); 
+	    </script>
 	</head>
 
 <% include navigation.html %>
@@ -17,8 +39,10 @@
 			  <div class="card">
 			    <figure class="front">
 			    	<img class = "officers" src=<%=officer.image_url%>></img>
-			    	<p class = "center-text name bold"> <%= officer.name %>  </p>
-			    	<p class = "center-text position italic"> <%= officer.position %>  </p>
+			    	<div class ="front-officer-info">
+				    	<p class = "center-text name bold"> <%= officer.name %>  </p>
+				    	<p class = "center-text position italic"> <%= officer.position %>  </p>
+				    </div>
 			    </figure>
 			    
 			    <figure class="back">
@@ -47,8 +71,10 @@
 			  <div class="card">
 			    <figure class="front">
 			    	<img class = "officers" src=<%=officer.image_url%>></img>
-			    	<p class = "center-text name bold"> <%= officer.name %>  </p>
-			    	<p class = "center-text position italic"> <%= officer.position %>  </p>
+			    	<div class ="front-officer-info">
+				    	<p class = "center-text name bold"> <%= officer.name %>  </p>
+				    	<p class = "center-text position italic"> <%= officer.position %>  </p>
+				    </div>
 			    </figure>
 			    <figure class="back">
 			    	<div class = "information">

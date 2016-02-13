@@ -1,0 +1,26 @@
+.panels-container .panel{
+    display: inline-block;
+    width: 70%;
+    max-height: 185px;
+    min-height: 185px;
+    overflow: scroll;
+    resize: both;
+}
+
+.about-important{
+	max-height: 250px !important;
+	min-height: 250px !important;
+	width: 84% !important;
+}
+
+.small-panel{
+	width: 27% !important;
+	margin: 5px;
+}
+
+.panels-container{
+	width: 90%;
+    margin: 10px auto;
+    position: relative;
+    text-align: center;
+}

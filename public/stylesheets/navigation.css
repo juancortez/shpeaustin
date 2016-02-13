@@ -65,21 +65,27 @@ li.dot:after {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 200px;
+    width: 100%;
+    height: 100%;
     background-color: #f1f1f1;
-    position:relative;
-    top: 62px;
+    position: relative;
+    top: 68px;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    z-index: 999;
+    text-align:center;
 }
 
 .li-hamburger-nav a {
     display: block;
     color: #000;
-    padding: 8px 0 8px 16px;
+    padding: 15px 0px 11px 21px;
     text-decoration: none;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 29px;
 }
 
 .li-hamburger-nav a.active {
@@ -115,7 +121,7 @@ li.dot:after {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 17px;
-    line-height: 20px;
+    line-height: 17px;
     transition: all 0.5s ease 0s;
     -ms-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
@@ -217,7 +223,7 @@ nav ul li a {
 
 .space{
 	width:100%;
-	height:50px;
+	height:90px;
 }
 
 .shpe-austin{

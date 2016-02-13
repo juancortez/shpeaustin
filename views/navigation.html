@@ -1,21 +1,21 @@
-<!DOCTYPE html>
 <html>
    <head>
       <link rel="stylesheet" type="text/css" href="/stylesheets/navigation.css">
       <link rel="stylesheet" href="/stylesheets/libs/font-awesome-4.5.0/css/font-awesome.css">
+      
       <script type="text/javascript">
          jQuery(function($){
            $( '.fa-bars' ).click(function(){
               $('.responsive-menu').toggleClass('expand');
-              var size = {
-                 width: window.innerWidth || document.body.clientWidth,
-                 height: window.innerHeight || document.body.clientHeight
-               }
-              if($('.responsive-menu').hasClass('expand')){
-                  $("#newsletter").css({'margin-top':'145px'});
-              } else{
-                  $("#newsletter").css({'margin-top':'0px'});
-              }
+              // var size = {
+              //    width: window.innerWidth || document.body.clientWidth,
+              //    height: window.innerHeight || document.body.clientHeight
+              //  }
+              // if($('.responsive-menu').hasClass('expand')){
+              //     $("#newsletter").css({'margin-top':'145px'});
+              // } else{
+              //     $("#newsletter").css({'margin-top':'0px'});
+              // }
             });
          }); 
       </script>
@@ -32,8 +32,8 @@
               <ul class="ul-hamburger-nav">
                  <li class = "li-hamburger-nav"> <a class="active" href="/">Home</a></li>
                  <li class = "li-hamburger-nav"> <a href="/about">About</a></li>
-                 <li class = "li-hamburger-nav"> <a href="/officers">Contact</a></li>
-                 <li class = "li-hamburger-nav"> <a href="/membership">About</a></li>
+                 <li class = "li-hamburger-nav"> <a href="/officers">Officers</a></li>
+                 <li class = "li-hamburger-nav"> <a href="/membership">Membership</a></li>
                  <li class = "li-hamburger-nav"> <a href="/contact">Contact Us</a></li>
                </ul>
            </div>

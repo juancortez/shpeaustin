@@ -1,6 +1,7 @@
 <html>
    <head>
       <title>Home</title>
+      <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
       <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
       <script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
@@ -10,11 +11,35 @@
 	<body>
 		<%include navigation.html%>
 
-		<div id="info">
-		</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img id="image-newsletter" src="" alt="">
+      <div class="caption">
+        <h3 id ="title"></h3>
+        <p id = "description"></p>
+        <div id = "newsletter-buttons">
+        	<p><a href="#" class="btn btn-primary" id = "prev-newsletter" role="button">Prev</a> <a href="#" id = "next-newsletter" class="btn btn-default" role="button">Next</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Controls -->
+  <!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> -->
 
 <!-- https://desandro.github.io/3dtransforms/docs/carousel.html -->
-	<div id="newsletter">
+	<!-- <div id="newsletter">
 		<div id="carousel-container">
 		  <div id="carousel">
 		    <div class="item a"></div>
@@ -37,7 +62,7 @@
 			</div>
 		</div>
 	</div>
-
+ -->
 	
 	
 

@@ -1,3 +1,60 @@
+
+.row div{
+  padding: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+
+}
+
+#newsletter-buttons{
+  text-align:center;
+}
+
+.item {
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 250px;
+  height: 200px;
+  line-height: 200px;
+  font-size: 5em;
+  text-align: center;
+  color: #FFF;
+  opacity: 0.95;
+  border-radius: 10px;
+}
+
+#prev-newsletter{
+  margin-right: 15px;
+}
+
+#description{
+  height: 79px;
+  overflow: scroll;
+}
+
+
+/*div#info{
+  height: 70px;
+}
+
+div.carousel-buttons{
+
+}
+
+#newsletter{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    top: 118px;
+    left: 0;
+    width: 100%;
+}
+
+
+
+
 #carousel-container {
   margin: 0 auto;
   width: 250px;
@@ -14,19 +71,6 @@
   transition: transform 1s;
 }
 
-.item {
-  display: block;
-  position: absolute;
-  background: #000;
-  width: 250px;
-  height: 200px;
-  line-height: 200px;
-  font-size: 5em;
-  text-align: center;
-  color: #FFF;
-  opacity: 0.95;
-  border-radius: 10px;
-}
 
 #carousel div:nth-child(1) {
   -webkit-transform: rotateY(0deg) translateZ(250px);
@@ -115,7 +159,7 @@ div#event-recap {
     overflow: scroll;
     padding: 10px;
     border: 2px solid #001a4d;
-    /*background-color: #f2f2f2;*/
+
     background-color: white;
     color: #001a4d;
     text-align: justify;
@@ -126,36 +170,15 @@ div#event-recap {
 }
 
 div#outer-event-recap{
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -webkit-flex;     /* NEW - Chrome */
-    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    display: -webkit-box;      
+    display: -moz-box;         
+    display: -webkit-flex;     
+    display: flex;             
     -webkit-box-flex-direction: row;
     -moz-box-flex-direction: row;
     -webkit-flex-direction: row;
     flex-direction: row;
-    /*position: fixed;*/
     width: 100%;
-    /*height: 100%;*/
     margin-top: 72px;
 }
-
-
-div#info{
-  height: 70px;
-}
-
-div.carousel-buttons{
-
-}
-
-#newsletter{
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    position: fixed;
-    top: 118px;
-    left: 0;
-    width: 100%;
-}
-
+*/
