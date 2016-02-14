@@ -87,7 +87,6 @@ li.dot:after {
     font-weight: bold;
     font-size: 29px;
     height: 12%;
-    padding: 31px;
 }
 
 .li-hamburger-nav a.active {
@@ -246,7 +245,7 @@ i.fa-bars{
 
 
 .mobile-twitter, .mobile-facebook{
-    margin: 0 30px;
+    margin: 0 15px;
 }
 
 #mobile-icons{
