@@ -8,7 +8,7 @@
          "hometown":"Austin, TX",
          "company":"Accenture",
          "executive": true,
-         "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/19515_10201051806974392_6769015767684186297_n.jpg"
+         "image_url": "../assets/jeremy.jpg"
       },
       {  
          "name":"Rogelio Zavala",
@@ -18,7 +18,7 @@
          "hometown":"McAllen, TX",
          "company":"Google",
          "executive": true,
-         "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/DSCN0738.jpg"
+         "image_url": "../assets/rogelio.jpg"
       },
       {  
          "name":"Vera Sandoval",
@@ -28,7 +28,7 @@
          "hometown":"McAllen, TX",
          "company":"Google",
          "executive": true,
-         "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/430258_10100287235480360_180109698_n.jpg"
+         "image_url": "../assets/vera.jpg"
       }
    ],
    "chairs":[  
@@ -40,7 +40,7 @@
          "hometown":"El Paso, TX",
          "company":"IBM",
          "executive": false,
-         "image_url": "https://scontent-dfw1-1.xx.fbcdn.net/hphotos-xpa1/t31.0-8/12239292_10207606635582128_532069874107247044_o.jpg"
+         "image_url": "../assets/juan.jpg"
       },
       {  
          "name":"Hugo Landaverde",
@@ -50,7 +50,7 @@
          "hometown":"Austin, TX",
          "company":"Accenture",
          "executive": true,
-         "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/DSCN0729.jpg"
+         "image_url": "../assets/hugo.jpg"
       }
    ]
 }

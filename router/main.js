@@ -38,33 +38,46 @@ module.exports = function(app){
 	});
 
 	app.post('/contact', function(req, res){
-		var smtpTransport = nodemailer.createTransport("SMTP",{
-		   service: "Gmail",
-		   auth: {
-		       user: 'cortezjuanjr@gmail.com',
-	        	pass: '******'
-		   }
-		});
+		// var smtpTransport = nodemailer.createTransport("SMTP",{
+		//    service: "Gmail",
+		//    auth: {
+		//        user: 'cortezjuanjr@gmail.com',
+	 //        	pass: '****'
+		//    }
+		// });
 
 		var phoneNumber = req.body.phone.replace(/\D/g,'');
 
-		var mail = {
-		    from: req.body.email,
-		    to: "cortezjuanjr@gmail.com",
-		    subject: "SHPE Austin Website Message",
-		    html: "Message sent from <b>" + req.body.name + "</b> with phone number <b>" + phoneNumber + "</b> and email <b>" + req.body.email +
-		    "</b>. <b>Message:</b> " + req.body.message
-		}
+		// var mail = {
+		//     from: req.body.email,
+		//     to: "cortezjuanjr@gmail.com",
+		//     subject: "SHPE Austin Website Message",
+		//     html: "Message sent from <b>" + req.body.name + "</b> with phone number <b>" + phoneNumber + "</b> and email <b>" + req.body.email +
+		//     "</b>. <b>Message:</b> " + req.body.message
+		// }
 
-		smtpTransport.sendMail(mail, function(error, response){
-		    if(error){
-		        console.log(error);
-		    }else{
-		        console.log("Message sent: " + response.message);
-		    }
+		// smtpTransport.sendMail(mail, function(error, response){
+		//     if(error){
+		//         console.log(error);
+		//     }else{
+		//         console.log("Message sent: " + response.message);
+		//     }
 
-		    smtpTransport.close();
-		});
+		//     smtpTransport.close();
+		// });
+
+	var sendmail = require('sendmail')();
+ 
+	sendmail({
+	    from: req.body.email,
+	    to: "cortezjuanjr@gmail.com",
+	    subject: "SHPE Austin Website Message",
+	    content: "Message sent from " + req.body.name + " with phone number " + phoneNumber + " and email " + req.body.email +
+		". Message: " + req.body.message,
+	  }, function(err, reply) {
+	    console.log(err && err.stack);
+	    console.dir(reply);
+	});
 		res.render('index.html');
 	});
 
@@ -86,8 +99,36 @@ module.exports = function(app){
 
 	app.get('/views/newsletters/newsletters.html', function(req, res){
 		var path = require('path');
-		//console.log("Loaded newsletter data.");
 		res.sendFile(path.resolve('views/newsletters/newsletters.html'));
+	});
+
+
+	app.get('/newsletterdata', function(req,res){
+		var path = require('path');
+		var fs = require('fs');
+		var file = path.join(__dirname, '../metadata', 'newsletter_data.json');
+		var data;
+
+		fs.readFile(file, 'utf8', function (err, data) {
+		  if (err) throw err;
+		  	data = JSON.parse(data);
+		  	//console.log(data);
+		});
+
+		res.setHeader('Content-Type', 'application/json');
+    	res.send(data);	
+	});
+
+	app.post('/newsletterdata', function(req, res){
+		var jsonfile = require('jsonfile');
+		var path = require("path");
+
+		var file = path.join(__dirname, '../metadata', 'newsletter_data.json');
+		jsonfile.writeFile(file, req.body, function (err) {
+		  console.error(err);
+		});
+
+		res.sendStatus(200);
 	});
 
 	// var employee = { name: 'Winnie', location: 'Australia' };

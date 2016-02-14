@@ -53,6 +53,37 @@ $(document ).ready(function() { // HTML has loaded
       $('.carousel-indicators').append(elem);
     }
     
+    var newsletterData = {
+        newsletter: []
+    };
+
+    for(var i in titles) {
+        var title = titles[i];
+        var description = descriptions[i];
+        var image = images[i];
+        if(i >= eventRecapNum){
+          var imageLink = imageLinks[i];
+        } else{
+          imageLink = "";
+        }
+        newsletterData.newsletter.push({ 
+            "title" : title,
+            "description"  : description,
+            "image"       : image,
+            "image_link" : imageLink 
+        });
+    }
+
+    $.ajax({
+          type: 'POST',
+          url: '/newsletterdata',
+          data: newsletterData,
+          dataType: 'application/json',
+          success: function(data) {
+              console.log('success');
+              console.log(data);
+          }
+      });
 
     $("#title").append(titles[newsletterItem]);
     $("#description").append("<span class = 'bold'> Description: </span>" + descriptions[newsletterItem]);

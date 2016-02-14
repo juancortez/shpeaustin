@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var fs = require('fs'),
+  request = require('request');
 //var mysql = require("mysql");
 
 // // First you need to create a connection to the db
@@ -43,14 +45,6 @@ app.listen(appEnv.port, '0.0.0.0', function() {
   parseOfficerJSON();
 });
 
-// http://www.sitepoint.com/using-node-mysql-javascript-client/
-// con.connect(function(err){
-//   if(err){
-//    //console.log('Error connecting to Db');
-//     return;
-//   }
-//   //console.log('Connection established');
-// });
 
 function parseOfficerJSON(){
   var Officer = require('./models/officers.js');
@@ -80,6 +74,32 @@ function parseOfficerJSON(){
         officerList.push(officer);
       }
 }
+
+function parseNewsletter(){
+
+  //   var download = function(uri, filename, callback){
+  // request.head(uri, function(err, res, body){
+  //   console.log('content-type:', res.headers['content-type']);
+  //   console.log('content-length:', res.headers['content-length']);
+
+  //     request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+  //   });
+  // };
+
+  // download('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
+  //   console.log('done');
+  // });
+}
+
+// http://www.sitepoint.com/using-node-mysql-javascript-client/
+// con.connect(function(err){
+//   if(err){
+//    //console.log('Error connecting to Db');
+//     return;
+//   }
+//   //console.log('Connection established');
+// });
+
 
 // var employee = { name: 'Winnie', location: 'Australia' };
 // con.query('INSERT INTO employees SET ?', employee, function(err,res){

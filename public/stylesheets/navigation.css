@@ -245,22 +245,23 @@ i.fa-bars{
 
 
 .mobile-twitter, .mobile-facebook{
-    margin: 0 15px;
+    margin: 0 15px 0 15px;
+    display: inline-block;
 }
 
 #mobile-icons{
     width: 100%;
-    position: fixed;
-    z-index: 999;
-    bottom: 0;
+    position: absolute;
+    padding: 0px;
+    margin-top: 30px;
+    /* z-index: 999; */
+    /* bottom: 0; */
     /* height: 100px; */
-    display: inline-block;
-    text-align: center;
-    margin: 0 auto;
-    padding:51px;
+    /* display: inline-block; */
+    /* text-align: center; */
+    /* margin: 0 auto; */
 }
 
- 
 .responsive-menu{
     display: none;
     z-index: 1000;

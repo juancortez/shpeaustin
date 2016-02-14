@@ -72,3 +72,20 @@
     border: 1px solid black;
 
 }
+
+iframe{
+  border-width: 0;
+    display: inline-block;
+    width: 36%;
+    height: 113%;
+}
+
+.view-container-border {
+  padding: 0px;
+}
+
+.calendar-container{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
