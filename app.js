@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 //var mysql = require("mysql");
 
 // // First you need to create a connection to the db
@@ -32,6 +33,16 @@ var appEnv = cfenv.getAppEnv();
 // 	console.log("We have started our server on port 8000");
 //   parseOfficerJSON();
 // });
+
+
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+})); 
+
+
+
+
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {

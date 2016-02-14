@@ -1,0 +1,50 @@
+.contact-form {
+    padding: 0px 35px 0px 35px;
+}
+.custom-button{
+    display: block;
+    border-radius: 0;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    background: #002266;
+    font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 auto;
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+    transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+    position: relative;
+    bottom: 64px;
+}
+
+.custom-button:hover{
+	  -webkit-transform: rotate(60deg);
+   -moz-transform: rotate(60deg);
+     -o-transform: rotate(60deg);
+        transform: rotate(60deg);
+        background: #0137A2;
+}
+
+.custom-button:focus{
+	  -webkit-transform: rotate(30deg);
+   -moz-transform: rotate(30deg);
+     -o-transform: rotate(30deg);
+        transform: rotate(30deg);
+}
+
+.col-sm-10{
+	width: 100%;
+}
+
+
+
+@media (min-width: 768px){
+	.col-sm-offset-2 {
+    	margin-left: 0px !important;
+	}
+}

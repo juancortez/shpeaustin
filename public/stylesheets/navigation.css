@@ -313,5 +313,24 @@ i.fa-bars{
     }
 }
 
+@media only screen and (max-width: 569px){
+    .mobile-shpe{
+        font-size: 50px;
+    }
+
+}
+
+@media only screen and (max-width: 515px){
+    .mobile-shpe{
+        font-size: 36px;
+    }
+}
+
+@media only screen and (max-width: 410px){
+    .mobile-shpe{
+        font-size: 22px;
+    }
+}
+
 
 

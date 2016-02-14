@@ -45,11 +45,11 @@
       {  
          "name":"Hugo Landaverde",
          "position":"Secretary",
-         "email":"allen_poe@allen.edu",
+         "email":"h.landaverde@utexas.edu",
          "phone":9876289202,
-         "hometown":"San Francisco, CA",
-         "company":"Microsoft",
-         "executive": false,
+         "hometown":"Austin, TX",
+         "company":"Accenture",
+         "executive": true,
          "image_url": "http://austinshpe.org/wp-content/uploads/2015/09/DSCN0729.jpg"
       }
    ]

@@ -24,3 +24,20 @@
     position: relative;
     text-align: center;
 }
+
+
+@media only screen and (max-width: 569px){
+    .panels-container .panel{
+        display: block;
+    }
+
+    .small-panel {
+        width: 100% !important;
+        margin: 5px;
+    }
+
+    .about-important{
+        width: 100% !important;
+    }
+}
+    

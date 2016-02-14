@@ -1,7 +1,12 @@
 // module.exports exposes functions that we want to use in a different file
 //module.exports = function(app, con){
 module.exports = function(app){
-	
+	var bodyParser = require('body-parser');
+	var nodemailer = require('nodemailer');
+	app.use(bodyParser.json());       // to support JSON-encoded bodies
+	app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+	    extended: true
+	})); 
 
 	/*************************************************************************/
 	// The following endpoints serve HTML pages
@@ -31,6 +36,28 @@ module.exports = function(app){
 	app.get('/membership', function(req, res){
 		res.render('membership.html');
 	});
+
+	app.post('/contact', function(req, res){
+		var transporter = nodemailer.createTransport({
+	    service: 'Gmail',
+	    auth: {
+	        user: 'cortezjuanjr@gmail.com',
+	        pass: '*******'
+	    }
+		});
+
+		var phoneNumber = req.body.phone.replace(/\D/g,'');
+		var textSent = 'Message sent from ' + req.body.name + ' with phone number ' + phoneNumber + ' and e-mail ' + req.body.email +'. Message: ' + req.body.message;
+		transporter.sendMail({
+		  from: req.body.email,
+		  to: 'cortezjuanjr@gmail.com',
+		  subject: 'SHPE Austin Website Message',
+		  text: textSent
+		});
+		res.render('contact.html');
+	});
+
+
 
 	/*************************************************************************/
 	// The following endpoints make calls to the database and return data to the
