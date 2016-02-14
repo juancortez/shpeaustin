@@ -45,12 +45,13 @@ $(document ).ready(function() { // HTML has loaded
       images[populatedItems] = image;
       imageLinks[imageLinkIndex++] = imageLink;
       populatedItems++;
-      //console.log("Title: " + title + " Description: " + description);
-
     }
 
 
-
+    for(var i =1; i < populatedItems; i++){
+      var elem = document.createElement("li");
+      $('.carousel-indicators').append(elem);
+    }
     
 
     $("#title").append(titles[newsletterItem]);
@@ -59,6 +60,7 @@ $(document ).ready(function() { // HTML has loaded
   });
 
   $("#prev-newsletter").click(function(){
+      $($('ol li')[newsletterItem]).removeClass('active');
       if(newsletterItem == 0){
         newsletterItem = populatedItems-1;
       } else {
@@ -68,6 +70,7 @@ $(document ).ready(function() { // HTML has loaded
   });
 
   $("#next-newsletter").click(function(){
+      $($('ol li')[newsletterItem]).removeClass('active');
       newsletterItem = ((newsletterItem + 1) % (populatedItems));
       updateNewsletter();
   });
@@ -77,6 +80,7 @@ $(document ).ready(function() { // HTML has loaded
     $("#description").empty();
 
     if(newsletterItem < populatedItems){
+      $($('ol li')[newsletterItem]).addClass('active');
       $("#title").append(titles[newsletterItem]);
       $("#description").append("<span class = 'bold'> Description: </span>" + descriptions[newsletterItem]);
       $("#image-newsletter").attr('src', images[newsletterItem]);

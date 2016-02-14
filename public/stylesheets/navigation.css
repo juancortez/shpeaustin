@@ -4,7 +4,7 @@ a {
     text-decoration: none;
 }
 
-ul.menu, ul.ul-share-size{
+/*ul.menu, ul.ul-share-size{
     list-style: square;
     margin: 0 0 18px 1.5em;
     border: 0;
@@ -13,7 +13,7 @@ ul.menu, ul.ul-share-size{
     font-family: inherit;
     font-size: 1rem;
     line-height: 1.6;
-}
+}*/
 
 li{
 	margin: 0;
@@ -31,7 +31,7 @@ li{
 .navcontent {
     width: 100%;
     background: #ffffff;
-    text-align: center;
+    /*text-align: center;*/
     position: relative;
     min-height: 64px;
     border-bottom: 1px solid #ebebeb;
@@ -51,7 +51,7 @@ li{
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 9999999;
+    z-index: 999;
 }
 
 li.dot:after {
@@ -69,7 +69,7 @@ li.dot:after {
     height: 100%;
     background-color: #f1f1f1;
     position: relative;
-    top: 68px;
+    top: 63px;
     position: absolute;
     margin: 0 auto;
     left: 0;
@@ -86,6 +86,8 @@ li.dot:after {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 29px;
+    height: 12%;
+    padding: 31px;
 }
 
 .li-hamburger-nav a.active {
@@ -94,7 +96,8 @@ li.dot:after {
 }
 
 .li-hamburger-nav a:hover {
-    background-color: #555;
+    background-color: #DDDADA;
+    /*background-color: #555;*/
     color: white;
     cursor: pointer;
 }
@@ -126,6 +129,8 @@ li.dot:after {
     -ms-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -webkit-transition: all 0.5s ease 0s;
+    text-align: center;
+    text-decoration: none;
 }
 
 span.small{
@@ -135,29 +140,32 @@ span.small{
 }
 
 nav {
-    display: inline-block;
+   /* display: inline-block;*/
     padding: 18px 0 0 0;
-    margin: 0px 0px 0px 50px;
+    width: calc(100% + 112px);
+    text-align:center;
+    margin: 0 auto;
+    /*margin: 0px 0px 0px 50px;*/
 }
 
-nav .menu-header_menu-container {
+/*nav .menu-header_menu-container {
     float: left;
-}
+}*/
+
 
 nav ul {
     margin: 0;
-    padding: 0;
+   /* padding: 0;*/
     display: inline-block;
-    float: left;
+    /*float: left;*/
 }
 
 nav ul li {
     padding: 0 25px;
     display: inline-block;
-    float: left;
     position: relative;
-    font-size: 18px;
-    margin: 0px 5px 0px 5px;
+    font-size: 20px;
+ /*   margin: 0px 5px 0px 5px;*/
 }
 
 nav ul li a {
@@ -210,12 +218,13 @@ nav ul li a {
 }
 
 .share-size{
-	width: 16.66%;
+	width: 9%;
 }
 
 .share_icon {
-    width: 32%;
+    width: 50%;
 }
+
 
 .ul-share-size {
     width: 100%;
@@ -234,10 +243,28 @@ i.fa-bars{
     display:none;
 }
 
+
+
+.mobile-twitter, .mobile-facebook{
+    margin: 0 30px;
+}
+
+#mobile-icons{
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    /* height: 100px; */
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    padding:51px;
+}
+
  
 .responsive-menu{
     display: none;
-    z-index: 1999;
+    z-index: 1000;
 }
  
 .expand {
@@ -251,12 +278,12 @@ i.fa-bars{
     }
 
     #shpenav{
-        font-size: 23px; 
+        font-size: 32px; 
     }
 
-    .share{
+/*    .share{
         display: none;
-    }
+    }*/
 
     nav ul li a {
         font-size: 16px;
@@ -267,17 +294,33 @@ i.fa-bars{
         margin-top: 12px;
     }
 
-    nav {
+/*    nav {
         margin-left: 194px;
-    }
+    }*/
 
 }
 
 @media only screen and (max-width: 980px){
-    .navcontent{
+
+    .sticky{
+        position: absolute;
+    }
+    .navleft{
         display: none;
-    }      
-    
+    }  
+
+    nav{
+        display:none;
+    }
+
+    .navcontent{
+        background: transparent;
+    }
+
+    .share-size{
+        width: 17%;
+    }
+
     .shpe-austin{
         display: inline-block;
         width: 100%;
@@ -285,7 +328,7 @@ i.fa-bars{
         background-color: white;
         position: absolute;
         top: 0px;
-        border-bottom: 1px solid #ebebeb;
+        
     } 
 
     .mobile-shpe {
@@ -313,9 +356,26 @@ i.fa-bars{
     }
 }
 
+@media only screen and (max-width: 729px){
+    .share-size{
+        width: 13%;
+    }
+
+    .mobile-shpe{
+        font-size: 50px;
+        margin-left: 16px;
+    }
+
+}
+
 @media only screen and (max-width: 569px){
     .mobile-shpe{
         font-size: 50px;
+        margin-left: 36px;
+    }
+    
+    .sticky{
+        z-index: -1;
     }
 
 }
@@ -324,11 +384,12 @@ i.fa-bars{
     .mobile-shpe{
         font-size: 36px;
     }
+
 }
 
-@media only screen and (max-width: 410px){
+@media only screen and (max-width: 420px){
     .mobile-shpe{
-        font-size: 22px;
+        font-size: 26px;
     }
 }
 

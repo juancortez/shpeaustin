@@ -1,15 +1,24 @@
 .panels-container .panel{
     display: inline-block;
     width: 70%;
-    max-height: 185px;
+/*    max-height: 185px;
+    min-height: 185px;*/
+}
+
+.panels-container .panel-body{
+     max-height: 185px;
     min-height: 185px;
     overflow: scroll;
-    resize: both;
+}
+
+
+.panel{
+    margin-top:5px;
 }
 
 .about-important{
-	max-height: 250px !important;
-	min-height: 250px !important;
+/*	max-height: 250px !important;
+	min-height: 250px !important;*/
 	width: 84% !important;
 }
 

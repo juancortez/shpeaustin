@@ -38,23 +38,34 @@ module.exports = function(app){
 	});
 
 	app.post('/contact', function(req, res){
-		var transporter = nodemailer.createTransport({
-	    service: 'Gmail',
-	    auth: {
-	        user: 'cortezjuanjr@gmail.com',
-	        pass: '*******'
-	    }
+		var smtpTransport = nodemailer.createTransport("SMTP",{
+		   service: "Gmail",
+		   auth: {
+		       user: 'cortezjuanjr@gmail.com',
+	        	pass: '******'
+		   }
 		});
 
 		var phoneNumber = req.body.phone.replace(/\D/g,'');
-		var textSent = 'Message sent from ' + req.body.name + ' with phone number ' + phoneNumber + ' and e-mail ' + req.body.email +'. Message: ' + req.body.message;
-		transporter.sendMail({
-		  from: req.body.email,
-		  to: 'cortezjuanjr@gmail.com',
-		  subject: 'SHPE Austin Website Message',
-		  text: textSent
+
+		var mail = {
+		    from: req.body.email,
+		    to: "cortezjuanjr@gmail.com",
+		    subject: "SHPE Austin Website Message",
+		    html: "Message sent from <b>" + req.body.name + "</b> with phone number <b>" + phoneNumber + "</b> and email <b>" + req.body.email +
+		    "</b>. <b>Message:</b> " + req.body.message
+		}
+
+		smtpTransport.sendMail(mail, function(error, response){
+		    if(error){
+		        console.log(error);
+		    }else{
+		        console.log("Message sent: " + response.message);
+		    }
+
+		    smtpTransport.close();
 		});
-		res.render('contact.html');
+		res.render('index.html');
 	});
 
 

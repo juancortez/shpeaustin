@@ -35,15 +35,6 @@ var appEnv = cfenv.getAppEnv();
 // });
 
 
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
-})); 
-
-
-
-
-
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
 
