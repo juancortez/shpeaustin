@@ -300,6 +300,7 @@ i.fa-bars{
 
 }
 
+
 @media only screen and (max-width: 980px){
 
     .sticky{
@@ -376,6 +377,10 @@ i.fa-bars{
     
     .sticky{
         z-index: -1;
+    } /* here */
+
+    .shpe-austin{
+        border-bottom: 1px solid #ebebeb;
     }
 
 }
@@ -390,6 +395,12 @@ i.fa-bars{
 @media only screen and (max-width: 420px){
     .mobile-shpe{
         font-size: 26px;
+    }
+}
+
+@media screen and (orientation:landscape) {
+    .li-hamburger-nav a{
+        padding-top: 4px;
     }
 }
 

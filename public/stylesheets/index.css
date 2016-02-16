@@ -1,10 +1,10 @@
-
+/*
 .row div{
   padding: 10px;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 30px;
+  margin-left: 10px;
 
-}
+}*/
 
 #newsletter-buttons{
   text-align:center;
@@ -56,9 +56,9 @@
   width: 100%;
 }
 
-.row{
+/*.row{
   padding: 0px 5px 0px 20px;
-}
+}*/
 
 .carousel-indicators{
     display: inline-block;
@@ -73,19 +73,54 @@
 
 }
 
-iframe{
-  border-width: 0;
-    display: inline-block;
-    width: 36%;
-    height: 113%;
+
+#paypal-local-member{
+  cursor: pointer;
 }
 
-.view-container-border {
-  padding: 0px;
+#membership-header{
+   margin-top: 10px
 }
 
-.calendar-container{
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.paypal{
+  text-align: center;
 }
 
+.bs-example-a{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 750px;
+}
+
+.thumbnail{
+  min-height: 491px;
+}
+
+.col-sm-6{
+  width: 50%;
+}
+
+@media only screen and (max-width: 768px){
+  .bs-example-a{
+      width: 100%;
+  }
+
+  .thumbnail{
+    max-height: 433px;
+    min-height: 433px;
+  }
+
+  .col-sm-6{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 514px){
+  .thumbnail{
+    max-height: 476px;
+    min-height: 476px;
+  }
+
+}
