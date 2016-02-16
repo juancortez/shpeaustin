@@ -11,9 +11,9 @@
     overflow: scroll;
 }
 
-
 .panel{
     margin-top:5px;
+    vertical-align: top;
 }
 
 .about-important{

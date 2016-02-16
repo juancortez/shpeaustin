@@ -2,7 +2,6 @@
 //module.exports = function(app, con){
 module.exports = function(app) {
     var bodyParser = require('body-parser');
-    var nodemailer = require('nodemailer');
     app.use(bodyParser.json()); // to support JSON-encoded bodies
     app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
         extended: true
@@ -39,72 +38,31 @@ module.exports = function(app) {
 
 
     app.post('/contact', function(req, res) {
-        // var smtpTransport = nodemailer.createTransport("SMTP",{
-        //    service: "Gmail",
-        //    auth: {
-        //        user: 'cortezjuanjr@gmail.com',
-        //        	pass: '****'
-        //    }
-        // });
-
         var phoneNumber = req.body.phone.replace(/\D/g, '');
+        if (process.env.VCAP_SERVICES) {
+            var env = JSON.parse(process.env.VCAP_SERVICES);
+            var credentials = env['sendgrid'][0].credentials;
+        } else {
+            var path = require('path');
+            var fs = require('fs');
+            var file = path.join(__dirname, '../', 'send_grid.json');
+            var data = JSON.parse(fs.readFileSync(file, 'utf8'));
+            var credentials = data.sendgrid[0].credentials;
+        };
 
-        // var mail = {
-        //     from: req.body.email,
-        //     to: "cortezjuanjr@gmail.com",
-        //     subject: "SHPE Austin Website Message",
-        //     html: "Message sent from <b>" + req.body.name + "</b> with phone number <b>" + phoneNumber + "</b> and email <b>" + req.body.email +
-        //     "</b>. <b>Message:</b> " + req.body.message
-        // }
-
-        // smtpTransport.sendMail(mail, function(error, response){
-        //     if(error){
-        //         console.log(error);
-        //     }else{
-        //         console.log("Message sent: " + response.message);
-        //     }
-
-        //     smtpTransport.close();
-        // });
-
-        // var sendmail = require('sendmail')();
-
-        // sendmail({
-        //     from: "cortezjuanjr@gmail.com",
-        //     to: "cortezjuanjr@gmail.com",
-        //     subject: "SHPE Austin Website Message",
-        //     content: "Message sent from " + req.body.name + " with phone number " + phoneNumber + " and email " + req.body.email +
-        //         ". Message: " + req.body.message,
-        // }, function(err, reply) {
-        //     console.log(err && err.stack);
-        //     console.dir(reply);
-        // });
-
-        var email = require('mailer');
-
-        email.send({
-            host : "smtp.gmail.com",
-            port : "465",
-            ssl : true,
-            domain : "shpeaustin.mybluemix.net",
-            to : "cortezjuanjr@gmail.com",
-            from : "cortezjuanjr@gmail.com",
-            subject : "Mailer library Mail node.js",
-            text: "Message sent from " + req.body.name + " with phone number " + phoneNumber + " and email " + req.body.email +
-                 ". Message: " + req.body.message,
-            html: "Message sent from <b>" + req.body.name + "</b> with phone number <b>" + phoneNumber + "</b> and email <b>" + req.body.email +
-             "</b>. <b>Message:</b> " + req.body.message ,
-            authentication : "login",        // auth login is supported; anything else $
-            username : 'cortezjuanjr@gmail.com',
-            password : '******'
-            },
-            function(err, result){
-              if(err){  console.log(err);  
-              }
-              else { console.log('hurray! Email Sent'); 
-            }
+        var sendgrid  = require('sendgrid')(credentials.username, credentials.password);
+        sendgrid.send({
+          to:       'cortezjuanjr@gmail.com',
+          from:     req.body.email,
+          subject:  'SHPE Austin Website Message',
+          text:     "Message sent from " + req.body.name + " with phone number " + phoneNumber + " and email " + req.body.email +
+            ". Message: " + req.body.message,
+          html: "Message sent from <b>" + req.body.name + "</b> with phone number <b>" + phoneNumber + "</b> and email <b>" + req.body.email +
+             "</b>. <b>Message:</b> " + req.body.message
+        }, function(err, json) {
+          if (err) { return console.error(err); }
+          console.log(json);
         });
-    
         res.render('contact.html');
     });
 

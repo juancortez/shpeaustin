@@ -75,22 +75,6 @@ function parseOfficerJSON() {
     }
 }
 
-function parseNewsletter() {
-
-    //   var download = function(uri, filename, callback){
-    // request.head(uri, function(err, res, body){
-    //   console.log('content-type:', res.headers['content-type']);
-    //   console.log('content-length:', res.headers['content-length']);
-
-    //     request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-    //   });
-    // };
-
-    // download('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
-    //   console.log('done');
-    // });
-}
-
 // http://www.sitepoint.com/using-node-mysql-javascript-client/
 // con.connect(function(err){
 //   if(err){
