@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var fs = require('fs'),
-  request = require('request');
+    request = require('request');
 //var mysql = require("mysql");
 
 // // First you need to create a connection to the db
@@ -32,7 +32,7 @@ var cfenv = require('cfenv');
 var appEnv = cfenv.getAppEnv();
 
 // var server = app.listen(8000, function(){
-// 	console.log("We have started our server on port 8000");
+//  console.log("We have started our server on port 8000");
 //   parseOfficerJSON();
 // });
 
@@ -40,55 +40,55 @@ var appEnv = cfenv.getAppEnv();
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
 
-  // print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
-  parseOfficerJSON();
+    // print a message when the server starts listening
+    console.log("server starting on " + appEnv.url);
+    parseOfficerJSON();
 });
 
 
-function parseOfficerJSON(){
-  var Officer = require('./models/officers.js');
+function parseOfficerJSON() {
+    var Officer = require('./models/officers.js');
 
-      var data = [];
-      var file = "./metadata/officers.json"
+    var data = [];
+    var file = "./metadata/officers.json"
 
-      try {
-          //console.log("Loading officer data from " + file);
-          data = require(file);
-          //console.log("Successfully loaded data from " + file);
-      } catch (ignore) {
-          console.error("Failed to load data from " + file);
-      }
+    try {
+        //console.log("Loading officer data from " + file);
+        data = require(file);
+        //console.log("Successfully loaded data from " + file);
+    } catch (ignore) {
+        console.error("Failed to load data from " + file);
+    }
 
-      //var executiveOfficerList = [];
-      for(var i = 0; i < data.executive.length; i++){
+    //var executiveOfficerList = [];
+    for (var i = 0; i < data.executive.length; i++) {
         var current = data.executive[i];
         var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
         executiveOfficerList.push(officer);
-      }
-      
-      //var officerList = [];
-      for(var i = 0; i < data.chairs.length; i++){
+    }
+
+    //var officerList = [];
+    for (var i = 0; i < data.chairs.length; i++) {
         var current = data.chairs[i];
         var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
         officerList.push(officer);
-      }
+    }
 }
 
-function parseNewsletter(){
+function parseNewsletter() {
 
-  //   var download = function(uri, filename, callback){
-  // request.head(uri, function(err, res, body){
-  //   console.log('content-type:', res.headers['content-type']);
-  //   console.log('content-length:', res.headers['content-length']);
+    //   var download = function(uri, filename, callback){
+    // request.head(uri, function(err, res, body){
+    //   console.log('content-type:', res.headers['content-type']);
+    //   console.log('content-length:', res.headers['content-length']);
 
-  //     request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-  //   });
-  // };
+    //     request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+    //   });
+    // };
 
-  // download('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
-  //   console.log('done');
-  // });
+    // download('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
+    //   console.log('done');
+    // });
 }
 
 // http://www.sitepoint.com/using-node-mysql-javascript-client/
@@ -136,12 +136,7 @@ function parseNewsletter(){
 // });
 
 // con.end(function(err) {
-  // The connection is terminated gracefully
-  // Ensures all previously enqueued queries are still
-  // before sending a COM_QUIT packet to the MySQL server.
+// The connection is terminated gracefully
+// Ensures all previously enqueued queries are still
+// before sending a COM_QUIT packet to the MySQL server.
 // });
-
-
-
-
-
