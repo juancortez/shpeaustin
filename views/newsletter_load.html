@@ -1,0 +1,101 @@
+<html>
+   <head>
+      <title>Newsletter Load</title>
+      <link rel="icon" href="/assets/shpe_austin_icon.png" type="image/x-icon" />
+      <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.css">
+      <link rel="stylesheet" href="/stylesheets/libs/font-awesome-4.5.0/css/font-awesome.css">
+      <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+      <script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script type="text/javascript">
+
+      	  var titles = [];
+		  var descriptions = [];
+		  var images = [];
+		  var imageLinks = [];
+
+		  var newsletterItem = 0;
+		  var populatedItems = 0;
+		  var imageLinkIndex = 0;
+		  var eventRecapNum = 0;
+
+         jQuery(function($){
+           $.get( "../views/newsletters/newsletters.html", function( data ) {
+		    if ( status == "error" ) {
+		      console.error("Couldn't load newsletters.html");
+		    } else{
+		      //console.log("Newsletter successfully loaded.");
+		      var parser=new DOMParser();
+		      var htmlDoc= parser.parseFromString(data, "text/html");
+
+		      var eventRecap = htmlDoc.getElementsByClassName('mcnImageCardBottomImageContent');
+		      eventRecapNum = eventRecap.length;
+		      for(var i = 0; i < eventRecap.length; i++){
+		        var title = $($($(eventRecap).closest('tbody')[i]).find('strong')[0]).text(); // title of Event Recap
+		        var description = $($($(eventRecap).closest('tbody')[i]).find('strong')[1]).text();
+		        var image = $(eventRecap[i]).find('img')[0].getAttribute('src');
+		        titles[populatedItems] = title;
+		        descriptions[populatedItems] = description;
+		        images[populatedItems] = image;
+		        populatedItems++;
+		      }
+		    }
+
+		    var items = $(htmlDoc).find('.mcnCaptionBlockInner');
+		    for(var i=1; i < items.length; i = i + 2){
+		      var title = $($(items[i]).find('strong')[0]).text();
+		      var description = $($(items[i+1]).find('h4')).text();
+		      var image = $($(items)[i+1]).find('img')[0].getAttribute('src');
+		      var imageLink = $($($(items)[i+1]).find('img')[0]).parent()[0].getAttribute('href');
+
+		      titles[populatedItems] = title;
+		      descriptions[populatedItems] = description;
+		      images[populatedItems] = image;
+		      imageLinks[imageLinkIndex++] = imageLink;
+		      populatedItems++;
+		    }
+
+		    var newsletterData = {
+		        newsletter: []
+		    };
+		    for(var i in titles) {
+		        var title = titles[i];
+		        var description = descriptions[i];
+		        var image = images[i];
+		        if(i >= eventRecapNum){
+		          var imageLink = imageLinks[i - eventRecapNum];
+		        } else{
+		          imageLink = "";
+		        }
+		        newsletterData.newsletter.push({ 
+		            "title" : title,
+		            "description"  : description,
+		            "image"       : image,
+		            "image_link" : imageLink 
+		        });
+		    }
+		    $.ajax({
+		          type: 'POST',
+		          url: '/newsletterdata',
+		          data: newsletterData,
+		          dataType: 'application/json',
+		          success: function(data) {
+		              console.log('success');
+		              console.log(data);
+		          }
+		    	  });
+        	 }); 
+		}); 
+      </script>
+   </head>
+
+	<body>
+		<% include navigation.html %>
+		<div class = 'entire-page'>
+			<h1 class = "404 bold dark-shpe-blue center-text">Newsletter Data Loaded</h1>
+		</div>
+
+	</body>
+
+
+</html>
