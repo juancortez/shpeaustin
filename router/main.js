@@ -46,17 +46,11 @@ module.exports = function(app) {
     app.get('/calendar', function(req, res){
         var google_content;
         try {
-          //console.log("Loading officer data from " + file);
           google_content = require('../private_credentials/client_secret.json');
-          //console.log("Successfully loaded data from " + file);
         } catch (ignore) {
           console.error("Failed to load data from client_secret.json");
         }
-        // Authorize a client with the loaded credentials, then call the
-        // Google Calendar API.
         google_calendar.authorize(google_content, google_calendar.listEvents, res);
-        //res.sendStatus(200);
-        //res.sendStatus(200);
     });
 
 
