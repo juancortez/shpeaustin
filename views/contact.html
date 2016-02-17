@@ -8,11 +8,20 @@
 		<script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-     
+		<script type="text/javascript">
+         jQuery(function($){
+         	$(document).ready(function() {
+				$("#message").keyup(function(event){
+				    if(event.keyCode == 13){
+				        $("#submit-button").click();
+				    }
+				});
+			});
+		});
+     	</script>
 	</head>
-
+	<% include navigation.html %>
 	<body>
-		<% include navigation.html %>
 		<div class = "contact-container">
 			<div class = "contact-form">
 				<form method = "post" action="contact">
@@ -38,10 +47,22 @@
 				  <div class="form-group row">
 				    <label for="phone-number" class="col-sm-2 form-control-label">Phone #:<span style="color:red;">*</span></label>
 				    <div class="col-sm-10">
-				      <input type="phone" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+				      <input type="tel"  class="form-control" id="phone" name="phone" placeholder="Phone Number" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 45)' required>
 				    </div>
 				  </div>
 
+				  <label for="sel1">Category:</label>
+			      <select class="form-control" id="sel1" name="category">
+			      	<option>General</option>
+			        <option>Athletics</option>
+			        <option>Corporate</option>
+			        <option>Events</option>
+			        <option>Mentorship</option>
+			        <option>National/Regional Conference</option>
+			        <option>Scholarship</option>
+			        <option>Website</option>
+			        <option>Other</option>
+			      </select>
 
 				  <fieldset class="form-group">
 				    <label for="message">Message:</label><span style="color:red;">*</span></label>
@@ -51,7 +72,7 @@
 				  
 				  <div id="form-submission" class="form-group row">
 				    <div class="col-sm-offset-2 col-sm-10">
-				      <button type="submit" class="custom-button">Send It</button>
+				      <button id="submit-button" type="submit" class="custom-button">Send It</button>
 				    </div>
 				  </div>
 				</form>

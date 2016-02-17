@@ -8,86 +8,96 @@
 
 	<script type="text/javascript">
          jQuery(function($){
-           var showFlip = true;
+         	$(document).ready(function() {
+	           var showFlip = true;
 
-			/* To show that the cards can be flipped */
-			if(showFlip == true){
-				setTimeout(function (){
-				  $($(document).find('.card')[0]).toggleClass('flipped-60');
-				}, 100);
-				setTimeout(function (){
-				  $($(document).find('.card')[0]).toggleClass('flipped-60');
-				}, 1100); 
-			}
+				/* To show that the cards can be flipped */
+				if(showFlip == true){
+					setTimeout(function (){
+					  $($(document).find('.card')[0]).toggleClass('flipped-60');
+					}, 100);
+					setTimeout(function (){
+					  $($(document).find('.card')[0]).toggleClass('flipped-60');
+					}, 1100); 
+				}
+
+				$('.card').on('click', function(){
+					var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+					if(isMobile){
+						$(this).toggleClass('flipped-0');
+					}
+				});	
+			});
          }); 
       </script>
 
 </head>
 
 <% include navigation.html %>
-
-<h2 class = "center-text officer-header"> Executive Officers </h2>
-<!-- Officer(name, position, email, phone, hometown, company) -->
-<div class = "officers-container">
-	<div class='officer-container'>
-		<ul class ="officer-list">
-			<% executiveOfficerList.forEach(function(officer) { %>
-				<section class="container">
-				  <div class="card">
-				    <figure class="front">
-				    	<img class = "officers" src=<%= officer.image_url %>></img>
-				    	<div class ="front-officer-info">
-					    	<p class = "center-text name bold"> <%= officer.name %>  </p>
-					    	<p class = "center-text position italic"> <%= officer.position %>  </p>
-					    </div>
-				    </figure>
-				    
-				    <figure class="back">
-				    	<div class = "information">
-				    		<div>
-						    	<p class = "center-text"><span class="bold">Name:</span> <%= officer.name %></p>
-						    	<p class = "center-text"><span class="bold">Position:</span> <%= officer.position %></p>
-						    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:"+<%= officer.email %>+"?subject=Contact SHPE Austin"><%= officer.email %></a></p>
-						    	<p class = "center-text"><span class="bold">Phone:</span> <%= officer.phone %></p>
-						    	<p class = "center-text"><span class="bold">Hometown:</span> <%= officer.hometown %></p>
-						    	<p class = "center-text"><span class="bold">Company:</span> <%= officer.company %></p>
+<body>
+	<h2 class = "center-text officer-header"> Executive Officers </h2>
+	<!-- Officer(name, position, email, phone, hometown, company) -->
+	<div class = "officers-container">
+		<div class='officer-container'>
+			<ul class ="officer-list">
+				<% executiveOfficerList.forEach(function(officer) { %>
+					<section class="container">
+					  <div class="card">
+					    <figure class="front">
+					    	<img class = "officers" src=<%= officer.image_url %>></img>
+					    	<div class ="front-officer-info">
+						    	<p class = "center-text name bold"> <%= officer.name %>  </p>
+						    	<p class = "center-text position italic"> <%= officer.position %>  </p>
 						    </div>
-					    </div>
-				    </figure>
-				  </div>
-				</section>
-			<% }); %>
-		</ul>
-	</div>
-
-	<h2 class = "center-text officer-header"> Chairs</h2>
-	<div class='officer-container'>
-		<ul class = "officer-list">
-			<% officerList.forEach(function(officer) { %>
-				<section class="container">
-				  <div class="card">
-				    <figure class="front">
-				    	<img class = "officers" src=<%=officer.image_url%>></img>
-				    	<div class ="front-officer-info">
-					    	<p class = "center-text name bold"> <%= officer.name %>  </p>
-					    	<p class = "center-text position italic"> <%= officer.position %>  </p>
-					    </div>
-				    </figure>
-				    <figure class="back">
-				    	<div class = "information">
-				    		<div>
-						    	<p class = "center-text"><span class="bold">Name:</span> <%= officer.name %></p>
-						    	<p class = "center-text"><span class="bold">Position:</span> <%= officer.position %></p>
-						    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:"+<%= officer.email %>+"?subject=Contact SHPE Austin"><%= officer.email %></a></p>
-						    	<p class = "center-text"><span class="bold">Phone:</span> <%= officer.phone %></p>
-						    	<p class = "center-text"><span class="bold">Hometown:</span> <%= officer.hometown %></p>
-						    	<p class = "center-text"><span class="bold">Company:</span> <%= officer.company %></p>
+					    </figure>
+					    
+					    <figure class="back">
+					    	<div class = "information">
+					    		<div>
+							    	<p class = "center-text"><span class="bold">Name:</span> <%= officer.name %></p>
+							    	<p class = "center-text"><span class="bold">Position:</span> <%= officer.position %></p>
+							    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:"+<%= officer.email %>+"?subject=Contact SHPE Austin"><%= officer.email %></a></p>
+							    	<p class = "center-text"><span class="bold">Phone:</span> <%= officer.phone %></p>
+							    	<p class = "center-text"><span class="bold">Hometown:</span> <%= officer.hometown %></p>
+							    	<p class = "center-text"><span class="bold">Company:</span> <%= officer.company %></p>
+							    </div>
 						    </div>
-					    </div>
-				    </figure>
-				  </div>
-				</section>
-			<% }); %>
-		</ul>
+					    </figure>
+					  </div>
+					</section>
+				<% }); %>
+			</ul>
+		</div>
+
+		<h2 class = "center-text officer-header"> Chairs</h2>
+		<div class='officer-container'>
+			<ul class = "officer-list">
+				<% officerList.forEach(function(officer) { %>
+					<section class="container">
+					  <div class="card">
+					    <figure class="front">
+					    	<img class = "officers" src=<%=officer.image_url%>></img>
+					    	<div class ="front-officer-info">
+						    	<p class = "center-text name bold"> <%= officer.name %>  </p>
+						    	<p class = "center-text position italic"> <%= officer.position %>  </p>
+						    </div>
+					    </figure>
+					    <figure class="back">
+					    	<div class = "information">
+					    		<div>
+							    	<p class = "center-text"><span class="bold">Name:</span> <%= officer.name %></p>
+							    	<p class = "center-text"><span class="bold">Position:</span> <%= officer.position %></p>
+							    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:"+<%= officer.email %>+"?subject=Contact SHPE Austin"><%= officer.email %></a></p>
+							    	<p class = "center-text"><span class="bold">Phone:</span> <%= officer.phone %></p>
+							    	<p class = "center-text"><span class="bold">Hometown:</span> <%= officer.hometown %></p>
+							    	<p class = "center-text"><span class="bold">Company:</span> <%= officer.company %></p>
+							    </div>
+						    </div>
+					    </figure>
+					  </div>
+					</section>
+				<% }); %>
+			</ul>
+		</div>
 	</div>
-</div>
+</body>

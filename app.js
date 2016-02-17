@@ -3,16 +3,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var fs = require('fs'),
     request = require('request');
-//var mysql = require("mysql");
-
-// // First you need to create a connection to the db
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   port: 3306,
-//   user: "root",
-//   password: "root",
-//   database: "sitepoint"
-// });
 
 app.use(express.static(__dirname + '/public')); // declare a static directory
 //require('./router/main')(app, con); 
@@ -31,18 +21,11 @@ var cfenv = require('cfenv');
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-// var server = app.listen(8000, function(){
-//  console.log("We have started our server on port 8000");
-//   parseOfficerJSON();
-// });
-
+parseOfficerJSON(); // get officer data from metadata/officers.json //TODO: move this to a database
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
-
-    // print a message when the server starts listening
     console.log("server starting on " + appEnv.url);
-    parseOfficerJSON();
 });
 
 
@@ -60,20 +43,31 @@ function parseOfficerJSON() {
         console.error("Failed to load data from " + file);
     }
 
-    //var executiveOfficerList = [];
     for (var i = 0; i < data.executive.length; i++) {
         var current = data.executive[i];
         var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
         executiveOfficerList.push(officer);
     }
 
-    //var officerList = [];
     for (var i = 0; i < data.chairs.length; i++) {
         var current = data.chairs[i];
         var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
         officerList.push(officer);
     }
 }
+
+
+//var mysql = require("mysql");
+
+// // First you need to create a connection to the db
+// var con = mysql.createConnection({
+//   host: "localhost",
+//   port: 3306,
+//   user: "root",
+//   password: "root",
+//   database: "sitepoint"
+// });
+
 
 // http://www.sitepoint.com/using-node-mysql-javascript-client/
 // con.connect(function(err){

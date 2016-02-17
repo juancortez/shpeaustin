@@ -6,6 +6,13 @@ module.exports = function(app) {
     app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
         extended: true
     }));
+    // Get access to the Google Calendar
+    var google_calendar;
+    try{
+        var google_calendar = require('../google_service/google_calendar');
+    } catch(err){
+        console.error("Wasn't able to find google_calendar file.");
+    }
 
     /*************************************************************************/
     // The following endpoints serve HTML pages
@@ -36,17 +43,35 @@ module.exports = function(app) {
         res.render('membership.html');
     });
 
+    app.get('/calendar', function(req, res){
+        var google_content;
+        try {
+          //console.log("Loading officer data from " + file);
+          google_content = require('../private_credentials/client_secret.json');
+          //console.log("Successfully loaded data from " + file);
+        } catch (ignore) {
+          console.error("Failed to load data from client_secret.json");
+        }
+        // Authorize a client with the loaded credentials, then call the
+        // Google Calendar API.
+        google_calendar.authorize(google_content, google_calendar.listEvents, res);
+        //res.sendStatus(200);
+        //res.sendStatus(200);
+    });
+
 
     app.post('/contact', function(req, res) {
-        var phoneNumber = req.body.phone.replace(/\D/g, '');
         if (process.env.VCAP_SERVICES) {
             var env = JSON.parse(process.env.VCAP_SERVICES);
             var credentials = env['sendgrid'][0].credentials;
         } else {
-            var path = require('path');
-            var fs = require('fs');
-            var file = path.join(__dirname, '../', 'send_grid.json');
-            var data = JSON.parse(fs.readFileSync(file, 'utf8'));
+            try {
+                data = require("../private_credentials/send_grid.json");
+                
+            } catch (ignore) {
+                console.error("Failed to load data from send_grid.json");
+                res.sendStatus(404);
+            }
             var credentials = data.sendgrid[0].credentials;
         };
 
@@ -55,10 +80,10 @@ module.exports = function(app) {
           to:       'cortezjuanjr@gmail.com',
           from:     req.body.email,
           subject:  'SHPE Austin Website Message',
-          text:     "Message sent from " + req.body.name + " with phone number " + phoneNumber + " and email " + req.body.email +
-            ". Message: " + req.body.message,
-          html: "Message sent from <b>" + req.body.name + "</b> with phone number <b>" + phoneNumber + "</b> and email <b>" + req.body.email +
-             "</b>. <b>Message:</b> " + req.body.message
+          text:     "Name: " + req.body.name + " Phone Number: " + req.body.phone + " E-mail Address: " + req.body.email +
+            " Subject: " + req.body.category + " Message: " + req.body.message,
+          html: " <b>Name:</b> " + req.body.name + "<br> <b>Phone number:</b> " + req.body.phone + "<br><b>E-mail address:</b> " + req.body.email +
+             "<br><b> Category:</b> " + req.body.category + "<br><b>Message:</b> " + req.body.message
         }, function(err, json) {
           if (err) { return console.error(err); }
           console.log(json);
@@ -70,10 +95,13 @@ module.exports = function(app) {
 
     // sends front end the metadata/newsletter_data.json file in application/json format
     app.get('/newsletterdata', function(req, res) {
-        var path = require('path');
-        var fs = require('fs');
-        var file = path.join(__dirname, '../metadata', 'newsletter_data.json');
-        var data = JSON.parse(fs.readFileSync(file, 'utf8'));
+        try {
+            data = require("../metadata/newsletter_data.json");
+            
+        } catch (ignore) {
+            console.error("Failed to load data from newsletter_data.json");
+            res.sendStatus(404);
+        }
         res.setHeader('Content-Type', 'application/json');
         res.send(data);
     });
@@ -118,6 +146,18 @@ module.exports = function(app) {
 
         res.sendStatus(200);
     });
+
+    /*************************************************************************/
+    // If endpoint does not exist, render an error
+    /*************************************************************************/
+
+    app.get('*', function(req, res) {
+        res.render('404.html');
+        //res.status(400).send({ error: 'HTML Error 404: Not Found!' });
+    });
+
+
+} // end of module exports
 
 
     /*************************************************************************/
@@ -167,16 +207,3 @@ module.exports = function(app) {
     //   console.log(rows);
 
     // });
-
-
-    /*************************************************************************/
-    // If endpoint does not exist, render an error
-    /*************************************************************************/
-
-    app.get('*', function(req, res) {
-        res.render('404.html');
-        //res.status(400).send({ error: 'HTML Error 404: Not Found!' });
-    });
-
-
-}

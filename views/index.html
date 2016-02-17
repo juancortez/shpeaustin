@@ -3,11 +3,11 @@
     <title>Home</title>
     <link rel="icon" href="/assets/shpe_austin_icon.png" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/stylesheets/libs/font-awesome-4.5.0/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
     <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
     <script src="/javascripts/index.js"></script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script>
@@ -23,23 +23,28 @@
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-73722068-1', 'auto');
+        ga('create', 'UA-73722068-1', 'auto'); // http
+        ga('create', 'UA-73722068-2', 'auto', {'name':'b'}); // https
         ga('send', 'pageview');
+        ga('b.send', 'pageview');
+    </script>
+
+    <script>
+
+
+
     </script>
 </head>
-
+<%include navigation.html%>
 <body>
-    <%include navigation.html%>
-
-        <div class="site-slider-custom-header">
-            <img src="/assets/shpe_banner.jpg" height="864" width="1920" alt="">
-        </div>
-
         <div class="main-page-container">
+            <div class="site-slider-custom-header">
+                <img src="/assets/shpe_banner.jpg" height="864" width="1920" alt="">
+            </div>
             <div class="bs-example-a"> 
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
+                        <div class="thumbnail thumb-newsletter">
                             <img id="image-newsletter" src="" alt="">
                             <div class="caption">
                                 <ol class="carousel-indicators">
