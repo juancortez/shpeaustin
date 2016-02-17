@@ -3,8 +3,11 @@ var app = express();
 var bodyParser = require('body-parser');
 var fs = require('fs'),
     request = require('request');
+var favicon = require('serve-favicon');
+
 
 app.use(express.static(__dirname + '/public')); // declare a static directory
+app.use(favicon(__dirname + '/public/assets/shpe_austin_icon.png'));
 //require('./router/main')(app, con); 
 require('./router/main')(app); // adds the main.js file to send response to browser
 app.set('views', __dirname + '/views'); // defines where our HTML files are placed
@@ -25,7 +28,7 @@ parseOfficerJSON(); // get officer data from metadata/officers.json //TODO: move
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
-    console.log("server starting on " + appEnv.url);
+    console.log("Server starting on " + appEnv.url);
 });
 
 

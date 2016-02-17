@@ -1,5 +1,10 @@
 //IMPORTANT: followed directions from here https://developers.google.com/google-apps/calendar/quickstart/nodejs
+// https://developer.ibm.com/bluemix/2015/10/05/advanced-debugging-node-apps-bluemix/
+// cf set-env shpeaustin BLUEMIX_APP_MGMT_ENABLE devconsole+shell+inspector
+// cf set-env shpeaustin ENABLE_BLUEMIX_DEV_MODE true
 // Created credentials with: shpe.austin@gmail.com
+
+// shpe.austin@gmail.com
 var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
@@ -114,7 +119,7 @@ function listEvents(auth, res) {
         if (events.length == 0) {
             console.log('No upcoming events found.');
         } else {
-            console.log('Upcoming 10 events:');
+            //console.log('Upcoming 10 events:');
             for (var i = 0; i < events.length; i++) {
                 var event = events[i];
                 var start = event.start.dateTime || event.start.date;
@@ -126,6 +131,14 @@ function listEvents(auth, res) {
                 });
                 //console.log('%s - %s', start, event.summary);
             }
+            var path = require("path");
+            var jsonfile = require('jsonfile');
+            jsonfile.spaces = 4;
+            var file = path.join(__dirname, '../metadata', 'calendar_data.json');
+            jsonfile.writeFile(file, calendarJSON, function(err) {
+                console.error(err);
+            });
+            console.log("Successfully created the calendar_data.json file under the metadata folder.");
             res.setHeader('Content-Type', 'application/json');
             res.send(calendarJSON);
         }

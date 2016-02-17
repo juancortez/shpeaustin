@@ -6,13 +6,6 @@ module.exports = function(app) {
     app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
         extended: true
     }));
-    // Get access to the Google Calendar
-    var google_calendar;
-    try{
-        var google_calendar = require('../google_service/google_calendar');
-    } catch(err){
-        console.error("Wasn't able to find google_calendar file.");
-    }
 
     /*************************************************************************/
     // The following endpoints serve HTML pages
@@ -44,11 +37,15 @@ module.exports = function(app) {
     });
 
     app.get('/calendar', function(req, res){
+        // Get access to the Google Calendar
+        var google_calendar;
         var google_content;
-        try {
-          google_content = require('../private_credentials/client_secret.json');
-        } catch (ignore) {
-          console.error("Failed to load data from client_secret.json");
+        try{
+            google_calendar = require('../google_service/google_calendar');
+            google_content = require('../private_credentials/client_secret.json');
+        } catch(err){
+            console.error("Failed to loaded google calendar files...");
+            res.sendStatus(404);
         }
         google_calendar.authorize(google_content, google_calendar.listEvents, res);
     });
@@ -69,6 +66,7 @@ module.exports = function(app) {
             var credentials = data.sendgrid[0].credentials;
         };
 
+        //sendgrid documentation and attaching to bluemix: https://github.com/sendgrid/reseller-docs/tree/master/IBM
         var sendgrid  = require('sendgrid')(credentials.username, credentials.password);
         sendgrid.send({
           to:       'cortezjuanjr@gmail.com',
@@ -114,6 +112,7 @@ module.exports = function(app) {
     // gets called from the /newsletterload endpoint and updates the /metadata/newsletter_data.json file
     app.post('/newsletterdata', function(req, res) {
         var jsonfile = require('jsonfile');
+        jsonfile.spaces = 4;
         var path = require("path");
         var request = require('request');
         var fs = require("fs");
@@ -137,7 +136,7 @@ module.exports = function(app) {
         jsonfile.writeFile(file, req.body, function(err) {
             console.error(err);
         });
-
+        console.log("Successfully created the newsletter_data.json file under the metadata folder.");
         res.sendStatus(200);
     });
 
