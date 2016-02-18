@@ -102,6 +102,7 @@ function listEvents(auth, res) {
     var calendarJSON = {
         calendar: []
     };
+
     var calendar = google.calendar('v3');
     calendar.events.list({
         auth: auth,
@@ -116,6 +117,8 @@ function listEvents(auth, res) {
             return;
         }
         var events = response.items;
+
+        //console.log(events);
         if (events.length == 0) {
             console.log('No upcoming events found.');
         } else {
@@ -127,7 +130,8 @@ function listEvents(auth, res) {
                 calendarJSON.calendar.push({
                     "event": event.summary,
                     "time": start,
-                    "link": event.htmlLink
+                    "link": event.htmlLink,
+                    "location": event.location 
                 });
                 //console.log('%s - %s', start, event.summary);
             }

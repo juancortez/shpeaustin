@@ -2,6 +2,9 @@ $(document).ready(function() { // HTML has loaded
     var newsletterItem = 0;
     var populatedItems = 0;
     var newsletterData;
+    var calendarData;
+    var numCalendarItems = 0;
+    var calendarItem = 0;
 
     $.ajax({
             method: "GET",
@@ -24,6 +27,36 @@ $(document).ready(function() { // HTML has loaded
         }).fail(function(e) {
             console.error("GET method for /newsletterdata failed.");
         });
+
+    $.ajax({
+        method: "GET",
+        url: "/calendardata"
+    }).done(function(calendar){
+        calendarData = calendar;
+        numCalendarItems = calendarData.calendar.length;
+        calendarHtml = calendarData.calendar[calendarItem];
+        $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
+        $("#event-date").html("<b>Date: </b>" + calendarHtml.time);
+        if(calendarHtml.location){
+            $("#event-location").html("<b>Location: </b>" + calendarHtml.location);
+        }
+        $("#event-link").attr('href', calendarHtml.link);
+    });
+
+    // try this: http://keith-wood.name/icalendar.html
+    $("#calendar").on('click', function(e){
+        calendarItem = (calendarItem + 1) % numCalendarItems;
+        $('.fa-calendar').toggleClass('dark-shpe-blue dodger-blue-text');
+        calendarHtml = calendarData.calendar[calendarItem];
+        $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
+        $("#event-date").html("<b>Date: </b>" + calendarHtml.time);
+        if(calendarHtml.location){
+            $("#event-location").html("<b>Location: </b>" + calendarHtml.location);
+        } else{
+            $("#event-location").html("");
+        }
+        $("#event-link").attr('href', calendarHtml.link);
+    });
 
 
     $("#prev-newsletter").click(function() {

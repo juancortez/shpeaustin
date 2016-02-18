@@ -84,6 +84,19 @@ module.exports = function(app) {
     });
 
 
+    // sends front end the metadata/calendar_data.json file in application/json format
+    app.get('/calendardata', function(req, res) {
+        try {
+            data = require("../metadata/calendar_data.json");
+            
+        } catch (ignore) {
+            console.error("Failed to load data from calendar_data.json");
+            res.sendStatus(404);
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.send(data);
+    });
+
 
     // sends front end the metadata/newsletter_data.json file in application/json format
     app.get('/newsletterdata', function(req, res) {

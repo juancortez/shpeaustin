@@ -29,6 +29,10 @@
   border-radius: 13px;
 }
 
+#officer-linkedin{
+  margin-top: 20px;
+}
+
 .card figure {
   margin: 0;
   display: block;

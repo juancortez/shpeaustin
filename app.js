@@ -48,13 +48,13 @@ function parseOfficerJSON() {
 
     for (var i = 0; i < data.executive.length; i++) {
         var current = data.executive[i];
-        var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
+        var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url, current.linkedin);
         executiveOfficerList.push(officer);
     }
 
     for (var i = 0; i < data.chairs.length; i++) {
         var current = data.chairs[i];
-        var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
+        var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url, current.linkedin);
         officerList.push(officer);
     }
 }

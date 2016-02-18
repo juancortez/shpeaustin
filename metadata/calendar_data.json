@@ -8,12 +8,14 @@
         {
             "event": "Austin Regional Science Festival",
             "time": "2016-02-17",
-            "link": "https://www.google.com/calendar/event?eid=dTk1Y2dsbjlhYjgxZmxvajU3Z2ozbDQxczggc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=dTk1Y2dsbjlhYjgxZmxvajU3Z2ozbDQxczggc2hwZS5hdXN0aW5AbQ",
+            "location": "Palmer Events Center, 900 Barton Springs Road, Austin, TX 78704, United States"
         },
         {
             "event": "Austin Regional Science Festival ",
             "time": "2016-02-17T08:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=dDZsMmc2bmVwNGEyczlmdGxqbGF0NGZ1cG8gc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=dDZsMmc2bmVwNGEyczlmdGxqbGF0NGZ1cG8gc2hwZS5hdXN0aW5AbQ",
+            "location": "Palmer Events Center"
         },
         {
             "event": "Manitos/Manitas Wingo Night (",
@@ -43,12 +45,14 @@
         {
             "event": "Region V RLDC (Houston)",
             "time": "2016-03-03",
-            "link": "https://www.google.com/calendar/event?eid=ODg5dTF2ZmthaGpra25lMm9hbzhkN2EwbzAgc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=ODg5dTF2ZmthaGpra25lMm9hbzhkN2EwbzAgc2hwZS5hdXN0aW5AbQ",
+            "location": "U of H"
         },
         {
             "event": "Breakthrough Austin Middle School Outreach Event with NSBE and SHPE Austin Chapters",
             "time": "2016-03-05T09:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=XzZ0bG5hcXJsZTVwNmNwYjRkaG1qNHBocGVnbzNncXBrNzFvajByM2g2bGluMm9yMWNoaG11b2pjNjVxbXNkOW5jZGg3Y2Q5aDYxbjZjdDNjZXByNmlyOWllNW82c2Qxb2Nkb21jcnI3ZWNvMzAgc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=XzZ0bG5hcXJsZTVwNmNwYjRkaG1qNHBocGVnbzNncXBrNzFvajByM2g2bGluMm9yMWNoaG11b2pjNjVxbXNkOW5jZGg3Y2Q5aDYxbjZjdDNjZXByNmlyOWllNW82c2Qxb2Nkb21jcnI3ZWNvMzAgc2hwZS5hdXN0aW5AbQ",
+            "location": "St. Andrew's Episcopal School, 5901 Southwest Parkway, Austin, TX, US, 78735"
         }
     ]
 }

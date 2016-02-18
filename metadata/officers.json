@@ -8,30 +8,132 @@
          "hometown":"Austin, TX",
          "company":"Accenture",
          "executive": true,
-         "image_url": "../assets/jeremy.jpg"
+         "image_url": "../assets/officer_pictures/jeremy.jpg",
+         "linkedin": "https://www.linkedin.com/in/jeremybenavides?trk=hp-identity-name"
       },
       {  
          "name":"Rogelio Zavala",
          "position":"Vice President",
          "email":"John_Doe@utexas.edu",
          "phone":9152276803,
-         "hometown":"McAllen, TX",
-         "company":"Google",
+         "hometown":"N/A",
+         "company":"Austin Energy",
          "executive": true,
-         "image_url": "../assets/rogelio.jpg"
+         "image_url": "../assets/officer_pictures/rogelio.jpg",
+         "linkedin": "https://www.linkedin.com/in/rogelio-zavala-p-e-473b3557?authType=NAME_SEARCH&authToken=N_eb&locale=en_US&srchid=952112491455769736443&srchindex=1&srchtotal=40&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A952112491455769736443%2CVSRPtargetId%3A202869591%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"
+      },
+      {  
+         "name":"Hugo Landaverde",
+         "position":"Secretary",
+         "email":"h.landaverde@utexas.edu",
+         "phone":5127365066,
+         "hometown":"Austin, TX",
+         "company":"Accenture",
+         "executive": true,
+         "image_url": "../assets/officer_pictures/hugo.jpg",
+         "linkedin": "https://www.linkedin.com/in/hugolandaverde?authType=NAME_SEARCH&authToken=dkGh&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A95604495%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769797866%2Ctas%3AHugo%20Lan"
       },
       {  
          "name":"Vera Sandoval",
          "position":"Treasurer",
-         "email":"John_Doe@utexas.edu",
-         "phone":9152276803,
-         "hometown":"McAllen, TX",
-         "company":"Google",
+         "email":"vera.sandoval4@gmail.com",
+         "phone":8064201223,
+         "hometown":"N/A",
+         "company":"Applied Materials",
          "executive": true,
-         "image_url": "../assets/vera.jpg"
+         "image_url": "../assets/officer_pictures/vera.jpg",
+         "linkedin": "https://www.linkedin.com/in/vera-sandoval-44b88b23?authType=NAME_SEARCH&authToken=Y6k6&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A82797755%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769783589%2Ctas%3AVera%20S"
       }
    ],
    "chairs":[  
+      {
+         "name":"Carlos J Pizarro",
+         "position":"Athletic Director",
+         "email":"carlosjpizarro93@gmail.com",
+         "phone":2544151406,
+         "hometown":"N/A",
+         "company":"Texas Department of Transportation",
+         "executive": false,
+         "image_url": "../assets/officer_pictures/default.jpg",
+         "linkedin": "https://www.linkedin.com/in/carlosjpizarro?authType=NAME_SEARCH&authToken=7RxT&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A348076479%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769904050%2Ctas%3ACarlos%20Pizarro"
+      },
+      {  
+         "name":"Rodrigo Estrada",
+         "position":"Community Service Directory",
+         "email":"eerodrigoestrada@utexas.edu",
+         "phone":9366971962,
+         "hometown":"N/A",
+         "company":"IBM",
+         "executive": false,
+         "image_url": "../assets/officer_pictures/default.jpg",
+         "linkedin": "https://www.linkedin.com/in/rodrigo-estrada-0863721a?authType=NAME_SEARCH&authToken=Xckp&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A66586854%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769852320%2Ctas%3ARodrigo%20E"
+      },
+      {
+         "name":"Aaron Gutierrez",
+         "position":"Director of Student Relations",
+         "email":"aaronguiterrez@utexas.edu",
+         "phone":3615487441,
+         "hometown":"N/A",
+         "company":"Texas Department of Transportation",
+         "executive": false,
+         "image_url": "../assets/officer_pictures/default.jpg",
+         "linkedin": "https://www.linkedin.com/in/aaron-gutierrez-211a5a57?authType=NAME_SEARCH&authToken=Nds8&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A202670509%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769818341%2Ctas%3AAaron%20Gui"
+      },
+      {  
+         "name":"Stephanie Amrite",
+         "position":"Fundraising Director",
+         "email":"stephanie.amrite@gmail.com",
+         "phone":2106432425,
+         "hometown":"N/A",
+         "company":"National Instruments",
+         "executive": false,
+         "image_url": "../assets/officer_pictures/default.jpg",
+         "linkedin": "https://www.linkedin.com/in/stephanieamrite?authType=NAME_SEARCH&authToken=a6JX&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A289349272%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1455769839379%2Ctas%3AStephan"
+      },
+      {  
+         "name":"Martin Huerta",
+         "position":"Professional Development Director",
+         "email":"martin_huerta@utexas.edu",
+         "phone":9565738913,
+         "hometown":"N/A",
+         "company":"NXP",
+         "executive": false,
+         "image_url": "../assets/officer_pictures/default.jpg",
+         "linkedin": "https://www.linkedin.com/in/martin-eduardo-huerta-b85b1158?authType=NAME_SEARCH&authToken=NfXL&locale=en_US&srchid=952112491455769754869&srchindex=1&srchtotal=144&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A952112491455769754869%2CVSRPtargetId%3A205808213%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"
+      },
+      {
+         "name":"Tania Vazquez",
+         "position":"Public Relations Director",
+         "email":"tania.vazquez5@gmail.com",
+         "phone":5127851114,
+         "hometown":"N/A",
+         "company":"ACR Engineering",
+         "executive": false,
+         "image_url": "../assets/officer_pictures/default.jpg",
+         "linkedin": "https://www.linkedin.com/in/tania-vazquez-80355a51?authType=NAME_SEARCH&authToken=J4eC&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CentityType%3AentityHistoryName%2CclickedEntityId%3Amynetwork_183511299%2Cidx%3A2"  
+      },
+      {
+         "name":"Karen Siles",
+         "position":"Scholarship Director",
+         "email":"Ksiles1@gmail.com",
+         "phone":5713328902,
+         "hometown":"N/A",
+         "company":"IBM",
+         "executive": false,
+         "image_url": "../assets/officer_pictures/default.jpg",
+         "linkedin": "https://www.linkedin.com/in/karenmsiles?authType=NAME_SEARCH&authToken=UTev&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A13939101%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769861717%2Ctas%3AKaren%20Siles"  
+      },
+      {
+         "name":"Manuel Espinosa",
+         "position":"SHPE Jr. Director",
+         "email":"manuel.espinosa4@gmail.com",
+         "phone":5129610573,
+         "hometown":"N/A",
+         "company":"Microchip Technology",
+         "executive": false,
+         "image_url": "../assets/officer_pictures/default.jpg",
+         "linkedin": "https://www.linkedin.com/in/manuel-espinosa-66897358?authType=NAME_SEARCH&authToken=VrnQ&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A205437680%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769891261%2Ctas%3AManuel%20Es"  
+      },
       {  
          "name":"Juan Cortez",
          "position":"Webmaster",
@@ -40,17 +142,9 @@
          "hometown":"El Paso, TX",
          "company":"IBM",
          "executive": false,
-         "image_url": "../assets/juan.jpg"
-      },
-      {  
-         "name":"Hugo Landaverde",
-         "position":"Secretary",
-         "email":"h.landaverde@utexas.edu",
-         "phone":9876289202,
-         "hometown":"Austin, TX",
-         "company":"Accenture",
-         "executive": true,
-         "image_url": "../assets/hugo.jpg"
+         "image_url": "../assets/officer_pictures/juan.jpg",
+         "linkedin": "https://www.linkedin.com/in/juancortezjr"
       }
+      
    ]
 }
