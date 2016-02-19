@@ -1,0 +1,55 @@
+body, html{
+    margin: 0; 
+    padding: 0; 
+    height: 100%; 
+    overflow: hidden;
+}
+
+#content{
+    position:absolute; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    top: 63px; 
+}
+
+h1{
+	position: absolute;
+    top: 0px;
+    z-index: 1000;
+    margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+
+nav ul{
+	display: none !important;
+}
+
+.mobile-shpe{
+	visibility: hidden;
+}
+
+.space{
+	height: 55px !important;
+}
+
+@media only screen and (max-width: 530px){
+	h1{
+		font-size: 30px;
+	}
+
+}
+
+@media only screen and (max-width: 440px){
+	h1{
+		font-size: 26px;
+	}
+}
+
+@media only screen and (max-width: 381px){
+	h1{
+		font-size: 22px;
+	}
+}

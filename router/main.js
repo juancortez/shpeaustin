@@ -36,6 +36,14 @@ module.exports = function(app) {
         res.render('membership.html');
     });
 
+    app.get('/meeting', function(req, res){
+        res.render('meeting.html');
+    });
+
+    app.get('/officermeeting', function(req, res){
+        res.render('officer_meeting.html');
+    })
+
     app.get('/calendar', function(req, res){
         // Get access to the Google Calendar
         var google_calendar;
