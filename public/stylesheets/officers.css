@@ -82,7 +82,7 @@
 }
 
 .card.flipped-0 {
-  -webkit-transform: rotateY(0);
+  -webkit-transform: rotateY(0deg);
    -moz-transform: rotateY(0deg);
      -o-transform: rotateY(0deg);
         transform: rotateY(0deg);

@@ -10,21 +10,33 @@
          jQuery(function($){
          	$(document).ready(function() {
 	           var showFlip = true;
-
-				/* To show that the cards can be flipped */
-				if(showFlip == true){
-					setTimeout(function (){
-					  $($(document).find('.card')[0]).toggleClass('flipped-60');
-					}, 100);
-					setTimeout(function (){
-					  $($(document).find('.card')[0]).toggleClass('flipped-60');
-					}, 1100); 
+	           var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+	           if(isMobile){
+	           	$('.card').addClass('flipped-0');
+	           		if(showFlip == true){
+						setTimeout(function (){
+						  $($(document).find('.card')[0]).toggleClass('flipped-0').toggleClass('flipped-60');
+						}, 100);
+						setTimeout(function (){
+						  $($(document).find('.card')[0]).toggleClass('flipped-60').toggleClass('flipped-0');
+						}, 1100); 
+					}
+	           } else{
+					/* To show that the cards can be flipped */
+					if(showFlip == true){
+						setTimeout(function (){
+						  $($(document).find('.card')[0]).toggleClass('flipped-60');
+						}, 100);
+						setTimeout(function (){
+						  $($(document).find('.card')[0]).toggleClass('flipped-60');
+						}, 1100); 
+					}
 				}
 
 				$('.card').on('click', function(){
 					var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 					if(isMobile){
-						$(this).toggleClass('flipped-0');
+						$(this).toggleClass('flipped-0').toggleClass('flipped');
 					}
 				});	
 			});

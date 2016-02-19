@@ -6,6 +6,10 @@ $(document).ready(function() { // HTML has loaded
     var numCalendarItems = 0;
     var calendarItem = 0;
 
+    var newsletterInterval = setInterval(function(e){
+        $("#next-newsletter").click(); 
+    }, 5000);
+
     $.ajax({
             method: "GET",
             url: "/newsletterdata"
@@ -34,22 +38,45 @@ $(document).ready(function() { // HTML has loaded
     }).done(function(calendar){
         calendarData = calendar;
         numCalendarItems = calendarData.calendar.length;
-        calendarHtml = calendarData.calendar[calendarItem];
-        $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
-        $("#event-date").html("<b>Date: </b>" + calendarHtml.time);
-        if(calendarHtml.location){
-            $("#event-location").html("<b>Location: </b>" + calendarHtml.location);
+        var valid = false;
+        var date = new Date();
+        var currentMonth = date.getMonth();
+        var currentDay = date.getDate();
+        while(valid == false){
+            calendarHtml = calendarData.calendar[calendarItem];
+            $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
+            var time = parseCalendarTime(calendarHtml.time);
+            if(time.startTime){
+                $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year + " at " +  time.startTime);
+            } else{
+                 $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year);
+            }
+            if(time.day < date.getDate()) {
+                calendarData.calendar.splice(0, 1); // remove all of the old calendar items from the array
+                numCalendarItems--;
+                continue;
+            } else{
+                valid = true;
+            }
+            if(calendarHtml.location){
+                $("#event-location").html("<b>Location: </b>" + calendarHtml.location);
+            }
+            $("#event-link").attr('href', calendarHtml.link);
         }
-        $("#event-link").attr('href', calendarHtml.link);
     });
 
     // try this: http://keith-wood.name/icalendar.html
-    $("#calendar").on('click', function(e){
+    $("#event-thumbnail").on('click', function(e){
         calendarItem = (calendarItem + 1) % numCalendarItems;
         $('.fa-calendar').toggleClass('dark-shpe-blue dodger-blue-text');
         calendarHtml = calendarData.calendar[calendarItem];
         $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
-        $("#event-date").html("<b>Date: </b>" + calendarHtml.time);
+        var time = parseCalendarTime(calendarHtml.time);
+         if(time.startTime){
+            $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year + " at " +  time.startTime);
+        } else{
+             $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year);
+        }
         if(calendarHtml.location){
             $("#event-location").html("<b>Location: </b>" + calendarHtml.location);
         } else{
@@ -58,6 +85,70 @@ $(document).ready(function() { // HTML has loaded
         $("#event-link").attr('href', calendarHtml.link);
     });
 
+    function parseCalendarTime(time){
+        var date = [];
+        var year = time.substring(0,time.indexOf('-'));
+        time = time.substring(time.indexOf('-')+1, time.length);
+        var month = time.substring(0, time.indexOf('-'));
+        month = getMonthString(month);
+        time = time.substring(time.indexOf('-')+1, time.length);
+        day = time.substring(0, 2);
+        if(time.length > 2){
+            var hour = time.substring(3, time.length);
+            var startTime = hour.substring(0, 5);
+            var timeOfDay = parseInt(startTime.replace(/^0+/, ''));
+            if(timeOfDay >= 12){
+                if(timeOfDay > 12){
+                    var restOfTime = startTime.substring(2, startTime.length);
+                    var militaryConvert = parseInt(startTime.substring(0,2)) - 12;
+                    startTime = militaryConvert + restOfTime;
+                }
+                timeOfDay = "P.M.";
+            } else{
+                timeOfDay = "A.M.";
+            }
+            startTime = startTime.replace(/^0+/, '');
+            date.startTime = startTime + " " + timeOfDay;
+        } else{
+            date.startTime = "";
+        } 
+        date.month = month;
+        date.day = day;
+        date.year = year;
+        return date;
+    }
+
+    function getMonthString(month){
+        month = parseInt(month.replace(/^0+/, '')); // strip leading 0's
+        switch(month){
+            case 1:
+                return "January";
+            case 2:
+                return "February";
+            case 3:
+                return "March";
+            case 4:
+                return "April";
+            case 5:
+                return "May";
+            case 6:
+                return "June";
+            case 7:
+                return "July";
+            case 8:
+                return "August";
+            case 9:
+                return "September";
+            case 10:
+                return "October";
+            case 11:
+                return "November";
+            case 12:
+                return "December";
+            default:
+                return "Invalid Month";
+        }
+    }
 
     $("#prev-newsletter").click(function() {
         $($('ol li')[newsletterItem]).removeClass('active');
@@ -69,7 +160,10 @@ $(document).ready(function() { // HTML has loaded
         updateNewsletter();
     });
 
-    $("#next-newsletter").click(function() {
+    $("#next-newsletter").click(function(evt) {
+        if(evt.originalEvent){
+            clearInterval(newsletterInterval); // this means user clicked
+        }
         $($('ol li')[newsletterItem]).removeClass('active');
         newsletterItem = ((newsletterItem + 1) % (populatedItems));
         updateNewsletter();
@@ -82,7 +176,6 @@ $(document).ready(function() { // HTML has loaded
             $($('ol li')[newsletterItem]).addClass('active');
             $("#title").append(newsletterData.newsletter[newsletterItem].title);
             $("#description").append("<span class = 'bold'> Description: </span>" + newsletterData.newsletter[newsletterItem].description);
-            //$("#image-newsletter").attr('src', newsletterData.newsletter[newsletterItem].image);
             $("#image-newsletter").attr('src', "../assets/newsletter/newsletter"+newsletterItem);
             $("#image-newsletter").parent()[0].setAttribute('href', newsletterData.newsletter[newsletterItem].image_link);
         }

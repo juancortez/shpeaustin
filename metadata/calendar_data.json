@@ -1,11 +1,6 @@
 {
     "calendar": [
         {
-            "event": "UTSHPE General Meeting",
-            "time": "2016-02-17",
-            "link": "https://www.google.com/calendar/event?eid=YzFrbWtmYWZiNDVzZTExY3UxaWcxZ2g5aTAgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
             "event": "Austin Regional Science Festival",
             "time": "2016-02-17",
             "link": "https://www.google.com/calendar/event?eid=dTk1Y2dsbjlhYjgxZmxvajU3Z2ozbDQxczggc2hwZS5hdXN0aW5AbQ",
@@ -18,7 +13,7 @@
             "location": "Palmer Events Center"
         },
         {
-            "event": "Manitos/Manitas Wingo Night (",
+            "event": "Manitos/Manitas Wingo Night",
             "time": "2016-02-18T21:00:00-06:00",
             "link": "https://www.google.com/calendar/event?eid=aGM4a3JibjF0bXB2dXVzY20zNms5YmJsNzAgc2hwZS5hdXN0aW5AbQ"
         },
@@ -53,6 +48,11 @@
             "time": "2016-03-05T09:00:00-06:00",
             "link": "https://www.google.com/calendar/event?eid=XzZ0bG5hcXJsZTVwNmNwYjRkaG1qNHBocGVnbzNncXBrNzFvajByM2g2bGluMm9yMWNoaG11b2pjNjVxbXNkOW5jZGg3Y2Q5aDYxbjZjdDNjZXByNmlyOWllNW82c2Qxb2Nkb21jcnI3ZWNvMzAgc2hwZS5hdXN0aW5AbQ",
             "location": "St. Andrew's Episcopal School, 5901 Southwest Parkway, Austin, TX, US, 78735"
+        },
+        {
+            "event": "General Meeting (with Speaker)",
+            "time": "2016-03-08",
+            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAzMDlUMDEwMDAwWiBzaHBlLmF1c3RpbkBt"
         }
     ]
 }
