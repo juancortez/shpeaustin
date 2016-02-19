@@ -9,7 +9,10 @@
    </head>
      <script type="text/javascript">
         jQuery(function($) {
-            window.location.href="https://shpeaustin.mybluemix.net/meeting"; 
+            console.log(window.location.href);
+            if(window.location.href != "https://shpeaustin.mybluemix.net/meeting"){
+              window.location.href="https://shpeaustin.mybluemix.net/meeting"; 
+            }
         });
     </script>
 

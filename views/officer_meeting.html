@@ -9,7 +9,9 @@
    </head>
     <script type="text/javascript">
         jQuery(function($) {
-            window.location.href="https://shpeaustin.mybluemix.net/officermeeting"; 
+            if(window.location.href != "https://shpeaustin.mybluemix.net/officermeeting"){
+              window.location.href="https://shpeaustin.mybluemix.net/officermeeting"; 
+            }
         });
         // setTimeout(function(){ 
         //   $(".meeting-page").remove(); 
