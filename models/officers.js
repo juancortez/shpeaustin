@@ -1,4 +1,4 @@
-//new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url);
+// Officer pictures: https://drive.google.com/drive/u/0/folders/0B6Mzl2FjDeV0fmNzS1NIZDMycFp6UWlKRTlYeVgzY1BnNGdlOGpnTHNsbWxiMmNGa3pXME0
 module.exports = function Officer(name, position, email, phone, hometown, company, executive, image_url, linkedin){
 	this.name = name;
 	this.position = position;

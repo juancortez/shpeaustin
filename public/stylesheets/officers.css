@@ -33,6 +33,10 @@
   margin-top: 20px;
 }
 
+#hidden-video{
+  margin-left: 10px;
+}
+
 .card figure {
   margin: 0;
   display: block;
