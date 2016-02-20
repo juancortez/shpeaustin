@@ -29,6 +29,30 @@ try{
     console.error("Did not find utils.js");
 }
 
+
+// var Db = require('tingodb')().Db,
+//     assert = require('assert');
+
+// var db = new Db(__dirname+'/database', {});
+// // Fetch a collection to insert document into
+// var collection = db.collection("data");
+// // Insert a single document
+// collection.insert(
+// 	[
+// 		{hello:'world_safe1'},
+// 		{hello:'world_safe2'}
+// 	], {w:1}, function(err, result) {
+  
+//   	assert.equal(null, err);
+
+//   // Fetch the document
+//   collection.findOne({hello:'world_safe2'}, function(err, item) {
+//     assert.equal(null, err);
+//     assert.equal('world_safe2', item.hello);
+//     console.log(item.hello);
+//   })
+// });
+
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
     console.log("Server starting on " + appEnv.url);
