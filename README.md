@@ -81,7 +81,7 @@ After those steps have been completed, follow the directions below.
  5. Verify that it works by running node app.js locally and sending an email.
  6. If it suceeded, the terminal output should output: { message: 'success' }
 
- ## Redis Cloud Database Binding
+## Redis Cloud Database Binding
  1. Go to the online [IBM Console][].
  2. Click on Catalog on the main menu on top of the screen
  3. Search for [Redis Cloud][] in the catalog
