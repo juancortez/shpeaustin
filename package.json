@@ -27,12 +27,9 @@
     "grunt-execute": "^0.2.2",
     "htmlparser": "^1.7.7",
     "jsonfile": "^2.2.3",
-    "mysql": "^2.10.2",
-    "nodemailer": "^0.7.1",
     "request": "^2.69.0",
     "sendgrid": "1.1.1",
-    "serve-favicon": "^2.3.0",
-    "tingodb": "^0.4.2"
+    "serve-favicon": "^2.3.0"
   },
   "engines": {
     "node": "0.12.7"
