@@ -1,12 +1,6 @@
 // module.exports exposes functions that we want to use in a different file
 //module.exports = function(app, con){
-module.exports = function(app) {
-    var bodyParser = require('body-parser');
-    app.use(bodyParser.json()); // to support JSON-encoded bodies
-    app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
-        extended: true
-    }));
-
+module.exports = function(app, client) {
     /*************************************************************************/
     // The following endpoints serve HTML pages
     /*************************************************************************/
@@ -19,21 +13,25 @@ module.exports = function(app) {
     });
 
     app.get('/officers', function(req, res) {
-        var officerList = require('../models/globals.js').officerList;
-        var executiveOfficerList = require('../models/globals.js').executiveOfficerList;
-
-        res.render('officers.ejs', {
-            executiveOfficerList: executiveOfficerList,
-            officerList: officerList
+        client.get('officerList', function (err, officerList) {
+            if (officerList) {
+                res.render('officers.ejs', {
+                    officerList: JSON.parse(officerList)
+                });
+            } else{
+                console.error(err);
+                res.sendStatus(404);
+            }
         });
+    });
+
+    
+    app.get('/membership', function(req, res) {
+        res.render('membership.html');
     });
 
     app.get('/contact', function(req, res) {
         res.render('contact.html');
-    });
-
-    app.get('/membership', function(req, res) {
-        res.render('membership.html');
     });
 
     app.get('/meeting', function(req, res){
@@ -94,29 +92,29 @@ module.exports = function(app) {
 
     // sends front end the metadata/calendar_data.json file in application/json format
     app.get('/calendardata', function(req, res) {
-        try {
-            data = require("../metadata/calendar_data.json");
-            
-        } catch (ignore) {
-            console.error("Failed to load data from calendar_data.json");
-            res.sendStatus(404);
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.send(data);
+        client.get('calendarData', function (err, calendarData) {
+            if (calendarData) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(calendarData);
+            } else{
+                res.sendStatus(404);
+                console.error(err);
+            }
+        });
     });
 
 
     // sends front end the metadata/newsletter_data.json file in application/json format
     app.get('/newsletterdata', function(req, res) {
-        try {
-            data = require("../metadata/newsletter_data.json");
-            
-        } catch (ignore) {
-            console.error("Failed to load data from newsletter_data.json");
-            res.sendStatus(404);
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.send(data);
+        client.get('newsletterdata', function (err, newsletterdata) {
+            if (newsletterdata) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.parse(newsletterdata));
+            } else{
+                res.sendStatus(404);
+                console.error(err);
+            }
+        });
     });
 
     // Load data from the newsletter contained in views/newsletters
@@ -169,7 +167,6 @@ module.exports = function(app) {
         res.render('404.html');
         //res.status(400).send({ error: 'HTML Error 404: Not Found!' });
     });
-
 
 } // end of module exports
 

@@ -1,15 +1,34 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var fs = require('fs'),
-    request = require('request');
-var favicon = require('serve-favicon');
+var express = require('express'),
+	app = express(),
+	bodyParser = require('body-parser'),
+	fs = require('fs'),
+    request = require('request'),
+    favicon = require('serve-favicon'),
+    redis = require('redis'),
+    redisCredentials,
+    router = express.Router(),
+    compression = require('compression'),
+    redisCredentials = require('./private_credentials/redis.json'),
+    redisCredentials = redisCredentials.rediscloud[0].credentials,
+    redis_connect = require("./redis/redis.js");
 
 
+// Connect Redis
+var client = redis.createClient(redisCredentials.port, redisCredentials.hostname, {no_ready_check: true});
+client.auth(redisCredentials.password, function (err) {
+    if (err){
+    	console.error(err);
+    }
+});
+
+app.use(compression()); //use compression 
 app.use(express.static(__dirname + '/public')); // declare a static directory
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+    extended: true
+}));
 app.use(favicon(__dirname + '/public/assets/shpe_austin_icon.png'));
-//require('./router/main')(app, con); 
-require('./router/main')(app); // adds the main.js file to send response to browser
+require('./router/main')(app, client); // adds the main.js file to send response to browser
 app.set('views', __dirname + '/views'); // defines where our HTML files are placed
 app.set('view engine', 'ejs'); // used for HTML rendering
 app.engine('html', require('ejs').__express); // rendering HTML files through EJS
@@ -22,13 +41,14 @@ var cfenv = require('cfenv');
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-try{
-    util = require('./utils/utils.js');
-    util.parseOfficerJSON();
-} catch(e){
-    console.error("Did not find utils.js");
-}
+// start server on the specified port and binding host
+app.listen(appEnv.port, '0.0.0.0', function() {
+    console.log("Server starting on " + appEnv.url);
+});
 
+client.on('connect', function() {
+    redis_connect.onRedisConnection(client, redis);
+});
 
 // var Db = require('tingodb')().Db,
 //     assert = require('assert');
@@ -52,14 +72,6 @@ try{
 //     console.log(item.hello);
 //   })
 // });
-
-// start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function() {
-    console.log("Server starting on " + appEnv.url);
-});
-
-
-
 //var mysql = require("mysql");
 
 // // First you need to create a connection to the db

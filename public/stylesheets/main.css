@@ -75,8 +75,8 @@ footer {
     background: transparent;  /* optional: just make scrollbar invisible */
 }
 
-.main-title{
-    font-size: 50px;
+.main-title, .jumbotron h1{
+    font-size: 40px;
 }
 
 .dark-cyan-text{

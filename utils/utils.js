@@ -1,7 +1,6 @@
-function parseOfficerJSON() {
+function parseOfficerJSON(client, redis) {
     var Officer = require('../models/officers.js');
     var officerList = require('../models/globals.js').officerList;
-    var executiveOfficerList = require('../models/globals.js').executiveOfficerList;
 
     var data = [];
     var file = "../metadata/officers.json"
@@ -17,7 +16,7 @@ function parseOfficerJSON() {
     for (var i = 0; i < data.executive.length; i++) {
         var current = data.executive[i];
         var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url, current.linkedin);
-        executiveOfficerList.push(officer);
+        officerList.push(officer);
     }
 
     for (var i = 0; i < data.chairs.length; i++) {
@@ -25,6 +24,8 @@ function parseOfficerJSON() {
         var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url, current.linkedin);
         officerList.push(officer);
     }
+
+    client.set('officerList', JSON.stringify(officerList), redis.print); // put the officerList on the database
 }
 
 module.exports.parseOfficerJSON = parseOfficerJSON;

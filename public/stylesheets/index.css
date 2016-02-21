@@ -327,7 +327,6 @@ h4{
   }
 }
 
-
 @media (max-width: 625px){
   .bs-docs-booticon-lg {
      font-size: 30px;
@@ -379,6 +378,36 @@ h4{
 
   .bs-docs-masthead .lead {
      font-size: 12px;
+  }
+}
+
+@media (max-height: 480px){
+  .bs-docs-masthead {
+    padding: 26px 0;
+  }
+
+  .lead {
+     visibility: hidden;
+  }
+  .version{
+    visibility: hidden;
+  }
+}
+
+
+@media (max-height: 375px){
+  .site-slider-custom-header {
+    height: 55%;
+  }
+}
+
+@media (max-height: 320px){
+  .bs-docs-masthead {
+    padding: 12px 0;
+  }
+
+  .site-slider-custom-header {
+    height: 55%;
   }
 }
 

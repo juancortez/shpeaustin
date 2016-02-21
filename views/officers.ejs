@@ -55,7 +55,8 @@
 	<div class = "officers-container">
 		<div class='officer-container'>
 			<ul class ="officer-list">
-				<% executiveOfficerList.forEach(function(officer) { %>
+				<% officerList.forEach(function(officer) { %>
+					<%if(officer.executive == false){ return };%>
 					<section class="container">
 					  <div class="card">
 					    <figure class="front">
@@ -91,6 +92,7 @@
 		<div class='officer-container'>
 			<ul class = "officer-list">
 				<% officerList.forEach(function(officer) { %>
+					<%if(officer.executive == true){ return };%>
 					<section class="container">
 					  <div class="card">
 					    <figure class="front">
