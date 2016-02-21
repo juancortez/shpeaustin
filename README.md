@@ -60,10 +60,10 @@ Redis database, please follow the directions in the 'Deploying to Bluemix' secti
 
 ## Deploying to Bluemix
 1. In the terminal, navigate to the project's root directory.
-2. [Create a Bluemix account][] It's free. 
+2. [Create a Bluemix account][]. It's free. 
 3. [Follow the instructions 3-6 on this page][] 
-4. Follow the directions in the 'Creating and Binding SendGrid' section to connect to the SendGrid application.
-5. Follow the directions in the 'Redis Database Binding' section to connect to the Redis service.
+4. Follow the directions in the 'Creating and Binding SendGrid' section below to connect to the SendGrid application.
+5. Follow the directions in the 'Redis Database Binding' section below to connect to the Redis service.
 
 ## Creating and Binding SendGrid to Application
 In the root directory of the shpeaustin application, run the following commands:
@@ -90,7 +90,6 @@ After those steps have been completed, follow the directions below.
  6. Under the Redis Cloud application, click on the Show Credentials button.
  7. Copy those credentials and replace them with the existing /private_credentials/redis.json file.
  8. Verify that the binding was succesful by running the node application. The terminal should output {Connected to Redis}
-
 
 [shpeaustin.mybluemix.net]: shpeaustin.mybluemix.net
 [Install Node.js]: https://nodejs.org/en/download/
