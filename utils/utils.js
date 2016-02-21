@@ -25,7 +25,7 @@ function parseOfficerJSON(client, redis) {
         officerList.push(officer);
     }
 
-    client.set('officerList', JSON.stringify(officerList), redis.print); // put the officerList on the database
+    client.set('officerList', JSON.stringify(officerList), redis.print); // put the officerList on the redis database
 }
 
 module.exports.parseOfficerJSON = parseOfficerJSON;

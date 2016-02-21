@@ -1,3 +1,11 @@
+/*
+* The onRedisConnection function gets called when redis has connected. The purpose of this
+* file is to cache all files under the /metadata folder for faster web browsing loading times.
+*
+* The data cached by this file gets called by the main.js router file.
+*
+*/
+
 function onRedisConnection(client, redis){
 	console.log('Connected to Redis');
 

@@ -13,7 +13,7 @@ var express = require('express'),
     redis_connect = require("./redis/redis.js");
 
 
-// Connect Redis
+// Connect to Redis Database
 var client = redis.createClient(redisCredentials.port, redisCredentials.hostname, {no_ready_check: true});
 client.auth(redisCredentials.password, function (err) {
     if (err){
@@ -49,87 +49,3 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 client.on('connect', function() {
     redis_connect.onRedisConnection(client, redis);
 });
-
-// var Db = require('tingodb')().Db,
-//     assert = require('assert');
-
-// var db = new Db(__dirname+'/database', {});
-// // Fetch a collection to insert document into
-// var collection = db.collection("data");
-// // Insert a single document
-// collection.insert(
-// 	[
-// 		{hello:'world_safe1'},
-// 		{hello:'world_safe2'}
-// 	], {w:1}, function(err, result) {
-  
-//   	assert.equal(null, err);
-
-//   // Fetch the document
-//   collection.findOne({hello:'world_safe2'}, function(err, item) {
-//     assert.equal(null, err);
-//     assert.equal('world_safe2', item.hello);
-//     console.log(item.hello);
-//   })
-// });
-//var mysql = require("mysql");
-
-// // First you need to create a connection to the db
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   port: 3306,
-//   user: "root",
-//   password: "root",
-//   database: "sitepoint"
-// });
-
-
-// http://www.sitepoint.com/using-node-mysql-javascript-client/
-// con.connect(function(err){
-//   if(err){
-//    //console.log('Error connecting to Db');
-//     return;
-//   }
-//   //console.log('Connection established');
-// });
-
-
-// var employee = { name: 'Winnie', location: 'Australia' };
-// con.query('INSERT INTO employees SET ?', employee, function(err,res){
-//   if(err) throw err;
-//   console.log('Last insert ID:', res.insertId);
-// });
-
-// con.query(
-//   'UPDATE employees SET location = ? Where ID = ?',
-//   ["South Africa", 5],
-//   function (err, result) {
-//     if (err) throw err;
-
-//     console.log('Changed ' + result.changedRows + ' rows');
-//   }
-// );
-
-// con.query(
-//   'DELETE FROM employees WHERE id = ?',
-//   [5],
-//   function (err, result) {
-//     if (err) throw err;
-
-//     console.log('Deleted ' + result.affectedRows + ' rows');
-//   }
-// );
-
-// con.query('SELECT * FROM employees',function(err,rows){
-//   if(err) throw err;
-
-//   console.log('Data received from Db:\n');
-//   console.log(rows);
-
-// });
-
-// con.end(function(err) {
-// The connection is terminated gracefully
-// Ensures all previously enqueued queries are still
-// before sending a COM_QUIT packet to the MySQL server.
-// });
