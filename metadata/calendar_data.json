@@ -13,11 +13,6 @@
             "location": "Palmer Events Center"
         },
         {
-            "event": "Manitos/Manitas Wingo Night",
-            "time": "2016-02-18T21:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=aGM4a3JibjF0bXB2dXVzY20zNms5YmJsNzAgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
             "event": "Officer Meeting",
             "time": "2016-02-23T19:00:00-06:00",
             "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAyMjRUMDEwMDAwWiBzaHBlLmF1c3RpbkBt"
@@ -53,6 +48,11 @@
             "event": "General Meeting (with Speaker)",
             "time": "2016-03-08",
             "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAzMDlUMDEwMDAwWiBzaHBlLmF1c3RpbkBt"
+        },
+        {
+            "event": "Social/Happy Hour with PROSPANICA",
+            "time": "2016-03-17",
+            "link": "https://www.google.com/calendar/event?eid=YWt2czB1c3ExazR2MHB1dGg3ZzNlN2VtNWMgc2hwZS5hdXN0aW5AbQ"
         }
     ]
 }

@@ -68,7 +68,7 @@ $(document).ready(function() { // HTML has loaded
     // try this: http://keith-wood.name/icalendar.html
     $("#event-thumbnail").on('click', function(e){
         calendarItem = (calendarItem + 1) % numCalendarItems;
-        $('.fa-calendar').toggleClass('dark-shpe-blue dodger-blue-text');
+        $('.fa-calendar').toggleClass('dark-shpe-blue mid-blue');
         calendarHtml = calendarData.calendar[calendarItem];
         $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
         var time = parseCalendarTime(calendarHtml.time);

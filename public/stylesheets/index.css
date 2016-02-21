@@ -43,11 +43,11 @@
 
 .site-slider-custom-header {
     width: 100%;
+    height: 45%;
     margin: 0;
     text-align: center;
     line-height: 0;
     position: relative;
-    bottom: 26px;
 }
 
 .site-slider-custom-header img {
@@ -95,6 +95,7 @@
     margin-right: auto;
     margin-left: auto;
     width: 85%;
+    margin-top :15px;
 }
 
 .thumbnail{
@@ -241,5 +242,174 @@ h4{
 }
 
 
+/* http://www.cssmatic.com/  */
+.bs-docs-masthead {
+    position: relative;
+    padding: 30px 0;
+    color: #cdbfe3;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0,0,0,.1);
+    background-color: #6f5499;
+    background: rgba(25,84,171,1);
+    background: -moz-linear-gradient(45deg, rgba(25,84,171,1) 0%, rgba(0,34,102,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(25,84,171,1)), color-stop(100%, rgba(0,34,102,1)));
+    background: -webkit-linear-gradient(45deg, rgba(25,84,171,1) 0%, rgba(0,34,102,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(25,84,171,1) 0%, rgba(0,34,102,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(25,84,171,1) 0%, rgba(0,34,102,1) 100%);
+    background: linear-gradient(45deg, rgba(25,84,171,1) 0%, rgba(0,34,102,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1954ab', endColorstr='#002266', GradientType=1 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1277ba', endColorstr='#155484', GradientType=1 );
+    background-repeat: repeat-x;
+    height: 100%;
+    width: 100%;
+}
+
+.bs-docs-masthead .bs-docs-booticon {
+    margin: 0 auto 30px;
+}
+
+.bs-docs-booticon-outline {
+    background-color: transparent;
+    border: 1px solid white;
+}
 
 
+.bs-docs-booticon-lg {
+    width: 82%;
+    height: 144px;
+    font-size: 43px;
+    line-height: 140px;
+}
+
+.bs-docs-booticon {
+    display: block;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    cursor: default;
+    border-radius: 10px;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.bs-docs-masthead .lead {
+    margin: 0 auto 30px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.bs-docs-masthead .version {
+    margin-top: -15px;
+    margin-bottom: 30px;
+    color: #779BF4;
+}
+
+
+@media (min-width: 768px){
+  .bs-docs-masthead {
+      padding: 90px 0;
+  }
+}
+
+@media (min-width: 768px){
+  .container {
+      width: 750px;
+  }
+
+  .bs-docs-masthead{
+    padding: 50px 0;
+  }
+}
+
+
+@media (max-width: 625px){
+  .bs-docs-booticon-lg {
+     font-size: 30px;
+  }
+
+  .bs-docs-masthead .lead {
+     font-size: 15px;
+  }
+
+  .bs-docs-masthead{
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 479px){
+  .bs-docs-booticon-lg {
+     font-size: 22px;
+  }
+
+  .bs-docs-masthead .lead {
+     font-size: 12px;
+  }
+
+  .site-slider-custom-header {
+    height: 50%;
+  }
+
+   .bs-docs-masthead{
+    padding: 35px 0;
+  }
+
+}
+
+@media (max-width: 353px){
+  .bs-docs-booticon-lg {
+     font-size: 22px;
+  }
+
+  .bs-docs-masthead .lead {
+     font-size: 12px;
+  }
+}
+
+
+@media (max-width: 340px){
+  .bs-docs-booticon-lg {
+     font-size: 20px;
+  }
+
+  .bs-docs-masthead .lead {
+     font-size: 12px;
+  }
+}
+
+
+/*
+.header-wrapper {
+    width: 52%;
+    height: 109px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+*/
+
+
+
+/*
+#header-intro {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: bold;
+    text-shadow: rgb(51, 51, 51) 1px 1px 6px;
+    top: 15%;
+    width: 100%;
+    justify-content: center;
+    border-top: 7px solid rgb(255, 255, 255);
+    border-bottom: 7px solid rgb(255, 255, 255);
+    margin: 0px 0px 20px;
+    padding: 6px;
+}*/
