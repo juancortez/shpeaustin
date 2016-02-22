@@ -26,14 +26,27 @@
 
 #title{
   text-align:center;
+  margin-top: 0px;
 }
+
 #prev-newsletter{
   margin-right: 15px;
 }
 
+.membership-header{
+  text-align: center;
+  margin-top: 0px;
+}
+
 #description{
-  height: 79px;
+  height: 119px;
   overflow: scroll;
+}
+
+#buttons{
+  position: absolute;
+  top: 86%;
+  right: 34%;
 }
 
 .row img{
@@ -80,9 +93,6 @@
   cursor: pointer;
 }
 
-#membership-header{
-   margin-top: 10px
-}
 
 .paypal{
   text-align: center;
@@ -98,8 +108,8 @@
 }
 
 .thumbnail{
-  min-height: 491px;
-  max-height: 491px;
+  min-height: 473px;
+  max-height: 473px;
 }
 
 .col-sm-6{
@@ -230,6 +240,10 @@ h4{
 
   .col-sm-6{
     width: 100%;
+  }
+
+  #buttons {
+    top: 91%;
   }
 }
 
