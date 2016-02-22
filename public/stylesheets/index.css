@@ -99,6 +99,7 @@
 
 .thumbnail{
   min-height: 491px;
+  max-height: 491px;
 }
 
 .col-sm-6{
@@ -337,7 +338,7 @@ img#skyline{
 
 @media (max-width: 768px){
   img#skyline{
-    margin-left: -4px;
+    margin-left: -10px;
     width: 80%;
   }
 }
@@ -374,7 +375,7 @@ img#skyline{
   }
 
   img#skyline{
-    margin-top: 9px;
+    margin-top: 27px;
   }
 
 }
