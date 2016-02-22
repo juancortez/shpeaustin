@@ -122,3 +122,8 @@ footer {
 .mid-blue{
     color: rgba(25,84,171,1);
 }
+
+.light-gray{
+    color: #ebebeb;
+    background: #ebebeb;
+}
