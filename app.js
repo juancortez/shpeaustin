@@ -22,7 +22,8 @@ client.auth(redisCredentials.password, function (err) {
 });
 
 app.use(compression()); //use compression 
-app.use(express.static(__dirname + '/public', { maxAge: 86400000 /* 1d */ }));
+app.use(express.static(__dirname + '/public')); // declare a static directory
+// app.use(express.static(__dirname + '/public', { maxAge: 86400000 /* 1d */ }));
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true

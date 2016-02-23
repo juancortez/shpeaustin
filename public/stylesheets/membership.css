@@ -198,19 +198,79 @@ h4{
     position:absolute; 
 }
 
+.bottom-container{
+    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+    margin-top: 15px;
+}
+
+.join-shpe-container{
+    width: 50%;
+    margin-top: -10px;
+    margin: 0;
+    float: right;
+}
+
+.cal-container{
+    float: left;
+}
+
+
+.jumbotron{
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0px;
+}
 
 .curr a{
     cursor: pointer;
     text-decoration: none;
 }
 
+.glyphicon{
+    float: right;
+    padding: 5px;
+}
+
+.calendar-info{
+    padding: 3px;
+    margin:2px;
+}
 
 
-.jumbotron{
+#cal-info{
+    display: none;
+    width: 211px;
+    height: 184px;
+    position: absolute;
+    margin: 34px 0px 0px 0px;
+    overflow: scroll;
+    z-index: 100;
+    border-radius: 2px;
     background-color: white;
-    width: 75%;
-    text-align: center;
-    margin: 0 auto;
+}
+
+
+
+@media only screen and (max-width: 1094px){
+    .cal-container{
+        float:none;
+        margin: 0 auto;
+    }
+
+    .join-shpe-container{
+        width: 100%;
+    }
+
+    .bottom-container{
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 768px){

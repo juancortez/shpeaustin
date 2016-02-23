@@ -1,123 +1,164 @@
-<html>
-
+<!DOCTYPE html>
 <head>
-    <title>Membership</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/membership.css">
-    <link rel="stylesheet" href="/stylesheets/libs/owl.carousel/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="/stylesheets/libs/owl.carousel/owl-carousel/owl.theme.css">
-    <script type="text/javascript" src="/javascripts/libs/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="/stylesheets/libs/owl.carousel/owl-carousel/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="/javascripts/calendar.js"></script>
-    <script type="text/javascript">
-        jQuery(function($) {
-            $(document).ready(function() {
-                $("#owl-example").owlCarousel();
-                var cal = CALENDAR(); 
-                cal.init();
-
-                //.sky-blue
-            });
-        });
-    </script>
+   <title>Membership</title>
+   <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+   <link rel="stylesheet" type="text/css" href="/stylesheets/membership.css">
+   <link rel="stylesheet" href="/stylesheets/libs/owl.carousel/owl-carousel/owl.carousel.css">
+   <link rel="stylesheet" href="/stylesheets/libs/owl.carousel/owl-carousel/owl.theme.css">
+   <script type="text/javascript" src="/javascripts/libs/jquery-2.1.4.min.js"></script>
+   <script type="text/javascript" src="/stylesheets/libs/owl.carousel/owl-carousel/owl.carousel.min.js"></script>
+   <script type="text/javascript" src="/javascripts/calendar.js"></script>
+   <script type="text/javascript">
+      jQuery(function($) {
+          $(document).ready(function() {
+              $("#owl-example").owlCarousel();
+              var cal = CALENDAR(); 
+              cal.init();
+          });
+      });
+   </script>
 </head>
 <% include navigation.html %>
 <body>
-        <div class="membership-container">
-            <h1 class="dark-shpe-blue center-text main-title">SHPE Membership</h1>
-            <div id="owl-example" class="owl-carousel owl-theme">
-                <div class="item dark-cyan">
-                    <i class="fa fa-users fa-5x"></i>
-                    <h3>Mentoring</h3>
-                    <h4>Our members mentor high school and college students through our mentorship program.</h4>
-                </div>
-                <div class="item forest-green">
-                    <i class="fa fa-graduation-cap fa-5x"></i>
-                    <h3>Community Outreach</h3>
-                    <h4>We reach out to local communities and have at least one community service event a month.</h4>
-                </div>
-                <div class="item orange">
-                    <i class="fa fa-university fa-5x"></i>
-                    <h3>Leadership Development</h3>
-                    <h4>We provide our members leadership opportunities throughout the year.</h4>
-                </div>
-                <div class="item yellow">
-                    <i class="fa fa-briefcase fa-5x"></i>
-                    <h3>Professional Development</h3>
-                    <h4>We host a wide variety of workshops to enhance our members professional career.</h4>
-                </div>
-                <div class="item dodger-blue">
-                    <i class="fa fa-hand-rock-o fa-5x"></i>
-                    <h3>Chapter Development</h3>
-                    <h4>If you are new to Austin, we show you what Austin has to offer through fun activities.</h4>
-                </div>
-                <div class="item violet">
-                    <i class="fa fa-futbol-o fa-5x"></i>
-                    <h3>Sports</h3>
-                    <h4>Come play pick up games or join one of our sports leagues!</h4>
-                </div>
-                <div class="item sky-blue">
-                    <i class="fa fa-plane fa-5x"></i>
-                    <h3>National Conferences</h3>
-                    <h4>Every year, SHPE hosts a National Conference and we take members every year.</h4>
-                </div>
-                <div class="item zombie-green">
-                    <i class="fa fa-car fa-5x"></i>
-                    <h3>Regional Conferences</h3>
-                    <h4>If you can't afford the time to fly, join us in our regional conferences. </h4>
-                </div>
+   <div class="membership-container">
+      <h1 class="dark-shpe-blue center-text main-title">SHPE Membership</h1>
+      <div id="owl-example" class="owl-carousel owl-theme">
+         <div class="item dark-cyan">
+            <i class="fa fa-users fa-5x"></i>
+            <h3>Mentoring</h3>
+            <h4>Our members mentor high school and college students through our mentorship program.</h4>
+         </div>
+         <div class="item forest-green">
+            <i class="fa fa-graduation-cap fa-5x"></i>
+            <h3>Community Outreach</h3>
+            <h4>We reach out to local communities and have at least one community service event a month.</h4>
+         </div>
+         <div class="item orange">
+            <i class="fa fa-university fa-5x"></i>
+            <h3>Leadership Development</h3>
+            <h4>We provide our members leadership opportunities throughout the year.</h4>
+         </div>
+         <div class="item yellow">
+            <i class="fa fa-briefcase fa-5x"></i>
+            <h3>Professional Development</h3>
+            <h4>We host a wide variety of workshops to enhance our members professional career.</h4>
+         </div>
+         <div class="item dodger-blue">
+            <i class="fa fa-hand-rock-o fa-5x"></i>
+            <h3>Chapter Development</h3>
+            <h4>If you are new to Austin, we show you what Austin has to offer through fun activities.</h4>
+         </div>
+         <div class="item violet">
+            <i class="fa fa-futbol-o fa-5x"></i>
+            <h3>Sports</h3>
+            <h4>Come play pick up games or join one of our sports leagues!</h4>
+         </div>
+         <div class="item sky-blue">
+            <i class="fa fa-plane fa-5x"></i>
+            <h3>National Conferences</h3>
+            <h4>Every year, SHPE hosts a National Conference and we take members every year.</h4>
+         </div>
+         <div class="item zombie-green">
+            <i class="fa fa-car fa-5x"></i>
+            <h3>Regional Conferences</h3>
+            <h4>If you can't afford the time to fly, join us in our regional conferences. </h4>
+         </div>
+      </div>
+      <div class="bottom-container">
+         <div class = "cal-container">
+            <h1 class="dark-shpe-blue center-text main-title">SHPE Calendar</h1>
+            <div id="cal">
+               <div id="cal-info">
+                  <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                  <p class="calendar-info"><b>Event: </b><span id="event"> </span></p>
+                  <p class="calendar-info"><b>Date: </b><span id="date"> </span></p>
+                  <p class="calendar-info locationWrapper"><b>Location: </b><span id="location"> </span></p>
+                  <p class="calendar-info"><b>More Info: </b><span id="calLink">Link</span></p>
+               </div>
+               <div class="header"> 
+                  <span class="left button" id="prev"> &lang; </span> 
+                  <span class="left hook"></span> 
+                  <span class="month-year" id="label"> June 2002 </span> 
+                  <span class="right hook"></span> 
+                  <span class="right button" id="next"> &rang; </span>
+               </div>
+               <table id="days">
+                  <td>sun</td>
+                  <td>mon</td>
+                  <td>tue</td>
+                  <td>wed</td>
+                  <td>thu</td>
+                  <td>fri</td>
+                  <td>sat</td>
+               </table>
+               <div id="cal-frame">
+                  <table class="curr">
+                     <tbody>
+                        <tr>
+                           <td class="nil"></td>
+                           <td class="nil"></td>
+                           <td>1</td>
+                           <td>2</td>
+                           <td>3</td>
+                           <td>4</td>
+                           <td>5</td>
+                        </tr>
+                        <tr>
+                           <td>6</td>
+                           <td>7</td>
+                           <td>8</td>
+                           <td>9</td>
+                           <td>10</td>
+                           <td class="today">11</td>
+                           <td>12</td>
+                        </tr>
+                        <tr>
+                           <td>13</td>
+                           <td>14</td>
+                           <td>15</td>
+                           <td>16</td>
+                           <td>17</td>
+                           <td>18</td>
+                           <td>19</td>
+                        </tr>
+                        <tr>
+                           <td>20</td>
+                           <td>21</td>
+                           <td>22</td>
+                           <td>23</td>
+                           <td>24</td>
+                           <td>25</td>
+                           <td>26</td>
+                        </tr>
+                        <tr>
+                           <td>27</td>
+                           <td>28</td>
+                           <td>29</td>
+                           <td>30</td>
+                           <td class="nil"></td>
+                           <td class="nil"></td>
+                           <td class="nil"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
             </div>
-       
-
-            <div class="cal-container">
-                <h1 class="dark-shpe-blue center-text main-title">SHPE Calendar</h1>
-                <div id="cal"> 
-                    <div class="header"> 
-                        <span class="left button" id="prev"> &lang; </span> 
-                        <span class="left hook"></span> 
-                        <span class="month-year" id="label"> June 2002 </span> 
-                        <span class="right hook"></span> 
-                        <span class="right button" id="next"> &rang; </span>
-                    </div> 
-                    <table id="days"> 
-                        <td>sun</td> 
-                        <td>mon</td> 
-                        <td>tue</td> 
-                        <td>wed</td> 
-                        <td>thu</td> 
-                        <td>fri</td> 
-                        <td>sat</td>
-                    </table> 
-                    <div id="cal-frame"> 
-                        <table class="curr"> 
-                            <tbody> 
-                                <tr><td class="nil"></td><td class="nil"></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr> 
-                                <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td class="today">11</td><td>12</td></tr> 
-                                <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr> 
-                                <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr> 
-                                <tr><td>27</td><td>28</td><td>29</td><td>30</td><td class="nil"></td><td class="nil"></td><td class="nil"></td></tr> 
-                            </tbody> 
-                        </table>
-                 
-                    </div> 
+         </div>
+         <div class="join-shpe-container">
+             <div class="jumbotron">
+                <h1 id="join-shpe-austin">Join SHPE Austin</h1>
+                <p>If you have any further questions about SHPE Austin, please e-mail us in our Contact Page or e-mail any of the officers from our Officers page. If you would like to join our local chapter, please click on the Paypal button below!</p>
+                <div class="paypal">
+                   <form method="post" action="https://www.paypal.com/cgi-bin/webscr" target="_blank">
+                      <input type="hidden" value="_s-xclick" name="cmd">
+                      <input type="hidden" value="44KD2JSH3CQX2" name="hosted_button_id">
+                      <input border="0" type="image" alt="PayPal - The safer, easier way to pay online!" name="submit" src="/assets/paypal.png">
+                   </form>
                 </div>
-
-
-
-                <div class="jumbotron">
-                    <h1 id="join-shpe-austin">Join SHPE Austin</h1>
-                    <p>If you have any further questions about SHPE Austin, please e-mail us in our Contact Page or e-mail any of the officers from our Officers page. If you would like to join our local chapter, please click on the Paypal button below!</p>
-                    <div class="paypal">
-                        <form method="post" action="https://www.paypal.com/cgi-bin/webscr" target="_blank">
-                            <input type="hidden" value="_s-xclick" name="cmd">
-                            <input type="hidden" value="44KD2JSH3CQX2" name="hosted_button_id">
-                            <input border="0" type="image" alt="PayPal - The safer, easier way to pay online!" name="submit" src="/assets/paypal.png">
-                        </form>
-                    </div>
-                </div>
-            </div>
+             </div>
         </div>
+      </div>
+   </div>
 </body>
-
 </html>
