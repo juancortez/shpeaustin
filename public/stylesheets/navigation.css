@@ -237,7 +237,7 @@ nav ul li a {
 
 .shpe-austin{
     display: none;
-    z-index: 1000;
+    /*z-index: 1000;*/
     border-bottom: 1px solid #ebebeb;
 }
 

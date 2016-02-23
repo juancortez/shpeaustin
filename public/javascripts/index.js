@@ -150,7 +150,10 @@ $(document).ready(function() { // HTML has loaded
         }
     }
 
-    $("#prev-newsletter").click(function() {
+    $("#prev-newsletter").click(function(evt) {
+        if(evt.originalEvent){
+            clearInterval(newsletterInterval); // this means user clicked
+        }
         $($('ol li')[newsletterItem]).removeClass('active');
         if (newsletterItem == 0) {
             newsletterItem = populatedItems - 1;
@@ -178,6 +181,11 @@ $(document).ready(function() { // HTML has loaded
             $("#description").append("<span class = 'bold'> Description: </span>" + newsletterData.newsletter[newsletterItem].description);
             $("#image-newsletter").attr('src', "../assets/newsletter/newsletter"+newsletterItem);
             $("#image-newsletter").parent()[0].setAttribute('href', newsletterData.newsletter[newsletterItem].image_link);
+            if(!newsletterData.newsletter[newsletterItem].image_link){
+                $("#image-newsletter").parent()[0].setAttribute('onclick', "return false;");
+            } else{
+                $("#image-newsletter").parent()[0].setAttribute('onclick', "return true;");
+            }
         }
     }
 });
