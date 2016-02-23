@@ -1,21 +1,10 @@
 {
     "calendar": [
         {
-            "event": "Austin Regional Science Festival",
-            "time": "2016-02-17",
-            "link": "https://www.google.com/calendar/event?eid=dTk1Y2dsbjlhYjgxZmxvajU3Z2ozbDQxczggc2hwZS5hdXN0aW5AbQ",
-            "location": "Palmer Events Center, 900 Barton Springs Road, Austin, TX 78704, United States"
-        },
-        {
-            "event": "Austin Regional Science Festival ",
-            "time": "2016-02-17T08:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=dDZsMmc2bmVwNGEyczlmdGxqbGF0NGZ1cG8gc2hwZS5hdXN0aW5AbQ",
-            "location": "Palmer Events Center"
-        },
-        {
             "event": "Officer Meeting",
             "time": "2016-02-23T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAyMjRUMDEwMDAwWiBzaHBlLmF1c3RpbkBt"
+            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAyMjRUMDEwMDAwWiBzaHBlLmF1c3RpbkBt",
+            "location": "HEB Mueller Community Room, 51st Street"
         },
         {
             "event": "Salsa Dancing Social",
@@ -53,6 +42,16 @@
             "event": "Social/Happy Hour with PROSPANICA",
             "time": "2016-03-17",
             "link": "https://www.google.com/calendar/event?eid=YWt2czB1c3ExazR2MHB1dGg3ZzNlN2VtNWMgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Game Night",
+            "time": "2016-03-19",
+            "link": "https://www.google.com/calendar/event?eid=Y2U0MWVvMW1iOTN1N2QzMzVvcWRpYTM0M2sgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Officer Meeting",
+            "time": "2016-03-22T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAzMjNUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
         }
     ]
 }
