@@ -28,6 +28,12 @@ $(document).ready(function() { // HTML has loaded
             var image_link = document.createElement('a');
             image_link.href = data.newsletter[newsletterItem].image_link;
             $("#image-newsletter").wrap(image_link);
+            
+            if(!data.newsletter[newsletterItem].image_link){
+                $("#image-newsletter").parent()[0].setAttribute('onclick', "return false;");
+            } else{
+                $("#image-newsletter").parent()[0].setAttribute('onclick', "return true;");
+            }
         }).fail(function(e) {
             console.error("GET method for /newsletterdata failed.");
         });
