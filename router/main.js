@@ -1,6 +1,6 @@
 // module.exports exposes functions that we want to use in a different file
 //module.exports = function(app, con){
-module.exports = function(app, client) {
+module.exports = function(app, client, privateCredentials) {
     /*************************************************************************/
     // The following endpoints serve HTML pages
     /*************************************************************************/
@@ -45,10 +45,9 @@ module.exports = function(app, client) {
     app.get('/calendar', function(req, res){
         // Get access to the Google Calendar
         var google_calendar;
-        var google_content;
+        var google_content = privateCredentials.google_api;
         try{
             google_calendar = require('../google_service/google_calendar');
-            google_content = require('../private_credentials/client_secret.json');
         } catch(err){
             console.error("Failed to loaded google calendar files...");
             res.sendStatus(404);
@@ -62,15 +61,8 @@ module.exports = function(app, client) {
             var env = JSON.parse(process.env.VCAP_SERVICES);
             var credentials = env['sendgrid'][0].credentials;
         } else {
-            try {
-                data = require("../private_credentials/send_grid.json");
-                
-            } catch (ignore) {
-                console.error("Failed to load data from send_grid.json");
-                res.sendStatus(404);
-            }
-            var credentials = data.sendgrid[0].credentials;
-        };
+            var credentials = privateCredentials.sendgrid.credentials;
+        }
 
         //sendgrid documentation and attaching to bluemix: https://github.com/sendgrid/reseller-docs/tree/master/IBM
         var sendgrid  = require('sendgrid')(credentials.username, credentials.password);

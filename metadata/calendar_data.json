@@ -1,57 +1,57 @@
 {
     "calendar": [
         {
-            "event": "Officer Meeting",
-            "time": "2016-02-23T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAyMjRUMDEwMDAwWiBzaHBlLmF1c3RpbkBt",
-            "location": "HEB Mueller Community Room, 51st Street"
-        },
-        {
-            "event": "Salsa Dancing Social",
-            "time": "2016-02-25",
-            "link": "https://www.google.com/calendar/event?eid=cXBwMjQ3NWk0a251YTMzcHByZDlxMnZobzAgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Introduce a Girl to Engineering",
-            "time": "2016-02-27",
-            "link": "https://www.google.com/calendar/event?eid=ZWNjYXRyOWpoN21taTMyaXE0NW05NHJyZ2sgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "UTSHPE General Meeting",
-            "time": "2016-03-02",
-            "link": "https://www.google.com/calendar/event?eid=OTQyb3YzdnA5OHI4cnUwNXJkb3FlcGw4ZTAgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Region V RLDC (Houston)",
-            "time": "2016-03-03",
-            "link": "https://www.google.com/calendar/event?eid=ODg5dTF2ZmthaGpra25lMm9hbzhkN2EwbzAgc2hwZS5hdXN0aW5AbQ",
-            "location": "U of H"
-        },
-        {
-            "event": "Breakthrough Austin Middle School Outreach Event with NSBE and SHPE Austin Chapters",
-            "time": "2016-03-05T09:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=XzZ0bG5hcXJsZTVwNmNwYjRkaG1qNHBocGVnbzNncXBrNzFvajByM2g2bGluMm9yMWNoaG11b2pjNjVxbXNkOW5jZGg3Y2Q5aDYxbjZjdDNjZXByNmlyOWllNW82c2Qxb2Nkb21jcnI3ZWNvMzAgc2hwZS5hdXN0aW5AbQ",
-            "location": "St. Andrew's Episcopal School, 5901 Southwest Parkway, Austin, TX, US, 78735"
-        },
-        {
-            "event": "General Meeting (with Speaker)",
-            "time": "2016-03-08",
-            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAzMDlUMDEwMDAwWiBzaHBlLmF1c3RpbkBt"
-        },
-        {
-            "event": "Social/Happy Hour with PROSPANICA",
-            "time": "2016-03-17",
-            "link": "https://www.google.com/calendar/event?eid=YWt2czB1c3ExazR2MHB1dGg3ZzNlN2VtNWMgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
             "event": "Game Night",
             "time": "2016-03-19",
             "link": "https://www.google.com/calendar/event?eid=Y2U0MWVvMW1iOTN1N2QzMzVvcWRpYTM0M2sgc2hwZS5hdXN0aW5AbQ"
         },
         {
+            "event": "Softball Game",
+            "time": "2016-03-21T19:25:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=ZzFrYTQycWZpcmtnNTM3dXRtOWJvamx1dW8gc2hwZS5hdXN0aW5AbQ",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+        },
+        {
             "event": "Officer Meeting",
             "time": "2016-03-22T19:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAzMjNUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
+        },
+        {
+            "event": "UTSHPE General Meeting",
+            "time": "2016-03-23",
+            "link": "https://www.google.com/calendar/event?eid=c3Y1aGFza3BqdmxhaGs2Nzc1am1xdXNrbjQgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Social/Happy Hour with PROSPANICA",
+            "time": "2016-03-24",
+            "link": "https://www.google.com/calendar/event?eid=YWt2czB1c3ExazR2MHB1dGg3ZzNlN2VtNWMgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Softball Game",
+            "time": "2016-03-28T19:25:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=cTRwdnYyZ2JzMmtwanNrdmNnMzkxbXZ0MzAgc2hwZS5hdXN0aW5AbQ",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+        },
+        {
+            "event": "Scholarship Application Closes",
+            "time": "2016-04-01",
+            "link": "https://www.google.com/calendar/event?eid=cGl1NGZkZXFrazZyMjIxNW1sZm5lZ2ZlZWMgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Softball Game",
+            "time": "2016-04-04T21:15:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=MXU1NGRpaTlqYXIzbHZrOWplYmQzbDFuOGcgc2hwZS5hdXN0aW5AbQ",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+        },
+        {
+            "event": "Officer Meeting",
+            "time": "2016-04-05T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA0MDZUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
+        },
+        {
+            "event": "UTSHPE General Meeting",
+            "time": "2016-04-06",
+            "link": "https://www.google.com/calendar/event?eid=Z2NvMW1uNTUzdmQxaG02bDZqYm1wZmNyZDQgc2hwZS5hdXN0aW5AbQ"
         }
     ]
 }

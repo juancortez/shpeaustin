@@ -8,8 +8,8 @@ var express = require('express'),
     redisCredentials,
     router = express.Router(),
     compression = require('compression'),
-    redisCredentials = require('./private_credentials/redis.json'),
-    redisCredentials = redisCredentials.rediscloud[0].credentials,
+    privateCredentials = require('./private_credentials/credentials.json'),
+    redisCredentials = privateCredentials.redis.credentials,
     redis_connect = require("./redis/redis.js");
 
 
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 app.use(favicon(__dirname + '/public/assets/shpe_austin_icon.png'));
-require('./router/main')(app, client); // adds the main.js file to send response to browser
+require('./router/main')(app, client, privateCredentials); // adds the main.js file to send response to browser
 app.set('views', __dirname + '/views'); // defines where our HTML files are placed
 app.set('view engine', 'ejs'); // used for HTML rendering
 app.engine('html', require('ejs').__express); // rendering HTML files through EJS
