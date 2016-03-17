@@ -115,8 +115,8 @@ When finished, it should look something like this:
  2. Follow the directions in the [Linking godaddy domain to my bluemix web Application][] article to set up CName Alias.
  3. It may take a couple of [minutes to hours][] for the changes to propagate. 
 
-[austinshpe.org]: austinshpe.org
-[shpeaustin.mybluemix.net]: shpeaustin.mybluemix.net
+[austinshpe.org]: http://austinshpe.org
+[shpeaustin.mybluemix.net]: http://shpeaustin.mybluemix.net
 [GoDaddy]: https://www.godaddy.com/
 [Install Node.js]: https://nodejs.org/en/download/
 [IBM Bluemix account]: https://console.ng.bluemix.net/registration/
