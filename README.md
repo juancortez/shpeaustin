@@ -27,6 +27,8 @@ shpeaustin/
 			newsletter/ 		Contains all newsletter pictures that populate the index.html file
 			officer_pictures/	The pictures rendered on the /officers endpoint
 			*.jpg,*.png			Includes all .jpg and .png files used in Node.js application
+		dist/
+			*.min.js 			The production files used on the website for faster loading times
 		javascripts/
 			libs/				jQuery library
 				index.js 		The javascript file used for the index.html page
@@ -38,7 +40,8 @@ shpeaustin/
 	router/
 		main.js 				Contains all the routes for the SHPE Austin website
 	utils/
-		util.js 				Helper functions used throughout the node.js application. 
+		util.js 				Helper functions used throughout the node.js application.
+		update.sh 				Script used to update the calendar and newsletter data in the metadata folder 
 	views/
 		newsletters/ 			These are the newsletters written by the Secretary every month
 		*.html 					The HTML pages for all the routes defined in router/main.js
@@ -47,6 +50,7 @@ shpeaustin/
 	app.js 						Starts and runs the Node.js application
 	manifest.yml 				Contains information used when deploying to Bluemix
 	package.json 				Dependencies used in Node.js app
+	gulpfile.js 				Gulp file used for development
 ```
 
 ## Running the app locally
@@ -77,7 +81,7 @@ After those steps have been completed, follow the directions below.
  1. Go to the online [IBM Console][]. 
  2. Click on the shpeaustin nodejs application. 
  3. Under SendGrid, click on the Show Credentials button. 
- 4. Copy those credentials and replace them with the existing /private_credentials/send_grid.json file.
+ 4. Copy those credentials and replace them with the existing /private_credentials *.json file
  5. Verify that it works by running node app.js locally and sending an email.
  6. If it suceeded, the terminal output should output: { message: 'success' }
 
@@ -88,8 +92,13 @@ After those steps have been completed, follow the directions below.
  4. On the right hand side of the screen, you should be able to add a Service. Bind it to the Node.js application and click on create. [The 30MB selected plan is sufficient and is free.]
  5. Once the application has been binded, go back to the [IBM Console][] and click on the shpeaustin nodejs application.
  6. Under the Redis Cloud application, click on the Show Credentials button.
- 7. Copy those credentials and replace them with the existing /private_credentials/redis.json file.
+ 7. Copy those credentials and replace them with the existing /private_credentials *.json file
  8. Verify that the binding was succesful by running the node application. The terminal should output {Connected to Redis}
+
+ ## Connecting Bluemix to GoDaddy Account
+ 1. Follow the directions in the [Using Custom Domain Names In Bluemix][] to set up routes on Bluemix. 
+ 2. Follow the directions in the [Linking godaddy domain to my bluemix web Application][] article to set up CName Alias.
+ 3. It may take a couple of [minutes to hours][] for the changes to propagate. 
 
 [shpeaustin.mybluemix.net]: shpeaustin.mybluemix.net
 [Install Node.js]: https://nodejs.org/en/download/
@@ -98,3 +107,6 @@ After those steps have been completed, follow the directions below.
 [Follow the instructions 3-6 on this page]: https://www.ng.bluemix.net/docs/starters/install_cli.html
 [IBM Console]: https://console.ng.bluemix.net/dashboard/
 [Redis Cloud]: https://console.ng.bluemix.net/catalog/services/redis-cloud/
+[Using Custom Domain Names In Bluemix]: https://www.youtube.com/watch?v=fG7UbOHywXc
+[Linking godaddy domain to my bluemix web Application]: http://myutilite.com/utility/75/linking-godaddy-domain-to-my-bluemix-web-application/utility.htm/
+[minutes to hours]: http://stackoverflow.com/questions/5696937/godaddy-set-name-server-long-time-to-take-effect
