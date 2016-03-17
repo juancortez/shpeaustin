@@ -66,8 +66,9 @@ module.exports = function(app, client, privateCredentials) {
 
         //sendgrid documentation and attaching to bluemix: https://github.com/sendgrid/reseller-docs/tree/master/IBM
         var sendgrid  = require('sendgrid')(credentials.username, credentials.password);
+        var sendGridEmail = require('../models/globals.js').sendGridEmail; // set flag to true to clear database
         sendgrid.send({
-          to:       'cortezjuanjr@gmail.com',
+          to:       sendGridEmail,
           from:     req.body.email,
           subject:  'SHPE Austin Website Message',
           text:     "Name: " + req.body.name + " Phone Number: " + req.body.phone + " E-mail Address: " + req.body.email +

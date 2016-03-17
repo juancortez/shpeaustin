@@ -10,8 +10,4 @@ module.exports = function Officer(name, position, email, phone, hometown, compan
 	this.executive = executive;
 	this.image_url = image_url;
 	this.linkedin = linkedin;
-
-	Officer.prototype.getName = function(){
-	  	return this.name;
-	  }
 }

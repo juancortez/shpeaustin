@@ -85,6 +85,11 @@ After those steps have been completed, follow the directions below.
  5. Verify that it works by running node app.js locally and sending an email.
  6. If it suceeded, the terminal output should output: { message: 'success' }
 
+ ### SendGrid Application
+ The sole purpose of the SendGrid application is to serve as a mailing client for the Bluemix application. The SendGrid API is connected to the
+ Contact Us page, but can be placed in multiple locations. You just have to make a POST to the /contact endpoint with the appropriate data in the
+ BODY of the request. The recipient of e-mails is set in the models/global.js file under the sendGridEmail e-mail.
+
 ## Redis Cloud Database Binding
  1. Go to the online [IBM Console][].
  2. Click on Catalog on the main menu on top of the screen
@@ -95,7 +100,12 @@ After those steps have been completed, follow the directions below.
  7. Copy those credentials and replace them with the existing /private_credentials *.json file
  8. Verify that the binding was succesful by running the node application. The terminal should output {Connected to Redis}
 
- ## Connecting Bluemix to GoDaddy Account
+### Redis Database
+When the node application first runs, the application populates the database with the data. After each subsequent run, the application
+loads data from the database, which enables quicker performance. To clear the database, set the clearRedisDatabase variable in the models/global.js file
+to TRUE and re run the server. Don't forget to reset the variable to false so it doesn't clear the database after each run.
+
+## Connecting Bluemix to GoDaddy Account
  1. Follow the directions in the [Using Custom Domain Names In Bluemix][] to set up routes on Bluemix. 
  2. Follow the directions in the [Linking godaddy domain to my bluemix web Application][] article to set up CName Alias.
  3. It may take a couple of [minutes to hours][] for the changes to propagate. 

@@ -5,7 +5,7 @@
 * The data cached by this file gets called by the main.js router file.
 *
 */
-var clearRedisDatabase = false; // set flag to true if you want to delete all data on redis database
+var clearRedisDatabase = require('../models/globals.js').clearRedisDatabase; // set flag to true to clear database
 
 function onRedisConnection(client, redis){
 	console.log('Connected to Redis');
