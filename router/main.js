@@ -1,23 +1,57 @@
 // module.exports exposes functions that we want to use in a different file
 //module.exports = function(app, con){
 module.exports = function(app, client, privateCredentials) {
+
+    var revision; // global variable within the module. used as a "hack" for officers.ejs
     /*************************************************************************/
     // The following endpoints serve HTML pages
     /*************************************************************************/
     app.get('/', function(req, res) {
-        res.render('index.html');
+        client.get('revisionNumber', function (err, revisionNumber) {
+            if (revisionNumber) {
+                revision = revisionNumber;
+                res.render('index.html', {
+                    revision: revisionNumber
+                });
+            } else{
+                res.render('index.html', {
+                    revision: 0 // just in case the database doesn't fetch the right revision
+                });
+            }
+        });
     });
 
     app.get('/about', function(req, res) {
-        res.render('about.html');
+        client.get('revisionNumber', function (err, revisionNumber) {
+            if (revisionNumber) {
+                revision = revisionNumber;
+                res.render('about.html', {
+                    revision: revisionNumber
+                });
+            } else{
+                res.render('about.html', {
+                    revision: 0 // just in case the database doesn't fetch the right revision
+                });
+            }
+        });
     });
 
     app.get('/officers', function(req, res) {
+        // TODO: I am not sure how to retrieve 2 keys from client without affecting performance
         client.get('officerList', function (err, officerList) {
             if (officerList) {
-                res.render('officers.ejs', {
-                    officerList: JSON.parse(officerList)
-                });
+                if(typeof revision === 'string'){
+                    res.render('officers.ejs', {
+                        officerList: JSON.parse(officerList),
+                        revision: revision
+                    });
+                } else{
+                    // default revision of 0
+                    res.render('officers.ejs', {
+                        officerList: JSON.parse(officerList),
+                        revision: 0 
+                    });
+                }
             } else{
                 console.error(err);
                 res.sendStatus(404);
@@ -27,11 +61,33 @@ module.exports = function(app, client, privateCredentials) {
 
     
     app.get('/membership', function(req, res) {
-        res.render('membership.html');
+        client.get('revisionNumber', function (err, revisionNumber) {
+            if (revisionNumber) {
+                revision = revisionNumber;
+                res.render('membership.html', {
+                    revision: revisionNumber
+                });
+            } else{
+                res.render('membership.html', {
+                    revision: 0 // just in case the database doesn't fetch the right revision
+                });
+            }
+        });
     });
 
     app.get('/contact', function(req, res) {
-        res.render('contact.html');
+        client.get('revisionNumber', function (err, revisionNumber) {
+            if (revisionNumber) {
+                revision = revisionNumber;
+                res.render('contact.html', {
+                    revision: revisionNumber
+                });
+            } else{
+                res.render('contact.html', {
+                    revision: 0 // just in case the database doesn't fetch the right revision
+                });
+            }
+        });
     });
 
     app.get('/meeting', function(req, res){

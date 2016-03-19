@@ -6,6 +6,7 @@
 *
 */
 var clearRedisDatabase = require('../models/globals.js').clearRedisDatabase; // set flag to true to clear database
+var revision = require('../models/globals.js').revision;
 
 function onRedisConnection(client, redis){
 	console.log('Connected to Redis');
@@ -61,6 +62,20 @@ function onRedisConnection(client, redis){
 				} else{
 					//console.log(JSON.parse(reply)); // used to check if redis database got populated
 				}
+			}
+		});
+
+		client.get("revisionNumber", function(err, reply){
+			if(err){
+				console.error("Error: " + err);
+			} else{
+				if(reply == null){
+					// set the version number on the Redis database
+					client.set('revisionNumber', revision, redis.print);
+				} else{
+					//console.log("Revision is: " + revision);
+				}
+				
 			}
 		});
     }

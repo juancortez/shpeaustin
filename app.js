@@ -5,7 +5,6 @@ var express = require('express'),
     request = require('request'),
     favicon = require('serve-favicon'),
     redis = require('redis'),
-    redisCredentials,
     router = express.Router(),
     compression = require('compression'),
     privateCredentials = require('./private_credentials/credentials.json'),
@@ -23,7 +22,7 @@ client.auth(redisCredentials.password, function (err) {
 
 app.use(compression()); //use compression 
 app.use(express.static(__dirname + '/public')); // declare a static directory
-// app.use(express.static(__dirname + '/public', { maxAge: 86400000 /* 1d */ }));
+app.use(express.static(__dirname + '/public', { maxAge: 604800000 /* 7d */ })); // 1d = 86400000
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
