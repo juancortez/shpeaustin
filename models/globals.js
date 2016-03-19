@@ -17,5 +17,8 @@ exports.sendGridEmail = "cortezjuanjr@gmail.com";
  * then a web browser will see the file as main.css?v=1 and not just main.css. 
  * If you change the number after the v= whenever you change the external style sheet, then browsers consider 
  * that a new file and will download the external style sheet from the web server instead of using the cached site.
+ *
+ * If you want to set new revision, set newRevision flag to TRUE
  */
-exports.revision = 1; // Revision 1 as of March 18, 2016 @ 16:28
+exports.revision = 2; // Revision 2 as of March 19, 2016 @ 13:30
+exports.newRevision = false;

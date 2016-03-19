@@ -132,10 +132,13 @@ module.exports = function(app, client, privateCredentials) {
           html: " <b>Name:</b> " + req.body.name + "<br> <b>Phone number:</b> " + req.body.phone + "<br><b>E-mail address:</b> " + req.body.email +
              "<br><b> Category:</b> " + req.body.category + "<br><b>Message:</b> " + req.body.message
         }, function(err, json) {
-          if (err) { return console.error(err); }
-          console.log(json);
+            if (err) { 
+                console.error(err); 
+                res.sendStatus(400);
+            }
+          res.sendStatus(200);
+          console.log("E-mail sent successfully. " + JSON.stringify(json) + " \nSent to: " + sendGridEmail);
         });
-        res.render('contact.html');
     });
 
 

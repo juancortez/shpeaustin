@@ -57,15 +57,24 @@ gulp.task('calendar_script', function() {
         .pipe(gulp.dest(javascript_dest));
 });
 
+gulp.task('contact_script', function() {
+    return gulp.src(javascript_src+"contact.js")
+        .pipe(concat('contact.js'))
+        .pipe(gulp.dest(javascript_dest))
+        .pipe(rename('contact.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(javascript_dest));
+});
+
 // Watch Files For Changes
 // The watch task is used to run tasks as we make changes to our files. As 
 // you write code and modify your files, the gulp.watch() method will listen 
 // for changes and automatically run our tasks again so we don't have to 
 // continuously jump back to our command-line and run the gulp command each time.
 gulp.task('watch', function() {
-    gulp.watch(javascript_src, ['lint', 'index_script', 'calendar_script']);
+    gulp.watch(javascript_src, ['lint', 'index_script', 'calendar_script', 'contact_script']);
     //gulp.watch('scss/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'index_script', 'calendar_script', 'watch']);
+gulp.task('default', ['lint', 'index_script', 'calendar_script', 'contact_script', 'watch']);
