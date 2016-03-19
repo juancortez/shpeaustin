@@ -1,6 +1,6 @@
 # SHPE Austin Node.js Application
 
-The following Node.js application contains both the server and client side code for the [shpeaustin.mybluemix.net][] website. The application runs on IBM's Bluemix platform, so creating an [IBM Bluemix account][] is necessary. Since this application only requires 512MB of memory and only one instance, the hosting is free. In order to forward the [austinshpe.org][] domain to the BlueMix application, you will need to have domain access to the austinshpe.org domain on [GoDaddy][]. The credentials for the GoDaddy account are located in the private_credentials/.json file. Once the GoDaddy account is accessible, follow the directions in the **Forwarding austinshpe.org to shpeaustin.mybluemix.net** section at the end of the README file.  This application also has access to the Google Calendar API, SendGrid, and Redis Cloud services so additional steps are required. Please start in the **Running the app locally** section and further instructions will be provided to set everything up. Any questions can be forwarded to the webmaster, Juan Cortez at Juan_Cortez@utexas.edu.
+The following Node.js application contains both the server and client side code for the [shpeaustin.mybluemix.net][] website. The application runs on IBM's Bluemix platform, so creating an [IBM Bluemix account][] is necessary. Since this application only requires 512MB of memory and only one instance, the hosting is **free**. In order to forward the [austinshpe.org][] domain to the BlueMix application, you will need to have domain access to the austinshpe.org domain on [GoDaddy][]. The credentials for the GoDaddy account are located in the private_credentials/.json file. Once the GoDaddy account is accessible, follow the directions in the ***Forwarding Addresses*** section at the end of the README file.  This application also has access to the Google Calendar API, SendGrid, and Redis Cloud services so additional steps are required. Please start in the ***Running the app locally*** section and further instructions will be provided to set everything up. Any questions can be forwarded to the webmaster at Juan_Cortez@utexas.edu
 
 *IMPORTANT* The .gitignore file includes the private_credentials folder. Please ask the current SHPE webmaster for these credentials
 so that all of the services work properly.
@@ -104,7 +104,7 @@ When the node application first runs, the application populates the database wit
 loads data from the database, which enables quicker performance. To clear the database, set the clearRedisDatabase variable in the models/global.js file
 to TRUE and re run the server. Don't forget to reset the variable to false so it doesn't clear the database after each run.
 
-## Forwarding austinshpe.org to shpeaustin.mybluemix.net
+## Forwarding Addresses
 This is probably the best method to connect GoDaddy to the application hosted on BlueMix. In order to do this, go to the GoDaddy [My Domain][] page, and click
 on the option to forward addresses. In the URL field, enter shpeaustin.mybluemix.net and make sure the forward option is set. If the forwarding address option is not available, click on Manage Connection, look for the Forwarding section, and click on Manage. 
 When finished, it should look something like this: 
@@ -118,8 +118,8 @@ When finished, it should look something like this:
  2. Follow the directions in the [Linking godaddy domain to my bluemix web Application][] article to set up CName Alias.
  3. It may take a couple of [minutes to hours][] for the changes to propagate. 
 
-[austinshpe.org]: austinshpe.org
-[shpeaustin.mybluemix.net]: shpeaustin.mybluemix.net
+[austinshpe.org]: http://austinshpe.org
+[shpeaustin.mybluemix.net]: http://shpeaustin.mybluemix.net
 [GoDaddy]: https://www.godaddy.com/
 [Install Node.js]: https://nodejs.org/en/download/
 [IBM Bluemix account]: https://console.ng.bluemix.net/registration/
@@ -130,4 +130,4 @@ When finished, it should look something like this:
 [Using Custom Domain Names In Bluemix]: https://www.youtube.com/watch?v=fG7UbOHywXc
 [Linking godaddy domain to my bluemix web Application]: http://myutilite.com/utility/75/linking-godaddy-domain-to-my-bluemix-web-application/utility.htm/
 [minutes to hours]: http://stackoverflow.com/questions/5696937/godaddy-set-name-server-long-time-to-take-effect
-[My Domain][]: https://dcc.godaddy.com/manage/
+[My Domain]: https://dcc.godaddy.com/manage/
