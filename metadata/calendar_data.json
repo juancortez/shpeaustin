@@ -1,11 +1,6 @@
 {
     "calendar": [
         {
-            "event": "Game Night",
-            "time": "2016-03-19",
-            "link": "https://www.google.com/calendar/event?eid=Y2U0MWVvMW1iOTN1N2QzMzVvcWRpYTM0M2sgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
             "event": "Softball Game",
             "time": "2016-03-21T19:25:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=ZzFrYTQycWZpcmtnNTM3dXRtOWJvamx1dW8gc2hwZS5hdXN0aW5AbQ",
@@ -22,9 +17,10 @@
             "link": "https://www.google.com/calendar/event?eid=c3Y1aGFza3BqdmxhaGs2Nzc1am1xdXNrbjQgc2hwZS5hdXN0aW5AbQ"
         },
         {
-            "event": "Social/Happy Hour with PROSPANICA",
-            "time": "2016-03-24",
-            "link": "https://www.google.com/calendar/event?eid=YWt2czB1c3ExazR2MHB1dGg3ZzNlN2VtNWMgc2hwZS5hdXN0aW5AbQ"
+            "event": "Social/Happy Hour hosted by SHPE Austin",
+            "time": "2016-03-24T18:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=YWt2czB1c3ExazR2MHB1dGg3ZzNlN2VtNWMgc2hwZS5hdXN0aW5AbQ",
+            "location": "Haymaker 2310 Manor Rd Austin, TX 78722 USA"
         },
         {
             "event": "Softball Game",
@@ -52,6 +48,11 @@
             "event": "UTSHPE General Meeting",
             "time": "2016-04-06",
             "link": "https://www.google.com/calendar/event?eid=Z2NvMW1uNTUzdmQxaG02bDZqYm1wZmNyZDQgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Noche De Ciencia (TBD)",
+            "time": "2016-04-07",
+            "link": "https://www.google.com/calendar/event?eid=ZnQybjA0ZWJoYjJpaXA5dnNkZGhtcmdqNmsgc2hwZS5hdXN0aW5AbQ"
         }
     ]
 }
