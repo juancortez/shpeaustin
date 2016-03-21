@@ -118,17 +118,17 @@ When finished, it should look something like this:
  2. Follow the directions in the [Linking godaddy domain to my bluemix web Application][] article to set up CName Alias.
  3. It may take a couple of [minutes to hours][] for the changes to propagate. 
 
- ## Steps to Completely Update Website
- The following steps will clear the Redis database, make an API request to the Google Calendar API for shpe.austin@gmail.com, update the newsletter data, and change the revision number of the *.css and *.js files. Before doing these steps, make sure you are not running the node application.
+## Steps to Completely Update Website
+The following steps will clear the Redis database, make an API request to the Google Calendar API for shpe.austin@gmail.com, update the newsletter data, and change the revision number of the *.css and *.js files. Before doing these steps, make sure you are not running the node application.
 
-  1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the /views/newsletters folder. 
-  2. Go to the /models/global.js file, change the clearRedisDatabase variable to TRUE, update the revision number, and set the newRevision flag to TRUE.
-  3. In the terminal, start up the node server `node app.js`. 
-  4. Open up another terminal tab and navigate to the /utils folder and run the update.sh file. `./update.sh`
-  5. Go back to the /models/globals.js file and reset the variables back to FALSE
-  7. Verify that all the files successfully updated by re-running the node application `node app.js`
-  8. Run `cf push shpeaustin` to update the data on BlueMix. 
-  9. The application now has the newest data and it is all cached on the database!  
+ 1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the /views/newsletters folder. 
+ 2. Go to the /models/global.js file, change the clearRedisDatabase variable to TRUE, update the revision number, and set the newRevision flag to TRUE.
+ 3. In the terminal, start up the node server `node app.js`. 
+ 4. Open up another terminal tab and navigate to the /utils folder and run the update.sh file. `./update.sh`
+ 5. Go back to the /models/globals.js file and reset the variables back to FALSE
+ 7. Verify that all the files successfully updated by re-running the node application `node app.js`
+ 8. Run `cf push shpeaustin` to update the data on BlueMix. 
+ 9. The application now has the newest data and it is all cached on the database!  
 
 [austinshpe.org]: http://austinshpe.org
 [shpeaustin.mybluemix.net]: http://shpeaustin.mybluemix.net
