@@ -10,6 +10,11 @@
   text-align:center;
 }
 
+.thumbnail-title{
+  font-weight: bold;
+  text-align:center;
+}
+
 .item {
   display: block;
   position: absolute;
@@ -128,6 +133,8 @@
 #google-calendar-content{
   padding: 10px;
   text-align: center;
+  height: 214px;
+  overflow-y: auto;
 }
 
 h4{
@@ -238,6 +245,11 @@ h4{
     min-height: 433px;
   }
 
+  .cal-extend{
+    max-height: 477px;
+    min-height: 477px;
+  }
+
   .col-sm-6{
     width: 100%;
   }
@@ -334,6 +346,24 @@ img#skyline{
     color: #779BF4;
 }
 
+.calendar-controls{
+  text-align: center;
+}
+
+.calendar-controls i{
+  color: #337ab7;
+  cursor: pointer;
+}
+
+.fa-angle-double-right{
+  margin-left: 10px;
+  
+}
+
+.fa-angle-double-left{
+  margin-right: 10px;
+  
+}
 
 @media (min-width: 768px){
   .container {

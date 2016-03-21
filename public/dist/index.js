@@ -51,11 +51,18 @@ $(document).ready(function() { // HTML has loaded
         while(valid === false){
             calendarHtml = calendarData.calendar[calendarItem];
             $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
+            $("span.title").text(calendarHtml.event);
             var time = parseCalendarTime(calendarHtml.time);
             if(time.startTime){
                 $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year + " at " +  time.startTime);
+                var dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime);
+                $("span.start").text(dateFormat);
+                $("span.end").text(dateFormat); //TODO: add ending time support
             } else{
-                 $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year);
+                $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year);
+                var dateFormat = convertToDateFormat(time.month, time.day, time.year, "");
+                $("span.start").text(dateFormat);
+                $("span.end").text(dateFormat); //TODO: add ending time support
             }
             if(time.day < date.getDate()) {
                 calendarData.calendar.splice(0, 1); // remove all of the old calendar items from the array
@@ -66,33 +73,67 @@ $(document).ready(function() { // HTML has loaded
             }
             if(calendarHtml.location){
                 $("#event-location").html("<b>Location: </b>" + calendarHtml.location);
+                $("span.location").text(calendarHtml.location);
+            } else{
+                $("span.location").text("");
             }
             $("#event-link").attr('href', calendarHtml.link);
+            $("span.description").text(calendarHtml.link);
         }
     });
 
     // try this: http://keith-wood.name/icalendar.html
-    $("#event-thumbnail").on('click', function(e){
-        if(e.toElement.tagName == "A"){
-            return;
+    $(".cal-button").on('click', function(e){
+        if($(e.currentTarget).hasClass('fa-angle-double-right')){
+            calendarItem = (calendarItem + 1) % numCalendarItems;
+        } else{
+            calendarItem--;
+            if(calendarItem < 0){
+                calendarItem = numCalendarItems - 1;
+            }
         }
-        calendarItem = (calendarItem + 1) % numCalendarItems;
         $('.fa-calendar').toggleClass('dark-shpe-blue mid-blue');
         calendarHtml = calendarData.calendar[calendarItem];
         $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
+        $("span.title").text(calendarHtml.event);
         var time = parseCalendarTime(calendarHtml.time);
          if(time.startTime){
             $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year + " at " +  time.startTime);
+            var dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime);
+            $("span.start").text(dateFormat);
+            $("span.end").text(dateFormat); //TODO: add ending time support
         } else{
              $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year);
+             var dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime, "");
+             $("span.start").text(dateFormat);
+             $("span.end").text(dateFormat); //TODO: add ending time support
         }
         if(calendarHtml.location){
             $("#event-location").html("<b>Location: </b>" + calendarHtml.location);
+            $("span.location").text(calendarHtml.location);
         } else{
             $("#event-location").html("");
+            $("span.location").text("");
         }
         $("#event-link").attr('href', calendarHtml.link);
+        $("span.description").text(calendarHtml.link);
     });
+
+    // convert to MM/DD/YYYY HH:SS format
+    // example: 04/03/2016 08:00 AM
+    function convertToDateFormat(month, day, year, time){
+        if(time == ""){
+            time = "12:00 PM"; // set default time of 12:00 PM
+        } 
+        month = months.indexOf(month) + 1;
+        if((month / 10) < 1){
+            month = month.pad(2); // add a zero in front
+        }
+        // if((day / 10) < 1){
+        //     day = day.pad(2); // add a zero in front
+        // }
+        return month + "/" + day + "/" + year + " " + time;
+    }
 
     function parseCalendarTime(time){
         var date = [];
@@ -105,18 +146,22 @@ $(document).ready(function() { // HTML has loaded
         if(time.length > 2){
             var hour = time.substring(3, time.length);
             var startTime = hour.substring(0, 5);
-            var timeOfDay = parseInt(startTime.replace(/^0+/, ''));
+            //var timeOfDay = parseInt(startTime.replace(/^0+/, ''));
+            var timeOfDay = parseInt(startTime);
             if(timeOfDay >= 12){
                 if(timeOfDay > 12){
                     var restOfTime = startTime.substring(2, startTime.length);
                     var militaryConvert = parseInt(startTime.substring(0,2)) - 12;
+                    if((militaryConvert / 10) < 1){
+                        militaryConvert = militaryConvert.pad(2);
+                    }
                     startTime = militaryConvert + restOfTime;
                 }
-                timeOfDay = "P.M.";
+                timeOfDay = "PM";
             } else{
-                timeOfDay = "A.M.";
+                timeOfDay = "AM";
             }
-            startTime = startTime.replace(/^0+/, '');
+            //startTime = startTime.replace(/^0+/, '');
             date.startTime = startTime + " " + timeOfDay;
         } else{
             date.startTime = "";
@@ -126,6 +171,8 @@ $(document).ready(function() { // HTML has loaded
         date.year = year;
         return date;
     }
+
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     function getMonthString(month){
         month = parseInt(month.replace(/^0+/, '')); // strip leading 0's
@@ -197,4 +244,8 @@ $(document).ready(function() { // HTML has loaded
             }
         }
     }
+
+    Number.prototype.pad = function(n) {
+        return new Array(n).join('0').slice((n || 2) * -1) + this;
+    };
 });
