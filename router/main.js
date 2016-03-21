@@ -91,11 +91,15 @@ module.exports = function(app, client, privateCredentials) {
     });
 
     app.get('/meeting', function(req, res){
-        res.render('meeting.html');
+        res.render('meeting.html', {
+            revision: 0 
+        });
     });
 
     app.get('/officermeeting', function(req, res){
-        res.render('officer_meeting.html');
+        res.render('officer_meeting.html', {
+            revision: 0 
+        });
     })
 
     app.get('/calendar', function(req, res){
@@ -171,7 +175,9 @@ module.exports = function(app, client, privateCredentials) {
 
     // Load data from the newsletter contained in views/newsletters
     app.get('/newsletterload', function(req, res) {
-        res.render('newsletter_load.html');
+        res.render('newsletter_load.html', {
+            revision: 0 
+        });
     });
 
     // opens up the views/newsletters/newsletter.html page and sends it to the /newsletterload endpoint
@@ -216,7 +222,9 @@ module.exports = function(app, client, privateCredentials) {
     /*************************************************************************/
 
     app.get('*', function(req, res) {
-        res.render('404.html');
+        res.render('404.html', {
+            revision: 0 
+        });
         //res.status(400).send({ error: 'HTML Error 404: Not Found!' });
     });
 
