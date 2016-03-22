@@ -5,6 +5,7 @@ $(document).ready(function() { // HTML has loaded
     var calendarData;
     var numCalendarItems = 0;
     var calendarItem = 0;
+    var authenticated = false;
 
     var newsletterInterval = setInterval(function(e){
         $("#next-newsletter").click(); 
@@ -244,6 +245,41 @@ $(document).ready(function() { // HTML has loaded
             }
         }
     }
+
+    var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if(isMobile){
+        $(".fa-sign-in").hide();
+    }
+
+    $('form').submit(function(formText) {
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            data: { username: formText.target.name.value, 
+                    password: formText.target.password.value
+                   }
+        }).done(function(status){
+            console.log("Login successful!");
+            $(".status").text("Login successful!");
+            $(".status").css({'color': '#4CAF50'});
+            $(".status").show();
+            $(".secret").show();
+            authenticated = true;
+            setTimeout(function(){
+                $(".status").hide();
+                $(".close-modal").click();
+            }, 1500);
+        }).fail(function(status){
+            $(".status").text("Login unsuccessful.");
+            $(".status").css({'color': '#F44336'});
+            $(".status").show();
+            setTimeout(function(){
+                $(".status").hide();
+            }, 2500);
+            console.error("Login unsuccessful.. Error Code: " + JSON.stringify(status));
+        });
+        return false; // won't refresh the page
+    }); 
 
     Number.prototype.pad = function(n) {
         return new Array(n).join('0').slice((n || 2) * -1) + this;

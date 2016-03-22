@@ -29,6 +29,11 @@
   border-radius: 10px;
 }
 
+.mes{
+  text-align: left;
+  display: inline-block;
+}
+
 #title{
   text-align:center;
   margin-top: 0px;
@@ -141,7 +146,13 @@ h4{
   margin-bottom: 20px;
 }
 
+.col-sm-10 {
+    width: 100% !important;
+}
 
+.col-sm-offset-2 {
+    margin-left: 0px !important;
+}
 
 /******************************/
 /* Page Flip on the calendar  */
@@ -364,6 +375,67 @@ img#skyline{
   margin-right: 10px;
   
 }
+
+.fa-sign-in{
+  position: relative;
+  left: 96%;
+  cursor: pointer;
+}
+
+.form-group:nth-child(n+2), .btn-default{
+  margin-left: 10px;
+}
+
+.login{
+  margin: 0 auto;
+  width: 76%;
+}
+
+.custom-button{
+    display: block;
+    border-radius: 0;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    background: #002266;
+    font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 auto;
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+    transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+    position: relative;
+}
+
+.status {
+    display: none;
+    text-align: center;
+}
+
+
+.custom-button:hover{
+    -webkit-transform: rotate(60deg);
+   -moz-transform: rotate(60deg);
+     -o-transform: rotate(60deg);
+        transform: rotate(60deg);
+        background: #0137A2;
+}
+
+.custom-button:focus{
+    -webkit-transform: rotate(30deg);
+   -moz-transform: rotate(30deg);
+     -o-transform: rotate(30deg);
+        transform: rotate(30deg);
+}
+
+.secret{
+  display: none;
+}
+
 
 @media (min-width: 768px){
   .container {
