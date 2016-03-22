@@ -1,6 +1,5 @@
 $(document).ready(function() { 
 	$('form').submit(function(formText) {
-		var e = formText;
         $.ajax({
             type: 'POST',
             url: '/contact',
