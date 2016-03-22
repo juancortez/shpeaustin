@@ -145,6 +145,18 @@ module.exports = function(app, client, privateCredentials) {
         });
     });
 
+    app.post('/login', function(req, res){
+        // VERY basic authentication
+        var credentials = privateCredentials.websiteLogin;
+        if(req.body.username == credentials.username && req.body.password == credentials.password){
+            console.log("Login successful");
+            res.sendStatus(200);
+        } else{
+            console.log("Login unsuccessful");
+            res.sendStatus(401);
+        }
+    });
+
 
     // sends front end the metadata/calendar_data.json file in application/json format
     app.get('/calendardata', function(req, res) {
