@@ -6,6 +6,7 @@ $(document).ready(function() { // HTML has loaded
     var numCalendarItems = 0;
     var calendarItem = 0;
     var authenticated = false;
+    var numAnnouncements;
 
     var newsletterInterval = setInterval(function(e){
         $("#next-newsletter").click(); 
@@ -82,6 +83,52 @@ $(document).ready(function() { // HTML has loaded
             $("span.description").text(calendarHtml.link);
         }
     });
+
+    $.ajax({
+        method: "GET",
+        url: "/announcements"
+    }).done(function(data){
+        var announcement = data.announcements;
+        numAnnouncements = data.announcements.length;
+        for(var i = numAnnouncements-1; i > -1; i--){ 
+            constructAnnouncement(announcement, i, 0);
+        }
+        console.log("Success!!");
+        $(".announcement-content-container").css({'text-align': 'left'});
+        $(".fa-spinner").hide();
+    }).fail(function(e){
+        $(".announcement-content-container").css({'text-align': 'left'});
+        $(".fa-spinner").hide();
+        console.error("GET method for /announcements failed.");
+    });
+
+    function constructAnnouncement(announcement, i, flag){
+        var announcementInfo = '<p class="officer-post"> <span class="post-info"></span> <span class="post-content"></span></p>';
+        var officerName = announcement[i].officer;
+        var timestamp = announcement[i].timestamp;
+        var content = announcement[i].announcement;
+        var date = new Date(timestamp);
+        var calDate = date.toLocaleDateString();
+        var time = date.toLocaleTimeString();
+        var postInfoText = officerName + " (" + calDate + " @ " + time  + ")";
+        var postInfo = $(announcementInfo).find('.post-info')[0];
+        $(postInfo).text(postInfoText + " ");
+        var postContent = $(announcementInfo).find('.post-content')[0];
+        if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(content)) {
+            console.log("Contains URL"); //TODO: figure out how to enclose link in a <a>
+        }
+        $(postContent).text(content);
+        var innerP = '<p class="officer-post">';
+        var completeHtml = innerP;
+        completeHtml = $(completeHtml).append(postInfo);
+        completeHtml = $(completeHtml).append(postContent);
+        if(flag === 0){
+            $('.announcement-content-container').append(completeHtml);
+        } else if(flag === 1){
+            $('.announcement-content-container').prepend(completeHtml);
+        }
+        
+    }
 
     // try this: http://keith-wood.name/icalendar.html
     $(".cal-button").on('click', function(e){
@@ -248,10 +295,10 @@ $(document).ready(function() { // HTML has loaded
 
     var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     if(isMobile){
-        $(".fa-sign-in").hide();
+        $(".show-login").empty();
     }
 
-    $('form').submit(function(formText) {
+    $('#login-form').submit(function(formText) {
         $.ajax({
             type: 'POST',
             url: '/login',
@@ -260,19 +307,16 @@ $(document).ready(function() { // HTML has loaded
                    }
         }).done(function(status){
             console.log("Login successful!");
-            $(".status").text("Login successful!");
-            $(".status").css({'color': '#4CAF50'});
-            $(".status").show();
-            $(".secret").show();
+            $(".status").text("Login successful!").css({'color': '#4CAF50'}).show();
+            $(".post-announcement").show();
+            $(".announcement-container").css({'height':'315px'});
             authenticated = true;
             setTimeout(function(){
                 $(".status").hide();
                 $(".close-modal").click();
             }, 1500);
         }).fail(function(status){
-            $(".status").text("Login unsuccessful.");
-            $(".status").css({'color': '#F44336'});
-            $(".status").show();
+            $(".status").text("Login unsuccessful.").css({'color': '#F44336'}).show();
             setTimeout(function(){
                 $(".status").hide();
             }, 2500);
@@ -281,7 +325,34 @@ $(document).ready(function() { // HTML has loaded
         return false; // won't refresh the page
     }); 
 
+    $("#announcement-form").submit(function(formText){
+        var date = new Date();
+        if(!authenticated){
+            alert("Access Denied. How did you get here? You're not supposed to be here!");
+            return false;
+        } else{
+            $.ajax({
+                type: 'POST',
+                url: '/announcements',
+                data: { officer: formText.target.officer.value, 
+                        timestamp: date,
+                        announcement: formText.target.announcement.value
+                       }
+            }).done(function(status){
+                console.log("Announcement post successful!");
+                constructAnnouncement(status.announcements, numAnnouncements, 1);
+                numAnnouncements++;
+            }).fail(function(status){
+                console.error("Announcement post unsuccessful.");
+            });
+            return false; // won't refresh the page
+        }
+    });
+    
+
+
     Number.prototype.pad = function(n) {
         return new Array(n).join('0').slice((n || 2) * -1) + this;
     };
+
 });
