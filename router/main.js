@@ -90,6 +90,44 @@ module.exports = function(app, client, privateCredentials) {
         });
     });
 
+    app.get('/announcements', function(req, res){        
+        client.get('announcements', function (err, announcements) {
+            if (announcements) {
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.parse(announcements));
+            } else{
+                res.sendStatus(404);
+            }
+        });
+    });
+
+    app.post('/announcements', function(req, res){
+        client.get('announcements', function (err, announcements) {
+            if (announcements) {
+                if(announcements.length > 0){
+                    var parsedJSON = JSON.parse(announcements);
+                    var length = parsedJSON.announcements.length;
+                    if(length > 1){
+                        parsedJSON.announcements[length] = req.body;
+                        client.set("announcements", JSON.stringify(parsedJSON));
+                        res.setHeader('Content-Type', 'application/json');
+                        res.send(parsedJSON);
+                        } 
+                } else{
+                    var announcements = {};
+                    announcements['announcements'] = [];
+                    announcements.announcements[0] = req.body;
+                    client.set("announcements", JSON.stringify(announcements));
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(announcements);
+                }
+            } else{
+                res.sendStatus(404);
+            }
+        });
+        
+    });
+
     app.get('/meeting', function(req, res){
         res.render('meeting.html', {
             revision: 0 
