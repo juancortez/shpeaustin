@@ -20,5 +20,5 @@ exports.sendGridEmail = "cortezjuanjr@gmail.com";
  *
  * If you want to set new revision, set newRevision flag to TRUE
  */
-exports.revision = 4; // Revision 4 as of March 20, 2016 @ 22:41
+exports.revision = 5; // Revision 5 as of March 23, 2016 @ 14:57
 exports.newRevision = false;
