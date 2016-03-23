@@ -1,17 +1,6 @@
 {
     "calendar": [
         {
-            "event": "Softball Game",
-            "time": "2016-03-21T19:25:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=ZzFrYTQycWZpcmtnNTM3dXRtOWJvamx1dW8gc2hwZS5hdXN0aW5AbQ",
-            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
-        },
-        {
-            "event": "Officer Meeting",
-            "time": "2016-03-22T19:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAzMjNUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
-        },
-        {
             "event": "UTSHPE General Meeting",
             "time": "2016-03-23",
             "link": "https://www.google.com/calendar/event?eid=c3Y1aGFza3BqdmxhaGs2Nzc1am1xdXNrbjQgc2hwZS5hdXN0aW5AbQ"
@@ -53,6 +42,16 @@
             "event": "Noche De Ciencia (TBD)",
             "time": "2016-04-07",
             "link": "https://www.google.com/calendar/event?eid=ZnQybjA0ZWJoYjJpaXA5dnNkZGhtcmdqNmsgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Battle of the SHPEys",
+            "time": "2016-04-10",
+            "link": "https://www.google.com/calendar/event?eid=OGYydWZkNmZxcWYzMDF2djU4ZWNxZDZiMDAgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Manitos/Manitas Social/Community Service",
+            "time": "2016-04-10",
+            "link": "https://www.google.com/calendar/event?eid=dG5jcGNhbTYwanY3dWxsZzh2bWdnbmpmaW8gc2hwZS5hdXN0aW5AbQ"
         }
     ]
 }

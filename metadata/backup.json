@@ -1,0 +1,271 @@
+{
+    "officerList": [
+        {
+            "name": "Jeremy Benavides",
+            "position": "President",
+            "email": "jeremy.benavides@gmail.com",
+            "phone": 5128091994,
+            "hometown": "Austin, TX",
+            "company": "Accenture",
+            "executive": true,
+            "image_url": "../assets/officer_pictures/jeremy.jpg",
+            "linkedin": "https://www.linkedin.com/in/jeremybenavides?trk=hp-identity-name"
+        },
+        {
+            "name": "Rogelio Zavala",
+            "position": "Vice President",
+            "email": "r.zavala74@gmail.com",
+            "phone": 8179057686,
+            "hometown": "N/A",
+            "company": "Austin Energy",
+            "executive": true,
+            "image_url": "../assets/officer_pictures/rogelio.jpg",
+            "linkedin": "https://www.linkedin.com/in/rogelio-zavala-p-e-473b3557?authType=NAME_SEARCH&authToken=N_eb&locale=en_US&srchid=952112491455769736443&srchindex=1&srchtotal=40&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A952112491455769736443%2CVSRPtargetId%3A202869591%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"
+        },
+        {
+            "name": "Hugo Landaverde",
+            "position": "Secretary",
+            "email": "h.landaverde@utexas.edu",
+            "phone": 5127365066,
+            "hometown": "Austin, TX",
+            "company": "Accenture",
+            "executive": true,
+            "image_url": "../assets/officer_pictures/hugo.jpg",
+            "linkedin": "https://www.linkedin.com/in/hugolandaverde?authType=NAME_SEARCH&authToken=dkGh&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A95604495%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769797866%2Ctas%3AHugo%20Lan"
+        },
+        {
+            "name": "Vera Sandoval",
+            "position": "Treasurer",
+            "email": "vera.sandoval4@gmail.com",
+            "phone": 8064201223,
+            "hometown": "N/A",
+            "company": "Applied Materials",
+            "executive": true,
+            "image_url": "../assets/officer_pictures/vera.jpg",
+            "linkedin": "https://www.linkedin.com/in/vera-sandoval-44b88b23?authType=NAME_SEARCH&authToken=Y6k6&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A82797755%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769783589%2Ctas%3AVera%20S"
+        },
+        {
+            "name": "Carlos J Pizarro",
+            "position": "Athletic Director",
+            "email": "carlosjpizarro93@gmail.com",
+            "phone": 2544151406,
+            "hometown": "N/A",
+            "company": "Texas Department of Transportation",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/carlos.jpg",
+            "linkedin": "https://www.linkedin.com/in/carlosjpizarro?authType=NAME_SEARCH&authToken=7RxT&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A348076479%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769904050%2Ctas%3ACarlos%20Pizarro"
+        },
+        {
+            "name": "Rodrigo Estrada",
+            "position": "Community Service Directory",
+            "email": "eerodrigoestrada@utexas.edu",
+            "phone": 9366971962,
+            "hometown": "N/A",
+            "company": "IBM",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/rodrigo.jpg",
+            "linkedin": "https://www.linkedin.com/in/rodrigo-estrada-0863721a?authType=NAME_SEARCH&authToken=Xckp&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A66586854%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769852320%2Ctas%3ARodrigo%20E"
+        },
+        {
+            "name": "Aaron Gutierrez",
+            "position": "Director of Student Relations",
+            "email": "aaronguiterrez@utexas.edu",
+            "phone": 3615487441,
+            "hometown": "Corpus Christi, TX",
+            "company": "Texas Department of Transportation",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/aaron.jpg",
+            "linkedin": "https://www.linkedin.com/in/aaron-gutierrez-211a5a57?authType=NAME_SEARCH&authToken=Nds8&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A202670509%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769818341%2Ctas%3AAaron%20Gui"
+        },
+        {
+            "name": "Stephanie Amrite",
+            "position": "Fundraising Director",
+            "email": "stephanie.amrite@gmail.com",
+            "phone": 2106432425,
+            "hometown": "N/A",
+            "company": "National Instruments",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/default.jpg",
+            "linkedin": "https://www.linkedin.com/in/stephanieamrite?authType=NAME_SEARCH&authToken=a6JX&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A289349272%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1455769839379%2Ctas%3AStephan"
+        },
+        {
+            "name": "Martin Huerta",
+            "position": "Professional Development Director",
+            "email": "martin_huerta@utexas.edu",
+            "phone": 9565738913,
+            "hometown": "N/A",
+            "company": "NXP",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/default_1.jpg",
+            "linkedin": "https://www.linkedin.com/in/martin-eduardo-huerta-b85b1158?authType=NAME_SEARCH&authToken=NfXL&locale=en_US&srchid=952112491455769754869&srchindex=1&srchtotal=144&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A952112491455769754869%2CVSRPtargetId%3A205808213%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"
+        },
+        {
+            "name": "Tania Vazquez",
+            "position": "Public Relations Director",
+            "email": "tania.vazquez5@gmail.com",
+            "phone": 5127851114,
+            "hometown": "N/A",
+            "company": "ACR Engineering",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/default.jpg",
+            "linkedin": "https://www.linkedin.com/in/tania-vazquez-80355a51?authType=NAME_SEARCH&authToken=J4eC&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CentityType%3AentityHistoryName%2CclickedEntityId%3Amynetwork_183511299%2Cidx%3A2"
+        },
+        {
+            "name": "Karen Siles",
+            "position": "Scholarship Director",
+            "email": "Ksiles1@gmail.com",
+            "phone": 5713328902,
+            "hometown": "N/A",
+            "company": "IBM",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/default.jpg",
+            "linkedin": "https://www.linkedin.com/in/karenmsiles?authType=NAME_SEARCH&authToken=UTev&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A13939101%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769861717%2Ctas%3AKaren%20Siles"
+        },
+        {
+            "name": "Manuel Espinosa",
+            "position": "SHPE Jr. Director",
+            "email": "manuel.espinosa4@gmail.com",
+            "phone": 5129610573,
+            "hometown": "N/A",
+            "company": "Microchip Technology",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/default_1.jpg",
+            "linkedin": "https://www.linkedin.com/in/manuel-espinosa-66897358?authType=NAME_SEARCH&authToken=VrnQ&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A205437680%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769891261%2Ctas%3AManuel%20Es"
+        },
+        {
+            "name": "Juan Cortez",
+            "position": "Webmaster",
+            "email": "Juan_Cortez@utexas.edu",
+            "phone": 9152276803,
+            "hometown": "El Paso, TX",
+            "company": "IBM",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/juan.jpg",
+            "linkedin": "https://www.linkedin.com/in/juancortezjr"
+        }
+    ],
+    "calendarData": {
+        "calendar": [
+            {
+                "event": "Softball Game",
+                "time": "2016-03-21T19:25:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=ZzFrYTQycWZpcmtnNTM3dXRtOWJvamx1dW8gc2hwZS5hdXN0aW5AbQ",
+                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+            },
+            {
+                "event": "Officer Meeting",
+                "time": "2016-03-22T19:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAzMjNUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
+            },
+            {
+                "event": "UTSHPE General Meeting",
+                "time": "2016-03-23",
+                "link": "https://www.google.com/calendar/event?eid=c3Y1aGFza3BqdmxhaGs2Nzc1am1xdXNrbjQgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Social/Happy Hour hosted by SHPE Austin",
+                "time": "2016-03-24T18:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=YWt2czB1c3ExazR2MHB1dGg3ZzNlN2VtNWMgc2hwZS5hdXN0aW5AbQ",
+                "location": "Haymaker 2310 Manor Rd Austin, TX 78722 USA"
+            },
+            {
+                "event": "Softball Game",
+                "time": "2016-03-28T19:25:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=cTRwdnYyZ2JzMmtwanNrdmNnMzkxbXZ0MzAgc2hwZS5hdXN0aW5AbQ",
+                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+            },
+            {
+                "event": "Scholarship Application Closes",
+                "time": "2016-04-01",
+                "link": "https://www.google.com/calendar/event?eid=cGl1NGZkZXFrazZyMjIxNW1sZm5lZ2ZlZWMgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Softball Game",
+                "time": "2016-04-04T21:15:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=MXU1NGRpaTlqYXIzbHZrOWplYmQzbDFuOGcgc2hwZS5hdXN0aW5AbQ",
+                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+            },
+            {
+                "event": "Officer Meeting",
+                "time": "2016-04-05T19:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA0MDZUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
+            },
+            {
+                "event": "UTSHPE General Meeting",
+                "time": "2016-04-06",
+                "link": "https://www.google.com/calendar/event?eid=Z2NvMW1uNTUzdmQxaG02bDZqYm1wZmNyZDQgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Noche De Ciencia (TBD)",
+                "time": "2016-04-07",
+                "link": "https://www.google.com/calendar/event?eid=ZnQybjA0ZWJoYjJpaXA5dnNkZGhtcmdqNmsgc2hwZS5hdXN0aW5AbQ"
+            }
+        ]
+    },
+    "newsletterdata": {
+        "newsletter": [
+            {
+                "title": "Event Recap: Introduce a Girl at Engineering Day @UT-Austin",
+                "description": "This past weekend, SHPE-Austin officers and friends hosted an activity at Girl Day. Students made Hover Crafts using balloons, CD's, paper plates, and tape. Overall, this was a fun event that the team looks forward to again next year.",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/b5151de9-d938-4613-8ed8-31206e22b1dd.jpg",
+                "image_link": ""
+            },
+            {
+                "title": "Breakthrough Austin with\nNSBE & SHPE",
+                "description": "NSBE Professional and SHPE Austin have been invited to join Breakthrough Austin (BA) this Saturday. BA Students will be preparing skits as part of their semester-long project. Volunteers will mentor the students throughout the process. Date: Mar. 5th (9am-12:30pm) @ St. Andrew's Episcopal School (5901 Southwest Pkwy 78735).For more details  click on the image",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/79070ead-fb6d-4cb6-979b-58e128c92695.jpg",
+                "image_link": "https://www.eventbrite.com/e/breakthrough-austin-middle-school-outreach-event-with-nsbe-and-shpe-austin-chapters-tickets-21134249108?ref=enivtefor001&invite=OTU1OTE4OS9oLmxhbmRhdmVyZGVAdXRleGFzLmVkdS8w&utm_source=eb_email&utm_medium=email&utm_campaign=inviteformalv2&utm_term=eventpage"
+            },
+            {
+                "title": "Softball Schedule Finalized",
+                "description": "SHPE Softball is right around the corner. Games will begin March 7th and the cost to participate is $20. There will be practice games on the weekends. For more information contact Carlos Pizarro. \n\nDon't delay sign up for softball today",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/2a87bb63-735c-4160-8a65-dc4b0b8c2a3f.jpg",
+                "image_link": "http:// https://docs.google.com/spreadsheets/d/1V-M7KXMKcUhdQteUZcVbPcUZbvpl343mzyV2qsl2drY/edit?usp=sharing"
+            },
+            {
+                "title": "We're SHPE'ing out Scholarships",
+                "description": "SHPE Austin has opened up the application for the 2016 scholarships. If you have any questions feel free to ask Scholarship Director, Karen Siles.Click on the image to access the scholarship application",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/08b634e5-42d4-4042-9033-568a1dc7012b.jpg",
+                "image_link": "https://goo.gl/NCRrFX"
+            },
+            {
+                "title": "Lunch N Learn by ",
+                "description": "SHPE Jr. at LBJ High School is in need of mentors for Lunch and Learns (virtual or in-person) and SHPE Jr. Robotics Meetings. This is a great opportunity if you would like to mentor students interested in robotics or STEM in general. This survey does not commit you to an event, it just shows your interest.",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/22c6e63b-a8ff-48a5-809c-d51b21160b33.jpg",
+                "image_link": "https://docs.google.com/forms/d/1gB76vgGk3V0thl9r2IIdnZXvxiWZpYkmqVoZ0tGZOaA/viewform"
+            },
+            {
+                "title": "Membership Spotlight",
+                "description": "Juan Cortez, Electrical & Comp. Engineer at IBM-Austin, has recently been acknowledged for his contributions to Programming the BeagleBone. More specifically, Juan reviewed tutorials on interfacing with the BeagleBone microcontroller so as to make it easier for a younger audience to understand.\nThrough this experience, he was also recognized as a winner for the DiscoverE New Faces of Engineering. \n Congratulations Juan and keep up the great work!",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/b8250836-7175-442d-88e7-d567141447da.png",
+                "image_link": "mailto:stephanie.amrite@gmail.com?subject=RE%3A%20Gift%20Cards%20Raffle"
+            },
+            {
+                "title": "News You Can Use",
+                "description": "It has been recently announced that the Texas Board of Professional Engineers (TBPE) will no longer require the professional experience prerequisite for the PE exam. The changes will be propagated to the Oct 2016 exam.\n\nClick on the image to learn more about the PE License",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/f7358db6-701f-4b1f-b1db-ec764d6cc535.png",
+                "image_link": "https://engineers.texas.gov/"
+            }
+        ]
+    },
+    "announcements": {
+        "announcements": [
+            {
+                "officer": "Manuel Espinosa",
+                "timestamp": "Wed Mar 23 2016 11:38:03 GMT-0500 (CDT)",
+                "announcement": "Sign ups for Noche de Ciencias are now open! RSVP at http://tinyurl.com/zfhezha"
+            },
+            {
+                "officer": "Karen Siles",
+                "timestamp": "Wed Mar 23 2016 11:41:20 GMT-0500 (CDT)",
+                "announcement": "SHPE Austin has opened up the application for the 2016 scholarships! If you have any questions feel free to ask Scholarship Director, Karen Siles. Go here https://docs.google.com/a/utexas.edu/forms/d/14PzspzhT4Ajv5ZVPTX_fmjtOfqDAjJPBgLpKzOANrXw/viewform?c=0&w=1 to apply!"
+            },
+            {
+                "officer": "Juan Cortez",
+                "timestamp": "Wed Mar 23 2016 14:48:12 GMT-0500 (CDT)",
+                "announcement": "The announcements posting is now live!"
+            }
+        ]
+    },
+    "revisionNumber": 4
+}
