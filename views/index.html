@@ -5,8 +5,8 @@
       <link rel="stylesheet" type="text/css" href="/stylesheets/main.css?v=<%= revision %>">
       <link rel="stylesheet" type="text/css" href="/stylesheets/index.css?v=<%= revision %>">
       <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
-      <!-- <script src="/dist/index.min.js?v=<%= revision %>"></script> -->
-      <script src="/javascripts/index.js?v=<%= revision %>"></script>
+      <script src="/dist/index.min.js?v=<%= revision %>"></script>
+      <!-- <script src="/javascripts/index.js?v=<%= revision %>"></script>-->
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js?v=<%= revision %>"></script>
       <!-- https://www.addevent.com/buttons/add-to-calendar -->
       <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
@@ -38,6 +38,9 @@
       <div class="main-page-container">
       <div class="site-slider-custom-header">
          <main class="bs-docs-masthead" id="content" role="main" tabindex="-1">
+            <div class="show-login">
+               <i class="fa fa-sign-in fa-2x" data-toggle="modal" data-target="#myModal"></i>
+            </div>
             <div class="container">
                <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">
                <img id = "skyline" src="/assets/austin_skyline_burned_copy.png"alt="">Welcome to SHPE Austin</span>
@@ -48,8 +51,37 @@
          </main>
          <!-- <img src="/assets/shpe_banner.jpg" height="864" width="1920" alt=""> -->
          </div>
-         <div class="secret">  
-            <h1> TODO: Add an interactive way for officers to post information directly on the website.</h1>
+         <div class="announcements">
+            <h2 class="thumbnail-title dark-shpe-blue" id="announcement-header"> Announcements </h2>
+            <div class="announcement-container">
+               <div class = "announcement-icon-container">
+                  <h3 class=" dark-shpe-blue" id="announcement-title">Announcements</h3>
+                  <span class="glyphicon glyphicon-bullhorn dark-shpe-blue" aria-hidden="true"></span>
+               </div>
+               <div class="announcement-content-container">
+                  <!-- <p class="officer-post"> <span class="post-info"> Manuel Espinosa (3/23/2016 @ 11:35:23 AM):</span> <span class="post-content">Sign ups for Noche de Ciencias are now open! RSVP <a href="http://tinyurl.com/zfhezha">here.</a> </span></p> -->
+                  <!-- <p class="officer-post"> <span class="post-info"></span> <span class="post-content"></span></p> -->
+                  <i class="fa fa-spinner fa-spin dark-shpe-blue fa-3x"></i>
+               </div>
+               <div class="post-announcement">
+                  <form method = "post" action="announcement" id="announcement-form" class="form-horizontal">
+                     <div class="form-group">
+                        <div class="col-sm-6 form-announ">
+                           <label for="officer" class="sr-only">Officer Name:</label>
+                           <input id="officer" class="form-control input-group-lg reg_name" type="text" name="officer" title="Enter Name" placeholder="Full Name">
+                        </div>
+                        <div class="col-sm-6 form-announ">
+                           <label for="announcement" class="sr-only">Announcement</label>
+                           <input id="announcement" class="form-control input-group-lg reg_name" type="text" name="announcement" title="announcement" placeholder="Announcement">
+                        </div>
+                        <div class="col-sm-6 form-announ">
+                           <button type="submit" id="post-announcement">Post Announcement</button>
+                        </div>
+                     </div>
+                     <!--/form-group-->
+                  </form>
+               </div>
+            </div>
          </div>
          <div class="bs-example-a">
             <div class="row">
@@ -133,7 +165,6 @@
                   </div>
                </div>
             </div>
-            <i class="fa fa-sign-in dark-shpe-blue fa-2x" data-toggle="modal" data-target="#myModal"></i>
          </div>
       </div>
       <!-- Modal -->
@@ -146,30 +177,30 @@
             <h4 class="modal-title">Officer Sign-In</h4>
          </div>
          <div class="modal-body">
-            <form method = "post" action="login">
-                  <div class="form-group">
-                    <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
-                  </div> 
-                  <br>
-                  <div class="form-group row">
-                    <label for="name" class="col-sm-2 form-control-label">Username:<span style="color:red;">*</span></label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" id="name" name="name" placeholder="Username" required>
-                    </div>
+            <form id="login-form" method = "post" action="login">
+               <div class="form-group">
+                  <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
+               </div>
+               <br>
+               <div class="form-group row">
+                  <label for="name" class="col-sm-2 form-control-label">Username:<span style="color:red;">*</span></label>
+                  <div class="col-sm-10">
+                     <input type="name" class="form-control" id="name" name="name" placeholder="Username" required>
                   </div>
-                  <div class="form-group row">
-                    <label for="password" class="col-sm-2 form-control-label">E-Mail:<span style="color:red;">*</span></label>
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                    </div>
+               </div>
+               <div class="form-group row">
+                  <label for="password" class="col-sm-2 form-control-label">E-Mail:<span style="color:red;">*</span></label>
+                  <div class="col-sm-10">
+                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                   </div>
-                  <div id="form-submission" class="form-group row">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button id="submit-button" type="submit" class="custom-button">Send It</button>
-                    </div>
+               </div>
+               <div id="form-submission" class="form-group row">
+                  <div class="col-sm-offset-2 col-sm-10">
+                     <button id="submit-button" type="submit" class="custom-button">Send It</button>
                   </div>
-                  <div class='status'>Status</div>
-                </form>
+               </div>
+               <div class='status'>Status</div>
+            </form>
          </div>
          <div class="modal-footer">
             <p class="mes"> If you accidentally got here, please close this window! HAK3RZ not allowed!</p>
