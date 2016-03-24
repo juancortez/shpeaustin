@@ -6,6 +6,14 @@
 
 }*/
 
+li{
+  list-style-type: none;
+}
+
+ul li{
+  font-size: 20px;
+  margin-top: 10px;
+}
 #newsletter-buttons{
   text-align:center;
 }
@@ -154,6 +162,13 @@ h4{
     margin-left: 0px !important;
 }
 
+.fa-archive{
+  position: absolute;
+  bottom: 30px;
+  right: 26px;
+  cursor: pointer;
+}
+
 /******************************/
 /* Page Flip on the calendar  */
 /******************************/
@@ -259,6 +274,10 @@ h4{
   .cal-extend{
     max-height: 477px;
     min-height: 477px;
+  }
+
+  .fa-archive{
+    bottom: 10px;
   }
 
   .col-sm-6{
@@ -387,7 +406,6 @@ img#skyline{
   height: 30px;
   float: right;
   position: relative;
-  bottom: 40px;
 }
 
 .show-login:hover .fa-sign-in{
@@ -484,7 +502,7 @@ img#skyline{
           align-content: flex-start;
   height: 200px;
   /*height: 315px;*/
-  width: 900px;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -551,6 +569,49 @@ img#skyline{
     width: 33% !important;
 }
 
+/*
+* Modal CSS
+*/
+#overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+#modal {
+    position:absolute;
+    background:rgba(0,0,0,0.2);
+    border-radius:14px;
+    padding:8px;
+    z-index:1000;
+}
+
+#content {
+    border-radius:8px;
+    padding:20px;
+    overflow: auto;
+}
+
+#close{
+    position:absolute;
+    background:url(../assets/close.png) 0 0 no-repeat;
+    width:24px;
+    height:27px;
+    display:block;
+    text-indent:-9999px;
+    top:-7px;
+    right:-7px;
+}
+
+/*
+* 
+*/
+
 @media (max-width: 1023px){
   .announcement-container{
     width: 700px;
@@ -596,10 +657,14 @@ img#skyline{
   }
 }
 
-@media (max-width: 625px){
+@media (max-width: 646px){
   .bs-docs-booticon-lg {
      font-size: 30px;
   }
+
+}
+
+@media (max-width: 625px){
 
   .bs-docs-masthead .lead {
      font-size: 15px;
@@ -722,19 +787,3 @@ img#skyline{
     height: 55%;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
