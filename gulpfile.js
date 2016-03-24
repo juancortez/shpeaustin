@@ -42,17 +42,15 @@ gulp.task('lint', function() {
 gulp.task('index_script', function() {
     return gulp.src(javascript_src+"index.js")
         .pipe(concat('index.js'))
-        .pipe(gulp.dest(javascript_dest))
         .pipe(rename('index.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(javascript_dest));
 });
 
-gulp.task('calendar_script', function() {
-    return gulp.src(javascript_src+"calendar.js")
-        .pipe(concat('calendar.js'))
-        .pipe(gulp.dest(javascript_dest))
-        .pipe(rename('calendar.min.js'))
+gulp.task('membership_script', function() {
+    return gulp.src(javascript_src+"membership.js")
+        .pipe(concat('membership.js'))
+        .pipe(rename('membership.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(javascript_dest));
 });
@@ -60,7 +58,6 @@ gulp.task('calendar_script', function() {
 gulp.task('contact_script', function() {
     return gulp.src(javascript_src+"contact.js")
         .pipe(concat('contact.js'))
-        .pipe(gulp.dest(javascript_dest))
         .pipe(rename('contact.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(javascript_dest));
@@ -72,9 +69,9 @@ gulp.task('contact_script', function() {
 // for changes and automatically run our tasks again so we don't have to 
 // continuously jump back to our command-line and run the gulp command each time.
 gulp.task('watch', function() {
-    gulp.watch(javascript_src, ['lint', 'index_script', 'calendar_script', 'contact_script']);
+    gulp.watch(javascript_src, ['lint', 'index_script', 'membership_script', 'contact_script']);
     //gulp.watch('scss/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'index_script', 'calendar_script', 'contact_script', 'watch']);
+gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'watch']);
