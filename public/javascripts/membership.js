@@ -306,6 +306,7 @@ var modal = (function(){
 
         method.center();
 
+
         $(window).bind('resize.modal', method.center);
 
         $modal.show();
@@ -337,7 +338,7 @@ var modal = (function(){
             height = window_height < height ? window_height - 50: height;
             width = window_width < width ? window_width - 50 : width;
 
-            modal.open({content: $("<h2>"+pillar+"</h2>"), width: width+"px", height: height+"px", align: "center"});
+            modal.open({content: $("<h2>"+pillar+"</h2>" + "<p> Under Construction </p>"), width: width+"px", height: height+"px", align: "center"});
         });
 
         $(document).keydown(function(event){

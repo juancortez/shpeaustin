@@ -127,7 +127,6 @@ $(document).ready(function() { // HTML has loaded
         } else if(flag === 1){
             $('.announcement-content-container').prepend(completeHtml);
         }
-        
     }
 
     // try this: http://keith-wood.name/icalendar.html
@@ -356,3 +355,89 @@ $(document).ready(function() { // HTML has loaded
     };
 
 });
+
+
+var modal = (function(){
+    var 
+    method = {},
+    $overlay = $('<div id="overlay"></div>');
+    $modal = $('<div id="modal"></div>');
+    $content = $('<div id="content"></div>');
+    $close = $('<a id="close" href="#">close</a>');
+
+    $modal.hide();
+    $overlay.hide();
+    $modal.append($content, $close);
+
+    // Center the modal in the viewport
+    method.center = function () {
+        var top, left;
+
+        top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+        left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+
+        $modal.css({
+            top:top + $(window).scrollTop(), 
+            left:left + $(window).scrollLeft()
+        });
+    };
+
+    // Open the modal
+    method.open = function (settings) {
+        $content.empty().append(settings.content);
+
+        $modal.css({
+            width: settings.width-10 || 'auto', 
+            height: settings.height-10 || 'auto',
+            "text-align" : settings.align
+        });
+
+        $content.css({
+            width: settings.width || 'auto', 
+            height: settings.height || 'auto'
+        });
+
+        method.center();
+
+        $(window).bind('resize.modal', method.center);
+
+        $modal.show();
+        $overlay.show();
+    };
+
+    // Close the modal
+    method.close = function () {
+        $modal.hide();
+        $overlay.hide();
+        $content.empty();
+        $(window).unbind('resize.modal');
+    };
+
+    $(document).ready(function(){
+        $('body').append($overlay, $modal);
+        $close.click(function(e){
+            e.preventDefault();
+             method.close();
+        });
+        $('.fa-archive').click(function(){
+            var height = 400;
+            var width = 500;
+            window_height = $(window).height();
+            window_width = $(window).width();
+
+            // make sure that it fits within the frame
+            height = window_height < height ? window_height - 50: height;
+            width = window_width < width ? window_width - 50 : width;
+            $("#modal").css({'background':'white'});
+            modal.open({content: $("<h1>View Previous Newsletters<h1><ul><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=17cac73925&e=38ee20bb08'>April 2016</a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=a8f7a3cd22&e=38ee20bb08'>March 2016 </a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=ecb6bb1b8c&e=1365fed48c'>February 2016</a> </li></ul>"), width: width+"px", height: height+"px", align: "center"});
+        });
+
+        $(document).keydown(function(event){
+            if (event.keyCode == 27) {  // 27 is the ESC key
+                $("#close").click();
+            }
+        });
+    });
+
+    return method;
+}());
