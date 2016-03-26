@@ -67,6 +67,102 @@
     box-shadow: 0px 0px 8px -1px rgba(56, 56, 56, 1);
 }
 
+.bold{
+    font-weight: bold;
+}
+
+.italic{
+    font-style: italic;   
+}
+.new-user{
+    color: #002266;
+}
+
+#name-prompt{
+    position: relative;
+    text-align: center;
+    color: black;
+    top: 150px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+#chat-container{
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    height: 368px;
+    background: white;
+    width: 250px;
+    z-index: 100;
+    border: 1px solid #ebebeb;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#chat-content{
+    height: 312px;
+    padding: 8px 5px 5px 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 5px 5px 5px;
+}
+
+#chat-container div, #chat-container form{
+    width: 100%;
+}
+
+#chat-container input{
+    width: 80%;
+}
+
+#chat-container button{
+    width: 20%;
+}
+
+#chat-header{
+    border-bottom: 1px solid #E6E6E6;
+    padding: 5px;
+    height: 30px;
+}
+
+#chat-header i{
+    float: right;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.content-container{
+    display: block;
+    height: 85%;
+}
+
+
+#chat-content{
+   height: 100%;
+}
+
+#chat{
+    margin: 0px;
+    padding:0px;
+}
+
+#send-chat{
+    font-family: inherit;
+    font-size: 100%;
+    padding: 4px;
+    color: #444;
+    color: rgba(0,0,0,.8);
+    border: 1px solid #999;
+    border: 0 rgba(0,0,0,0);
+    background-color: #E6E6E6;
+    text-decoration: none;
+    border-radius: 2px;
+}
 
 
 @media (min-width: 768px){
