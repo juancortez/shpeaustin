@@ -9,7 +9,9 @@ var express = require('express'),
     compression = require('compression'),
     privateCredentials = require('./private_credentials/credentials.json'),
     redisCredentials = privateCredentials.redis.credentials,
-    redis_connect = require("./redis/redis.js");
+    redis_connect = require("./redis/redis.js"),
+    socket_connect = require("./socket/socket.js"),
+    socket = require('socket.io');
 
 
 // Connect to Redis Database
@@ -21,7 +23,6 @@ client.auth(redisCredentials.password, function (err) {
 });
 
 app.use(compression()); //use compression 
-app.use(express.static(__dirname + '/public')); // declare a static directory
 app.use(express.static(__dirname + '/public', { maxAge: 604800000 /* 7d */ })); // 1d = 86400000
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
@@ -42,9 +43,13 @@ var cfenv = require('cfenv');
 var appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function() {
+var server = app.listen(appEnv.port, '0.0.0.0', function() {
     console.log("Server starting on " + appEnv.url);
 });
+
+// web sockets
+var io = socket.listen(server);
+socket_connect.initiateSocket(io, client);
 
 client.on('connect', function() {
     redis_connect.onRedisConnection(client, redis);
