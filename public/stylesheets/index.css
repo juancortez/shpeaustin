@@ -1,19 +1,13 @@
-/*
-.row div{
-  padding: 10px;
-  margin-right: 30px;
-  margin-left: 10px;
-
-}*/
-
-li{
+ul.newsletterList li{
+  font-size: 20px;
+  margin-top: 10px;
   list-style-type: none;
 }
 
-ul li{
-  font-size: 20px;
-  margin-top: 10px;
+.newsletterList{
+  padding: 0px;
 }
+
 #newsletter-buttons{
   text-align:center;
 }
@@ -562,7 +556,16 @@ img#skyline{
 }
 
 #post-announcement{
-  margin-top: 4px;
+  font-family: inherit;
+  font-size: 100%;
+  padding: .5em 1em;
+  color: #444;
+  color: rgba(0,0,0,.8);
+  border: 1px solid #999;
+  border: 0 rgba(0,0,0,0);
+  background-color: #E6E6E6;
+  text-decoration: none;
+  border-radius: 2px;
 }
 
 .form-announ {
@@ -625,6 +628,7 @@ img#skyline{
 
   .announcements{
     padding: 0px;
+    height: 240px;
   }
 
   .post-announcement{

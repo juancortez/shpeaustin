@@ -93,7 +93,6 @@ $(document).ready(function() { // HTML has loaded
         for(var i = numAnnouncements-1; i > -1; i--){ 
             constructAnnouncement(announcement, i, 0);
         }
-        console.log("Success!!");
         $(".announcement-content-container").css({'text-align': 'left'});
         $(".fa-spinner").hide();
     }).fail(function(e){
@@ -102,6 +101,26 @@ $(document).ready(function() { // HTML has loaded
         console.error("GET method for /announcements failed.");
     });
 
+
+    if(localStorage.getItem('credentials')){
+        $.ajax({
+            method: "GET",
+            url: "/officerlogin?"+"credentials="+localStorage.getItem('credentials'),
+        }).done(function(status){
+            if(status === undefined){
+                return;
+            }
+            if(status == "OK"){
+                $(".post-announcement").show();
+                $(".announcement-container").css({'height':'315px'});
+                $(".show-login").empty();
+                authenticated = true;
+            }
+        }).fail(function(){
+            console.error("/officerlogin endpoint failed");
+        });
+    }
+    
     function constructAnnouncement(announcement, i, flag){
         var announcementInfo = '<p class="officer-post"> <span class="post-info"></span> <span class="post-content"></span></p>';
         var officerName = announcement[i].officer;
@@ -115,7 +134,7 @@ $(document).ready(function() { // HTML has loaded
         $(postInfo).text(postInfoText + " ");
         var postContent = $(announcementInfo).find('.post-content')[0];
         if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(content)) {
-            console.log("Contains URL"); //TODO: figure out how to enclose link in a <a>
+            //console.log("Contains URL"); //TODO: figure out how to enclose link in a <a>
         }
         $(postContent).text(content);
         var innerP = '<p class="officer-post">';
@@ -169,7 +188,7 @@ $(document).ready(function() { // HTML has loaded
     // convert to MM/DD/YYYY HH:SS format
     // example: 04/03/2016 08:00 AM
     function convertToDateFormat(month, day, year, time){
-        if(time == ""){
+        if(time === ""){
             time = "12:00 PM"; // set default time of 12:00 PM
         } 
         month = months.indexOf(month) + 1;
@@ -304,12 +323,13 @@ $(document).ready(function() { // HTML has loaded
             data: { username: formText.target.name.value, 
                     password: formText.target.password.value
                    }
-        }).done(function(status){
-            console.log("Login successful!");
+        }).done(function(login){
+            var id = login.uuid; // a unique UUID sent from the server
+            console.log("Login successful with UUID " + id);
+            localStorage.setItem('credentials', id);
             $(".status").text("Login successful!").css({'color': '#4CAF50'}).show();
             $(".post-announcement").show();
             $(".announcement-container").css({'height':'315px'});
-            authenticated = true;
             setTimeout(function(){
                 $(".status").hide();
                 $(".close-modal").click();
@@ -429,7 +449,7 @@ var modal = (function(){
             height = window_height < height ? window_height - 50: height;
             width = window_width < width ? window_width - 50 : width;
             $("#modal").css({'background':'white'});
-            modal.open({content: $("<h1>View Previous Newsletters<h1><ul><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=17cac73925&e=38ee20bb08'>April 2016</a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=a8f7a3cd22&e=38ee20bb08'>March 2016 </a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=ecb6bb1b8c&e=1365fed48c'>February 2016</a> </li></ul>"), width: width+"px", height: height+"px", align: "center"});
+            modal.open({content: $("<h1>View Previous Newsletters<h1><ul class='newsletterList'><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=17cac73925&e=38ee20bb08'>April 2016</a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=a8f7a3cd22&e=38ee20bb08'>March 2016 </a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=ecb6bb1b8c&e=1365fed48c'>February 2016</a> </li></ul>"), width: width+"px", height: height+"px", align: "center"});
         });
 
         $(document).keydown(function(event){
