@@ -7,14 +7,12 @@
  */
 var clearRedisDatabase = require('../models/globals.js').clearRedisDatabase; // set flag to true to clear database
 var revision = require('../models/globals.js').revision;
-var newRevision = require('../models/globals.js').newRevision;
 var backup = {};
-var keys = ["officerList", "calendarData", "newsletterdata", "announcements", "revisionNumber"]; // keys that exist on the database
+var keys = ["officerList", "calendarData", "newsletterdata", "announcements", "revisionNumber", "id"]; // keys that exist on the database
 var itemsProcessed = 0;
 
 function onRedisConnection(client, redis) {
     console.log('Connected to Redis');
-
 
     // cache metadata files into redis
     if (!clearRedisDatabase) {
@@ -77,6 +75,7 @@ function onRedisConnection(client, redis) {
                     // set the version number on the Redis database
                     client.set('revisionNumber', revision, redis.print);
                 } else {
+                    client.set('revisionNumber', revision);
                     //console.log("Revision is: " + revision);
                 }
 
@@ -113,7 +112,7 @@ function onRedisConnection(client, redis) {
                 }
                 itemsProcessed++;
                 if (itemsProcessed === keys.length) {
-                    callback();
+                    backupRedisOnClear();
                 }
             });
             client.del(key, function(err, reply) {
@@ -127,7 +126,8 @@ function onRedisConnection(client, redis) {
         });
     }
 
-    function callback() {
+    // Save a backup of all Redis database and place it in /metadata/backup.json
+    function backupRedisOnClear() {
         console.log("Backup processed and successfully saved");
         var path = require("path");
         var jsonfile = require('jsonfile');
@@ -137,11 +137,5 @@ function onRedisConnection(client, redis) {
             console.error(err);
         });
     }
-
-
-    if (newRevision) {
-        client.set('revisionNumber', revision, redis.print);
-    }
-
 }
 module.exports.onRedisConnection = onRedisConnection;
