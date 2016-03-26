@@ -102,7 +102,7 @@ BODY of the request. The recipient of e-mails is set in the models/global.js fil
 ### Redis Database
 When the node application first runs, the application populates the database with the data. After each subsequent run, the application
 loads data from the database, which enables quicker performance. To clear the database, set the clearRedisDatabase variable in the models/global.js file
-to TRUE and re run the server. Don't forget to reset the variable to false so it doesn't clear the database after each run.
+to TRUE and re run the server. Don't forget to reset the variable to false so it doesn't clear the database after each run. If the database is accidentally cleared, a backup file is saved in /metadata/backup.json
 
 ## Forwarding Addresses
 This is probably the best method to connect GoDaddy to the application hosted on BlueMix. In order to do this, go to the GoDaddy [My Domain][] page, and click
@@ -122,10 +122,10 @@ When finished, it should look something like this:
 The following steps will clear the Redis database, make an API request to the Google Calendar API for shpe.austin@gmail.com, update the newsletter data, and change the revision number of the *.css and *.js files. Before doing these steps, make sure you are not running the node application.
 
  1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the /views/newsletters folder. 
- 2. Go to the /models/global.js file, change the clearRedisDatabase variable to TRUE, update the revision number, and set the newRevision flag to TRUE.
+ 2. Go to the /models/global.js file, change the clearRedisDatabase variable to TRUE, and increase the revision number
  3. In the terminal, start up the node server `node app.js`. 
  4. Open up another terminal tab and navigate to the /utils folder and run the update.sh file. `./update.sh`
- 5. Go back to the /models/globals.js file and reset the variables back to FALSE
+ 5. Go back to the /models/globals.js file and reset clearRedisDatabase to FALSE
  7. Verify that all the files successfully updated by re-running the node application `node app.js`
  8. Run `cf push shpeaustin` to update the data on BlueMix. 
  9. The application now has the newest data and it is all cached on the database!  
