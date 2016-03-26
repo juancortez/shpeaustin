@@ -6,6 +6,8 @@
 		<link rel="stylesheet" type="text/css" href="/stylesheets/contact.css?v=<%= revision %>">
 		<script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
 		<script src="/dist/contact.min.js?v=<%= revision %>"></script>
+		<!--<script src="/javascripts/contact.js?v=<%= revision %>"></script>-->
+		<script src="/socket.io/socket.io.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<script type="text/javascript">
@@ -24,7 +26,7 @@
 	<body>
 		<div class = "contact-container">
 			<div class = "contact-form">
-				<form method = "post" action="contact">
+				<form id="email" method = "post" action="contact">
 				  <div class="form-group">
 				    <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
 				  </div> 
@@ -78,6 +80,27 @@
 				  <div class='status'>Status</div>
 				</form>
 			</div>
+
+			<div id="chat-container">
+				<div id="chat-header">
+					Online Chat
+					<i class="fa fa-angle-double-down"></i>
+				</div>
+				<div class="content-container">
+					<div id="chat-content">
+						<p id="name-prompt"> Please enter your name to start chatting. </p>
+					</div>
+					<form id="chat" action="">
+						<input id="chat-message" autocomplete="off" placeholder="Enter a message" /><button id="send-chat">Send</button>
+					</form>
+				</div>
+			</div>
+
+			<!-- <ul id="messages"></ul>
+		    <form id="chat" action="">
+		      <input id="m" autocomplete="off" /><button>Send</button>
+		    </form> -->
+
 		</div>
 
 	</body>
