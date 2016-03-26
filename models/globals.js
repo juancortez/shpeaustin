@@ -18,7 +18,5 @@ exports.sendGridEmail = "cortezjuanjr@gmail.com";
  * If you change the number after the v= whenever you change the external style sheet, then browsers consider 
  * that a new file and will download the external style sheet from the web server instead of using the cached site.
  *
- * If you want to set new revision, set newRevision flag to TRUE
  */
-exports.revision = 5; // Revision 5 as of March 23, 2016 @ 14:57
-exports.newRevision = false;
+exports.revision = 7; // Revision 7 as of March 26, 2016 @ 18:39
