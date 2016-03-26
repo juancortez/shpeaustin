@@ -1,57 +1,32 @@
 // module.exports exposes functions that we want to use in a different file
 //module.exports = function(app, con){
 module.exports = function(app, client, privateCredentials) {
-
+    var uuid = require('node-uuid');
     var revision; // global variable within the module. used as a "hack" for officers.ejs
+    var revisionNumber = require('../models/globals.js').revision; // global variable for revision number
+    var url = require('url');
     /*************************************************************************/
     // The following endpoints serve HTML pages
     /*************************************************************************/
     app.get('/', function(req, res) {
-        client.get('revisionNumber', function (err, revisionNumber) {
-            if (revisionNumber) {
-                revision = revisionNumber;
-                res.render('index.html', {
-                    revision: revisionNumber
-                });
-            } else{
-                res.render('index.html', {
-                    revision: 0 // just in case the database doesn't fetch the right revision
-                });
-            }
+        res.render('index.html', {
+            revision: revisionNumber
         });
     });
 
     app.get('/about', function(req, res) {
-        client.get('revisionNumber', function (err, revisionNumber) {
-            if (revisionNumber) {
-                revision = revisionNumber;
-                res.render('about.html', {
-                    revision: revisionNumber
-                });
-            } else{
-                res.render('about.html', {
-                    revision: 0 // just in case the database doesn't fetch the right revision
-                });
-            }
+        res.render('about.html', {
+            revision: revisionNumber
         });
     });
 
     app.get('/officers', function(req, res) {
-        // TODO: I am not sure how to retrieve 2 keys from client without affecting performance
         client.get('officerList', function (err, officerList) {
-            if (officerList) {
-                if(typeof revision === 'string'){
-                    res.render('officers.ejs', {
-                        officerList: JSON.parse(officerList),
-                        revision: revision
-                    });
-                } else{
-                    // default revision of 0
-                    res.render('officers.ejs', {
-                        officerList: JSON.parse(officerList),
-                        revision: 0 
-                    });
-                }
+            if(officerList){
+                res.render('officers.ejs', {
+                    officerList: JSON.parse(officerList),
+                    revision: revisionNumber
+                });
             } else{
                 console.error(err);
                 res.sendStatus(404);
@@ -61,35 +36,78 @@ module.exports = function(app, client, privateCredentials) {
 
     
     app.get('/membership', function(req, res) {
-        client.get('revisionNumber', function (err, revisionNumber) {
-            if (revisionNumber) {
-                revision = revisionNumber;
-                res.render('membership.html', {
-                    revision: revisionNumber
-                });
-            } else{
-                res.render('membership.html', {
-                    revision: 0 // just in case the database doesn't fetch the right revision
-                });
-            }
+        res.render('membership.html', {
+            revision: revisionNumber
         });
     });
 
     app.get('/contact', function(req, res) {
-        client.get('revisionNumber', function (err, revisionNumber) {
-            if (revisionNumber) {
-                revision = revisionNumber;
-                res.render('contact.html', {
-                    revision: revisionNumber
-                });
-            } else{
-                res.render('contact.html', {
-                    revision: 0 // just in case the database doesn't fetch the right revision
-                });
-            }
+        res.render('contact.html', {
+            revision: revisionNumber
         });
     });
 
+    /*************************************************************************/
+    // The following endpoints enable WebRTC connection capabilities with appear.in
+    /*************************************************************************/
+    app.get('/meeting', function(req, res){
+        res.render('meeting.html', {
+            revision: revisionNumber 
+        });
+    });
+
+    app.get('/officermeeting', function(req, res){
+        res.render('officer_meeting.html', {
+            revision: revisionNumber 
+        });
+    });
+
+    /*************************************************************************/
+    // The /login endpoint authenticates users
+    /*************************************************************************/
+    app.post('/login', function(req, res){
+        // VERY basic authentication
+        var credentials = privateCredentials.websiteLogin;
+        if(req.body.username == credentials.username && req.body.password == credentials.password){
+            console.log("Login successful");
+            //store all users that have logged in
+            client.get('id', function (err, redisId) {
+                if(redisId){
+                    // create JSON to send to front end
+                    var uuidNumber = uuid.v4();
+                    var id = {};
+                    id['uuid'] = [];
+                    id.uuid.push(uuidNumber);
+                    // update the Redis database
+                    var uuidRedis = JSON.parse(redisId);
+                    uuidRedis.uuid.push(uuidNumber);
+                    client.set('id', JSON.stringify(uuidRedis));
+                    // send id JSON to front end
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(id);
+                } else{
+                    // create JSON to send to front end
+                    var uuidNumber = uuid.v4();
+                    var id = {};
+                    id['uuid'] = [];
+                    id.uuid.push(uuidNumber);
+                    // create the 'id' key on the Redis database
+                    client.set('id', JSON.stringify(id));
+                    // send id JSON to front end
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(id);
+                }
+            });
+        } else{
+            console.log("Login unsuccessful");
+            res.sendStatus(401);
+        }
+    });
+
+    
+    /*************************************************************************/
+    // The following endpoints send requests to the Redis database and send them to the frontend
+    /*************************************************************************/
     app.get('/announcements', function(req, res){        
         client.get('announcements', function (err, announcements) {
             if (announcements) {
@@ -101,6 +119,55 @@ module.exports = function(app, client, privateCredentials) {
         });
     });
 
+    // sends front end the metadata/calendar_data.json file in application/json format
+    app.get('/calendardata', function(req, res) {
+        client.get('calendarData', function (err, calendarData) {
+            if (calendarData) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(calendarData);
+            } else{
+                res.sendStatus(404);
+                console.error(err);
+            }
+        });
+    });
+
+
+    // sends front end the metadata/newsletter_data.json file in application/json format
+    app.get('/newsletterdata', function(req, res) {
+        client.get('newsletterdata', function (err, newsletterdata) {
+            if (newsletterdata) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.parse(newsletterdata));
+            } else{
+                res.sendStatus(404);
+                console.error(err);
+            }
+        });
+    });
+
+    // determines whether or not someone has logged in to the website
+    app.get('/officerlogin', function(req, res){ 
+        var url_parts = url.parse(req.url, true);
+        var query = url_parts.query;  
+        var credentials = query.credentials;
+        client.get('id', function (err, id) {
+            if (id) {
+                var keys = JSON.parse(id);
+                if(keys.uuid.indexOf(credentials) >= 0){
+                    res.sendStatus(200);
+                } else{
+                    res.sendStatus(204);
+                }
+                
+            } else{
+                res.sendStatus(204);
+            }
+        });
+    });
+    /*************************************************************************/
+    // The following endpoints POST data to the Redis database
+    /*************************************************************************/
     app.post('/announcements', function(req, res){
         client.get('announcements', function (err, announcements) {
             if (announcements) {
@@ -124,36 +191,11 @@ module.exports = function(app, client, privateCredentials) {
             } else{
                 res.sendStatus(404);
             }
-        });
-        
+        }); 
     });
-
-    app.get('/meeting', function(req, res){
-        res.render('meeting.html', {
-            revision: 0 
-        });
-    });
-
-    app.get('/officermeeting', function(req, res){
-        res.render('officer_meeting.html', {
-            revision: 0 
-        });
-    })
-
-    app.get('/calendar', function(req, res){
-        // Get access to the Google Calendar
-        var google_calendar;
-        var google_content = privateCredentials.google_api;
-        try{
-            google_calendar = require('../google_service/google_calendar');
-        } catch(err){
-            console.error("Failed to loaded google calendar files...");
-            res.sendStatus(404);
-        }
-        google_calendar.authorize(google_content, google_calendar.listEvents, res);
-    });
-
-
+    /*************************************************************************/
+    // The /contact endpoint sends e-mails from the form in the Contact Us page
+    /*************************************************************************/
     app.post('/contact', function(req, res) {
         if (process.env.VCAP_SERVICES) {
             var env = JSON.parse(process.env.VCAP_SERVICES);
@@ -183,50 +225,29 @@ module.exports = function(app, client, privateCredentials) {
         });
     });
 
-    app.post('/login', function(req, res){
-        // VERY basic authentication
-        var credentials = privateCredentials.websiteLogin;
-        if(req.body.username == credentials.username && req.body.password == credentials.password){
-            console.log("Login successful");
-            res.sendStatus(200);
-        } else{
-            console.log("Login unsuccessful");
-            res.sendStatus(401);
+    
+
+    
+    /*************************************************************************/
+    // The following endpoints update the newsletter and calendar data
+    /*************************************************************************/
+    app.get('/calendar', function(req, res){
+        // Get access to the Google Calendar
+        var google_calendar;
+        var google_content = privateCredentials.google_api;
+        try{
+            google_calendar = require('../google_service/google_calendar');
+        } catch(err){
+            console.error("Failed to loaded google calendar files...");
+            res.sendStatus(404);
         }
-    });
-
-
-    // sends front end the metadata/calendar_data.json file in application/json format
-    app.get('/calendardata', function(req, res) {
-        client.get('calendarData', function (err, calendarData) {
-            if (calendarData) {
-                    res.setHeader('Content-Type', 'application/json');
-                    res.send(calendarData);
-            } else{
-                res.sendStatus(404);
-                console.error(err);
-            }
-        });
-    });
-
-
-    // sends front end the metadata/newsletter_data.json file in application/json format
-    app.get('/newsletterdata', function(req, res) {
-        client.get('newsletterdata', function (err, newsletterdata) {
-            if (newsletterdata) {
-                    res.setHeader('Content-Type', 'application/json');
-                    res.send(JSON.parse(newsletterdata));
-            } else{
-                res.sendStatus(404);
-                console.error(err);
-            }
-        });
+        google_calendar.authorize(google_content, google_calendar.listEvents, res);
     });
 
     // Load data from the newsletter contained in views/newsletters
     app.get('/newsletterload', function(req, res) {
         res.render('newsletter_load.html', {
-            revision: 0 
+            revision: revisionNumber 
         });
     });
 
@@ -273,7 +294,7 @@ module.exports = function(app, client, privateCredentials) {
 
     app.get('*', function(req, res) {
         res.render('404.html', {
-            revision: 0 
+            revision: revisionNumber 
         });
         //res.status(400).send({ error: 'HTML Error 404: Not Found!' });
     });
