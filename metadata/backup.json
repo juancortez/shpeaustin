@@ -147,17 +147,6 @@
     "calendarData": {
         "calendar": [
             {
-                "event": "Softball Game",
-                "time": "2016-03-21T19:25:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=ZzFrYTQycWZpcmtnNTM3dXRtOWJvamx1dW8gc2hwZS5hdXN0aW5AbQ",
-                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
-            },
-            {
-                "event": "Officer Meeting",
-                "time": "2016-03-22T19:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjAzMjNUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
-            },
-            {
                 "event": "UTSHPE General Meeting",
                 "time": "2016-03-23",
                 "link": "https://www.google.com/calendar/event?eid=c3Y1aGFza3BqdmxhaGs2Nzc1am1xdXNrbjQgc2hwZS5hdXN0aW5AbQ"
@@ -199,52 +188,56 @@
                 "event": "Noche De Ciencia (TBD)",
                 "time": "2016-04-07",
                 "link": "https://www.google.com/calendar/event?eid=ZnQybjA0ZWJoYjJpaXA5dnNkZGhtcmdqNmsgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Battle of the SHPEys",
+                "time": "2016-04-10",
+                "link": "https://www.google.com/calendar/event?eid=OGYydWZkNmZxcWYzMDF2djU4ZWNxZDZiMDAgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Manitos/Manitas Social/Community Service",
+                "time": "2016-04-10",
+                "link": "https://www.google.com/calendar/event?eid=dG5jcGNhbTYwanY3dWxsZzh2bWdnbmpmaW8gc2hwZS5hdXN0aW5AbQ"
             }
         ]
     },
     "newsletterdata": {
         "newsletter": [
             {
-                "title": "Event Recap: Introduce a Girl at Engineering Day @UT-Austin",
-                "description": "This past weekend, SHPE-Austin officers and friends hosted an activity at Girl Day. Students made Hover Crafts using balloons, CD's, paper plates, and tape. Overall, this was a fun event that the team looks forward to again next year.",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/b5151de9-d938-4613-8ed8-31206e22b1dd.jpg",
+                "title": "Event Recap: Breakthrough Austin",
+                "description": "Jeremy Benavides, SHPE Austin President, pictured mentoring a group of middle school students in Breakthrough Austin. The Breakthrough Austin program has been helping low-income first generation students prepare for higher education opportunities. We give thanks to SHPE Austin and NSBE volunteers. ",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/5b5d16e6-ed0e-4282-9e82-c1f583273fed.jpg",
                 "image_link": ""
             },
             {
-                "title": "Breakthrough Austin with\nNSBE & SHPE",
-                "description": "NSBE Professional and SHPE Austin have been invited to join Breakthrough Austin (BA) this Saturday. BA Students will be preparing skits as part of their semester-long project. Volunteers will mentor the students throughout the process. Date: Mar. 5th (9am-12:30pm) @ St. Andrew's Episcopal School (5901 Southwest Pkwy 78735).For more details  click on the image",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/79070ead-fb6d-4cb6-979b-58e128c92695.jpg",
-                "image_link": "https://www.eventbrite.com/e/breakthrough-austin-middle-school-outreach-event-with-nsbe-and-shpe-austin-chapters-tickets-21134249108?ref=enivtefor001&invite=OTU1OTE4OS9oLmxhbmRhdmVyZGVAdXRleGFzLmVkdS8w&utm_source=eb_email&utm_medium=email&utm_campaign=inviteformalv2&utm_term=eventpage"
-            },
-            {
-                "title": "Softball Schedule Finalized",
-                "description": "SHPE Softball is right around the corner. Games will begin March 7th and the cost to participate is $20. There will be practice games on the weekends. For more information contact Carlos Pizarro. \n\nDon't delay sign up for softball today",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/2a87bb63-735c-4160-8a65-dc4b0b8c2a3f.jpg",
-                "image_link": "http:// https://docs.google.com/spreadsheets/d/1V-M7KXMKcUhdQteUZcVbPcUZbvpl343mzyV2qsl2drY/edit?usp=sharing"
+                "title": "Happy Hour with SHPE Austin",
+                "description": "Meet the SHPE Austin team at the Haymaker this Thursday. Free appetizers will be provided. Hope to see you there! Date: Mar. 24th (6pm) @ Haymaker  (2310 Manor Rd Austin, TX 78722 USA). For more details click on the image",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/77f3dc37-44eb-49e8-9c31-a01307ec1d6b.jpg",
+                "image_link": "https://www.facebook.com/events/204386366593885/"
             },
             {
                 "title": "We're SHPE'ing out Scholarships",
-                "description": "SHPE Austin has opened up the application for the 2016 scholarships. If you have any questions feel free to ask Scholarship Director, Karen Siles.Click on the image to access the scholarship application",
+                "description": "SHPE Austin has opened up the application for the 2016 scholarships. This scholarship is open to high school seniors and college students. If you have any questions please contact our Scholarships Director, Karen Siles. For SHPE National Scholarship, click HERE\nClick on the image to access the scholarship application",
                 "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/08b634e5-42d4-4042-9033-568a1dc7012b.jpg",
                 "image_link": "https://goo.gl/NCRrFX"
             },
             {
-                "title": "Lunch N Learn by ",
-                "description": "SHPE Jr. at LBJ High School is in need of mentors for Lunch and Learns (virtual or in-person) and SHPE Jr. Robotics Meetings. This is a great opportunity if you would like to mentor students interested in robotics or STEM in general. This survey does not commit you to an event, it just shows your interest.",
+                "title": "Volunteers Needed for Family Science Night @ LBJ ",
+                "description": "SHPE Austin will be hosting Family Science Night (Noche De Ciencias), a bilingual event that targets Austin area families, to garner interest in STEM and provide valuable information on how to prepare students for a future in a STEM field.  There will be free food and many fun activities - so bring yourself and your family! In addition, SHPE Austin is looking for volunteers to help out the day of the event. Those interested can sign-up HERE. \nDate: April 7th (6PM - 9PM) at Lyndon B. Johnson High School.",
                 "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/22c6e63b-a8ff-48a5-809c-d51b21160b33.jpg",
-                "image_link": "https://docs.google.com/forms/d/1gB76vgGk3V0thl9r2IIdnZXvxiWZpYkmqVoZ0tGZOaA/viewform"
+                "image_link": "https://www.eventbrite.com/e/noche-de-ciencias-tickets-22197338838?aff=es2"
             },
             {
-                "title": "Membership Spotlight",
-                "description": "Juan Cortez, Electrical & Comp. Engineer at IBM-Austin, has recently been acknowledged for his contributions to Programming the BeagleBone. More specifically, Juan reviewed tutorials on interfacing with the BeagleBone microcontroller so as to make it easier for a younger audience to understand.\nThrough this experience, he was also recognized as a winner for the DiscoverE New Faces of Engineering. \n Congratulations Juan and keep up the great work!",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/b8250836-7175-442d-88e7-d567141447da.png",
-                "image_link": "mailto:stephanie.amrite@gmail.com?subject=RE%3A%20Gift%20Cards%20Raffle"
+                "title": "Survey for Spring Sports",
+                "description": "The next season of Spring sports is around the corner, and it's time to decide what we want to play. The following survey has a list of sports, each with  upcoming deadlines. Please fill out ASAP if interested. Also, for last night's softball game, it was a close call as the team lost 14-18. There are still 3 more opportunities to join in on the fun. For more information contact Carlos Pizarro.\n\nClick on the image to access the survey",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/2a87bb63-735c-4160-8a65-dc4b0b8c2a3f.jpg",
+                "image_link": "https://docs.google.com/forms/d/11PwA92DbqDLJBPINyq6qI_VPwZ5XT5DtYu_DEhT8GPc/viewform?usp=send_form"
             },
             {
-                "title": "News You Can Use",
-                "description": "It has been recently announced that the Texas Board of Professional Engineers (TBPE) will no longer require the professional experience prerequisite for the PE exam. The changes will be propagated to the Oct 2016 exam.\n\nClick on the image to learn more about the PE License",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/f7358db6-701f-4b1f-b1db-ec764d6cc535.png",
-                "image_link": "https://engineers.texas.gov/"
+                "title": "Volunteers Needed for Latinitas Code Chica Conference 2016",
+                "description": "SHPE Austin seeks volunteers to help out at the Latinitas Code Chica Conference next month. This event will teach girls how to use media and technology to design, code and market their own mobile app idea. Roles we are looking to assist with include: workshop assistant, lunchtime crew, clean up crew, event historian, photographer, and more. If you would like to register a participant or donate a registration pass click HERE. Date: April 16th (9AM-4PM) at ACC Eastview Campus",
+                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/00e1f114-90bb-4a7a-a6e9-3efb0e4354a2.jpg",
+                "image_link": "https://docs.google.com/a/utexas.edu/forms/d/14JIbAGHs8NJxQgWNfy7Q0-iyiAzAlPYveKgn1OTeY5k/viewform?c=0&w=1"
             }
         ]
     },
@@ -267,5 +260,12 @@
             }
         ]
     },
-    "revisionNumber": 4
+    "revisionNumber": 7,
+    "id": {
+        "uuid": [
+            "f6ce081e-740a-49f1-9a7f-bae8142711a3",
+            "9a212da2-37d3-478f-af99-f7ecf69ba8dc",
+            "300d5796-ce35-454e-9f62-33dcf2982eae"
+        ]
+    }
 }
