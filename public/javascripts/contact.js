@@ -63,7 +63,10 @@ $(document).ready(function() {
         }
     });
 
-    //$("#chat-header i").click();
+    setTimeout(function(){
+        $("#chat-header i").click();
+    }, 1500);
+
 
     // form submission for e-mails
 	$('#email').submit(function(formText) {

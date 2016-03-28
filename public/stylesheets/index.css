@@ -594,7 +594,7 @@ img#skyline{
     z-index:1000;
 }
 
-#content {
+#modal-content {
     border-radius:8px;
     padding:20px;
     overflow: auto;
