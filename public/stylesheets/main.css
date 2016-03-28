@@ -1,8 +1,19 @@
-html,body{
+html{
     width:100%;
-    height:100%;
+    min-height: 100%;
     background:white;
+    position: relative; 
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
     font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+}
+
+body{
+    width:100%;
+    min-height: 100%;
+    position: absolute;
 }
 
 .center-text{
