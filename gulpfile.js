@@ -69,7 +69,7 @@ gulp.task('contact_script', function() {
 // for changes and automatically run our tasks again so we don't have to 
 // continuously jump back to our command-line and run the gulp command each time.
 gulp.task('watch', function() {
-    gulp.watch(javascript_src, ['lint', 'index_script', 'membership_script', 'contact_script']);
+    gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script']);
     //gulp.watch('scss/*.scss', ['sass']);
 });
 
