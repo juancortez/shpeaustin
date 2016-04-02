@@ -2,17 +2,6 @@
     "calendar": [
         {
             "event": "Softball Game",
-            "time": "2016-03-28T19:25:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=cTRwdnYyZ2JzMmtwanNrdmNnMzkxbXZ0MzAgc2hwZS5hdXN0aW5AbQ",
-            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
-        },
-        {
-            "event": "Scholarship Application Closes",
-            "time": "2016-04-01",
-            "link": "https://www.google.com/calendar/event?eid=cGl1NGZkZXFrazZyMjIxNW1sZm5lZ2ZlZWMgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Softball Game",
             "time": "2016-04-04T21:15:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=MXU1NGRpaTlqYXIzbHZrOWplYmQzbDFuOGcgc2hwZS5hdXN0aW5AbQ",
             "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
@@ -51,6 +40,17 @@
             "event": "Scholarship Recipients Annouced",
             "time": "2016-04-15",
             "link": "https://www.google.com/calendar/event?eid=c2xiMHVubzVqMnJjNWs1ODdkMzFuYTlxMTggc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Senoritas Leadership Event",
+            "time": "2016-04-16",
+            "link": "https://www.google.com/calendar/event?eid=Mm1tcHAzcWExbmticGhiM3A1M2lnbjF1MW8gc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Latinitas Code Chica Conference 2016",
+            "time": "2016-04-16T09:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=M2o5MDFjaDIwZjRuZ3JicGhzNnJ2NzFuNzQgc2hwZS5hdXN0aW5AbQ",
+            "location": "ACC-Eastview Campus 3401 Webberville Rd"
         }
     ]
 }

@@ -147,17 +147,6 @@
     "calendarData": {
         "calendar": [
             {
-                "event": "UTSHPE General Meeting",
-                "time": "2016-03-23",
-                "link": "https://www.google.com/calendar/event?eid=c3Y1aGFza3BqdmxhaGs2Nzc1am1xdXNrbjQgc2hwZS5hdXN0aW5AbQ"
-            },
-            {
-                "event": "Social/Happy Hour hosted by SHPE Austin",
-                "time": "2016-03-24T18:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=YWt2czB1c3ExazR2MHB1dGg3ZzNlN2VtNWMgc2hwZS5hdXN0aW5AbQ",
-                "location": "Haymaker 2310 Manor Rd Austin, TX 78722 USA"
-            },
-            {
                 "event": "Softball Game",
                 "time": "2016-03-28T19:25:00-05:00",
                 "link": "https://www.google.com/calendar/event?eid=cTRwdnYyZ2JzMmtwanNrdmNnMzkxbXZ0MzAgc2hwZS5hdXN0aW5AbQ",
@@ -198,6 +187,16 @@
                 "event": "Manitos/Manitas Social/Community Service",
                 "time": "2016-04-10",
                 "link": "https://www.google.com/calendar/event?eid=dG5jcGNhbTYwanY3dWxsZzh2bWdnbmpmaW8gc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Softball Game",
+                "time": "2016-04-11T20:20:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=YXRoM25wdXFrbjg4cWRhbHVrb3QxaWdiNW8gc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Scholarship Recipients Annouced",
+                "time": "2016-04-15",
+                "link": "https://www.google.com/calendar/event?eid=c2xiMHVubzVqMnJjNWs1ODdkMzFuYTlxMTggc2hwZS5hdXN0aW5AbQ"
             }
         ]
     },
@@ -260,12 +259,10 @@
             }
         ]
     },
-    "revisionNumber": 7,
+    "revisionNumber": 8,
     "id": {
         "uuid": [
-            "f6ce081e-740a-49f1-9a7f-bae8142711a3",
-            "9a212da2-37d3-478f-af99-f7ecf69ba8dc",
-            "300d5796-ce35-454e-9f62-33dcf2982eae"
+            "2b05db91-26f2-41cf-8d4c-745a02d44776"
         ]
     }
 }
