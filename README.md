@@ -38,6 +38,8 @@ shpeaustin/
 		redis.js 				File used to cache all data stored in the /metadata folder
 	router/
 		main.js 				Contains all the routes for the SHPE Austin website
+	socket/
+		socket.js 				Contains all web socket code for the SHPE Austin website
 	utils/
 		util.js 				Helper functions used throughout the node.js application.
 		update.sh 				Script used to update the calendar and newsletter data in the metadata folder 
@@ -45,7 +47,6 @@ shpeaustin/
 		newsletters/ 			These are the newsletters written by the Secretary every month
 		*.html 					The HTML pages for all the routes defined in router/main.js
 		*.ejs 					Template that is used to populate the officers page
-	views/
 	app.js 						Starts and runs the Node.js application
 	manifest.yml 				Contains information used when deploying to Bluemix
 	package.json 				Dependencies used in Node.js app
