@@ -370,6 +370,10 @@ var modal = (function(){
             var pillar = this.getAttribute('data');
             var height = 540;
             var width = 500;
+            var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            if(isMobile){
+                height = 400;
+            }
             window_height = $(window).height();
             window_width = $(window).width();
 
