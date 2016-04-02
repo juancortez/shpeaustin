@@ -63,9 +63,7 @@ $(document).ready(function() {
         }
     });
 
-    setTimeout(function(){
-        $("#chat-header i").click();
-    }, 1500);
+    $("#chat-header i").click();
 
 
     // form submission for e-mails
@@ -110,5 +108,5 @@ $(document).ready(function() {
 
     String.prototype.capitalizeFirstLetter = function() {
         return this.charAt(0).toUpperCase() + this.slice(1);
-    }
+    };
 });
