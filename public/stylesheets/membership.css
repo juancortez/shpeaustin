@@ -305,6 +305,28 @@ h4{
     right:-7px;
 }
 
+.modal-title{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.modal-images{
+    height: 233px;
+    width: 415px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
+
+.modal-description{
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+.more-info{
+    margin-top: 25px;
+}
+
 /*
 * 
 */
@@ -332,4 +354,17 @@ h4{
         min-height: 294px;
         max-height: 294px;
   }
+
+  .modal-images{
+        height: 191px;
+        width: 340px;
+  }
+}
+
+@media only screen and (max-width: 440px){
+  .modal-images{
+    height: 191px;
+    width: 340px;
+  }
+
 }
