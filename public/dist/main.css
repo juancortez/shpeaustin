@@ -1,0 +1,144 @@
+html{
+    width:100%;
+    min-height: 100%;
+    background:white;
+    position: relative; 
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+}
+
+body{
+    width:100%;
+    min-height: 100%;
+    position: absolute;
+}
+
+.center-text{
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+nav ul li a{
+	padding: 8px;
+}
+
+.dark-shpe-blue{
+	color: #002266;
+}
+
+.shpe-blue{
+	color: #039;
+}
+
+.entire-page{
+    height: 70%;
+    padding: 0;
+    margin: 0;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.404{
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    line-height: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #ebebeb;
+    height:38px;
+}
+
+.footer-copyright{
+    color: #c5c5c5;
+    padding: 9px;
+    float: right;
+    margin-right: 8px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+.main-title, .jumbotron h1{
+    font-size: 40px;
+}
+
+.dark-cyan-text{
+    color: #42bdc2;
+}
+
+.dark-cyan{
+    background: #42bdc2;
+}
+
+.forest-green{
+    background: #7fc242;
+}
+
+.orange{
+    background: #ff8a3c;
+}
+
+.yellow{
+    background: #ffd800
+}
+
+.dodger-blue{
+    background: #388bd1;
+}
+
+.dodger-blue-text{
+    color: #388bd1;
+}
+
+.sky-blue{
+    background: #a1def8;
+}
+
+.zombie-green{
+    background: #3fbf79;
+}
+
+.violet{
+    background: #db6ac5;
+}
+
+.mid-blue{
+    color: rgba(25,84,171,1);
+}
+
+.light-gray{
+    color: #ebebeb;
+    background: #ebebeb;
+}
+
+/*# sourceMappingURL=main.css.map */
