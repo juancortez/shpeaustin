@@ -63,15 +63,30 @@ gulp.task('contact_script', function() {
         .pipe(gulp.dest(javascript_dest));
 });
 
+
+// PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. 
+// It is recommended by Google and used in Twitter, and Taobao.
+gulp.task('autoprefixer', function () {
+    var postcss      = require('gulp-postcss');
+    var sourcemaps   = require('gulp-sourcemaps');
+    var autoprefixer = require('autoprefixer');
+
+    return gulp.src(all_stylesheets)
+        .pipe(sourcemaps.init())
+        .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(stylesheet_dest));
+});
+
 // Watch Files For Changes
 // The watch task is used to run tasks as we make changes to our files. As 
 // you write code and modify your files, the gulp.watch() method will listen 
 // for changes and automatically run our tasks again so we don't have to 
 // continuously jump back to our command-line and run the gulp command each time.
 gulp.task('watch', function() {
-    gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script']);
+    gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script', 'autoprefixer']);
     //gulp.watch('scss/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'watch']);
+gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'autoprefixer', 'watch']);
