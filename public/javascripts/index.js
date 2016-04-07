@@ -47,6 +47,7 @@ $(document).ready(function() { // HTML has loaded
         calendarData = calendar;
         numCalendarItems = calendarData.calendar.length;
         var valid = false;
+        var dateFormat;
         var date = new Date();
         var currentMonth = date.getMonth();
         var currentDay = date.getDate();
@@ -57,12 +58,12 @@ $(document).ready(function() { // HTML has loaded
             var time = parseCalendarTime(calendarHtml.time);
             if(time.startTime){
                 $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year + " at " +  time.startTime);
-                var dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime);
+                dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime);
                 $("span.start").text(dateFormat);
                 $("span.end").text(dateFormat); //TODO: add ending time support
             } else{
                 $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year);
-                var dateFormat = convertToDateFormat(time.month, time.day, time.year, "");
+                dateFormat = convertToDateFormat(time.month, time.day, time.year, "");
                 $("span.start").text(dateFormat);
                 $("span.end").text(dateFormat); //TODO: add ending time support
             }
@@ -163,14 +164,15 @@ $(document).ready(function() { // HTML has loaded
         $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
         $("span.title").text(calendarHtml.event);
         var time = parseCalendarTime(calendarHtml.time);
+        var dateFormat;
          if(time.startTime){
             $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year + " at " +  time.startTime);
-            var dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime);
+            dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime);
             $("span.start").text(dateFormat);
             $("span.end").text(dateFormat); //TODO: add ending time support
         } else{
              $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year);
-             var dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime, "");
+             dateFormat = convertToDateFormat(time.month, time.day, time.year, time.startTime, "");
              $("span.start").text(dateFormat);
              $("span.end").text(dateFormat); //TODO: add ending time support
         }
