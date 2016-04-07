@@ -1,28 +1,28 @@
 // Include gulp
 var gulp = require('gulp'); 
-
 // Include Our Plugins
-var jshint = require('gulp-jshint');
-//var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
+var plugins = require('gulp-load-plugins')();
 
-var all_javascripts = "public/javascripts/*.js";
-var javascript_src = "public/javascripts/";
-var javascript_dest = "public/dist";
+var all_javascripts = "public/javascripts/*.js",
+    javascript_src = "public/javascripts/",
+    javascript_dest = "public/dist";
 
 var all_stylesheets = "public/stylesheets/*.css";
-var stylesheet_src = "public/stylesheets/";
-var stylesheet_dest = "public/dist";
+    stylesheet_src = "public/stylesheets/";
+    stylesheet_dest = "public/dist";
+
+var all_html = "views/*.html";
+var all_ejs = "views/*.ejs";
+
+var all_json = "metadata/*.json";
 
 // Lint Task
 // Checks any javascript file in our js/ directory and makes sure there are no
 // syntax errors in our code
 gulp.task('lint', function() {
     return gulp.src(all_javascripts)
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+        .pipe(plugins.jshint())
+        .pipe(plugins.jshint.reporter('default'));
 });
 
 // Compile Our Sass
@@ -41,25 +41,25 @@ gulp.task('lint', function() {
 // the concatenated file.
 gulp.task('index_script', function() {
     return gulp.src(javascript_src+"index.js")
-        .pipe(concat('index.js'))
-        .pipe(rename('index.min.js'))
-        .pipe(uglify())
+        .pipe(plugins.concat('index.js'))
+        .pipe(plugins.rename('index.min.js'))
+        .pipe(plugins.uglify())
         .pipe(gulp.dest(javascript_dest));
 });
 
 gulp.task('membership_script', function() {
     return gulp.src(javascript_src+"membership.js")
-        .pipe(concat('membership.js'))
-        .pipe(rename('membership.min.js'))
-        .pipe(uglify())
+        .pipe(plugins.concat('membership.js'))
+        .pipe(plugins.rename('membership.min.js'))
+        .pipe(plugins.uglify())
         .pipe(gulp.dest(javascript_dest));
 });
 
 gulp.task('contact_script', function() {
     return gulp.src(javascript_src+"contact.js")
-        .pipe(concat('contact.js'))
-        .pipe(rename('contact.min.js'))
-        .pipe(uglify())
+        .pipe(plugins.concat('contact.js'))
+        .pipe(plugins.rename('contact.min.js'))
+        .pipe(plugins.uglify())
         .pipe(gulp.dest(javascript_dest));
 });
 
@@ -73,9 +73,31 @@ gulp.task('autoprefixer', function () {
 
     return gulp.src(all_stylesheets)
         .pipe(sourcemaps.init())
+        // .pipe(plugins.uncss({
+        //     html: [all_html, all_ejs] // throws an error for jQuery - wait for bug fix
+        // }))
         .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(stylesheet_dest));
+});
+
+// shows errors on HTML 
+// NOTE: doesn't work very well with EJS <% %> tags
+gulp.task('check_html', function() {
+    return gulp.src(all_html)
+        .pipe(plugins.htmlhint())
+        .pipe(plugins.htmlhint.reporter())
+});
+
+// Checks that all metadata inside of the /metadata folder is valid JSON
+gulp.task('json_lint', function() {
+    return gulp.src(all_json)
+        .pipe(plugins.jsonlint())
+        .pipe(plugins.jsonlint.reporter(
+            function(file){
+                console.log('File ' + file.path + ' is not valid JSON.');
+            })
+        );
 });
 
 // Watch Files For Changes
@@ -84,9 +106,11 @@ gulp.task('autoprefixer', function () {
 // for changes and automatically run our tasks again so we don't have to 
 // continuously jump back to our command-line and run the gulp command each time.
 gulp.task('watch', function() {
-    gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script', 'autoprefixer']);
+    gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script']);
+    gulp.watch(all_stylesheets, ['autoprefixer']);
+    gulp.watch(all_json, ['json_lint']);
     //gulp.watch('scss/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'autoprefixer', 'watch']);
+gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'autoprefixer', 'json_lint', 'watch']);
