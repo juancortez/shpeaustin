@@ -125,11 +125,13 @@ The following steps will clear the Redis database, make an API request to the Go
  1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the /views/newsletters folder. 
  2. Go to the /models/global.js file, change the clearRedisDatabase variable to TRUE, and increase the revision number
  3. In the terminal, start up the node server `node app.js`. 
- 4. Open up another terminal tab and navigate to the /utils folder and run the update.sh file. `./update.sh`
- 5. Go back to the /models/globals.js file and reset clearRedisDatabase to FALSE
+ 4. Open up another terminal tab and run `gulp` to run the gulpfile.js
+ 5. After all the gulp tasks are done, open up another terminal tab and navigate to the /utils folder and run the update.sh file. `./update.sh`
+ 6. Go back to the /models/globals.js file and reset clearRedisDatabase to FALSE
  7. Verify that all the files successfully updated by re-running the node application `node app.js`
  8. Run `cf push shpeaustin` to update the data on BlueMix. 
- 9. The application now has the newest data and it is all cached on the database!  
+ 9. Commit all of the code to Github. Most of the changes should be in the public/dist folder, globals.js file, and newsletter data
+ 10. The application now has the newest data and it is all cached on the database!  
 
 [austinshpe.org]: http://austinshpe.org
 [shpeaustin.mybluemix.net]: http://shpeaustin.mybluemix.net
