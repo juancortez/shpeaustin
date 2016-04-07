@@ -156,16 +156,29 @@ h4{
     margin-left: 0px !important;
 }
 
-.fa-archive{
+.fa-archive, .fa-envelope{
   position: absolute;
   bottom: 30px;
   right: 26px;
   cursor: pointer;
 }
 
-/******************************/
-/* Page Flip on the calendar  */
-/******************************/
+.fa-envelope{
+  right: 48px;
+}
+
+.sign-up{
+  position: absolute;
+  bottom: -19px;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px 1px 1px 1px;
+  height: 40px;
+  width: 345px;
+  border-radius: 3px 3px 5px 5px;
+}
+
+
 #fpc_box {
   width: 100%;/*any relative or absolute*/
   position: relative;
@@ -244,7 +257,6 @@ h4{
   width: 54px;
   height: 58px;
 }
-/****************************/
 
 @media only screen and (max-width: 1137px){
   .bs-example-a{
@@ -270,9 +282,10 @@ h4{
     min-height: 477px;
   }
 
-  .fa-archive{
+  .fa-archive. .fa-envelope{
     bottom: 10px;
   }
+
 
   .col-sm-6{
     width: 100%;
