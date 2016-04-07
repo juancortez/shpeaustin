@@ -3,15 +3,67 @@
    <title>Membership</title>
    <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.min.css">
    <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/main.css?v=<%= revision %>"> -->
-   <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/membership.css?v=<%= revision %>"> -->
    <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
-   <link rel="stylesheet" type="text/css" href="/dist/membership.css?v=<%= revision %>">
    <link rel="stylesheet" href="/stylesheets/libs/owl.carousel/owl-carousel/owl.carousel.css">
    <link rel="stylesheet" href="/stylesheets/libs/owl.carousel/owl-carousel/owl.theme.css">
    <script type="text/javascript" src="/javascripts/libs/jquery-2.1.4.min.js"></script>
    <script type="text/javascript" src="/stylesheets/libs/owl.carousel/owl-carousel/owl.carousel.min.js"></script>
    <script type="text/javascript" src="/dist/membership.min.js?v=<%= revision %>"></script> 
-   <!--<script type="text/javascript" src="/javascripts/membership.js?v=<%= revision %>"></script>-->
+   <style>
+      body li{
+        line-height: 2.428571;
+      }
+      #overlay {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+      }
+      #modal {
+        position:absolute;
+        background:rgba(0,0,0,0.2);
+        border-radius:14px;
+        padding:8px;
+      }
+      #content {
+        border-radius:8px;
+        background:#fff;
+        padding:20px;
+        overflow: auto;
+      }
+      #close{
+        position:absolute;
+        background:url(../assets/close.png) 0 0 no-repeat;
+        width:24px;
+        height:27px;
+        display:block;
+        text-indent:-9999px;
+        top:-7px;
+        right:-7px;
+      }
+      .modal-title{
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .modal-images{
+        height: 233px;
+        width: 415px;
+        border: 1px solid #CCC;
+        border-radius: 5px;
+      }
+      .modal-description{
+        padding: 5px;
+        margin: 5px;
+        text-align: center;
+      }
+      .more-info{
+       margin-top: 25px;
+      }
+   </style>
    <script type="text/javascript">
       jQuery(function($) {
           $(document).ready(function() {
@@ -30,50 +82,50 @@
          <div class="item dark-cyan">
             <i class="fa fa-users fa-5x"></i>
             <i data="Mentoring" class="fa fa-info-circle"></i>
-            <h3>Mentoring</h3>
-            <h4>Our members mentor high school and college students through our mentorship program.</h4>
+            <h3 class="pillar">Mentoring</h3>
+            <h4 class="pillar-description">Our members mentor high school and college students through our mentorship program.</h4>
          </div>
          <div class="item forest-green">
             <i class="fa fa-graduation-cap fa-5x"></i>
             <i data="Community Outreach" class="fa fa-info-circle"></i>
-            <h3>Community Outreach</h3>
-            <h4>We reach out to local communities and have at least one community service event a month.</h4>
+            <h3 class="pillar">Community Outreach</h3>
+            <h4 class="pillar-description">We reach out to local communities and have at least one community service event a month.</h4>
          </div>
          <div class="item orange">
             <i class="fa fa-university fa-5x"></i>
             <i data="Leadership Development" class="fa fa-info-circle"></i>
-            <h3>Leadership Development</h3>
-            <h4>We provide our members leadership opportunities throughout the year.</h4>
+            <h3 class="pillar">Leadership Development</h3>
+            <h4 class="pillar-description"> We provide our members leadership opportunities throughout the year.</h4>
          </div>
          <div class="item yellow">
             <i class="fa fa-briefcase fa-5x"></i>
             <i data="Professional Development" class="fa fa-info-circle"></i>
-            <h3>Professional Development</h3>
-            <h4>We host a wide variety of workshops to enhance our members professional career.</h4>
+            <h3 class="pillar">Professional Development</h3>
+            <h4 class="pillar-description">We host a wide variety of workshops to enhance our members professional career.</h4>
          </div>
          <div class="item dodger-blue">
             <i class="fa fa-hand-rock-o fa-5x"></i>
             <i data="Chapter Development" class="fa fa-info-circle"></i>
-            <h3>Chapter Development</h3>
-            <h4>If you are new to Austin, we show you what Austin has to offer through fun activities.</h4>
+            <h3 class="pillar">Chapter Development</h3>
+            <h4 class="pillar-description">If you are new to Austin, we show you what Austin has to offer through fun activities.</h4>
          </div>
          <div class="item violet">
             <i class="fa fa-futbol-o fa-5x"></i>
             <i data="Sports" class="fa fa-info-circle"></i>
-            <h3>Sports</h3>
-            <h4>Come play pick up games or join one of our sports leagues!</h4>
+            <h3 class="pillar">Sports</h3>
+            <h4 class="pillar-description">Come play pick up games or join one of our sports leagues!</h4>
          </div>
          <div class="item sky-blue">
             <i class="fa fa-plane fa-5x"></i>
             <i data="National Conferences" class="fa fa-info-circle"></i>
-            <h3>National Conferences</h3>
-            <h4>Every year, SHPE hosts a National Conference and we take members every year.</h4>
+            <h3 class="pillar">National Conferences</h3>
+            <h4 class="pillar-description">Every year, SHPE hosts a National Conference and we take members every year.</h4>
          </div>
          <div class="item zombie-green">
             <i class="fa fa-car fa-5x"></i>
             <i data="Regional Conferences" class="fa fa-info-circle"></i>
-            <h3>Regional Conferences</h3>
-            <h4>If you can't afford the time to fly, join us in our regional conferences. </h4>
+            <h3 class="pillar">Regional Conferences</h3>
+            <h4 class="pillar-description">If you can't afford the time to fly, join us in our regional conferences. </h4>
          </div>
       </div>
       <div class="bottom-container">
@@ -157,18 +209,18 @@
             </div>
          </div>
          <div class="join-shpe-container">
-             <div class="jumbotron">
-                <h1 id="join-shpe-austin">Join SHPE Austin</h1>
-                <p>If you have any further questions about SHPE Austin, please e-mail us in our Contact Page or e-mail any of the officers from our Officers page. If you would like to join our local chapter, please click on the Paypal button below!</p>
-                <div class="paypal">
-                   <form method="post" action="https://www.paypal.com/cgi-bin/webscr" target="_blank">
-                      <input type="hidden" value="_s-xclick" name="cmd">
-                      <input type="hidden" value="44KD2JSH3CQX2" name="hosted_button_id">
-                      <input border="0" type="image" alt="PayPal - The safer, easier way to pay online!" name="submit" src="/assets/paypal.png">
-                   </form>
-                </div>
-             </div>
-        </div>
+            <div class="jumbotron">
+               <h1 id="join-shpe-austin">Join SHPE Austin</h1>
+               <p>If you have any further questions about SHPE Austin, please e-mail us in our Contact Page or e-mail any of the officers from our Officers page. If you would like to join our local chapter, please click on the Paypal button below!</p>
+               <div class="paypal">
+                  <form method="post" action="https://www.paypal.com/cgi-bin/webscr" target="_blank">
+                     <input type="hidden" value="_s-xclick" name="cmd">
+                     <input type="hidden" value="44KD2JSH3CQX2" name="hosted_button_id">
+                     <input border="0" type="image" alt="PayPal - The safer, easier way to pay online!" name="submit" src="/assets/paypal.png">
+                  </form>
+               </div>
+            </div>
+         </div>
       </div>
    </div>
 </body>

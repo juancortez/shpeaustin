@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
    <head>
       <title>Home</title>
       <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.min.css">
@@ -8,7 +8,6 @@
       <link rel="stylesheet" type="text/css" href="/dist/index.css?v=<%= revision %>">
       <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
       <script src="/dist/index.min.js?v=<%= revision %>"></script>
-      <!--<script src="/javascripts/index.js?v=<%= revision %>"></script>-->
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js?v=<%= revision %>"></script>
       <!-- https://www.addevent.com/buttons/add-to-calendar -->
       <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
@@ -26,7 +25,7 @@
              m.parentNode.insertBefore(a, m)
          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
          
-         ga('create', 'UA-73722068-1', 'auto'); // http
+         ga('create', 'UA-73722068-1', 'auto'); 
          ga('create', 'UA-73722068-2', 'auto', {
              'name': 'b'
          }); // https
@@ -61,9 +60,9 @@
                   <span class="glyphicon glyphicon-bullhorn dark-shpe-blue" aria-hidden="true"></span>
                </div>
                <div class="announcement-content-container">
-                  <!-- <p class="officer-post"> <span class="post-info"> Manuel Espinosa (3/23/2016 @ 11:35:23 AM):</span> <span class="post-content">Sign ups for Noche de Ciencias are now open! RSVP <a href="http://tinyurl.com/zfhezha">here.</a> </span></p> -->
-                  <!-- <p class="officer-post"> <span class="post-info"></span> <span class="post-content"></span></p> -->
                   <i class="fa fa-spinner fa-spin dark-shpe-blue fa-3x"></i>
+               </div>
+               <divv>
                </div>
                <div class="post-announcement">
                   <form method = "post" action="announcement" id="announcement-form" class="form-horizontal">
@@ -104,8 +103,12 @@
                            </div>
                         </div>
                      </div>
-                     <i class="fa fa-archive dark-shpe-blue"></i>
+                     <i title="Newsletter Archives" class="fa fa-archive dark-shpe-blue"></i>
+                     <i title="Subscribe" class="fa fa-envelope dark-shpe-blue"></i>
                   </div>
+                 <!--  <div class="sign-up">
+                     <p>Hello World </p>
+                  </div> -->
                </div>
                <div class="col-sm-6 col-md-4">
                   <h2 class="thumbnail-title dark-shpe-blue"> Upcoming Events </h2>
@@ -192,7 +195,7 @@
                   </div>
                </div>
                <div class="form-group row">
-                  <label for="password" class="col-sm-2 form-control-label">E-Mail:<span style="color:red;">*</span></label>
+                  <label for="password" class="col-sm-2 form-control-label">Password:<span style="color:red;">*</span></label>
                   <div class="col-sm-10">
                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                   </div>

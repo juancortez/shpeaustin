@@ -1,8 +1,6 @@
 <html>
    <head>
       <link rel="stylesheet" href="/stylesheets/libs/font-awesome-4.5.0/css/font-awesome.min.css">
-      <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/navigation.css?v=<%= revision %>"> -->
-      <link rel="stylesheet" type="text/css" href="/dist/navigation.css?v=<%= revision %>">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script type="text/javascript">
          jQuery(function($){
@@ -20,12 +18,11 @@
    </head>
    <body>
       <div class = "navigator-container">
-        <!-- This only shows on small browsers/mobile -->
         <div class = "shpe-austin">
            <a class="dark-shpe-blue mobile-shpe" href="/">SHPE Austin</a>
            <i class="fa fa-bars fa-3x dark-shpe-blue responsive-menu"></i>
         </div>
-
+        <!-- This only shows on small browsers/mobile -->
         <div class="mobile-nav">
              <div class="responsive-menu">
                 <ul class="ul-hamburger-nav">
@@ -50,21 +47,18 @@
         
         <div class="navcontent sticky">
            <div id="shpenav" class="navleft">
-              <!-- <a class = "dark-shpe-blue" href="/">Society of Hispanic<br>Professional Engineers</a> -->
               <a class="dark-shpe-blue" href="/">SHPE Austin<br>
                  <span class="small">Society of Hispanic <br> Professional Engineers</span>
               </a>
            </div>
            <nav>
-              <!-- <div class="menu-header_menu-container"> -->
                  <ul id="menu-header_menu" class="menu">
-                    <li class="menu-item dot"><a href="/">Home</a></li>
-                    <li class="menu-item dot"><a href="/about">About</a></li>
-                    <li class="menu-item dot"><a href="/officers">Officers</a></li>
-                    <li class="menu-item dot"><a href="/membership">Membership</a></li>
-                    <li class="menu-item"><a href="/contact">Contact Us</a></li>
+                    <li class="menu-item dot"><a class = "nav-link" href="/">Home</a></li>
+                    <li class="menu-item dot"><a class = "nav-link" href="/about">About</a></li>
+                    <li class="menu-item dot"><a class = "nav-link" href="/officers">Officers</a></li>
+                    <li class="menu-item dot"><a class = "nav-link" href="/membership">Membership</a></li>
+                    <li class="menu-item"><a class="nav-link" href="/contact">Contact Us</a></li>
                  </ul>
-              <!-- </div> -->
            </nav>
 
            <div class="share share-size">
