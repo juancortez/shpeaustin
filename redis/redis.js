@@ -8,7 +8,8 @@
 var clearRedisDatabase = require('../models/globals.js').clearRedisDatabase; // set flag to true to clear database
 var revision = require('../models/globals.js').revision;
 var backup = {};
-var keys = ["officerList", "calendarData", "newsletterdata", "announcements", "revisionNumber", "id"]; // keys that exist on the database
+//var keys = ["officerList", "calendarData", "newsletterdata", "announcements", "revisionNumber", "id"]; // keys that exist on the database
+var keys = ["calendarData", "newsletterdata", "revisionNumber",]; // keys to be deleted
 var itemsProcessed = 0;
 
 function onRedisConnection(client, redis) {
