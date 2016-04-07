@@ -1,24 +1,8 @@
 {
     "calendar": [
         {
-            "event": "Softball Game",
-            "time": "2016-04-04T21:15:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=MXU1NGRpaTlqYXIzbHZrOWplYmQzbDFuOGcgc2hwZS5hdXN0aW5AbQ",
-            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
-        },
-        {
-            "event": "Officer Meeting",
-            "time": "2016-04-05T19:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA0MDZUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
-        },
-        {
-            "event": "UTSHPE General Meeting",
-            "time": "2016-04-06",
-            "link": "https://www.google.com/calendar/event?eid=Z2NvMW1uNTUzdmQxaG02bDZqYm1wZmNyZDQgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Noche De Ciencia (TBD)",
-            "time": "2016-04-07",
+            "event": "Noche De Ciencia",
+            "time": "2016-04-07T18:30:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=ZnQybjA0ZWJoYjJpaXA5dnNkZGhtcmdqNmsgc2hwZS5hdXN0aW5AbQ"
         },
         {
@@ -51,6 +35,21 @@
             "time": "2016-04-16T09:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=M2o5MDFjaDIwZjRuZ3JicGhzNnJ2NzFuNzQgc2hwZS5hdXN0aW5AbQ",
             "location": "ACC-Eastview Campus 3401 Webberville Rd"
+        },
+        {
+            "event": "Officer Meeting",
+            "time": "2016-04-19T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA0MjBUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
+        },
+        {
+            "event": "UTSHPE General Meeting",
+            "time": "2016-04-20",
+            "link": "https://www.google.com/calendar/event?eid=dnBnNGE1a2xhOGE2bGNlOG43MGs0MTFiZzAgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "SHPE's and Salsa",
+            "time": "2016-04-23",
+            "link": "https://www.google.com/calendar/event?eid=ZTFlcDJldTlhNDZvbmhzNGNhNmZnZW1lcTggc2hwZS5hdXN0aW5AbQ"
         }
     ]
 }
