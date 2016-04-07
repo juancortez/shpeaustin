@@ -451,7 +451,7 @@ var modal = (function(){
             height = window_height < height ? window_height - 50: height;
             width = window_width < width ? window_width - 50 : width;
             $("#modal").css({'background':'white'});
-            modal.open({content: $("<h1>View Previous Newsletters<h1><ul class='newsletterList'><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=17cac73925&e=38ee20bb08'>April 2016</a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=a8f7a3cd22&e=38ee20bb08'>March 2016 </a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=ecb6bb1b8c&e=1365fed48c'>February 2016</a> </li></ul>"), width: width+"px", height: height+"px", align: "center"});
+            modal.open({content: $("<h1>View Previous Newsletters<h1><ul class='newsletterList'><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=480dcd7865&e=38ee20bb08'>Mid-April 2016</a> </li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=17cac73925&e=38ee20bb08'>Early-April 2016</a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=a8f7a3cd22&e=38ee20bb08'>March 2016 </a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=ecb6bb1b8c&e=1365fed48c'>February 2016</a></li></ul>"), width: width+"px", height: height+"px", align: "center"});
         });
 
         $(document).keydown(function(event){
