@@ -2,24 +2,8 @@
     "calendarData": {
         "calendar": [
             {
-                "event": "Softball Game",
-                "time": "2016-04-04T21:15:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=MXU1NGRpaTlqYXIzbHZrOWplYmQzbDFuOGcgc2hwZS5hdXN0aW5AbQ",
-                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
-            },
-            {
-                "event": "Officer Meeting",
-                "time": "2016-04-05T19:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA0MDZUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
-            },
-            {
-                "event": "UTSHPE General Meeting",
-                "time": "2016-04-06",
-                "link": "https://www.google.com/calendar/event?eid=Z2NvMW1uNTUzdmQxaG02bDZqYm1wZmNyZDQgc2hwZS5hdXN0aW5AbQ"
-            },
-            {
-                "event": "Noche De Ciencia (TBD)",
-                "time": "2016-04-07",
+                "event": "Noche De Ciencia",
+                "time": "2016-04-07T18:30:00-05:00",
                 "link": "https://www.google.com/calendar/event?eid=ZnQybjA0ZWJoYjJpaXA5dnNkZGhtcmdqNmsgc2hwZS5hdXN0aW5AbQ"
             },
             {
@@ -52,48 +36,23 @@
                 "time": "2016-04-16T09:00:00-05:00",
                 "link": "https://www.google.com/calendar/event?eid=M2o5MDFjaDIwZjRuZ3JicGhzNnJ2NzFuNzQgc2hwZS5hdXN0aW5AbQ",
                 "location": "ACC-Eastview Campus 3401 Webberville Rd"
+            },
+            {
+                "event": "Officer Meeting",
+                "time": "2016-04-19T19:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA0MjBUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
+            },
+            {
+                "event": "UTSHPE General Meeting",
+                "time": "2016-04-20",
+                "link": "https://www.google.com/calendar/event?eid=dnBnNGE1a2xhOGE2bGNlOG43MGs0MTFiZzAgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "SHPE's and Salsa",
+                "time": "2016-04-23",
+                "link": "https://www.google.com/calendar/event?eid=ZTFlcDJldTlhNDZvbmhzNGNhNmZnZW1lcTggc2hwZS5hdXN0aW5AbQ"
             }
         ]
     },
-    "newsletterdata": {
-        "newsletter": [
-            {
-                "title": "Event Recap: Breakthrough Austin",
-                "description": "Jeremy Benavides, SHPE Austin President, pictured mentoring a group of middle school students in Breakthrough Austin. The Breakthrough Austin program has been helping low-income first generation students prepare for higher education opportunities. We give thanks to SHPE Austin and NSBE volunteers. ",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/5b5d16e6-ed0e-4282-9e82-c1f583273fed.jpg",
-                "image_link": ""
-            },
-            {
-                "title": "Happy Hour with SHPE Austin",
-                "description": "Meet the SHPE Austin team at the Haymaker this Thursday. Free appetizers will be provided. Hope to see you there! Date: Mar. 24th (6pm) @ Haymaker  (2310 Manor Rd Austin, TX 78722 USA). For more details click on the image",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/77f3dc37-44eb-49e8-9c31-a01307ec1d6b.jpg",
-                "image_link": "https://www.facebook.com/events/204386366593885/"
-            },
-            {
-                "title": "We're SHPE'ing out Scholarships",
-                "description": "SHPE Austin has opened up the application for the 2016 scholarships. This scholarship is open to high school seniors and college students. If you have any questions please contact our Scholarships Director, Karen Siles. For SHPE National Scholarship, click HERE\nClick on the image to access the scholarship application",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/08b634e5-42d4-4042-9033-568a1dc7012b.jpg",
-                "image_link": "https://goo.gl/NCRrFX"
-            },
-            {
-                "title": "Volunteers Needed for Family Science Night @ LBJ ",
-                "description": "SHPE Austin will be hosting Family Science Night (Noche De Ciencias), a bilingual event that targets Austin area families, to garner interest in STEM and provide valuable information on how to prepare students for a future in a STEM field.  There will be free food and many fun activities - so bring yourself and your family! In addition, SHPE Austin is looking for volunteers to help out the day of the event. Those interested can sign-up HERE. \nDate: April 7th (6PM - 9PM) at Lyndon B. Johnson High School.",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/22c6e63b-a8ff-48a5-809c-d51b21160b33.jpg",
-                "image_link": "https://www.eventbrite.com/e/noche-de-ciencias-tickets-22197338838?aff=es2"
-            },
-            {
-                "title": "Survey for Spring Sports",
-                "description": "The next season of Spring sports is around the corner, and it's time to decide what we want to play. The following survey has a list of sports, each with  upcoming deadlines. Please fill out ASAP if interested. Also, for last night's softball game, it was a close call as the team lost 14-18. There are still 3 more opportunities to join in on the fun. For more information contact Carlos Pizarro.\n\nClick on the image to access the survey",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/2a87bb63-735c-4160-8a65-dc4b0b8c2a3f.jpg",
-                "image_link": "https://docs.google.com/forms/d/11PwA92DbqDLJBPINyq6qI_VPwZ5XT5DtYu_DEhT8GPc/viewform?usp=send_form"
-            },
-            {
-                "title": "Volunteers Needed for Latinitas Code Chica Conference 2016",
-                "description": "SHPE Austin seeks volunteers to help out at the Latinitas Code Chica Conference next month. This event will teach girls how to use media and technology to design, code and market their own mobile app idea. Roles we are looking to assist with include: workshop assistant, lunchtime crew, clean up crew, event historian, photographer, and more. If you would like to register a participant or donate a registration pass click HERE. Date: April 16th (9AM-4PM) at ACC Eastview Campus",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/00e1f114-90bb-4a7a-a6e9-3efb0e4354a2.jpg",
-                "image_link": "https://docs.google.com/a/utexas.edu/forms/d/14JIbAGHs8NJxQgWNfy7Q0-iyiAzAlPYveKgn1OTeY5k/viewform?c=0&w=1"
-            }
-        ]
-    },
-    "revisionNumber": 10
+    "revisionNumber": 13
 }

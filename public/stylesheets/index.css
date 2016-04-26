@@ -17,6 +17,32 @@ ul.newsletterList li{
   text-align:center;
 }
 
+
+#subscribe-email{
+  width: 60% !important;
+  margin: 0px 5px;
+  display: inline-block;
+}
+
+#subscribe-container{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  z-index: 100;
+  background-color: white;
+  position: relative;
+  bottom: 58px;
+}
+
+#subscribe-div{
+    width: 300px;
+    text-align: center;
+}
+
+
 .item {
   display: block;
   position: absolute;
@@ -154,6 +180,11 @@ h4{
 
 .col-sm-offset-2 {
     margin-left: 0px !important;
+}
+
+.fa-envelope-o{
+  cursor: pointer;
+  font-size: 1.5em !important;
 }
 
 .fa-archive, .fa-envelope{
@@ -544,7 +575,8 @@ img#skyline{
   border: 1px solid #ddd;
   border-radius: 0px 25px 25px 0px;
   padding: 10px 5px 5px 10px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden; 
   height: 227px;
   text-align: center;
 }
@@ -558,6 +590,14 @@ img#skyline{
   margin-top:15px;
   height: 80px;
   border: 1px solid #ddd;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+  margin: 0 auto;
+}
+
+.form-group{
+  margin: 0;
 }
 
 .post-info{

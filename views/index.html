@@ -7,10 +7,12 @@
       <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
       <link rel="stylesheet" type="text/css" href="/dist/index.css?v=<%= revision %>">
       <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
+      <!--<script src="/javascripts/index.js?v=<%= revision %>"></script>-->
       <script src="/dist/index.min.js?v=<%= revision %>"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js?v=<%= revision %>"></script>
       <!-- https://www.addevent.com/buttons/add-to-calendar -->
       <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+      <script src="/socket.io/socket.io.js"></script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script>
          (function(i, s, o, g, r, a, m) {
@@ -100,6 +102,14 @@
                            <div id="buttons">
                               <a class="btn btn-primary" id="prev-newsletter" role="button">Prev</a>
                               <a id="next-newsletter" class="btn btn-default" role="button">Next</a>
+                           </div>
+                        </div>
+                        <div id="subscribe-container">
+                           <div id="subscribe-div">
+                              <p id="stat" class="bold">Subscribe to our newsletter!</p>
+                              <label id="subscribe-label" for="subscribe-email">E-mail:<span style="color:red;">*</span></label>
+                              <input type="subscribe-email" class="form-control" id="subscribe-email" name="subscribe-email" placeholder="E-mail" required>
+                              <i title="Subscribe" class="fa fa-envelope-o dark-shpe-blue"></i>
                            </div>
                         </div>
                      </div>

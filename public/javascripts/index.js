@@ -1,4 +1,5 @@
 $(document).ready(function() { // HTML has loaded
+    var socket = io(); // get a handle to the websocket
     var newsletterItem = 0;
     var populatedItems = 0;
     var newsletterData;
@@ -7,11 +8,24 @@ $(document).ready(function() { // HTML has loaded
     var calendarItem = 0;
     var authenticated = false;
     var numAnnouncements;
+    var revision;
+
+    ////////////////////////////////////////////////////////////////////
+    // Socket Code
+    ////////////////////////////////////////////////////////////////////
+    socket.emit('revision', "Get revision number from backend.");
+    socket.on('revision', function(rev){
+        revision = rev;
+    });
+       
 
     var newsletterInterval = setInterval(function(e){
         $("#next-newsletter").click(); 
     }, 5000);
 
+    ////////////////////////////////////////////////////////////////////
+    // REST Calls
+    ////////////////////////////////////////////////////////////////////
     $.ajax({
             method: "GET",
             url: "/newsletterdata"
@@ -26,7 +40,7 @@ $(document).ready(function() { // HTML has loaded
             $($('ol li')[newsletterItem]).addClass('active');
             $("#title").append(data.newsletter[newsletterItem].title);
             $("#description").append("<span class = 'bold'> Description: </span>" + data.newsletter[newsletterItem].description);
-            $("#image-newsletter").attr('src', "../assets/newsletter/newsletter0");
+            $("#image-newsletter").attr('src', "../assets/newsletter/newsletter0?v="+revision);
             var image_link = document.createElement('a');
             image_link.href = data.newsletter[newsletterItem].image_link;
             $("#image-newsletter").wrap(image_link);
@@ -112,14 +126,61 @@ $(document).ready(function() { // HTML has loaded
                 return;
             }
             if(status == "OK"){
-                $(".post-announcement").show();
-                $(".announcement-container").css({'height':'315px'});
+                $(".post-announcement").css({'display':'flex'});
+                $(".announcement-container").css({'height':'250px'});
                 $(".show-login").empty();
                 authenticated = true;
             }
         }).fail(function(){
             console.error("/officerlogin endpoint failed");
         });
+    }
+
+    $('.fa-envelope').click(function(){
+        $("#subscribe-container").css({'display':'flex'});
+        $("#newsletter-buttons").hide();
+        $(".fa-archive").hide();
+        $(this).hide();
+        clearInterval(newsletterInterval);
+    });
+
+    $(".fa-envelope-o").click(function(e){
+        var address = $("#subscribe-email").val();
+        if(!checkIfEmailInString(address)){
+            $("#stat").css({'color':'red'});
+            $("#stat").text("Invalid e-mail.");
+        } else{
+            $("#stat").css({'color':'green'});
+            $("#stat").text("Subscription successful!");
+            $.ajax({
+                type: 'POST',
+                url: '/contact',
+                data: { name: "new user", 
+                        email: address,
+                        phone: "n/a",
+                        category: "SHPE Austin: Newletter Subscription Request",
+                        message: "Please add " + address + " to the newsletter."
+                       }
+            }).done(function(status){
+                console.log("Success!");
+            }).fail(function(status){
+                console.error("Unsuccessful. Error Code: " + status);
+            });
+            setTimeout(function(){
+                $("#subscribe-container").css({'display':'none'});
+                $("#newsletter-buttons").show();
+                $(".fa-archive").show();
+                $(".fa-envelope").show();
+                $("#stat").text("Subscribe to our newsletter!");
+                $("#stat").css({'color':'black'});
+            }, 2500);
+        }
+        
+    });
+
+    function checkIfEmailInString(text) { 
+        var re = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+        return re.test(text);
     }
     
     function constructAnnouncement(announcement, i, flag){
@@ -303,7 +364,7 @@ $(document).ready(function() { // HTML has loaded
             $($('ol li')[newsletterItem]).addClass('active');
             $("#title").append(newsletterData.newsletter[newsletterItem].title);
             $("#description").append("<span class = 'bold'> Description: </span>" + newsletterData.newsletter[newsletterItem].description);
-            $("#image-newsletter").attr('src', "../assets/newsletter/newsletter"+newsletterItem);
+            $("#image-newsletter").attr('src', "../assets/newsletter/newsletter"+newsletterItem+"?v="+revision);
             $("#image-newsletter").parent()[0].setAttribute('href', newsletterData.newsletter[newsletterItem].image_link);
             if(!newsletterData.newsletter[newsletterItem].image_link){
                 $("#image-newsletter").parent()[0].setAttribute('onclick', "return false;");
@@ -329,9 +390,10 @@ $(document).ready(function() { // HTML has loaded
             var id = login.uuid; // a unique UUID sent from the server
             console.log("Login successful with UUID " + id);
             localStorage.setItem('credentials', id);
+            $(".mes").hide();
             $(".status").text("Login successful!").css({'color': '#4CAF50'}).show();
             $(".post-announcement").show();
-            $(".announcement-container").css({'height':'315px'});
+            $(".announcement-container").css({'height':'275px'});
             setTimeout(function(){
                 $(".status").hide();
                 $(".close-modal").click();
@@ -340,6 +402,7 @@ $(document).ready(function() { // HTML has loaded
             $(".status").text("Login unsuccessful.").css({'color': '#F44336'}).show();
             setTimeout(function(){
                 $(".status").hide();
+                $(".mes").show();
             }, 2500);
             console.error("Login unsuccessful.. Error Code: " + JSON.stringify(status));
         });

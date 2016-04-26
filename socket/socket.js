@@ -35,6 +35,15 @@ function initiateSocket(io,client){
 	        // disconnection logic
 	    });
 
+	    socket.on('revision', function(msg){
+	    	var revision;
+	    	try{
+	    		revision = require('../models/globals.js').revision;
+	    	} catch(err){
+	    		revision = -1; // error
+	    	}
+	    	io.emit('revision', revision);
+	    });
 	});
 }
 

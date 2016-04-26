@@ -9,7 +9,7 @@ var clearRedisDatabase = require('../models/globals.js').clearRedisDatabase; // 
 var revision = require('../models/globals.js').revision;
 var backup = {};
 //var keys = ["officerList", "calendarData", "newsletterdata", "announcements", "revisionNumber", "id"]; // keys that exist on the database
-var keys = ["calendarData", "newsletterdata", "revisionNumber",]; // keys to be deleted
+var deleteKeys = ["calendarData", "revisionNumber"]; // keys to be deleted if clearRedisDatabase is set to TRUE
 var itemsProcessed = 0;
 
 function onRedisConnection(client, redis) {
@@ -103,7 +103,7 @@ function onRedisConnection(client, redis) {
 
 
     if (clearRedisDatabase) {
-        keys.forEach(function(key) {
+        deleteKeys.forEach(function(key) {
             client.get(key, function(err, reply) {
                 if (err) {
                     console.error(err);
@@ -112,7 +112,7 @@ function onRedisConnection(client, redis) {
                     // when the database is cleared, it also saves a backup just in case it was accidental. It saves it in /metadata/backup.json
                 }
                 itemsProcessed++;
-                if (itemsProcessed === keys.length) {
+                if (itemsProcessed === deleteKeys.length) {
                     backupRedisOnClear();
                 }
             });

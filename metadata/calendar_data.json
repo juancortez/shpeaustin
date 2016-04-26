@@ -1,55 +1,58 @@
 {
     "calendar": [
         {
-            "event": "Noche De Ciencia",
-            "time": "2016-04-07T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=ZnQybjA0ZWJoYjJpaXA5dnNkZGhtcmdqNmsgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Battle of the SHPEys",
-            "time": "2016-04-10",
-            "link": "https://www.google.com/calendar/event?eid=OGYydWZkNmZxcWYzMDF2djU4ZWNxZDZiMDAgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Manitos/Manitas Social/Community Service",
-            "time": "2016-04-10",
-            "link": "https://www.google.com/calendar/event?eid=dG5jcGNhbTYwanY3dWxsZzh2bWdnbmpmaW8gc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Softball Game",
-            "time": "2016-04-11T20:20:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=YXRoM25wdXFrbjg4cWRhbHVrb3QxaWdiNW8gc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Scholarship Recipients Annouced",
-            "time": "2016-04-15",
-            "link": "https://www.google.com/calendar/event?eid=c2xiMHVubzVqMnJjNWs1ODdkMzFuYTlxMTggc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Senoritas Leadership Event",
-            "time": "2016-04-16",
-            "link": "https://www.google.com/calendar/event?eid=Mm1tcHAzcWExbmticGhiM3A1M2lnbjF1MW8gc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Latinitas Code Chica Conference 2016",
-            "time": "2016-04-16T09:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=M2o5MDFjaDIwZjRuZ3JicGhzNnJ2NzFuNzQgc2hwZS5hdXN0aW5AbQ",
-            "location": "ACC-Eastview Campus 3401 Webberville Rd"
-        },
-        {
             "event": "Officer Meeting",
-            "time": "2016-04-19T19:00:00-05:00",
+            "time": "2016-04-26T19:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA0MjBUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
         },
         {
-            "event": "UTSHPE General Meeting",
-            "time": "2016-04-20",
-            "link": "https://www.google.com/calendar/event?eid=dnBnNGE1a2xhOGE2bGNlOG43MGs0MTFiZzAgc2hwZS5hdXN0aW5AbQ"
+            "event": "SHPE Scholarship/Awards Banquet",
+            "time": "2016-04-28",
+            "link": "https://www.google.com/calendar/event?eid=b2pmbXVkamg4NHZiamU2aGRvNTlrcW1tZW8gc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Networking Workshop",
+            "time": "2016-04-28T18:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=cG9wa3UwZmkxbmFrYmJ0Mm9jZTBoaTYwc2cgc2hwZS5hdXN0aW5AbQ",
+            "location": "University of Texas Student Services Building, 100 E Dean Keeton St, Austin, TX 78712, United States"
         },
         {
             "event": "SHPE's and Salsa",
-            "time": "2016-04-23",
-            "link": "https://www.google.com/calendar/event?eid=ZTFlcDJldTlhNDZvbmhzNGNhNmZnZW1lcTggc2hwZS5hdXN0aW5AbQ"
+            "time": "2016-04-29T18:45:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=ZTFlcDJldTlhNDZvbmhzNGNhNmZnZW1lcTggc2hwZS5hdXN0aW5AbQ",
+            "location": "SAC 2.412 Ballroom North"
+        },
+        {
+            "event": "SHPE (A) vs Slump Busters (H) - Field 6",
+            "time": "2016-05-02T20:20:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=cXZvYjhodmx1a2tzMWg4bmpsY2pyZzB1NjAgc2hwZS5hdXN0aW5AbQ",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+        },
+        {
+            "event": "Officer Meeting",
+            "time": "2016-05-03T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA1MDRUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
+        },
+        {
+            "event": "Happy Hour with Upper Classmen",
+            "time": "2016-05-10",
+            "link": "https://www.google.com/calendar/event?eid=ZTJrZ3ZpZHVqdGllNXMwNTFlanQwcmVuNmMgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "SHPE (H) vs Biohazards (A) - Field 1",
+            "time": "2016-05-16T20:20:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=cGRlcjRnZzNtdDdmNTVkOXFrZmF1aDNtZmsgc2hwZS5hdXN0aW5AbQ",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+        },
+        {
+            "event": "Officer Meeting",
+            "time": "2016-05-17T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=dG12MXNwZG45YzI1ZnBoazI2ZGNzZXZmMGNfMjAxNjA1MThUMDAwMDAwWiBzaHBlLmF1c3RpbkBt"
+        },
+        {
+            "event": "General Meeting (Nominations)",
+            "time": "2016-05-19",
+            "link": "https://www.google.com/calendar/event?eid=Z3RycDNsdmtmc21pYjBwdTd1YXE0bzhqMTggc2hwZS5hdXN0aW5AbQ"
         }
     ]
 }
