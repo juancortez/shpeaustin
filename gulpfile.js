@@ -7,8 +7,9 @@ var all_javascripts = "public/javascripts/*.js",
     javascript_src = "public/javascripts/",
     javascript_dest = "public/dist";
 
-var all_stylesheets = "public/stylesheets/*.css";
-    stylesheet_src = "public/stylesheets/";
+var all_stylesheets = "public/stylesheets/*.css",
+    less_stylesheets = "public/stylesheets/less/*.less",
+    stylesheet_src = "public/stylesheets/",
     stylesheet_dest = "public/dist";
 
 var all_html = "views/*.html";
@@ -64,6 +65,17 @@ gulp.task('contact_script', function() {
 });
 
 
+// a LESS plugin for node.js
+gulp.task('less', function () {
+  var path = require('path');
+  return gulp.src(less_stylesheets)
+    .pipe(plugins.less({
+      paths: [path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest(stylesheet_src));
+});
+
+
 // PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. 
 // It is recommended by Google and used in Twitter, and Taobao.
 gulp.task('autoprefixer', function () {
@@ -107,10 +119,11 @@ gulp.task('json_lint', function() {
 // continuously jump back to our command-line and run the gulp command each time.
 gulp.task('watch', function() {
     gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script']);
-    gulp.watch(all_stylesheets, ['autoprefixer']);
+    gulp.watch(all_stylesheets, ['less', 'autoprefixer']);
+    gulp.watch(less_stylesheets, ['less', 'autoprefixer']);
     gulp.watch(all_json, ['json_lint']);
     //gulp.watch('scss/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'autoprefixer', 'json_lint', 'watch']);
+gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'less', 'autoprefixer', 'json_lint', 'watch']);
