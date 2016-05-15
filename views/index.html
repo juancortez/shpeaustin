@@ -3,13 +3,12 @@
       <title>Home</title>
       <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.min.css">
       <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/main.css?v=<%= revision %>"> -->
-      <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/index.css?v=<%= revision %>"> -->
       <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
       <link rel="stylesheet" type="text/css" href="/dist/index.css?v=<%= revision %>">
       <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
       <!--<script src="/javascripts/index.js?v=<%= revision %>"></script>-->
       <script src="/dist/index.min.js?v=<%= revision %>"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js?v=<%= revision %>"></script>
+      <script src="/stylesheets/libs/bootstrap-3.3.6-dist/js/bootstrap.min.js?v=<%= revision %>"></script>
       <!-- https://www.addevent.com/buttons/add-to-calendar -->
       <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
       <script src="/socket.io/socket.io.js"></script>
@@ -39,53 +38,50 @@
    <%include navigation.html%>
    <body>
       <div class="main-page-container">
-      <div class="site-slider-custom-header">
-         <main class="bs-docs-masthead" id="content" role="main" tabindex="-1">
-            <div class="show-login">
-               <i class="fa fa-sign-in fa-2x" data-toggle="modal" data-target="#myModal"></i>
-            </div>
-            <div class="container">
-               <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">
-               <img id = "skyline" src="/assets/austin_skyline_burned_copy.png"alt="">Welcome to SHPE Austin</span>
-               <p class="lead">Society of Hispanic Professional Engineers
-                  <br> Austin Professional Chapter
-               </p>
-               <p class="version">Austin, TX</p>
-         </main>
-         <!-- <img src="/assets/shpe_banner.jpg" height="864" width="1920" alt=""> -->
-         </div>
+         <div class="site-slider-custom-header">
+            <main class="bs-docs-masthead" id="content" role="main" tabindex="-1">
+               <div class="show-login">
+                  <i class="fa fa-sign-in fa-2x" data-toggle="modal" data-target="#myModal"></i>
+               </div>
+               <div class="container">
+                  <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">
+                  <img id = "skyline" src="/assets/austin_skyline_burned_copy.png"alt="">Welcome to SHPE Austin</span>
+                  <p class="lead">Society of Hispanic Professional Engineers
+                     <br> Austin Professional Chapter
+                  </p>
+                  <p class="version">Austin, TX</p>
+            </main>
+         </div> <!-- .site-slider-custom-header -->
          <div class="announcements">
             <h2 class="thumbnail-title dark-shpe-blue" id="announcement-header"> Announcements </h2>
             <div class="announcement-container">
                <div class = "announcement-icon-container">
                   <h3 class=" dark-shpe-blue" id="announcement-title">Announcements</h3>
                   <span class="glyphicon glyphicon-bullhorn dark-shpe-blue" aria-hidden="true"></span>
-               </div>
+               </div> <!-- .announcement-icon-container -->
                <div class="announcement-content-container">
                   <i class="fa fa-spinner fa-spin dark-shpe-blue fa-3x"></i>
-               </div>
-               <divv>
-               </div>
-               <div class="post-announcement">
-                  <form method = "post" action="announcement" id="announcement-form" class="form-horizontal">
-                     <div class="form-group">
-                        <div class="col-sm-6 form-announ">
-                           <label for="officer" class="sr-only">Officer Name:</label>
-                           <input id="officer" class="form-control input-group-lg reg_name" type="text" name="officer" title="Enter Name" placeholder="Full Name">
-                        </div>
-                        <div class="col-sm-6 form-announ">
-                           <label for="announcement" class="sr-only">Announcement</label>
-                           <input id="announcement" class="form-control input-group-lg reg_name" type="text" name="announcement" title="announcement" placeholder="Announcement">
-                        </div>
-                        <div class="col-sm-6 form-announ">
-                           <button type="submit" id="post-announcement">Post Announcement</button>
-                        </div>
+               </div> <!-- .announcement-content-container -->
+            </div> <!-- .announcement-container -->
+            <div class="post-announcement">
+               <form method = "post" action="announcement" id="announcement-form" class="form-horizontal">
+                  <div class="form-group">
+                     <div class="col-sm-6 form-announ">
+                        <label for="officer" class="sr-only">Officer Name:</label>
+                        <input id="officer" class="form-control input-group-lg reg_name" type="text" name="officer" title="Enter Name" placeholder="Full Name">
                      </div>
-                     <!--/form-group-->
-                  </form>
-               </div>
-            </div>
-         </div>
+                     <div class="col-sm-6 form-announ">
+                        <label for="announcement" class="sr-only">Announcement</label>
+                        <input id="announcement" class="form-control input-group-lg reg_name" type="text" name="announcement" title="announcement" placeholder="Announcement">
+                     </div>
+                     <div class="col-sm-6 form-announ">
+                        <button type="submit" id="post-announcement">Post Announcement</button>
+                     </div>
+                  </div>
+                  <!--/form-group-->
+               </form>
+            </div> <!-- .post-announcement -->
+         </div> <!-- .announcements -->
          <div class="bs-example-a">
             <div class="row">
                <div class="col-sm-6 col-md-4">
@@ -103,7 +99,7 @@
                               <a class="btn btn-primary" id="prev-newsletter" role="button">Prev</a>
                               <a id="next-newsletter" class="btn btn-default" role="button">Next</a>
                            </div>
-                        </div>
+                        </div> <!-- #newsletter-buttons -->
                         <div id="subscribe-container">
                            <div id="subscribe-div">
                               <p id="stat" class="bold">Subscribe to our newsletter!</p>
@@ -111,15 +107,12 @@
                               <input type="subscribe-email" class="form-control" id="subscribe-email" name="subscribe-email" placeholder="E-mail" required>
                               <i title="Subscribe" class="fa fa-envelope-o dark-shpe-blue"></i>
                            </div>
-                        </div>
-                     </div>
+                        </div> <!-- #subscribe-container -->
+                     </div> <!-- .caption -->
                      <i title="Newsletter Archives" class="fa fa-archive dark-shpe-blue"></i>
                      <i title="Subscribe" class="fa fa-envelope dark-shpe-blue"></i>
-                  </div>
-                 <!--  <div class="sign-up">
-                     <p>Hello World </p>
-                  </div> -->
-               </div>
+                  </div> <!-- .thumb-newsletter -->
+               </div> <!-- .col-sm-6  -->
                <div class="col-sm-6 col-md-4">
                   <h2 class="thumbnail-title dark-shpe-blue"> Upcoming Events </h2>
                   <div id="event-thumbnail" class="thumbnail cal-extend">
@@ -139,7 +132,7 @@
                         <div id="fpc_corner-box">
                            <a id="fpc_page-tip"></a>
                         </div>
-                     </div>
+                     </div> <!-- #fpc_box -->
                      <div class="calendar-controls">
                         <i class="fa fa-angle-double-left fa-2x dark-shpe-blue cal-button"></i>
                         <div title="Add to Calendar" class="addeventatc">
@@ -157,9 +150,9 @@
                            <span class="date_format">MM/DD/YYYY</span>
                         </div>
                         <i class="fa fa-angle-double-right fa-2x dark-shpe-blue cal-button"></i>
-                     </div>
-                  </div>
-               </div>
+                     </div> <!-- .calendar-controls -->
+                  </div> <!-- #event-thumbnail -->
+               </div> <!-- .col-sm-6 -->
                <div class="col-sm-6 col-md-4">
                   <h2 class="thumbnail-title dark-shpe-blue"> Membership </h2>
                   <div class="thumbnail">
@@ -175,53 +168,56 @@
                               <input type="hidden" value="44KD2JSH3CQX2" name="hosted_button_id">
                               <input border="0" type="image" alt="PayPal - The safer, easier way to pay online!" name="submit" src="/assets/paypal.png">
                            </form>
-                        </div>
+                        </div> <!-- .paypal -->
                         <b>National Membership:</b> If you are interested in becoming a SHPE National member, click on the SHPE icon above!
+                     </div> <!-- .caption -->
+                  </div> <!-- .thumbnail -->
+               </div> <!-- .col-sm-6 -->
+            </div> <!-- .row -->
+         </div> <!-- .bs-example-a -->
+      </div> <!-- .main-page-container -->
+
+      <div class = "modal-container">
+         <!-- Modal -->
+         <div class="modal fade" id="myModal" role="dialog">
+         <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Officer Sign-In</h4>
+            </div>
+            <div class="modal-body">
+               <form id="login-form" method = "post" action="login">
+                  <div class="form-group">
+                     <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
+                  </div>
+                  <br>
+                  <div class="form-group row">
+                     <label for="name" class="col-sm-2 form-control-label">Username:<span style="color:red;">*</span></label>
+                     <div class="col-sm-10">
+                        <input type="name" class="form-control" id="name" name="name" placeholder="Username" required>
                      </div>
                   </div>
-               </div>
+                  <div class="form-group row">
+                     <label for="password" class="col-sm-2 form-control-label">Password:<span style="color:red;">*</span></label>
+                     <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                     </div>
+                  </div>
+                  <div id="form-submission" class="form-group row">
+                     <div class="col-sm-offset-2 col-sm-10">
+                        <button style="bottom: 0px;" id="submit-button" type="submit" class="custom-button">Send It</button>
+                     </div>
+                  </div>
+                  <div class='status'>Status</div>
+               </form>
+            </div> <!-- modal-body -->
+            <div class="modal-footer">
+               <p class="mes"> If you accidentally got here, please close this window! HAK3RZ not allowed!</p>
+               <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
             </div>
          </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Officer Sign-In</h4>
-         </div>
-         <div class="modal-body">
-            <form id="login-form" method = "post" action="login">
-               <div class="form-group">
-                  <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
-               </div>
-               <br>
-               <div class="form-group row">
-                  <label for="name" class="col-sm-2 form-control-label">Username:<span style="color:red;">*</span></label>
-                  <div class="col-sm-10">
-                     <input type="name" class="form-control" id="name" name="name" placeholder="Username" required>
-                  </div>
-               </div>
-               <div class="form-group row">
-                  <label for="password" class="col-sm-2 form-control-label">Password:<span style="color:red;">*</span></label>
-                  <div class="col-sm-10">
-                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                  </div>
-               </div>
-               <div id="form-submission" class="form-group row">
-                  <div class="col-sm-offset-2 col-sm-10">
-                     <button style="bottom: 0px;" id="submit-button" type="submit" class="custom-button">Send It</button>
-                  </div>
-               </div>
-               <div class='status'>Status</div>
-            </form>
-         </div>
-         <div class="modal-footer">
-            <p class="mes"> If you accidentally got here, please close this window! HAK3RZ not allowed!</p>
-            <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
-         </div>
-      </div>
+      </div> <!--.modal-container -->
    </body>
 </html>
