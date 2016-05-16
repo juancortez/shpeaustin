@@ -39,8 +39,6 @@
 						$(this).toggleClass('flipped-0').toggleClass('flipped');
 					}
 				});	
-
-				$('')
 			});
          }); 
       </script>
@@ -49,9 +47,9 @@
 
 <% include navigation.html %>
 <body>
-	<h2 class = "center-text officer-header"> Executive Officers </h2>
 	<!-- Officer(name, position, email, phone, hometown, company) -->
 	<div class = "officers-container">
+		<h2 class = "center-text officer-header"> Executive Officers </h2>
 		<div class='officer-container'>
 			<ul class ="officer-list">
 				<% officerList.forEach(function(officer) { %>
@@ -126,5 +124,5 @@
 				<% }); %>
 			</ul>
 		</div>
-	</div>
+	</div> <!-- .officers-container -->
 </body>

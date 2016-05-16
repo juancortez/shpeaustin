@@ -64,18 +64,6 @@ gulp.task('contact_script', function() {
         .pipe(gulp.dest(javascript_dest));
 });
 
-
-// a LESS plugin for node.js
-gulp.task('less', function () {
-  var path = require('path');
-  return gulp.src(less_stylesheets)
-    .pipe(plugins.less({
-      paths: [path.join(__dirname, 'less', 'includes') ]
-    }))
-    .pipe(gulp.dest(stylesheet_src));
-});
-
-
 // PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. 
 // It is recommended by Google and used in Twitter, and Taobao.
 gulp.task('autoprefixer', function () {
@@ -92,6 +80,17 @@ gulp.task('autoprefixer', function () {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(stylesheet_dest));
 });
+
+// a LESS plugin for node.js
+gulp.task('less', function () {
+  var path = require('path');
+  return gulp.src(less_stylesheets)
+    .pipe(plugins.less({
+      paths: [path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest(stylesheet_src));
+});
+
 
 // shows errors on HTML 
 // NOTE: doesn't work very well with EJS <% %> tags
