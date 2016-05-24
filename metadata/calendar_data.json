@@ -1,26 +1,14 @@
 {
     "calendar": [
         {
-            "event": "SHPE (H) vs Biohazards (A) - Field 1",
-            "time": "2016-05-16T20:20:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=cGRlcjRnZzNtdDdmNTVkOXFrZmF1aDNtZmsgc2hwZS5hdXN0aW5AbQ",
-            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+            "event": "Officer Meeting",
+            "time": "2016-05-24T21:15:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=NnBqNmNlMzM3MHI2NGJiMjY0c2plYjlrNmtybTRiOXA2Z3BqNGI5aWNoaTYycGhsNmNxbTJkMWxjNF8yMDE2MDUyNVQwMDAwMDBaIHNocGUuYXVzdGluQG0"
         },
         {
             "event": "General Meeting (Nominations)",
-            "time": "2016-05-19",
+            "time": "2016-05-26",
             "link": "https://www.google.com/calendar/event?eid=Z3RycDNsdmtmc21pYjBwdTd1YXE0bzhqMTggc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "SHPE (A) vs Anytime Anyplace (H) - Field 2",
-            "time": "2016-05-23T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=bmwzYXRmc2s4ZGJydmszb2pqYTM3YWo1bm8gc2hwZS5hdXN0aW5AbQ",
-            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
-        },
-        {
-            "event": "Officer Meeting",
-            "time": "2016-05-24T19:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=NnBqNmNlMzM3MHI2NGJiMjY0c2plYjlrNmtybTRiOXA2Z3BqNGI5aWNoaTYycGhsNmNxbTJkMWxjNF8yMDE2MDUyNVQwMDAwMDBaIHNocGUuYXVzdGluQG0"
         },
         {
             "event": "SHPE (A) vs Error Dynamics (H) -  Field 2",
@@ -53,6 +41,17 @@
             "event": "Casino Night (TBD)",
             "time": "2016-06-18",
             "link": "https://www.google.com/calendar/event?eid=ZXRiNjVwM2dxcjVwYmgwcjRrY2M0NXBlcGcgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "SHPE (A) vs Biohazards (H) -  Field 1",
+            "time": "2016-06-20T19:25:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=NHRpajN1ZW04NzlqYmRlamN1MHFwYWZjcHMgc2hwZS5hdXN0aW5AbQ",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, United States"
+        },
+        {
+            "event": "Officer Meeting",
+            "time": "2016-06-21T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=NnBqNmNlMzM3MHI2NGJiMjY0c2plYjlrNmtybTRiOXA2Z3BqNGI5aWNoaTYycGhsNmNxbTJkMWxjNF8yMDE2MDYyMlQwMDAwMDBaIHNocGUuYXVzdGluQG0"
         }
     ]
 }

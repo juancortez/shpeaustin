@@ -281,7 +281,7 @@ var modal = (function(){
         var top, left;
 
         top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
-        left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+        left = Math.max( $('.membership-container').width() - $modal.outerWidth(), 0) / 2;
 
         $modal.css({
             top:top + $(window).scrollTop(), 
@@ -361,7 +361,7 @@ var modal = (function(){
         };
 
 
-        $('body').append($overlay, $modal);
+        $('.membership-container').append($overlay, $modal);
         $close.click(function(e){
             e.preventDefault();
              method.close();
@@ -374,8 +374,8 @@ var modal = (function(){
             if(isMobile){
                 height = 400;
             }
-            window_height = $(window).height();
-            window_width = $(window).width();
+            window_height = $('body').height();
+            window_width = $('body').width();
 
             // make sure that it fits within the frame
             height = window_height < height ? window_height - 50: height;

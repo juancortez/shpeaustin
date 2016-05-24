@@ -4,7 +4,6 @@
       <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.min.css">
       <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/main.css?v=<%= revision %>"> -->
       <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
-      <link rel="stylesheet" type="text/css" href="/dist/index.css?v=<%= revision %>">
       <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
       <!--<script src="/javascripts/index.js?v=<%= revision %>"></script>-->
       <script src="/dist/index.min.js?v=<%= revision %>"></script>
@@ -102,6 +101,7 @@
                         </div> <!-- #newsletter-buttons -->
                         <div id="subscribe-container">
                            <div id="subscribe-div">
+                              <i id="close-subscribe" class="fa fa-times" aria-hidden="true"></i>
                               <p id="stat" class="bold">Subscribe to our newsletter!</p>
                               <label id="subscribe-label" for="subscribe-email">E-mail:<span style="color:red;">*</span></label>
                               <input type="subscribe-email" class="form-control" id="subscribe-email" name="subscribe-email" placeholder="E-mail" required>
@@ -175,49 +175,50 @@
                </div> <!-- .col-sm-6 -->
             </div> <!-- .row -->
          </div> <!-- .bs-example-a -->
+         <div class = "modal-container">
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Officer Sign-In</h4>
+               </div>
+               <div class="modal-body">
+                  <form id="login-form" method = "post" action="login">
+                     <div class="form-group">
+                        <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
+                     </div>
+                     <br>
+                     <div class="form-group row">
+                        <label for="name" class="col-sm-2 form-control-label">Username:<span style="color:red;">*</span></label>
+                        <div class="col-sm-10">
+                           <input type="name" class="form-control" id="name" name="name" placeholder="Username" required>
+                        </div>
+                     </div>
+                     <div class="form-group row">
+                        <label for="password" class="col-sm-2 form-control-label">Password:<span style="color:red;">*</span></label>
+                        <div class="col-sm-10">
+                           <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                        </div>
+                     </div>
+                     <div id="form-submission" class="form-group row">
+                        <div class="col-sm-offset-2 col-sm-10">
+                           <button style="bottom: 0px;" id="submit-button" type="submit" class="custom-button">Send It</button>
+                        </div>
+                     </div>
+                     <div class='status'>Status</div>
+                  </form>
+               </div> <!-- modal-body -->
+               <div class="modal-footer">
+                  <p class="mes"> If you accidentally got here, please close this window! HAK3RZ not allowed!</p>
+                  <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div> <!--.modal-container -->
       </div> <!-- .main-page-container -->
 
-      <div class = "modal-container">
-         <!-- Modal -->
-         <div class="modal fade" id="myModal" role="dialog">
-         <div class="modal-dialog">
-         <!-- Modal content-->
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Officer Sign-In</h4>
-            </div>
-            <div class="modal-body">
-               <form id="login-form" method = "post" action="login">
-                  <div class="form-group">
-                     <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
-                  </div>
-                  <br>
-                  <div class="form-group row">
-                     <label for="name" class="col-sm-2 form-control-label">Username:<span style="color:red;">*</span></label>
-                     <div class="col-sm-10">
-                        <input type="name" class="form-control" id="name" name="name" placeholder="Username" required>
-                     </div>
-                  </div>
-                  <div class="form-group row">
-                     <label for="password" class="col-sm-2 form-control-label">Password:<span style="color:red;">*</span></label>
-                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                     </div>
-                  </div>
-                  <div id="form-submission" class="form-group row">
-                     <div class="col-sm-offset-2 col-sm-10">
-                        <button style="bottom: 0px;" id="submit-button" type="submit" class="custom-button">Send It</button>
-                     </div>
-                  </div>
-                  <div class='status'>Status</div>
-               </form>
-            </div> <!-- modal-body -->
-            <div class="modal-footer">
-               <p class="mes"> If you accidentally got here, please close this window! HAK3RZ not allowed!</p>
-               <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
-            </div>
-         </div>
-      </div> <!--.modal-container -->
+
    </body>
 </html>

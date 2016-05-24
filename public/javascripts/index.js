@@ -357,6 +357,15 @@ $(document).ready(function() { // HTML has loaded
         updateNewsletter();
     });
 
+    $("#close-subscribe").click(function(){
+        $("#subscribe-container").css({'display':'none'});
+        $("#newsletter-buttons").show();
+        $(".fa-archive").show();
+        $(".fa-envelope").show();
+        $("#stat").text("Subscribe to our newsletter!");
+        $("#stat").css({'color':'black'});
+    });
+
     function updateNewsletter() {
         $("#title").empty();
         $("#description").empty();
@@ -458,8 +467,8 @@ var modal = (function(){
     method.center = function () {
         var top, left;
 
-        top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
-        left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+        top = Math.max($('body').height() - $modal.outerHeight(), 0) / 2;
+        left = Math.max($('body').width() - $modal.outerWidth(), 0) / 2;
 
         $modal.css({
             top:top + $(window).scrollTop(), 
@@ -499,7 +508,7 @@ var modal = (function(){
     };
 
     $(document).ready(function(){
-        $('body').append($overlay, $modal);
+        $('.main-page-container').append($overlay, $modal);
         $close.click(function(e){
             e.preventDefault();
              method.close();
