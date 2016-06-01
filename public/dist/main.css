@@ -676,6 +676,11 @@ html ::-webkit-scrollbar {
   height: 214px;
   overflow-y: auto;
 }
+@media only screen and (max-width: 768px) {
+  .main-page-container .bs-example-a .row #fpc_box #google-calendar-content {
+    height: 150px;
+  }
+}
 .main-page-container .bs-example-a .row #fpc_box #google-calendar-content h4 {
   margin-bottom: 20px;
 }

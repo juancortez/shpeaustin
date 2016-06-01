@@ -374,12 +374,16 @@ var modal = (function(){
             if(isMobile){
                 height = 400;
             }
-            window_height = $('body').height();
-            window_width = $('body').width();
+            window_height = $(window).height();
+            window_width = $(window).width();
 
             // make sure that it fits within the frame
             height = window_height < height ? window_height - 50: height;
             width = window_width < width ? window_width - 50 : width;
+            if(isMobile){
+                width = 345;
+                $("#modal").css({'margin-left': '8px'});
+            }
 
             var formattedPillar = pillar.replace(/ /g,"_").toLowerCase(); // replace spaces with an underscore
             var title = "<h2 class ='dark-shpe-blue modal-title'>" + pillar + "</h2>";

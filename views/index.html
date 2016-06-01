@@ -5,8 +5,8 @@
       <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/main.css?v=<%= revision %>"> -->
       <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
       <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
-      <!--<script src="/javascripts/index.js?v=<%= revision %>"></script>-->
-      <script src="/dist/index.min.js?v=<%= revision %>"></script>
+      <script src="/javascripts/index.js?v=<%= revision %>"></script>
+      <!-- <script src="/dist/index.min.js?v=<%= revision %>"></script>-->
       <script src="/stylesheets/libs/bootstrap-3.3.6-dist/js/bootstrap.min.js?v=<%= revision %>"></script>
       <!-- https://www.addevent.com/buttons/add-to-calendar -->
       <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
@@ -125,6 +125,7 @@
                                  <h4 id="event-title"></h4>
                                  <h4 id="event-date"></h4>
                                  <h4 id="event-location"></h4>
+                                 <i id="calendar-loader" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw dark-shpe-blue"></i>
                                  <h4> <b>More Info:</b> <a href="" id ="event-link">Link</a></h4>
                               </div>
                            </div>

@@ -707,11 +707,15 @@ html{
           text-align: center;
           height: 214px;
           overflow-y: auto;
+          
+          @media only screen and (max-width: 768px){
+            height: 150px;
+          }
 
           h4{
             margin-bottom: 20px;
           }
-        }
+        } // #google-calendar-content
       } // #fpc_box
 
       .calendar-controls{

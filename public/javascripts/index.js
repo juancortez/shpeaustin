@@ -81,7 +81,8 @@ $(document).ready(function() { // HTML has loaded
                 $("span.start").text(dateFormat);
                 $("span.end").text(dateFormat); //TODO: add ending time support
             }
-            if(time.day < date.getDate()) {
+
+            if(time.month <= currentMonth && time.day < currentDay) {
                 calendarData.calendar.splice(0, 1); // remove all of the old calendar items from the array
                 numCalendarItems--;
                 continue;
@@ -97,6 +98,7 @@ $(document).ready(function() { // HTML has loaded
             $("#event-link").attr('href', calendarHtml.link);
             $("span.description").text(calendarHtml.link);
         }
+        $("#calendar-loader").hide();
     });
 
     $.ajax({
@@ -198,7 +200,7 @@ $(document).ready(function() { // HTML has loaded
         if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(content)) {
             //console.log("Contains URL"); //TODO: figure out how to enclose link in a <a>
         }
-        $(postContent).text(content);
+        $(postContent).html(content);
         var innerP = '<p class="officer-post">';
         var completeHtml = innerP;
         completeHtml = $(completeHtml).append(postInfo);
@@ -222,6 +224,7 @@ $(document).ready(function() { // HTML has loaded
         }
         $('.fa-calendar').toggleClass('dark-shpe-blue mid-blue');
         calendarHtml = calendarData.calendar[calendarItem];
+
         $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
         $("span.title").text(calendarHtml.event);
         var time = parseCalendarTime(calendarHtml.time);
@@ -397,6 +400,7 @@ $(document).ready(function() { // HTML has loaded
                    }
         }).done(function(login){
             var id = login.uuid; // a unique UUID sent from the server
+            authenticated = true;
             console.log("Login successful with UUID " + id);
             localStorage.setItem('credentials', id);
             $(".mes").hide();
@@ -467,8 +471,8 @@ var modal = (function(){
     method.center = function () {
         var top, left;
 
-        top = Math.max($('body').height() - $modal.outerHeight(), 0) / 2;
-        left = Math.max($('body').width() - $modal.outerWidth(), 0) / 2;
+        top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+        left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
 
         $modal.css({
             top:top + $(window).scrollTop(), 
@@ -523,7 +527,15 @@ var modal = (function(){
             height = window_height < height ? window_height - 50: height;
             width = window_width < width ? window_width - 50 : width;
             $("#modal").css({'background':'white'});
-            modal.open({content: $("<h1>View Previous Newsletters<h1><ul class='newsletterList'><li><a href='http://us1.campaign-archive1.com/?u=c8b5a41c875ce918bbd091e52&id=00399bbff9&e=38ee20bb08'>Early May 2016</a> </li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=480dcd7865&e=38ee20bb08'>Mid-April 2016</a> </li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=17cac73925&e=38ee20bb08'>Early-April 2016</a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=a8f7a3cd22&e=38ee20bb08'>March 2016 </a></li><li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=ecb6bb1b8c&e=1365fed48c'>February 2016</a></li></ul>"), width: width+"px", height: height+"px", align: "center"});
+            var modalNewsletters = "<h1>View Previous Newsletters<h1> " +
+            "<ul class='newsletterList'> " + 
+            "<li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=215199c3b2&e=38ee20bb08'>June 2016</a> </li>" +
+            "<li><a href='http://us1.campaign-archive1.com/?u=c8b5a41c875ce918bbd091e52&id=00399bbff9&e=38ee20bb08'>May 2016</a> </li>" + 
+            "<li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=480dcd7865&e=38ee20bb08'>Mid-April 2016</a> </li>" + 
+            "<li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=17cac73925&e=38ee20bb08'>Early-April 2016</a></li>" + 
+            "<li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=a8f7a3cd22&e=38ee20bb08'>March 2016 </a></li>" + 
+            "<li><a href='http://us1.campaign-archive2.com/?u=c8b5a41c875ce918bbd091e52&id=ecb6bb1b8c&e=1365fed48c'>February 2016</a></li></ul>";
+            modal.open({content: $(modalNewsletters), width: width+"px", height: height+"px", align: "center"});
         });
 
         $(document).keydown(function(event){
