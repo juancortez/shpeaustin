@@ -5,14 +5,15 @@
       <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/main.css?v=<%= revision %>"> -->
       <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
       <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
-      <script src="/javascripts/index.js?v=<%= revision %>"></script>
-      <!-- <script src="/dist/index.min.js?v=<%= revision %>"></script>-->
+      <!--<script src="/javascripts/index.js?v=<%= revision %>"></script>-->
+      <script src="/dist/index.min.js?v=<%= revision %>"></script>
       <script src="/stylesheets/libs/bootstrap-3.3.6-dist/js/bootstrap.min.js?v=<%= revision %>"></script>
       <!-- https://www.addevent.com/buttons/add-to-calendar -->
       <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
       <script src="/socket.io/socket.io.js"></script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script>
+         // Google Analytics
          (function(i, s, o, g, r, a, m) {
              i['GoogleAnalyticsObject'] = r;
              i[r] = i[r] || function() {
@@ -31,11 +32,24 @@
          }); // https
          ga('send', 'pageview');
          ga('b.send', 'pageview');
+
+         // Facebook Feed
+         (function(d, s, id) {
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) return;
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+
+         // Twitter Feed
+         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
       </script>
-      <script></script>
    </head>
    <%include navigation.html%>
    <body>
+      <div id="fb-root"></div>
       <div class="main-page-container">
          <div class="site-slider-custom-header">
             <main class="bs-docs-masthead" id="content" role="main" tabindex="-1">
@@ -176,8 +190,23 @@
                      </div> <!-- .caption -->
                   </div> <!-- .thumbnail -->
                </div> <!-- .col-sm-6 -->
+
+               <div class="col-sm-6 col-md-4">
+                  <h2 class="thumbnail-title dark-shpe-blue"> Facebook </h2>
+                  <div class="thumbnail facebook-thumbnail">
+                     <iframe class="facebook-iframe" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FSHPEAustin%2F%3Ffref%3Dts&tabs=timeline&width=320&height=430&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="320" height="430" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                  </div>
+               </div>
+
+               <div class="col-sm-6 col-md-4 twitter-block">
+                  <h2 class="thumbnail-title dark-shpe-blue"> Twitter </h2>
+                  <div class="thumbnail twitter-thumbnail">
+                      <a class="twitter-timeline" href="https://twitter.com/SHPEAustin" data-widget-id="738482761858732032">Tweets by @SHPEAustin</a>
+                  </div>
+               </div>
             </div> <!-- .row -->
          </div> <!-- .bs-example-a -->
+
          <div class = "modal-container">
             <!-- Modal -->
             <div class="modal fade" id="myModal" role="dialog">
@@ -221,7 +250,5 @@
             </div>
          </div> <!--.modal-container -->
       </div> <!-- .main-page-container -->
-
-
    </body>
 </html>

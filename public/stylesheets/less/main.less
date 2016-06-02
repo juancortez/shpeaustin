@@ -355,6 +355,7 @@ html{
 
       #announcement-form{
         padding: 20px;
+        width: 100%;
       }
 
       #post-announcement{
@@ -569,6 +570,25 @@ html{
       .thumbnail{
         min-height: 473px;
         max-height: 473px;
+        overflow-y: hidden;
+
+        &.facebook-thumbnail{
+          width: 100%;
+          .facebook-iframe{
+            border: none;
+            overflow: hidden;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+
+        &.twitter-thumbnail{
+          width: 100%;
+          height: 450px;
+          overflow-y: hidden;
+          display: flex;
+          justify-content: center;
+        }
 
         @media only screen and (max-width: 768px){
           max-height: 433px;
@@ -599,6 +619,9 @@ html{
         }
       } // .thumbnail
 
+      .twitter-block{
+        float: right;
+      }
       #fpc_box {
         width: 100%;/*any relative or absolute*/
         position: relative;

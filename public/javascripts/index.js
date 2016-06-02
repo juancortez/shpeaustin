@@ -211,10 +211,10 @@ $(document).ready(function() { // HTML has loaded
         var announcementLink;
         if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(content)) {
             var splitAnnouncement = content.split(' ');
-            for(var i = 0, length = splitAnnouncement.length; i < length; i++){
-                if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(splitAnnouncement[i])){
+            for(var j = 0, length = splitAnnouncement.length; j < length; j++){
+                if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(splitAnnouncement[j])){
                     announcementLink = document.createElement('a');
-                    announcementLink.setAttribute('href', splitAnnouncement[i]);
+                    announcementLink.setAttribute('href', splitAnnouncement[j]);
                     announcementLink.text = "(Attached link)";
                 }
             }

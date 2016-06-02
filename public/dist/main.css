@@ -349,6 +349,7 @@ html ::-webkit-scrollbar {
 }
 .main-page-container .announcements .post-announcement #announcement-form {
   padding: 20px;
+  width: 100%;
 }
 .main-page-container .announcements .post-announcement #post-announcement {
   font-family: inherit;
@@ -544,6 +545,27 @@ html ::-webkit-scrollbar {
 .main-page-container .bs-example-a .row .thumbnail {
   min-height: 473px;
   max-height: 473px;
+  overflow-y: hidden;
+}
+.main-page-container .bs-example-a .row .thumbnail.facebook-thumbnail {
+  width: 100%;
+}
+.main-page-container .bs-example-a .row .thumbnail.facebook-thumbnail .facebook-iframe {
+  border: none;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto;
+}
+.main-page-container .bs-example-a .row .thumbnail.twitter-thumbnail {
+  width: 100%;
+  height: 450px;
+  overflow-y: hidden;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 @media only screen and (max-width: 768px) {
   .main-page-container .bs-example-a .row .thumbnail {
@@ -575,6 +597,9 @@ html ::-webkit-scrollbar {
 }
 .main-page-container .bs-example-a .row .thumbnail .fa-envelope {
   right: 48px;
+}
+.main-page-container .bs-example-a .row .twitter-block {
+  float: right;
 }
 .main-page-container .bs-example-a .row #fpc_box {
   width: 100%;
