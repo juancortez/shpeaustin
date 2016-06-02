@@ -118,6 +118,17 @@ $(document).ready(function() { // HTML has loaded
         console.error("GET method for /announcements failed.");
     });
 
+    $.ajax({
+        method: "GET",
+        url: "/officerlist"
+    }).done(function(data){
+        for(var i = 0, length = data.length; i < length; i++){
+            $("select").append('<option value="' + data[i].name + '">' + data[i].name + '</option>');
+        }
+    }).fail(function(e){
+        console.error("GET method for /officerlist failed.");
+    });
+
 
     if(localStorage.getItem('credentials')){
         $.ajax({
@@ -197,10 +208,19 @@ $(document).ready(function() { // HTML has loaded
         var postInfo = $(announcementInfo).find('.post-info')[0];
         $(postInfo).text(postInfoText + " ");
         var postContent = $(announcementInfo).find('.post-content')[0];
+        var announcementLink;
         if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(content)) {
-            //console.log("Contains URL"); //TODO: figure out how to enclose link in a <a>
+            var splitAnnouncement = content.split(' ');
+            for(var i = 0, length = splitAnnouncement.length; i < length; i++){
+                if(new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?").test(splitAnnouncement[i])){
+                    announcementLink = document.createElement('a');
+                    announcementLink.setAttribute('href', splitAnnouncement[i]);
+                    announcementLink.text = "(Attached link)";
+                }
+            }
         }
-        $(postContent).html(content);
+        $(postContent).html(content + " ");
+        $(postContent).append(announcementLink);
         var innerP = '<p class="officer-post">';
         var completeHtml = innerP;
         completeHtml = $(completeHtml).append(postInfo);

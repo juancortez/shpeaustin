@@ -687,6 +687,11 @@ html ::-webkit-scrollbar {
 .main-page-container .bs-example-a .row .calendar-controls {
   text-align: center;
 }
+@media only screen and (max-width: 515px) {
+  .main-page-container .bs-example-a .row .calendar-controls {
+    margin-top: 55px;
+  }
+}
 .main-page-container .bs-example-a .row .calendar-controls i {
   color: #337ab7;
   cursor: pointer;
@@ -1715,7 +1720,7 @@ html ::-webkit-scrollbar {
 @media only screen and (max-width: 440px) {
   .membership-container #modal .modal-images {
     height: 191px;
-    width: 340px;
+    width: 90%;
   }
 }
 

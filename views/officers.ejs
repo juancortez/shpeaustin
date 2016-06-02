@@ -41,7 +41,8 @@
 				$('.card').on('click', function(){
 					var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 					if(isMobile){
-						$(this).toggleClass('flipped-0').toggleClass('flipped');
+						$('.card').removeClass('flipped-0');
+						$(this).toggleClass('flipped');
 					}
 				});	
 			});

@@ -165,6 +165,18 @@ module.exports = function(app, client, privateCredentials) {
             }
         });
     });
+
+    app.get('/officerlist', function(req, res) {
+        client.get('officerList', function (err, officerList) {
+            if(officerList){
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.parse(officerList));
+            } else{
+                console.error(err);
+                res.sendStatus(404);
+            }
+        });
+    });
     /*************************************************************************/
     // The following endpoints POST data to the Redis database
     /*************************************************************************/
@@ -178,14 +190,30 @@ module.exports = function(app, client, privateCredentials) {
                         parsedJSON.announcements[length] = req.body;
                         client.set("announcements", JSON.stringify(parsedJSON));
                         res.setHeader('Content-Type', 'application/json');
+                        var jsonfile = require('jsonfile');
+                        jsonfile.spaces = 4;
+                        var path = require("path");
+                        var file = path.join(__dirname, '../metadata', 'announcements.json');
+                        jsonfile.writeFile(file, parsedJSON, function(err) {
+                            console.error(err);
+                        });
+                        console.log("Successfully  updated the announcements.json file under the metadata folder.");
                         res.send(parsedJSON);
-                        } 
+                    } 
                 } else{
                     var announcements = {};
                     announcements['announcements'] = [];
                     announcements.announcements[0] = req.body;
                     client.set("announcements", JSON.stringify(announcements));
                     res.setHeader('Content-Type', 'application/json');
+                    var jsonfile = require('jsonfile');
+                    jsonfile.spaces = 4;
+                    var path = require("path");
+                    var file = path.join(__dirname, '../metadata', 'announcements.json');
+                    jsonfile.writeFile(file, announcements, function(err) {
+                        console.error(err);
+                    });
+                    console.log("Successfully  updated the announcements.json file under the metadata folder.");
                     res.send(announcements);
                 }
             } else{

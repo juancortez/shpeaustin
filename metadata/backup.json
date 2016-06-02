@@ -1,41 +1,40 @@
 {
-    "newsletterdata": {
-        "newsletter": [
+    "announcements": {
+        "announcements": [
             {
-                "title": "Event Recap: Scholarship Banquet ",
-                "description": "SHPE Austin recently recognized the winners of the SHPE Scholarships: William Torres (L) , Mark Sand (R), and David Castro (Not pictured) for being excellent leaders in their communities. Congratulations !",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/963196e3-f11e-4823-aa6e-fd0177bb7785.jpg",
-                "image_link": ""
+                "officer": "Manuel Espinosa",
+                "timestamp": "Wed Mar 23 2016 11:38:03 GMT-0500 (CDT)",
+                "announcement": "Sign ups for Noche de Ciencias are now open! RSVP at http://tinyurl.com/zfhezha"
             },
             {
-                "title": "Networking with UT Students",
-                "description": "Join SHPE Austin TODAY at Posse East (2900 Duval Rd. 78705). Free appetizers will be provided. \n ",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/10820019-2116-40f2-be54-9262435eae23.jpg",
-                "image_link": "https://www.facebook.com/events/1074582639247031/"
+                "officer": "Karen Siles",
+                "timestamp": "Wed Mar 23 2016 11:41:20 GMT-0500 (CDT)",
+                "announcement": "SHPE Austin has opened up the application for the 2016 scholarships! If you have any questions feel free to ask Scholarship Director, Karen Siles. Go here https://docs.google.com/a/utexas.edu/forms/d/14PzspzhT4Ajv5ZVPTX_fmjtOfqDAjJPBgLpKzOANrXw/viewform?c=0&w=1 to apply!"
             },
             {
-                "title": "Spring Fresh Start 2016",
-                "description": "SHPE Austin will be partnering up with NSBE Professional to host a family STEM event. This event will be open to middle school thru high school students. In addition, volunteers are needed to facilitate and/or lead workshop activities.\nDate: May 15th at Applied Materials (9700 E Hwy 290, 78724)",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/5b5d16e6-ed0e-4282-9e82-c1f583273fed.jpg",
-                "image_link": "http://www.eventbrite.com/e/2016-spring-freshstart-registration-24434137162"
+                "officer": "Juan Cortez",
+                "timestamp": "Wed Mar 23 2016 14:48:12 GMT-0500 (CDT)",
+                "announcement": "The announcements posting is now live!"
             },
             {
-                "title": "SHPE and NSBE Pool Party",
-                "description": "SHPE Austin and NSBE Austin Professional will be hosting a pool party for Austin area engineering interns. Come build your personal and professional network with members from various backgrounds, disciplines, and universities. \nDate: July 9th (3-6PM) Location: TBD ",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/539ecb37-8655-4315-a7a3-df8e876fcebc.jpg",
-                "image_link": "http://"
+                "officer": "Hugo Landaverde",
+                "timestamp": "Tue May 31 2016 17:44:52 GMT-0500 (CDT)",
+                "announcement": "Join us for our next General Meeting this THURSDAY! Contact us for more details."
             },
             {
-                "title": "Sign up for Softball TODAY",
-                "description": "If you are interested in playing a sport with a \"Professional\" team in a friendly league, join the SHPE Austin Athletic team. We encourage players from all levels to come have a blast with us in Softball, Volleyball, Kickball, and more. For more information contact Carlos Pizarro.\n\nClick on the image to access the survey",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/eae26cae-4c57-45bc-8425-1a9efc3e07fb.jpg",
-                "image_link": "https://docs.google.com/forms/d/11PwA92DbqDLJBPINyq6qI_VPwZ5XT5DtYu_DEhT8GPc/viewform?usp=send_form"
+                "officer": "Jeremy Benavides",
+                "timestamp": "Wed Jun 01 2016 21:53:11 GMT-0500 (CDT)",
+                "announcement": "Checking"
             },
             {
-                "title": "Recap: Latinitas Code Chica Conference 2016",
-                "description": "Latinitas and SHPE Austin would like to thank all volunteers that came out to help out at the Latinitas Code Chica Conference. The event taught girls how to use media and technology to design, code and market their own mobile app idea. Overall, the event was a success!",
-                "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/92649bb2-0685-4ba2-adcd-f01c3ce58af9.jpg",
-                "image_link": ""
+                "officer": "Jeremy Benavides",
+                "timestamp": "Wed Jun 01 2016 21:55:10 GMT-0500 (CDT)",
+                "announcement": "check2"
+            },
+            {
+                "officer": "Jeremy Benavides",
+                "timestamp": "Wed Jun 01 2016 21:57:19 GMT-0500 (CDT)",
+                "announcement": "check3"
             }
         ]
     }
