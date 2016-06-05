@@ -19,4 +19,4 @@ exports.sendGridEmail = "cortezjuanjr@gmail.com";
  * that a new file and will download the external style sheet from the web server instead of using the cached site.
  *
  */
-exports.revision = 23; // Revision 23 as of June 1, 2016 @ 22:00
+exports.revision = 25; // Revision 25 as of June 6, 2016 @ 16:02

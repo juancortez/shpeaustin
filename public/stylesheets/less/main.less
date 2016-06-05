@@ -570,10 +570,10 @@ html{
       .thumbnail{
         min-height: 473px;
         max-height: 473px;
-        overflow-y: hidden;
 
         &.facebook-thumbnail{
           width: 100%;
+          overflow-y: hidden;
           .facebook-iframe{
             border: none;
             overflow: hidden;
@@ -621,6 +621,9 @@ html{
 
       .twitter-block{
         float: right;
+        @media only screen and (max-width: 1137px){
+          float: left;
+        }
       }
       #fpc_box {
         width: 100%;/*any relative or absolute*/

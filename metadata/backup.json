@@ -1,4 +1,5 @@
 {
+    "revisionNumber": 24,
     "announcements": {
         "announcements": [
             {
@@ -22,19 +23,44 @@
                 "announcement": "Join us for our next General Meeting this THURSDAY! Contact us for more details."
             },
             {
-                "officer": "Jeremy Benavides",
-                "timestamp": "Wed Jun 01 2016 21:53:11 GMT-0500 (CDT)",
-                "announcement": "Checking"
+                "officer": "Rodrigo Estrada",
+                "timestamp": "Thu Jun 02 2016 10:33:07 GMT-0500 (CDT)",
+                "announcement": "SHPE is volunteering with Austin Habitat for Humanity Young Professionals! Join us as we volunteer to build a new home for those in need! More details on our FB page! https://www.facebook.com/events/234904820222511/"
             },
             {
-                "officer": "Jeremy Benavides",
-                "timestamp": "Wed Jun 01 2016 21:55:10 GMT-0500 (CDT)",
-                "announcement": "check2"
+                "officer": "Juan Cortez",
+                "timestamp": "Sun Jun 05 2016 14:27:58 GMT-0500 (CDT)",
+                "announcement": "website testing"
             },
             {
-                "officer": "Jeremy Benavides",
-                "timestamp": "Wed Jun 01 2016 21:57:19 GMT-0500 (CDT)",
-                "announcement": "check3"
+                "officer": "Juan Cortez",
+                "timestamp": "Sun Jun 05 2016 14:29:51 GMT-0500 (CDT)",
+                "announcement": "website announcement post test"
+            },
+            {
+                "officer": "Juan Cortez",
+                "timestamp": "Sun Jun 05 2016 14:32:35 GMT-0500 (CDT)",
+                "announcement": "test post"
+            },
+            {
+                "officer": "Juan Cortez",
+                "timestamp": "Sun Jun 05 2016 14:36:23 GMT-0500 (CDT)",
+                "announcement": "Final test post"
+            },
+            {
+                "officer": "Juan Cortez",
+                "timestamp": "Sun Jun 05 2016 14:36:48 GMT-0500 (CDT)",
+                "announcement": "bug fixing"
+            },
+            {
+                "officer": "Juan Cortez",
+                "timestamp": "Sun Jun 05 2016 15:14:22 GMT-0500 (CDT)",
+                "announcement": "hi testing the feature!"
+            },
+            {
+                "officer": "Juan Cortez",
+                "timestamp": "Sun Jun 05 2016 16:02:34 GMT-0500 (CDT)",
+                "announcement": "final check"
             }
         ]
     }

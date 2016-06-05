@@ -7,6 +7,8 @@ var all_javascripts = "public/javascripts/*.js",
     javascript_src = "public/javascripts/",
     javascript_dest = "public/dist";
 
+var utils_src = "public/javascripts/utils/";
+
 var all_stylesheets = "public/stylesheets/*.css",
     less_stylesheets = "public/stylesheets/less/*.less",
     stylesheet_src = "public/stylesheets/",
@@ -60,6 +62,14 @@ gulp.task('contact_script', function() {
     return gulp.src(javascript_src+"contact.js")
         .pipe(plugins.concat('contact.js'))
         .pipe(plugins.rename('contact.min.js'))
+        .pipe(plugins.uglify())
+        .pipe(gulp.dest(javascript_dest));
+});
+
+gulp.task('ajaxUtils_script', function() {
+    return gulp.src(utils_src+"ajaxUtils.js")
+        .pipe(plugins.concat('ajaxUtils.js'))
+        .pipe(plugins.rename('ajaxUtils.min.js'))
         .pipe(plugins.uglify())
         .pipe(gulp.dest(javascript_dest));
 });
@@ -118,6 +128,7 @@ gulp.task('json_lint', function() {
 // continuously jump back to our command-line and run the gulp command each time.
 gulp.task('watch', function() {
     gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script']);
+    gulp.watch(utils_src, ['ajaxUtils_script']);
     gulp.watch(all_stylesheets, ['less', 'autoprefixer']);
     gulp.watch(less_stylesheets, ['less', 'autoprefixer']);
     gulp.watch(all_json, ['json_lint']);
@@ -125,4 +136,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'less', 'autoprefixer', 'json_lint', 'watch']);
+gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'ajaxUtils_script', 'less', 'autoprefixer', 'json_lint', 'watch']);
