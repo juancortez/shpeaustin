@@ -312,12 +312,14 @@ html{
     margin: 25px 0px 25px 0px;
 
     @media (max-width: 777px){
-        padding: 0px;
+        // padding: 0px;
+        padding: 0px 15px 0px 15px;
         height: 240px;
     }
 
     @media (min-width: 768px){
       padding: 0px;
+      // padding: 0px 15px 0px 15px;
     }
 
     #announcement-header{
@@ -470,12 +472,12 @@ html{
   } // .announcements
 
   .bs-example-a{
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 0px 25px 0px 25px;
     margin-right: auto;
     margin-left: auto;
     width: 85%;
     margin-top :15px;
+
 
     @media only screen and (max-width: 1137px){
         width: 750px;  
@@ -496,6 +498,8 @@ html{
         min-height: 199px;
       }
       .caption{
+        min-height: 220px;
+        max-height: 220px;
         #subscribe-container{
           display: none;
           align-items: center;
@@ -538,22 +542,16 @@ html{
           margin-top: 0px;
         }
         #description{
-          height: 98px;
+          height: 118px;
           overflow: scroll;
         }
         .membership-header{
           text-align: center;
           margin-top: 0px;
-        }
-
-        #newsletter-buttons{
-          text-align:center;
-
-          #prev-newsletter{
-            margin-right: 15px;
+          @media only screen and (max-width: 1211px){
+            font-size: 20px;
           }
-        } // #newsletter-buttons
-
+        }
         .carousel-indicators{
             display: inline-block;
             position: relative;
@@ -566,6 +564,23 @@ html{
             }
         }
       } // .caption
+
+      #newsletter-buttons{
+        text-align:center;
+
+        #prev-newsletter{
+          margin-right: 15px;
+        }
+      } // #newsletter-buttons
+
+      .social-media{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        @media only screen and (max-width: 768px){
+          display: block;
+        }
+      }
 
       .thumbnail{
         min-height: 473px;
@@ -619,12 +634,6 @@ html{
         }
       } // .thumbnail
 
-      .twitter-block{
-        float: right;
-        @media only screen and (max-width: 1137px){
-          float: left;
-        }
-      }
       #fpc_box {
         width: 100%;/*any relative or absolute*/
         position: relative;

@@ -77,7 +77,7 @@ $(document).ready(function() { // HTML has loaded
         }
     });
 
-
+    // login for the website
     $('#login-form').submit(function(formText) {
         ajaxUtils.login(formText, function(err){
             if(err){
@@ -86,6 +86,15 @@ $(document).ready(function() { // HTML has loaded
         });
         return false; // won't refresh the page
     }); 
+
+    // button clicked to subcribe to the newsletter
+    $(".fa-envelope-o").click(function(e){
+        ajaxUtils.subscribe(function(err){
+            if(err){
+                console.error(err);
+            }
+        });
+    });
 
 
     $('.fa-envelope').click(function(){
@@ -96,46 +105,15 @@ $(document).ready(function() { // HTML has loaded
         clearInterval(newsletterInterval);
     });
 
-    $(".fa-envelope-o").click(function(e){
-        var address = $("#subscribe-email").val();
-        if(!checkIfEmailInString(address)){
-            $("#stat").css({'color':'red'});
-            $("#stat").text("Invalid e-mail.");
-        } else{
-            $("#stat").css({'color':'green'});
-            $("#stat").text("Subscription successful!");
-            $.ajax({
-                type: 'POST',
-                url: '/contact',
-                data: { name: "new user", 
-                        email: address,
-                        phone: "n/a",
-                        category: "SHPE Austin: Newletter Subscription Request",
-                        message: "Please add " + address + " to the newsletter."
-                       }
-            }).done(function(status){
-                console.log("Success!");
-            }).fail(function(status){
-                console.error("Unsuccessful. Error Code: " + status);
-            });
-            setTimeout(function(){
-                $("#subscribe-container").css({'display':'none'});
-                $("#newsletter-buttons").show();
-                $(".fa-archive").show();
-                $(".fa-envelope").show();
-                $("#stat").text("Subscribe to our newsletter!");
-                $("#stat").css({'color':'black'});
-            }, 2500);
-        }
-        
+    $("#close-subscribe").click(function(){
+        $("#subscribe-container").css({'display':'none'});
+        $("#newsletter-buttons").show();
+        $(".fa-archive").show();
+        $(".fa-envelope").show();
+        $("#stat").text("Subscribe to our newsletter!");
+        $("#stat").css({'color':'black'});
     });
-
-    function checkIfEmailInString(text) { 
-        var re = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
-        return re.test(text);
-    }
     
-    // try this: http://keith-wood.name/icalendar.html
     $(".cal-button").on('click', function(e){
         if($(e.currentTarget).hasClass('fa-angle-double-right')){
             calendarItem = (calendarItem + 1) % numCalendarItems;
@@ -194,15 +172,6 @@ $(document).ready(function() { // HTML has loaded
         $($('ol li')[newsletterItem]).removeClass('active');
         newsletterItem = ((newsletterItem + 1) % (populatedItems));
         updateNewsletter();
-    });
-
-    $("#close-subscribe").click(function(){
-        $("#subscribe-container").css({'display':'none'});
-        $("#newsletter-buttons").show();
-        $(".fa-archive").show();
-        $(".fa-envelope").show();
-        $("#stat").text("Subscribe to our newsletter!");
-        $("#stat").css({'color':'black'});
     });
 
     function updateNewsletter() {

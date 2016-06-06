@@ -1,5 +1,9 @@
-// This file contains all the AJAX calls that are made to the backend, as well as
-// any helper functions required in the parsing of data.
+/******************************************************************
+This file contains the AJAX calls made to the backend from the
+index.html page. On load, the ajaxUtils variable is initialized
+and is used in the /public/javascripts/index.js file. The REST
+calls are handled in the router/main.js file
+******************************************************************/
 
 var ajaxUtils = (function(){
 	var _months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -228,6 +232,44 @@ var ajaxUtils = (function(){
         });    
 	}
 
+	function subscribe(callback){
+		var address = $("#subscribe-email").val();
+        if(!_checkIfEmailInString(address)){
+            $("#stat").css({'color':'red'});
+            $("#stat").text("Invalid e-mail.");
+        } else{
+            $("#stat").css({'color':'green'});
+            $("#stat").text("Subscription successful!");
+            $.ajax({
+                type: 'POST',
+                url: '/contact',
+                data: { name: "new user", 
+                        email: address,
+                        phone: "n/a",
+                        category: "SHPE Austin: Newletter Subscription Request",
+                        message: "Please add " + address + " to the newsletter."
+                       }
+            }).done(function(status){
+                console.log("Success!");
+            }).fail(function(status){
+            	callback("Unsuccessful. Error Code: " + status);
+            });
+            setTimeout(function(){
+                $("#subscribe-container").css({'display':'none'});
+                $("#newsletter-buttons").show();
+                $(".fa-archive").show();
+                $(".fa-envelope").show();
+                $("#stat").text("Subscribe to our newsletter!");
+                $("#stat").css({'color':'black'});
+            }, 2500);
+        }
+	}
+
+    function _checkIfEmailInString(text) { 
+        var re = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+        return re.test(text);
+    }
+
     function _parseCalendarTime(time){
         var date = [];
         var year = time.substring(0,time.indexOf('-'));
@@ -360,6 +402,7 @@ var ajaxUtils = (function(){
 		getOfficers: getOfficers,
 		getAuthentication: getAuthentication,
 		login: login,
+		subscribe: subscribe,
 		_parseCalendarTime: _parseCalendarTime,
 		_convertToDateFormat: _convertToDateFormat
 	}

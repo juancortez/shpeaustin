@@ -304,7 +304,7 @@ html ::-webkit-scrollbar {
 }
 @media (max-width: 777px) {
   .main-page-container .announcements {
-    padding: 0px;
+    padding: 0px 15px 0px 15px;
     height: 240px;
   }
 }
@@ -456,8 +456,7 @@ html ::-webkit-scrollbar {
   font-weight: bold;
 }
 .main-page-container .bs-example-a {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding: 0px 25px 0px 25px;
   margin-right: auto;
   margin-left: auto;
   width: 85%;
@@ -480,6 +479,10 @@ html ::-webkit-scrollbar {
 .main-page-container .bs-example-a .row img {
   max-height: 199px;
   min-height: 199px;
+}
+.main-page-container .bs-example-a .row .caption {
+  min-height: 220px;
+  max-height: 220px;
 }
 .main-page-container .bs-example-a .row .caption #subscribe-container {
   display: none;
@@ -520,18 +523,17 @@ html ::-webkit-scrollbar {
   margin-top: 0px;
 }
 .main-page-container .bs-example-a .row .caption #description {
-  height: 98px;
+  height: 118px;
   overflow: scroll;
 }
 .main-page-container .bs-example-a .row .caption .membership-header {
   text-align: center;
   margin-top: 0px;
 }
-.main-page-container .bs-example-a .row .caption #newsletter-buttons {
-  text-align: center;
-}
-.main-page-container .bs-example-a .row .caption #newsletter-buttons #prev-newsletter {
-  margin-right: 15px;
+@media only screen and (max-width: 1211px) {
+  .main-page-container .bs-example-a .row .caption .membership-header {
+    font-size: 20px;
+  }
 }
 .main-page-container .bs-example-a .row .caption .carousel-indicators {
   display: inline-block;
@@ -542,6 +544,22 @@ html ::-webkit-scrollbar {
 .main-page-container .bs-example-a .row .caption .carousel-indicators li {
   background-color: #f2f2f2;
   border: 1px solid black;
+}
+.main-page-container .bs-example-a .row #newsletter-buttons {
+  text-align: center;
+}
+.main-page-container .bs-example-a .row #newsletter-buttons #prev-newsletter {
+  margin-right: 15px;
+}
+.main-page-container .bs-example-a .row .social-media {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 768px) {
+  .main-page-container .bs-example-a .row .social-media {
+    display: block;
+  }
 }
 .main-page-container .bs-example-a .row .thumbnail {
   min-height: 473px;
@@ -594,14 +612,6 @@ html ::-webkit-scrollbar {
 }
 .main-page-container .bs-example-a .row .thumbnail .fa-envelope {
   right: 48px;
-}
-.main-page-container .bs-example-a .row .twitter-block {
-  float: right;
-}
-@media only screen and (max-width: 1137px) {
-  .main-page-container .bs-example-a .row .twitter-block {
-    float: left;
-  }
 }
 .main-page-container .bs-example-a .row #fpc_box {
   width: 100%;

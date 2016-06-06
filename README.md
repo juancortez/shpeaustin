@@ -11,6 +11,8 @@ shpeaustin/
 	google_service/
 		google_calendar.js 		This script sends an API request to the SHPE Austin Google Calendar and outputs it to metadata/calendar_data.json
 	metadata/
+		announcements.json 		Contains the announcements data that populates the index.html file
+		backup.json 			File automatically generated after database is cleared
 		calendar_data.json 		Contains the calendar data that populates the index.html
 		newsletter_data.json 	Contains the newsletter data that populates the index.html
 		officers.json 			Contains the officer data that populates the officers.ejs file.	 
@@ -28,10 +30,15 @@ shpeaustin/
 			*.jpg,*.png			Includes all .jpg and .png files used in Node.js application
 		dist/
 			*.min.js 			The production files used on the website for faster loading times
+			main.css 			The production file used on the website after it is compiled from LESS
 		javascripts/
+			utils/ 				
+				ajaxUtils.js 	Module that contains all the AJAX requests made from the index.html file
 			libs/				jQuery library
 				index.js 		The javascript file used for the index.html page
 		stylesheets/
+			/less
+				*.less			The CSS pre-processor file that gets convert to .css with gulp				
 			/libs 				Bootstrap, FontAwesome, and OwlCarousel
 			*.css 				Styling pages used for all views
 	redis/
@@ -122,16 +129,19 @@ When finished, it should look something like this:
 ## Steps to Completely Update Website
 The following steps will clear the Redis database, make an API request to the Google Calendar API for shpe.austin@gmail.com, update the newsletter data, and change the revision number of the *.css and *.js files. Before doing these steps, make sure you are not running the node application.
 
- 1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the /views/newsletters folder. 
- 2. Go to the /models/global.js file, change the clearRedisDatabase variable to TRUE, and increase the revision number
+ 1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the /views/newsletters folder. Make sure the file is renamed to newsletters.html.
+ 2. Go to the /models/global.js file and change the clearRedisDatabase variable to TRUE. There is also a variable called, "deleteKeys." In that variable, include all of the keys you would like to delete from the database. An example of this is `exports.deleteKeys = ["calendarData", "newsletterdata", "revisionNumber", "announcements"];` This will delete calendarData, newsletterdata, revisionNumber, and announcements from the database. If any of the keys are accidentally deleted, a backup.json file is automatically created in metadata/backup.json that includes all the data that was deleted.
  3. In the terminal, start up the node server `node app.js`. 
  4. Open up another terminal tab and run `gulp` to run the gulpfile.js
  5. After all the gulp tasks are done, open up another terminal tab and navigate to the /utils folder and run the update.sh file. `./update.sh`
- 6. Go back to the /models/globals.js file and reset clearRedisDatabase to FALSE
+ 6. Go back to the /models/globals.js file and reset clearRedisDatabase to FALSE.
  7. Verify that all the files successfully updated by re-running the node application `node app.js`
  8. Run `cf push shpeaustin` to update the data on BlueMix. 
- 9. Commit all of the code to Github. Most of the changes should be in the public/dist folder, globals.js file, and newsletter data
- 10. The application now has the newest data and it is all cached on the database!  
+ 9. Commit all of the code to Github. Most of the changes should be in the public/dist folder, globals.js file, and newsletter data.
+ 10. The application now has the newest data and it is all cached on the database! 
+
+ ## Developing
+There are various tools that are included in this project that makes development easier and automated. All automated tasks are located in the gulpfile.js. Some of the more important features are minifying and concatinating *.js files, and compiling *.less files. When developing, run the app locally with `node app.js` and open up another terminal to run the gulp file by typing, 'gulp'. The gulpfile will watch all the changes and will run the tasks automatically.
 
 [austinshpe.org]: http://austinshpe.org
 [shpeaustin.mybluemix.net]: http://shpeaustin.mybluemix.net

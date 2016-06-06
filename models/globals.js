@@ -2,13 +2,19 @@
 // Contains all officer data used to populate the Officers.ejs page
 exports.officerList = []; // list of chairs
 
+// @utilizedIn	 router/main.js. 
+// The following e-mail is the recipient of e-mails sent in the Contact Us page.
+exports.sendGridEmail = "cortezjuanjr@gmail.com";
+
 // @utilizedIn	redis/redis.js
 // Setting the variable to true clears the Redis database after each run
 exports.clearRedisDatabase = false; // set flag to true if you want to delete all data on redis database
 
-// @utilizedIn	 router/main.js. 
-// The following e-mail is the recipient of e-mails sent in the Contact Us page.
-exports.sendGridEmail = "cortezjuanjr@gmail.com";
+// @utilizedIn	redis/redis.js
+// deleteKeys contains an array of keys that will be deleted from the database. 
+// The following keys are available for deletion:
+//    --> ["officerList", "calendarData", "newsletterdata", "announcements", "revisionNumber", "id"]
+exports.deleteKeys = ["calendarData", "revisionNumber"]; // // keys to be deleted if clearRedisDatabase is set to TRUE
 
 // @utliziedIn 	 redis/redis.js
 // 				 views/* - The variable is used to un-cache data for stylesheets and javascript files in case of updates
@@ -19,4 +25,4 @@ exports.sendGridEmail = "cortezjuanjr@gmail.com";
  * that a new file and will download the external style sheet from the web server instead of using the cached site.
  *
  */
-exports.revision = 25; // Revision 25 as of June 6, 2016 @ 16:02
+exports.revision = 26; // Revision 26 as of June 6, 2016 @ 20:28
