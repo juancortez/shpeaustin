@@ -69,6 +69,9 @@ shpeaustin/
 7. [Note] In order to connect the Node.js application to SendGrid (the service that sends out e-mails) and the
 Redis database, please follow the directions in the 'Deploying to Bluemix' section.
 
+## Developing Locally
+There are various tools that are included in this project that makes development easier and automated. All automated tasks are located in the gulpfile.js. Some of the more important features are minifying and concatinating *.js files, and compiling *.less files. When developing, run the app locally with `node app.js` and open up another terminal to run the gulp file by typing, `gulp`. The gulpfile will watch all the changes and will run the tasks automatically.
+
 ## Deploying to Bluemix
 1. In the terminal, navigate to the project's root directory.
 2. [Create a Bluemix account][]. It's free. 
@@ -140,8 +143,6 @@ The following steps will clear the Redis database, make an API request to the Go
  9. Commit all of the code to Github. Most of the changes should be in the public/dist folder, globals.js file, and newsletter data.
  10. The application now has the newest data and it is all cached on the database! 
 
- ## Developing
-There are various tools that are included in this project that makes development easier and automated. All automated tasks are located in the gulpfile.js. Some of the more important features are minifying and concatinating *.js files, and compiling *.less files. When developing, run the app locally with `node app.js` and open up another terminal to run the gulp file by typing, 'gulp'. The gulpfile will watch all the changes and will run the tasks automatically.
 
 [austinshpe.org]: http://austinshpe.org
 [shpeaustin.mybluemix.net]: http://shpeaustin.mybluemix.net
