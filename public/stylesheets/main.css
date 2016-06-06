@@ -726,7 +726,7 @@ html ::-webkit-scrollbar {
 }
 @media only screen and (max-width: 515px) {
   .main-page-container .bs-example-a .row .calendar-controls {
-    margin-top: 55px;
+    margin-top: 15px;
   }
 }
 .main-page-container .bs-example-a .row .calendar-controls i {
