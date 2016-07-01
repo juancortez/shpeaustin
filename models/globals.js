@@ -14,7 +14,7 @@ exports.clearRedisDatabase = false; // set flag to true if you want to delete al
 // deleteKeys contains an array of keys that will be deleted from the database. 
 // The following keys are available for deletion:
 //    --> ["officerList", "calendarData", "newsletterdata", "announcements", "revisionNumber", "id"]
-exports.deleteKeys = ["calendarData", "revisionNumber"]; // // keys to be deleted if clearRedisDatabase is set to TRUE
+exports.deleteKeys = ["calendarData", "revisionNumber", "newsletterdata"]; // // keys to be deleted if clearRedisDatabase is set to TRUE
 
 // @utliziedIn 	 redis/redis.js
 // 				 views/* - The variable is used to un-cache data for stylesheets and javascript files in case of updates
@@ -25,4 +25,4 @@ exports.deleteKeys = ["calendarData", "revisionNumber"]; // // keys to be delete
  * that a new file and will download the external style sheet from the web server instead of using the cached site.
  *
  */
-exports.revision = 26; // Revision 26 as of June 6, 2016 @ 20:28
+exports.revision = 27; // Revision 27 as of July 1, 2016 @ 14:51
