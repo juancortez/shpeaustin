@@ -8,6 +8,8 @@ so that all of the services work properly.
 ## Project Layout
 ```
 shpeaustin/
+	config/
+		default.json 			File that holds important keys for the application
 	google_service/
 		google_calendar.js 		This script sends an API request to the SHPE Austin Google Calendar and outputs it to metadata/calendar_data.json
 	metadata/
@@ -17,7 +19,6 @@ shpeaustin/
 		newsletter_data.json 	Contains the newsletter data that populates the index.html
 		officers.json 			Contains the officer data that populates the officers.ejs file.	 
 	models/
-		globals.js 				File that holds global data
 		officers.js 			Contains the class that constructs an object for each officer
 	node_modules/
 		*/						Dependencies used in the Node.js application
@@ -129,15 +130,19 @@ When finished, it should look something like this:
  2. Follow the directions in the [Linking godaddy domain to my bluemix web Application][] article to set up CName Alias.
  3. It may take a couple of [minutes to hours][] for the changes to propagate. 
 
+### Setting up the Google Calendar API
+In order to set up the Google Calendar API, you need to authorization between the node application and the Google Calendar API. Go to the `google_service/google_calendar.js` file, and follow the directions in the comments. After it is done, copy down the google credentials and replace them in
+the private_credentials/credentials.json file, under the google_oauth.installed key.
+
 ## Steps to Completely Update Website
 The following steps will clear the Redis database, make an API request to the Google Calendar API for shpe.austin@gmail.com, update the newsletter data, and change the revision number of the *.css and *.js files. Before doing these steps, make sure you are not running the node application.
 
- 1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the /views/newsletters folder. Make sure the file is renamed to newsletters.html.
- 2. Go to the /models/global.js file and change the clearRedisDatabase variable to TRUE. There is also a variable called, "deleteKeys." In that variable, include all of the keys you would like to delete from the database. An example of this is `exports.deleteKeys = ["calendarData", "newsletterdata", "revisionNumber", "announcements"];` This will delete calendarData, newsletterdata, revisionNumber, and announcements from the database. If any of the keys are accidentally deleted, a backup.json file is automatically created in metadata/backup.json that includes all the data that was deleted.
+ 1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the views/newsletters folder. Make sure the file is renamed to **newsletters.html**.
+ 2. Go to the config/default.json file and change the clearRedisDatabase key to TRUE. There is also a JSON list of keys that are stored in the database under the redis.keys key. Set all the keys that you would like to clear to true. Setting them to true will delete the data from the database. If any of the keys are accidentally deleted, a backup.json file is automatically created in metadata/backup.json that includes all the data that was deleted.
  3. In the terminal, start up the node server `node app.js`. 
  4. Open up another terminal tab and run `gulp` to run the gulpfile.js
  5. After all the gulp tasks are done, open up another terminal tab and navigate to the /utils folder and run the update.sh file. `./update.sh`
- 6. Go back to the /models/globals.js file and reset clearRedisDatabase to FALSE.
+ 6. Go back to the config/default.json file and reset the redis.clearRedisDatabase to false, as well as any other keys you set to true.
  7. Verify that all the files successfully updated by re-running the node application `node app.js`
  8. Run `cf push shpeaustin` to update the data on BlueMix. 
  9. Commit all of the code to Github. Most of the changes should be in the public/dist folder, globals.js file, and newsletter data.
