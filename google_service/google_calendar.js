@@ -1,8 +1,12 @@
-//IMPORTANT: followed directions from here https://developers.google.com/google-apps/calendar/quickstart/nodejs
-// https://developer.ibm.com/bluemix/2015/10/05/advanced-debugging-node-apps-bluemix/
-// cf set-env shpeaustin BLUEMIX_APP_MGMT_ENABLE devconsole+shell+inspector
-// cf set-env shpeaustin ENABLE_BLUEMIX_DEV_MODE true
-// Created credentials with: shpe.austin@gmail.com
+/*
+ * IMPORTANT: followed directions from here https://developers.google.com/google-apps/calendar/quickstart/nodejs to enable Google Calendar.
+ *
+ * NOTE: If you are getting this error, "The API returned an error: Error: invalid_grant" navigate to the following directory and remove the
+ *       calendar-nodejs-quickstart.json file.
+ *      $cd /Users/{username}/.credentials/
+ *      *rm calendar-nodejs-quickstart.json
+ * Created credentials with: shpe.austin@gmail.com
+ */
 
 // shpe.austin@gmail.com
 var fs = require('fs');

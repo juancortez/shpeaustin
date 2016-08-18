@@ -12,6 +12,7 @@
 *	disconnect 		: 	executed when a user disconnects from the server
 * 	chat message	: 	used in contact.html whenever a user sends a message in the chat log
 */
+var config = require('config');
 
 function initiateSocket(io,client){
 	var usersOnline = 0;
@@ -38,7 +39,7 @@ function initiateSocket(io,client){
 	    socket.on('revision', function(msg){
 	    	var revision;
 	    	try{
-	    		revision = require('../models/globals.js').revision;
+	    		revision = config.revision;
 	    	} catch(err){
 	    		revision = -1; // error
 	    	}

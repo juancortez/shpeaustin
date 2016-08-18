@@ -5,16 +5,25 @@
  * The data cached by this file gets called by the main.js router file.
  *
  */
-var clearRedisDatabase = require('../models/globals.js').clearRedisDatabase; // set flag to true to clear database
-var revision = require('../models/globals.js').revision;
-var deleteKeys = require('../models/globals.js').deleteKeys; // keys to be deleted from the database
-var backup = {};
-var itemsProcessed = 0;
+
+var config = require('config'),
+    clearRedisDatabase = config.redis.clearRedisDatabase, // set flag to true to clear database
+    revision = config.revision,
+    backup = {},
+    itemsProcessed = 0,
+    deleteKeys = [], 
+    redisKeys = config.redis.keys;
+var deleteKeys = Object.keys(redisKeys).filter(function(key){ // keys to be deleted from the database
+    if(redisKeys[key] === true){
+        return true;
+    }
+    return false;
+});
 
 function onRedisConnection(client, redis) {
     console.log('Connected to Redis');
 
-    // cache metadata files into redis
+    //cache metadata files into redis
     if (!clearRedisDatabase) {
         client.get("officerList", function(err, reply) {
             if (err) {
@@ -112,7 +121,7 @@ function onRedisConnection(client, redis) {
                 }
                 itemsProcessed++;
                 if (itemsProcessed === deleteKeys.length) {
-                    backupRedisOnClear();
+                    _backupRedisOnClear();
                 }
             });
             client.del(key, function(err, reply) {
@@ -120,14 +129,15 @@ function onRedisConnection(client, redis) {
                     console.error(err);
                 }
                 if (reply == 1) {
-                    console.log("Database cleared");
+                    console.log("Successfully delete key: " + key);
                 }
             });
         });
+        console.log("The following keys in the database were cleared: " + deleteKeys);
     }
 
     // Save a backup of all Redis database and place it in /metadata/backup.json
-    function backupRedisOnClear() {
+    function _backupRedisOnClear() {
         console.log("Backup processed and successfully saved");
         var path = require("path");
         var jsonfile = require('jsonfile');

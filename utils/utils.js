@@ -1,9 +1,8 @@
 function parseOfficerJSON(client, redis) {
-    var Officer = require('../models/officers.js');
-    var officerList = require('../models/globals.js').officerList;
-
-    var data = [];
-    var file = "../metadata/officers.json"
+    var Officer = require('../models/officers.js'),
+        officerList = [],
+        data = [],
+        file = "../metadata/officers.json";
 
     try {
         //console.log("Loading officer data from " + file);

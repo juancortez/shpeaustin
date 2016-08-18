@@ -320,19 +320,16 @@ html ::-webkit-scrollbar {
 .main-page-container .announcements .post-announcement {
   display: none;
   -ms-flex-preferred-size: 100%;
-  -webkit-flex-basis: 100%;
-          flex-basis: 100%;
+  flex-basis: 100%;
   border-radius: 25px;
   margin-top: 15px;
   height: 80px;
   border: 1px solid #ddd;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-              -ms-grid-row-align: center;
-          align-items: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-align: center;
+      -ms-grid-row-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   width: 65%;
   margin: 0 auto;
 }
@@ -364,21 +361,16 @@ html ::-webkit-scrollbar {
   border-radius: 2px;
 }
 .main-page-container .announcements .announcement-container {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  -webkit-align-items: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
   -ms-flex-line-pack: start;
-  -webkit-align-content: flex-start;
-          align-content: flex-start;
+  align-content: flex-start;
   height: 200px;
   /*height: 315px;*/
   width: 80%;
@@ -395,7 +387,6 @@ html ::-webkit-scrollbar {
   }
 }
 .main-page-container .announcements .announcement-container .announcement-icon-container {
-  -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
   padding: 0px;
@@ -408,7 +399,6 @@ html ::-webkit-scrollbar {
 @media (max-width: 623px) {
   .main-page-container .announcements .announcement-container .announcement-icon-container {
     display: none;
-    -webkit-flex: 0;
     -ms-flex: 0;
     flex: 0;
   }
@@ -424,7 +414,6 @@ html ::-webkit-scrollbar {
   padding: 0px 5px 0px 5px;
 }
 .main-page-container .announcements .announcement-container .announcement-content-container {
-  -webkit-flex: 3;
   -ms-flex: 3;
   flex: 3;
   border: 1px solid #ddd;
@@ -437,7 +426,6 @@ html ::-webkit-scrollbar {
 }
 @media (max-width: 623px) {
   .main-page-container .announcements .announcement-container .announcement-content-container {
-    -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
     border-radius: 25px;
@@ -480,13 +468,11 @@ html ::-webkit-scrollbar {
 }
 .main-page-container .bs-example-a .row .caption #subscribe-container {
   display: none;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-              -ms-grid-row-align: center;
-          align-items: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-align: center;
+      -ms-grid-row-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 18px;
@@ -552,12 +538,10 @@ html ::-webkit-scrollbar {
 }
 .main-page-container .bs-example-a .row .social-media {
   width: 100%;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+      justify-content: center;
 }
 @media only screen and (max-width: 768px) {
   .main-page-container .bs-example-a .row .social-media {
@@ -582,12 +566,10 @@ html ::-webkit-scrollbar {
   width: 100%;
   height: 450px;
   overflow-y: hidden;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+      justify-content: center;
 }
 @media only screen and (max-width: 768px) {
   .main-page-container .bs-example-a .row .thumbnail {
@@ -786,20 +768,15 @@ html ::-webkit-scrollbar {
   text-transform: uppercase;
   color: #fff;
   margin: 0 auto;
-  -webkit-transform: rotate(0);
   transform: rotate(0);
-  transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
   transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
-  transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1), -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
   position: relative;
 }
 .main-page-container .modal-container .modal-body .custom-button:hover {
-  -webkit-transform: rotate(60deg);
   transform: rotate(60deg);
   background: #0137A2;
 }
 .main-page-container .modal-container .modal-body .custom-button:focus {
-  -webkit-transform: rotate(30deg);
   transform: rotate(30deg);
 }
 .main-page-container .modal-container .modal-body .status {
@@ -1264,21 +1241,16 @@ html ::-webkit-scrollbar {
   text-transform: uppercase;
   color: #fff;
   margin: 0 auto;
-  -webkit-transform: rotate(0);
   transform: rotate(0);
-  transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
   transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
-  transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1), -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
   position: relative;
   bottom: 64px;
 }
 .contact-container .contact-form .row .custom-button:hover {
-  -webkit-transform: rotate(60deg);
   transform: rotate(60deg);
   background: #0137A2;
 }
 .contact-container .contact-form .row .custom-button:focus {
-  -webkit-transform: rotate(30deg);
   transform: rotate(30deg);
 }
 .contact-container .contact-form #sel1 {
@@ -1314,19 +1286,14 @@ html ::-webkit-scrollbar {
   z-index: 100;
   border: 1px solid #ebebeb;
   border-radius: 5px 5px 0px 0px;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  -webkit-align-items: flex-start;
   -ms-flex-align: start;
   align-items: flex-start;
 }
@@ -1389,15 +1356,12 @@ html ::-webkit-scrollbar {
   font-size: 40px;
 }
 .officers-container .officer-container {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
 }
 .officers-container .officer-container .officer-list {
   padding: 0px;
@@ -1408,7 +1372,6 @@ html ::-webkit-scrollbar {
   width: 320px;
   height: 400px;
   position: relative;
-  -webkit-perspective: 800px;
   -o-perspective: 800px;
   perspective: 800px;
   display: inline-block;
@@ -1418,20 +1381,15 @@ html ::-webkit-scrollbar {
   width: 100%;
   height: 100%;
   position: absolute;
-  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  transition: -webkit-transform 1s;
   transition: transform 1s;
-  transition: transform 1s, -webkit-transform 1s;
   border: 1px solid #002266;
   border-radius: 13px;
 }
 .officers-container .officer-container .officer-list .container .card:hover {
-  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 .officers-container .officer-container .officer-list .container .card:focus {
-  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 .officers-container .officer-container .officer-list .container .card figure {
@@ -1440,7 +1398,6 @@ html ::-webkit-scrollbar {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 .officers-container .officer-container .officer-list .container .card .front .officers {
@@ -1460,19 +1417,15 @@ html ::-webkit-scrollbar {
   color: #06063e;
 }
 .officers-container .officer-container .officer-list .container .card .back {
-  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 .officers-container .officer-container .officer-list .container .card .back .information {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   width: 300px;
   height: 400px;
 }
@@ -1486,15 +1439,12 @@ html ::-webkit-scrollbar {
   margin-left: 10px;
 }
 .officers-container .officer-container .officer-list .container .flipped {
-  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 .officers-container .officer-container .officer-list .container .flipped-60 {
-  -webkit-transform: rotateY(60deg);
   transform: rotateY(60deg);
 }
 .officers-container .officer-container .officer-list .container .flipped-0 {
-  -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
 .membership-container {

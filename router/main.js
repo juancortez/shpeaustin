@@ -1,10 +1,12 @@
 // module.exports exposes functions that we want to use in a different file
 //module.exports = function(app, con){
 module.exports = function(app, client, privateCredentials) {
-    var uuid = require('node-uuid');
-    var revision; // global variable within the module. used as a "hack" for officers.ejs
-    var revisionNumber = require('../models/globals.js').revision; // global variable for revision number
-    var url = require('url');
+    var uuid = require('node-uuid'),
+        config = require('config'),
+        url = require('url'),
+        revision, // global variable within the module. used as a "hack" for officers.ejs
+        revisionNumber = config.revision; // global variable for revision number
+    
     /*************************************************************************/
     // The following endpoints serve HTML pages
     /*************************************************************************/
@@ -234,7 +236,7 @@ module.exports = function(app, client, privateCredentials) {
 
         //sendgrid documentation and attaching to bluemix: https://github.com/sendgrid/reseller-docs/tree/master/IBM
         var sendgrid  = require('sendgrid')(credentials.username, credentials.password);
-        var sendGridEmail = require('../models/globals.js').sendGridEmail; // set flag to true to clear database
+        var sendGridEmail = config.sendGridEmail; // set flag to true to clear database
         sendgrid.send({
           to:       sendGridEmail,
           from:     req.body.email,
@@ -262,7 +264,7 @@ module.exports = function(app, client, privateCredentials) {
     app.get('/calendar', function(req, res){
         // Get access to the Google Calendar
         var google_calendar;
-        var google_content = privateCredentials.google_api;
+        var google_content = privateCredentials.google_oauth;
         try{
             google_calendar = require('../google_service/google_calendar');
         } catch(err){
@@ -304,7 +306,6 @@ module.exports = function(app, client, privateCredentials) {
              };
                 download(content[i].image, 'newsletter'+i, function(){
                 //console.log('done'); 
-                // from root folder $mv newsletter* public/assets/newsletter
             });
         }
 
