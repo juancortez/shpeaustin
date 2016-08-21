@@ -70,7 +70,7 @@ $(document).ready(function() {
 	$('#email').submit(function(formText) {
         $.ajax({
             type: 'POST',
-            url: '/contact',
+            url: '/communication/contact',
             data: { name: formText.target.name.value, 
                     email: formText.target.email.value,
                     phone: formText.target.phone.value,
@@ -81,7 +81,8 @@ $(document).ready(function() {
         	console.log("Success!");
         	toastStatus(1, "E-mail successful sent!");
         }).fail(function(status){
-        	console.error("Unsuccessful. Error Code: " + status);
+        	console.error("Unsuccessful. Error Code:");
+            console.log(JSON.stringify(status, null, 4));
         	toastStatus(-1, "E-mail unsuccessful sent. Please try again.");
         });
         return false; // won't refresh the page

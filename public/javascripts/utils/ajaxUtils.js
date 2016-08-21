@@ -8,14 +8,25 @@ calls are handled in the router/main.js file
 var ajaxUtils = (function(){
 	var _months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+	var endpoints = {
+		newsletter : "/data/newsletterdata",
+		calendar : "/data/calendardata",
+		announcements : "/data/announcements",
+		officers : "/data/officerlist",
+		officerLogin: "/data/officerlogin",
+		postAnnouncement: "/update/announcements",
+		login: "/authentication/login",
+		subscribe: "/communication/contact"
+	}
+
     function getNewsletterData(revision, callback){
     	$.ajax({
 	        method: "GET",
-	        url: "/newsletterdata"
+	        url: endpoints.newsletter
 	    })
 	    .done(function(data) {
 	    	if(typeof data != "object"){
-	    		callback("", "GET method for /newsletterdata failed.");
+	    		callback("", "GET method for " + endpoints.newsletter + " failed.");
 	    		return;
 	    	}
 	    	var returnParams = {};
@@ -44,17 +55,17 @@ var ajaxUtils = (function(){
 	        returnParams.message = "[GET] newsletter data successful.";
 	        callback(returnParams);
 	    }).fail(function(e) {
-	    	callback("", "GET method for /newsletterdata failed.");
+	    	callback("", "GET method for " + endpoints.newsletter + " failed.");
 	    });
 	}
 
 	function getCalendarData(callback){
 		$.ajax({
 	        method: "GET",
-	        url: "/calendardata"
+	        url: endpoints.calendar
 	    }).done(function(calendar){
 	    	if(typeof calendar != "object"){
-	    		callback("", "GET method for /calendardata failed.");
+	    		callback("", "GET method for " + endpoints.calendar + " failed.");
 	    		return;
 	    	}
 	    	var returnParams = {};
@@ -105,18 +116,18 @@ var ajaxUtils = (function(){
 	        returnParams.numCalendarItems = numCalendarItems;
 	        callback(returnParams);
 	    }).fail(function(e){
-	    	callback("", "GET method for /calendardata failed.");
+	    	callback("", "GET method for " + endpoints.calendar + " failed.");
 	    });
 	}
 
 	function getAnnouncements(callback){
 	    $.ajax({
 	        method: "GET",
-	        url: "/announcements"
+	        url: endpoints.announcements
 	    }).done(function(data){
 	    	if(typeof data != "object"){
 	    		$(".fa-spinner").hide();
-	    		callback("GET method for /announcements failed.");
+	    		callback("GET method for " + endpoints.announcements + " failed.");
 	    		return;
 	    	}
 	        var announcement = data.announcements;
@@ -129,7 +140,7 @@ var ajaxUtils = (function(){
 	    }).fail(function(e){
 	        $(".announcement-content-container").css({'text-align': 'left'});
 	        $(".fa-spinner").hide();
-	        callback("GET method for /announcements failed.");
+	        callback("GET method for " + endpoints.announcements + " failed.");
 	    });
 	}
 
@@ -144,7 +155,7 @@ var ajaxUtils = (function(){
 	        } else{
 	            $.ajax({
 	                type: 'POST',
-	                url: '/announcements',
+	                url: endpoints.postAnnouncement,
 	                data: { officer: formText.target.officer.value, 
 	                        timestamp: date,
 	                        announcement: formText.target.announcement.value
@@ -153,7 +164,7 @@ var ajaxUtils = (function(){
 	                console.log("Announcement post successful!");
 	                _constructAnnouncement(status.announcements, status.announcements.length - 1, 1);
 	            }).fail(function(status){	
-	            	callback("Announcement post unsuccessful.");
+	            	callback("Announcement " + endpoints.postAnnouncement + " POST unsuccessful.");
 	            });
 	            return false; // won't refresh the page
 	        }
@@ -163,17 +174,17 @@ var ajaxUtils = (function(){
 	function getOfficers(callback){
 	    $.ajax({
 	        method: "GET",
-	        url: "/officerlist"
+	        url: endpoints.officers
 	    }).done(function(data){
 	    	if(typeof data != "object"){
-	    		callback("GET method for /officerlist failed. Unsupported return type.");
+	    		callback("GET method for " + endpoints.officers + " failed. Unsupported return type.");
 	    		return;
 	    	}
 	        for(var i = 0, length = data.length; i < length; i++){
 	            $("select").append('<option value="' + data[i].name + '">' + data[i].name + '</option>');
 	        }
 	    }).fail(function(e){
-	    	callback("GET method for /officerlist failed.");
+	    	callback("GET method for " + endpoints.officers + " failed.");
 	    });
 	}
 
@@ -181,13 +192,13 @@ var ajaxUtils = (function(){
 	    if(localStorage.getItem('credentials')){
 	        $.ajax({
 	            method: "GET",
-	            url: "/officerlogin?"+"credentials="+localStorage.getItem('credentials'),
+	            url: endpoints.officerLogin + "?" +"credentials="+ localStorage.getItem('credentials'),
 	        }).done(function(status){
 	            if(status === undefined){
-	            	callback("/officerlogin endpoint failed");
+	            	callback(endpoints.officerLogin + " endpoint failed");
 	                return;
 	            } else if(status.indexOf('404') >= 0){
-	            	callback("/officerlogin endpoint failed");
+	            	callback(endpoints.officerLogin + " endpoint failed");
 	                return;
 	            }
 	            if(status == "OK"){
@@ -197,7 +208,7 @@ var ajaxUtils = (function(){
 	                $(".form-announ #post-announcement").attr('data-login', true);
 	            }
 	        }).fail(function(){
-	        	callback("/officerlogin endpoint failed");
+	        	callback(endpoints.officerLogin + " endpoint failed");
 	        });
 	    }
 	}
@@ -205,7 +216,7 @@ var ajaxUtils = (function(){
 	function login(formText, callback){
         $.ajax({
             type: 'POST',
-            url: '/login',
+            url: endpoints.login,
             data: { username: formText.target.name.value, 
                     password: formText.target.password.value
                    }
@@ -242,18 +253,19 @@ var ajaxUtils = (function(){
             $("#stat").text("Subscription successful!");
             $.ajax({
                 type: 'POST',
-                url: '/contact',
+                url: endpoints.subscribe,
                 data: { name: "new user", 
                         email: address,
                         phone: "n/a",
                         category: "SHPE Austin: Newletter Subscription Request",
-                        message: "Please add " + address + " to the newsletter."
+                        message: "Please add " + address + " to the newsletter.",
+                        subscribe: true
                        }
             }).done(function(status){
                 console.log("Success!");
             }).fail(function(status){
-            	callback("Unsuccessful. Error Code: " + status);
-            });
+            	callback(status);
+            }); 	
             setTimeout(function(){
                 $("#subscribe-container").css({'display':'none'});
                 $("#newsletter-buttons").show();

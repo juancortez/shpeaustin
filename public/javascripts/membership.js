@@ -8,7 +8,7 @@ var CALENDAR = function() {
 
     $.ajax({
         method: "GET",
-        url: "/calendardata"
+        url: "/data/calendardata"
     }).done(function(calendar) {
         globalCalendarData = calendar;
         populateCalendar();

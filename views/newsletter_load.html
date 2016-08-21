@@ -34,7 +34,7 @@
 		  var eventRecapNum = 0;
 
          jQuery(function($){
-           $.get( "../views/newsletters/newsletters.html", function( data ) {
+           $.get( "/update/newsletters", function( data ) {
 		    if ( status == "error" ) {
 		      console.error("Couldn't load newsletters.html");
 		    } else{
@@ -90,7 +90,7 @@
 		    }
 		    $.ajax({
 		          type: 'POST',
-		          url: '/newsletterdata',
+		          url: '/update/newsletterdata',
 		          data: newsletterData,
 		          dataType: 'application/json',
 		          success: function(data) {
