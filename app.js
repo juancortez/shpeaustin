@@ -1,7 +1,7 @@
 var express = require('express'),
-	app = express(),
-	bodyParser = require('body-parser'),
-	fs = require('fs'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    fs = require('fs'),
     request = require('request'),
     favicon = require('serve-favicon'),
     redis = require('redis'),
@@ -9,6 +9,7 @@ var express = require('express'),
     compression = require('compression'),
     privateCredentials = require('./private_credentials/credentials.json'),
     redisCredentials = privateCredentials.redis.credentials,
+    slackCredentials = privateCredentials.slack,
     redis_connect = require("./redis/redis.js"),
     socket_connect = require("./socket/socket.js"),
     socket = require('socket.io'),
@@ -21,7 +22,7 @@ var client = redis.createClient(redisCredentials.port, redisCredentials.hostname
 app.set('redis', client); 
 client.auth(redisCredentials.password, function (err) {
     if (err){
-    	console.error(err);
+        console.error(err);
     }
 });
 client.on('connect', function() {
@@ -69,8 +70,7 @@ socket_connect.initiateSocket(io, client);
 *                                  BotKit Configuration
 * SHPE-Austin Slack Integrations: https://shpeaustin.slack.com/apps/manage/custom-integrations
 ************************************************************************************************************/
-var Botkit = require('botkit'),
-    slackConfig = config.slack;
+var Botkit = require('botkit');
 
 var controller = Botkit.slackbot({
   debug: false
@@ -78,9 +78,9 @@ var controller = Botkit.slackbot({
 
 // connect the bot to a stream of messages
 var bot = controller.spawn({
-  token: slackConfig.botToken,
+  token: slackCredentials.botToken,
   incoming_webhook:{
-    url: slackConfig.subscribeRequestWebHook
+    url: slackCredentials.subscribeRequestWebHook
   }
 }).startRTM();
 
