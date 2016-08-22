@@ -79,7 +79,7 @@ app.post('/bot/officers', function(req, res){
   }
 
   var unsupportedCommand = "Sorry, outgoing webhook not yet supported. Please contact your webmaster.";
-  if(outgoingHook.trigger_word === "who is"){
+  if(triggerWord === "who is"){
     var officerSearch = outgoingHook.text.toLocaleLowerCase();
         officerSearch = officerSearch.replace("who is ", "");
 
