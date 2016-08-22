@@ -17,6 +17,10 @@ html body {
   width: 100%;
   min-height: 100%;
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 html a {
   color: #008CBA;
@@ -1716,6 +1720,43 @@ html ::-webkit-scrollbar {
     height: 191px;
     width: 90%;
   }
+}
+.admin-container .form-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.admin-container .form-container.update {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.admin-container .form-container .check-container {
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 15px;
+}
+.admin-container .form-container .check-container .title {
+  text-align: center;
+  position: relative;
+  bottom: 10px;
+}
+.admin-container .form-container .check-container .form-check {
+  min-width: 25%;
+}
+.admin-container .form-container .check-container .button-container {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.admin-container .form-container .check-container .fa-cog {
+  font-size: 2em;
 }
 
 /*# sourceMappingURL=main.css.map */

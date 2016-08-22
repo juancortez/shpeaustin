@@ -66,6 +66,14 @@ gulp.task('contact_script', function() {
         .pipe(gulp.dest(javascript_dest));
 });
 
+gulp.task('admin_script', function() {
+    return gulp.src(javascript_src+"admin.js")
+        .pipe(plugins.concat('admin.js'))
+        .pipe(plugins.rename('admin.min.js'))
+        .pipe(plugins.uglify())
+        .pipe(gulp.dest(javascript_dest));
+});
+
 gulp.task('ajaxUtils_script', function() {
     return gulp.src(utils_src+"ajaxUtils.js")
         .pipe(plugins.concat('ajaxUtils.js'))
@@ -127,7 +135,7 @@ gulp.task('json_lint', function() {
 // for changes and automatically run our tasks again so we don't have to 
 // continuously jump back to our command-line and run the gulp command each time.
 gulp.task('watch', function() {
-    gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script']);
+    gulp.watch(all_javascripts, ['lint', 'index_script', 'membership_script', 'contact_script', 'admin_script']);
     gulp.watch(utils_src, ['ajaxUtils_script']);
     gulp.watch(all_stylesheets, ['less', 'autoprefixer']);
     gulp.watch(less_stylesheets, ['less', 'autoprefixer']);
@@ -136,4 +144,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'ajaxUtils_script', 'less', 'autoprefixer', 'json_lint', 'watch']);
+gulp.task('default', ['lint', 'index_script', 'membership_script', 'contact_script', 'admin_script', 'ajaxUtils_script', 'less', 'autoprefixer', 'json_lint', 'watch']);

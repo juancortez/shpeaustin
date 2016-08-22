@@ -8,20 +8,5 @@
 	"sendGrid": {
 		"sendGridEmail": "cortezjuanjr@gmail.com"
 	},
-	"redis":{
-		"clearRedisDatabase": false, // set clearRedisDatabase to true to delete keys
-		/* @utilizedIn	redis/redis.js
-		 * deleteKeys contains a list of keys that will be deleted from the database. 
-		 * The following keys are available for deletion:
-		*/
-		"keys":{
-			"announcements": false, // announcements displayed in the home page
-			"calendarData": false, // calendar data is displayed in home page for events and in membership page
-			"revisionNumber": false, // used to set revision number's on *.html pages and *.jpg files
-			"newsletterdata": false, // used to populate newsletter data in the home page
-			"officerList": false, // list of officers in officer page
-			"id": false // id's of all the stored authorized browser ID's for posting on announcements
-		}
-	},
-	"revision": 30 // revision number of the SHPE Page, Revision 30 as of August 20, 2016 @ 13:24
+	"revision": 31 // revision number of the SHPE Page, Revision 31 as of August 21, 2016 @ 21:14
 }

@@ -1,0 +1,59 @@
+{
+    "calendar": {
+        "calendar": [
+            {
+                "event": "General Body Meeting 1",
+                "time": "2016-09-21T19:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=Y3ZzbXM4MjNqYmJhZDN2MnZwOTJndDA0b3Mgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Happy Hour w/IBM-HIP",
+                "time": "2016-10-05T18:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=ODZsM3BlbTJmdTU2YjEyNnF0ajBobGJoMmMgc2hwZS5hdXN0aW5AbQ",
+                "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
+            },
+            {
+                "event": "Noche de Ciencias",
+                "time": "2016-10-13T17:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=bzVkMG81azAxcDlzZGY5bDc0Y2huczBuMzAgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "General Body Meeting 2",
+                "time": "2016-11-16T19:00:00-06:00",
+                "link": "https://www.google.com/calendar/event?eid=NDg4Nzc1NHA5NjhxbHVzcDd2ZDhqdmVycGcgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Holiday Party!!!",
+                "time": "2016-12-10T18:00:00-06:00",
+                "link": "https://www.google.com/calendar/event?eid=ODZ2bXZmanZqdjd2NG8zbGhlZTg3c2MwbWMgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "General Body Meeting 3",
+                "time": "2017-02-09T19:00:00-06:00",
+                "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Joint E-week event with NSBE AP",
+                "time": "2017-02-22T08:00:00-06:00",
+                "link": "https://www.google.com/calendar/event?eid=NzByNjJwaG82b3BtNmI5ajZ0aDMyYjlrNmtybTZiYjE3MHBtMmJiMzZsZ2o2b3BrNzBzajZjMzM2YyBzaHBlLmF1c3RpbkBt"
+            },
+            {
+                "event": "Noche de Ciencias",
+                "time": "2017-04-06T17:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=cjBpYjNrMThza2szY3NuYzBzY2l2bDB2Nm8gc2hwZS5hdXN0aW5AbQ",
+                "location": "5300 Pecan Brook/Uray, United States"
+            },
+            {
+                "event": "General Body Meeting 4: Nominations & Leadership Development",
+                "time": "2017-04-20T19:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=ZnMzMWsxbDZwZGYwMGJwOTltMjY5ajJub2Mgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "Networking Social w/Upperclassman",
+                "time": "2017-05-09T18:30:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=OWNrNWpwMWM2bHBwNWFuY2hybG8zOTVwOTggc2hwZS5hdXN0aW5AbQ",
+                "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
+            }
+        ]
+    }
+}

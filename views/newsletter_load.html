@@ -13,6 +13,9 @@
 		    align-items: center;
 		    justify-content: center;
 		}
+		.finished{
+			display: none;
+		}
    	  </style>
       <title>Newsletter Load</title>
       <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.min.css">
@@ -88,16 +91,19 @@
 		            "image_link" : imageLink 
 		        });
 		    }
-		    $.ajax({
-		          type: 'POST',
-		          url: '/update/newsletterdata',
-		          data: newsletterData,
-		          dataType: 'application/json',
-		          success: function(data) {
-		              console.log('success');
-		              console.log(data);
-		          }
-		    	  });
+			    $.ajax({
+			          type: 'POST',
+			          url: '/update/newsletterdata',
+			          data: newsletterData,
+			          dataType: 'application/json'
+			      }).always(function(status) {
+			      	if(status.status == 200){
+			      		$(".finished").show();
+			      	} else{
+			      		$(".finished").text("Something failed :( Time to debug...");
+			      		$(".finished").show();
+			      	}
+				});
         	 }); 
 		}); 
       </script>
@@ -106,7 +112,7 @@
 	<body>
 		<% include navigation.html %>
 		<div class = 'entire-page'>
-			<h1 class = "404 bold dark-shpe-blue center-text">Newsletter Data Loaded</h1>
+			<h1 class = "404 bold dark-shpe-blue center-text finished">Newsletter Data Loaded! Close this Page.</h1>
 		</div>
 
 	</body>

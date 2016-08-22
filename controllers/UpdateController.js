@@ -1,10 +1,14 @@
 /*************************************************************************/
+// UpdateController.js 
+// Endpoint: /update
+// 
 // The following endpoints update data in the Redis Database and /metadata folder
 /*************************************************************************/
 var express = require('express'),
     app = express(),
     config = require('config'),
     privateCredentials = require('../private_credentials/credentials.json'),
+    authorization = require('../lib/authorization.js').authorization,
     revision = config.revision;
 
 // posts an announcement to the redis database
@@ -53,17 +57,24 @@ app.post('/announcements', function(req, res){
 });
 
 // updates Google Calendar data in the Redis Database
-app.post('/calendar', function(req, res){
+app.post('/calendar', authorization.auth, function(req, res){
     // Get access to the Google Calendar
-    var google_calendar;
-    var google_content = privateCredentials.google_oauth;
+    var google_calendar,
+        google_content = privateCredentials.google_oauth,
+        client = req.app.get('redis');
+
     try{
         google_calendar = require('../google_service/google_calendar.js');
     } catch(err){
         console.error("Failed to loaded google calendar files...");
         res.sendStatus(404);
     }
-    google_calendar.authorize(google_content, google_calendar.listEvents, res);
+    google_calendar.authorize(google_content, function(results){
+        console.log("Updated redis data: " + JSON.stringify(results, null, 4));
+        client.set('calendar', JSON.stringify(results)); // put the officerList on the redis database
+        res.setHeader('Content-Type', 'application/json');
+        res.send(results);
+    });
 });
 
 // Load data from the newsletter contained in views/newsletters
@@ -103,10 +114,28 @@ app.post('/newsletterdata', function(req, res) {
 
     var file = path.join(__dirname, '../metadata', 'newsletter_data.json');
     jsonfile.writeFile(file, req.body, function(err) {
-        console.error(err);
+        if(err){
+            console.error(err);
+        } else{
+            console.log("Successfully created the newsletter_data.json file under the metadata folder.");
+            res.sendStatus(200);    
+            return;
+        }
     });
-    console.log("Successfully created the newsletter_data.json file under the metadata folder.");
-    res.sendStatus(200);
+
+});
+
+// opens up the views/newsletters/newsletter.html page and sends it to the /newsletterload endpoint
+app.get('/admin', authorization.auth, function(req, res) {
+    var client = req.app.get('redis');
+
+    client.keys('*', function (err, keys) {
+        res.render('admin.html', {
+            revision: revision,
+            keys: keys
+        });
+    });
+
 });
 
 module.exports = app;

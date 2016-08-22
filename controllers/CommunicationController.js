@@ -1,4 +1,7 @@
 /*************************************************************************/
+// CommunicationController.js 
+// Endpoint: /communication
+// 
 // The following endpoints authenticate users
 /*************************************************************************/
 var express = require('express'),
@@ -67,6 +70,7 @@ app.post('/contact', function(req, res) {
 app.post('/bot/officers', function(req, res){
   var botToken = privateCredentials.slack.outgoingToken,
       outgoingHook = req.body,
+      triggerWord = outgoingHook && outgoingHook.trigger_word && outgoingHook.trigger_word.toLocaleLowerCase() || "",
       client = req.app.get('redis'); 
 
   if(botToken != outgoingHook.token){

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+  <head>
+     <title>Admin Panel</title>
+     <link rel="icon" href="/assets/shpe_austin_icon.png" type="image/x-icon" />
+     <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.css">
+     <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
+     <script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
+     <script src="/dist/admin.min.js?v=<%= revision %>"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <% include navigation.html %>
+  <body>
+    <div class="admin-container">
+      <h1 class = "dark-shpe-blue center-text">Admin Panel </h1>
+      <h4 class = "center-text">This page is intended for administrators only.</h4>
+        <div class="form-container">
+          <div class="check-container">
+            <h3 class="title"> Deleting Data </h3>  
+            <p> Select the keys that you would like to delete in the Redis database.</p>
+            <form>
+              <% keys.forEach(function(key) { %>
+               <div class="form-check">
+                  <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" value= <%= key %>>
+                  <%= key %>
+                  </label>
+               </div>
+              <% }); %>
+              <div class="button-container">
+                <button data-request="delete" type="submit" class="btn btn-primary submit-request">Submit</button>
+              </div>
+            </form>
+          </div> <!-- .check-container -->
+      </div> <!-- .form-container -->
+
+      <div class="form-container update">
+          <div class="check-container">
+            <h3 class="title"> Updating Data </h3>  
+            <p> Select the keys that you would like to update in the Redis database.</p>
+            <form>
+              <% keys.forEach(function(key) { %>
+               <div class="form-check">
+                  <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" value= <%= key %>>
+                  <%= key %>
+                  </label>
+               </div>
+              <% }); %>
+              <div class="button-container">
+                <button data-request="update" type="submit" class="btn btn-primary submit-request">Submit</button>
+              </div>
+            </form>
+          </div> <!-- .check-container -->
+      </div> <!-- .form-container -->
+   </div> <!-- .admin-container -->
+   
+  </body>
+</html>

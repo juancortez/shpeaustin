@@ -1,6 +1,11 @@
 {
     "calendar": [
         {
+            "event": "General Body Meeting 1",
+            "time": "2016-09-21T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=Y3ZzbXM4MjNqYmJhZDN2MnZwOTJndDA0b3Mgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
             "event": "Happy Hour w/IBM-HIP",
             "time": "2016-10-05T18:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=ODZsM3BlbTJmdTU2YjEyNnF0ajBobGJoMmMgc2hwZS5hdXN0aW5AbQ",
@@ -47,11 +52,6 @@
             "time": "2017-05-09T18:30:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=OWNrNWpwMWM2bHBwNWFuY2hybG8zOTVwOTggc2hwZS5hdXN0aW5AbQ",
             "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
-        },
-        {
-            "event": "Elections Happy Hour!!!",
-            "time": "2017-05-11T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=amo4aDlqYWVnMTBoN2puN2EwOWdlcXZjb3Mgc2hwZS5hdXN0aW5AbQ"
         }
     ]
 }

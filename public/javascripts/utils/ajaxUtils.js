@@ -148,7 +148,7 @@ var ajaxUtils = (function(){
 		$("#announcement-form").submit(function(formText){
 	        var date = new Date();
 	        var authenciated = $(".form-announ #post-announcement").attr('data-login');
-	        if(!(!!$(".form-announ #post-announcement").attr('data-login'))){
+	        if(!(!!authenciated)){
 	            alert("Access Denied. How did you get here? You're not supposed to be here!");
 	            callback("Announcement post unsuccessful, not authenciated");
 	            return false;
@@ -195,10 +195,10 @@ var ajaxUtils = (function(){
 	            url: endpoints.officerLogin + "?" +"credentials="+ localStorage.getItem('credentials'),
 	        }).done(function(status){
 	            if(status === undefined){
-	            	callback(endpoints.officerLogin + " endpoint failed");
+	            	callback(endpoints.officerLogin + " returned, unauthenticated error");
 	                return;
 	            } else if(status.indexOf('404') >= 0){
-	            	callback(endpoints.officerLogin + " endpoint failed");
+	            	callback(endpoints.officerLogin + " returned, unauthenticated error");
 	                return;
 	            }
 	            if(status == "OK"){
@@ -208,18 +208,22 @@ var ajaxUtils = (function(){
 	                $(".form-announ #post-announcement").attr('data-login', true);
 	            }
 	        }).fail(function(){
-	        	callback(endpoints.officerLogin + " endpoint failed");
+	        	callback(endpoints.officerLogin + " returned, unauthenticated error");
 	        });
 	    }
 	}
 
 	function login(formText, callback){
+		var username = formText.target.name.value,
+			password = formText.target.password.value;
+			endcodedCredentials = btoa(username + ":" + password);
+
         $.ajax({
             type: 'POST',
             url: endpoints.login,
-            data: { username: formText.target.name.value, 
-                    password: formText.target.password.value
-                   }
+            headers: { 
+     			authorization: 'Basic ' + endcodedCredentials
+ 			}
         }).done(function(login){
             var id = login.uuid; // a unique UUID sent from the server
             $(".form-announ #post-announcement").attr('data-login', true);

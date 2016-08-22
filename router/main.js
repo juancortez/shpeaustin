@@ -2,7 +2,8 @@
 //module.exports = function(app, con){
 module.exports = function(app, client) {
     var config = require('config'),
-        revision = config.revision; // global variable for revision number
+        revision = config.revision,
+        authorization = require('../lib/authorization.js').authorization; // global variable for revision number
     
     /*************************************************************************/
     // The following endpoints serve HTML pages

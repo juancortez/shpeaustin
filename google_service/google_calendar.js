@@ -28,7 +28,7 @@ var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
-function authorize(credentials, callback, res) {
+function authorize(credentials, callback) {
     var clientSecret = credentials.installed.client_secret;
     var clientId = credentials.installed.client_id;
     var redirectUrl = credentials.installed.redirect_uris[0];
@@ -41,7 +41,7 @@ function authorize(credentials, callback, res) {
             getNewToken(oauth2Client, callback);
         } else {
             oauth2Client.credentials = JSON.parse(token);
-            callback(oauth2Client, res);
+            listEvents(oauth2Client, callback);
         }
     });
 }
@@ -102,7 +102,7 @@ function storeToken(token) {
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function listEvents(auth, res) {
+function listEvents(auth, callback) {
     var calendarJSON = {
         calendar: []
     };
@@ -147,8 +147,7 @@ function listEvents(auth, res) {
                 console.error(err);
             });
             console.log("Successfully created the calendar_data.json file under the metadata folder.");
-            res.setHeader('Content-Type', 'application/json');
-            res.send(calendarJSON);
+            callback(calendarJSON);
         }
     });
 }

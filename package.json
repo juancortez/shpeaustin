@@ -16,6 +16,7 @@
   "license": "MIT",
   "analyze": true,
   "dependencies": {
+    "basic-auth": "^1.0.4",
     "body-parser": "^1.15.0",
     "botkit": "^0.2.2",
     "cfenv": "1.0.x",
