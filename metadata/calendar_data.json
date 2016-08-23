@@ -1,9 +1,85 @@
 {
     "calendar": [
         {
+            "event": "Softball Game VS Anytime Anyplace Field 05--AWAY",
+            "time": "2016-08-22T20:20:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=MnRoODU1bTU5MTUxdmhodTZva2dibTRmdXMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
+            "event": "Officer Meeting",
+            "time": "2016-08-24",
+            "link": "https://www.google.com/calendar/event?eid=dXE0MDBtOWFwZ2VxdWhvM3QwdWpqZWRjbzRfMjAxNjA4MjQgaWNxZGRrNWtkdHE2MXI0dmNqZGMyZmZnZzBAZw"
+        },
+        {
+            "event": "Night at the Union",
+            "time": "2016-08-28",
+            "link": "https://www.google.com/calendar/event?eid=OHJxbnMwaHR0czBuMjMwaGViazgwdTlkdjAgaWNxZGRrNWtkdHE2MXI0dmNqZGMyZmZnZzBAZw",
+            "location": "the Union"
+        },
+        {
+            "event": "Softball Game VS Slump Busters Field 01--HOME",
+            "time": "2016-08-29T19:25:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=dm9nOTc1NnRjcGViY2UzcmN2dWx0MjN1OWMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
+            "event": "General Meeting",
+            "time": "2016-08-31",
+            "link": "https://www.google.com/calendar/event?eid=cjF2MHFtcG40bXNwdDRmN2h0dW5sajJsMjBfMjAxNjA4MzEgaWNxZGRrNWtkdHE2MXI0dmNqZGMyZmZnZzBAZw"
+        },
+        {
+            "event": "PNS Expo Workshop",
+            "time": "2016-09-01",
+            "link": "https://www.google.com/calendar/event?eid=bmRkaGJnYmo5NnRndTEyZjU0c2V2MHJjMnMgNGJ1bWZrNm1qZThpOG5zb29pNDdnNTV1dmNAZw"
+        },
+        {
+            "event": "Officer Retreat",
+            "time": "2016-09-03",
+            "link": "https://www.google.com/calendar/event?eid=OTgzZXNtbjdoY25qaWRodGZpZXV1dHNicmcgaWNxZGRrNWtkdHE2MXI0dmNqZGMyZmZnZzBAZw"
+        },
+        {
+            "event": "Mock Interview Workshop",
+            "time": "2016-09-06",
+            "link": "https://www.google.com/calendar/event?eid=ZDhlaWs4MTQzYmYybDhlZmttcHE3bnBkdjggaWNxZGRrNWtkdHE2MXI0dmNqZGMyZmZnZzBAZw"
+        },
+        {
+            "event": "Softball Game VS Biohazards Field 01--HOME",
+            "time": "2016-09-05T21:15:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=NGc5bnNodnFqb2IyOXA1NTViOGdwY2w4cmsgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
+            "event": "EXPO",
+            "time": "2016-09-07",
+            "link": "https://www.google.com/calendar/event?eid=ZjNycDN0bzFwdTV1MnBibnVuMG11Z2R0MnMgNGJ1bWZrNm1qZThpOG5zb29pNDdnNTV1dmNAZw"
+        },
+        {
+            "event": "Softball Game VS Dataverts Field 02--AWAY",
+            "time": "2016-09-12T18:30:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=bTRqMHJtZ29tZm9vbmg5OXE0cXNsdDU1Z28gdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
             "event": "General Body Meeting 1",
             "time": "2016-09-21T19:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=Y3ZzbXM4MjNqYmJhZDN2MnZwOTJndDA0b3Mgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Softball Game VS Anytime Anyplace Field 01--HOME",
+            "time": "2016-09-26T19:25:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=dWhndWFoNnRycGFtaWVrbDVjbGVnMXVzOGMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
+            "event": "ACL",
+            "time": "2016-09-30",
+            "link": "https://www.google.com/calendar/event?eid=bThqMnF1ZDF2M2F2aGw1dDYzM2drdjFiMTAgNGJ1bWZrNm1qZThpOG5zb29pNDdnNTV1dmNAZw"
+        },
+        {
+            "event": "Grad Lab Month",
+            "time": "2016-10-03",
+            "link": "https://www.google.com/calendar/event?eid=MGFxdDdzYzJvZDI5YWx0YTY3azZwbGhpN3NfMjAxNjEwMDMgNGJ1bWZrNm1qZThpOG5zb29pNDdnNTV1dmNAZw"
         },
         {
             "event": "Happy Hour w/IBM-HIP",
@@ -12,9 +88,35 @@
             "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
         },
         {
+            "event": "Happy Hour w/ IBM-HIP",
+            "time": "2016-10-05T18:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=MXA0OWttMnAya3JuczA2NnVycGRnNjV2dDAganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
+            "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
+        },
+        {
+            "event": "Volleyball Social",
+            "time": "2016-10-06",
+            "link": "https://www.google.com/calendar/event?eid=dDF0cnZpbW9wcGJmcnU3cmhicTZ1OGY2bG8gNGJ1bWZrNm1qZThpOG5zb29pNDdnNTV1dmNAZw"
+        },
+        {
+            "event": "Noche de Ciencias",
+            "time": "2016-10-13T17:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=YmpvcTQ1Zjk2NHQ3NzZhZG9iYWoyY2R1cDQgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw"
+        },
+        {
             "event": "Noche de Ciencias",
             "time": "2016-10-13T17:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=bzVkMG81azAxcDlzZGY5bDc0Y2huczBuMzAgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Bowling Scholarship Fundraiser (Tentative)",
+            "time": "2016-10-21",
+            "link": "https://www.google.com/calendar/event?eid=ZnVqMm5yZWo5am43ajUxcXZlazAwMHFnZmsga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
+        },
+        {
+            "event": "Bowling Scholarship Fundraiser (Tentative)",
+            "time": "2016-11-12",
+            "link": "https://www.google.com/calendar/event?eid=OXBzdGZhMHNmcHNoZnNxNjlkdjI2OWMyNmsga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
         },
         {
             "event": "General Body Meeting 2",
@@ -22,36 +124,66 @@
             "link": "https://www.google.com/calendar/event?eid=NDg4Nzc1NHA5NjhxbHVzcDd2ZDhqdmVycGcgc2hwZS5hdXN0aW5AbQ"
         },
         {
+            "event": "General Body Meeting 2",
+            "time": "2016-11-16T19:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=NzRpOHRxZ3NydWl0aWt2bTNwOW1jMGJzMDggZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
+        },
+        {
             "event": "Holiday Party!!!",
             "time": "2016-12-10T18:00:00-06:00",
             "link": "https://www.google.com/calendar/event?eid=ODZ2bXZmanZqdjd2NG8zbGhlZTg3c2MwbWMgc2hwZS5hdXN0aW5AbQ"
         },
         {
+            "event": "Holiday Party!!!",
+            "time": "2016-12-10T18:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=cnVsNDVkYmMyZXAxZmt0ZTRuYTJjbmYzYTgganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
+        },
+        {
+            "event": "Officer Retreat 2",
+            "time": "2017-01-07",
+            "link": "https://www.google.com/calendar/event?eid=amY0MXFkNHNub2Y3dWRzc3VzaTRrZ2U4cTAga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
+        },
+        {
+            "event": "NRP #1",
+            "time": "2017-01-15",
+            "link": "https://www.google.com/calendar/event?eid=b3QwYXQ5MWJpanB1bDI4dHMwcG41aGY4dmcga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
+        },
+        {
             "event": "General Body Meeting 3",
             "time": "2017-02-09T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=aWRudDNscjdkM3I4cnAzMWRpOTQyMDVtM2sgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
         },
         {
             "event": "Joint E-week event with NSBE AP",
             "time": "2017-02-22T08:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NzByNjJwaG82b3BtNmI5ajZ0aDMyYjlrNmtybTZiYjE3MHBtMmJiMzZsZ2o2b3BrNzBzajZjMzM2YyBzaHBlLmF1c3RpbkBt"
+            "link": "https://www.google.com/calendar/event?eid=MjgyNGo2Njhza2dubnE5MTg3dWNrMHUxanMgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw"
         },
         {
             "event": "Noche de Ciencias",
             "time": "2017-04-06T17:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=cjBpYjNrMThza2szY3NuYzBzY2l2bDB2Nm8gc2hwZS5hdXN0aW5AbQ",
+            "link": "https://www.google.com/calendar/event?eid=Y281aDNwYnQxNTN1M3ZydXByMGcxaGd0NXMgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw",
             "location": "5300 Pecan Brook/Uray, United States"
         },
         {
             "event": "General Body Meeting 4: Nominations & Leadership Development",
             "time": "2017-04-20T19:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=ZnMzMWsxbDZwZGYwMGJwOTltMjY5ajJub2Mgc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=bjZranE3YjhicGpia3F1c2t1bm8yNnMybHMgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
+        },
+        {
+            "event": "Scholarship Awards Banquet",
+            "time": "2017-04-28",
+            "link": "https://www.google.com/calendar/event?eid=bzdtbDdoaHA2bm8xcmNkcHNhY2g1MTcwZGMga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
         },
         {
             "event": "Networking Social w/Upperclassman",
             "time": "2017-05-09T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=OWNrNWpwMWM2bHBwNWFuY2hybG8zOTVwOTggc2hwZS5hdXN0aW5AbQ",
+            "link": "https://www.google.com/calendar/event?eid=NTduZ3Nra2NyYm9xMWt0cDBjczBsaDdiM2cganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
             "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
+        },
+        {
+            "event": "Elections Happy Hour!!!",
+            "time": "2017-05-11T18:30:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=M3RzdW0wZzEwbjU0MnRmNWdhODRvMjl2cWMganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
         }
     ]
 }

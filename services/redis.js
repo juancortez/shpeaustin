@@ -19,8 +19,8 @@ function onRedisConnection(client, redis) {
         } else {
             if (reply == null) {
                 try {
-                    util = require('../utils/utils.js');
-                    util.parseOfficerJSON(client, redis);
+                    var util = require('../utils/utils.js');
+                    util.parseOfficerJSON(client);
                 } catch (e) {
                     console.error("Did not find utils.js");
                 }
@@ -70,9 +70,10 @@ function onRedisConnection(client, redis) {
         } else {
             if (reply == null) {
                 // set the version number on the Redis database
-                client.set('revisionNumber', revision, redis.print);
+                client.set('revisionNumber', JSON.stringify({
+                    revision: revision
+                }), redis.print);
             } else {
-                client.set('revisionNumber', revision);
                 //console.log("Revision is: " + revision);
             }
 

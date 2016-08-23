@@ -2,7 +2,7 @@
 // CommunicationController.js 
 // Endpoint: /communication
 // 
-// The following endpoints authenticate users
+// The following endpoints utilize Slack-bot and SendGrid to send outgoing data
 /*************************************************************************/
 var express = require('express'),
     app = express(),
@@ -60,6 +60,7 @@ app.post('/contact', function(req, res) {
         if (err) { 
             console.error(err); 
             res.sendStatus(400);
+            return;
         }
       res.sendStatus(200);
       console.log("E-mail sent successfully. " + JSON.stringify(json) + " \nSent to: " + sendGridEmail);

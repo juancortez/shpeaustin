@@ -64,16 +64,23 @@ app.post('/calendar', authorization.auth, function(req, res){
         client = req.app.get('redis');
 
     try{
-        google_calendar = require('../google_service/google_calendar.js');
+        google_calendar = require('../services/google_calendar.js');
     } catch(err){
         console.error("Failed to loaded google calendar files...");
         res.sendStatus(404);
+        return;
     }
-    google_calendar.authorize(google_content, function(results){
+    google_calendar.authorize(google_content, function(err, results){
+        if(!!err){
+            console.error("There was an error in the request");
+            res.sendStatus(400);
+            return;
+        }
         console.log("Updated redis data: " + JSON.stringify(results, null, 4));
         client.set('calendar', JSON.stringify(results)); // put the officerList on the redis database
         res.setHeader('Content-Type', 'application/json');
-        res.send(results);
+        res.status(200).send(results);
+        return;
     });
 });
 
@@ -99,16 +106,15 @@ app.post('/newsletterdata', function(req, res) {
     var fs = require("fs");
     var content = req.body.newsletter;
     var numItems = content.length;
-    for(var i = 0; i < numItems; i++){
-        var download = function(uri, filename, callback){
-            request.head(uri, function(err, res, body){
-                //console.log('content-type:', res.headers['content-type']);
-                //console.log('content-length:', res.headers['content-length']);
+    for (var i = 0; i < numItems; i++) {
+        var download = function(uri, filename, callback) {
+            request.head(uri, function(err, res, body) {
                 request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
             });
-         };
-            download(content[i].image, 'newsletter'+i, function(){
-            //console.log('done'); 
+        };
+        
+        var fileDestination = path.join(__dirname, '../public/assets/newsletter/');
+        download(content[i].image, fileDestination + "newsletter" + i, function() {
         });
     }
 
@@ -116,6 +122,8 @@ app.post('/newsletterdata', function(req, res) {
     jsonfile.writeFile(file, req.body, function(err) {
         if(err){
             console.error(err);
+            res.sendStatus(400);    
+            return;
         } else{
             console.log("Successfully created the newsletter_data.json file under the metadata folder.");
             res.sendStatus(200);    

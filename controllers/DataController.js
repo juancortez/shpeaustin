@@ -64,12 +64,15 @@ app.get('/officerlogin', function(req, res){
             var keys = JSON.parse(id);
             if(keys.uuid.indexOf(credentials) >= 0){
                 res.sendStatus(200);
+                return;
             } else{
                 res.sendStatus(401); // HTTP Code: Unauthorized
+                return;
             }
             
         } else{
             res.sendStatus(401); // HTTP Code: Unauthorized
+            return;
         }
     });
 });
@@ -80,14 +83,35 @@ app.get('/officerlist', function(req, res) {
         if(officerList){
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.parse(officerList));
+            return;
         } else{
             console.error(err);
             res.sendStatus(404);
+            return;
         }
     });
 });
 
-app.delete('/:key', authorization.webAuth, function(req, res) {
+app.get('/:key', authorization.auth ,function(req, res) {
+    var client = req.app.get('redis'),
+        key = req && req.params && req.params.key || "";
+
+    if(!!key){
+        client.get(key, function(err, data) {
+            if (err) {
+                console.error(err);
+                return res.sendStatus(400); // doesn't exist
+            } else {
+                res.setHeader('Content-Type', 'application/json');
+                return res.status(200).send(JSON.parse(data));
+            }
+        });   
+    } else{
+        return res.sendStatus(400); // bad request
+    }
+});
+
+app.delete('/:key', authorization.auth, function(req, res) {
     var client = req.app.get('redis');
     var key = req && req.params && req.params.key || "";
 
@@ -114,6 +138,8 @@ app.delete('/:key', authorization.webAuth, function(req, res) {
         jsonfile.writeFile(file, backup, function(err) {
             if(err){
                 console.error(err);
+                callback();
+                return;
             }
             console.log("Backup processed and successfully saved under metadata/backup/" + key + '_backup.json');
             callback();
@@ -124,12 +150,14 @@ app.delete('/:key', authorization.webAuth, function(req, res) {
         client.del(key, function(err, reply) {
             if (err) {
                 console.error(err);
+                res.sendStatus(400);
+                return;
             }
             if (reply == 1) {
                 console.log("Successfully delete key: " + key);
+                res.sendStatus(200);
             }
         });
-        res.sendStatus(200);
     };
 
     if(!!key){
@@ -143,7 +171,8 @@ app.delete('/:key', authorization.webAuth, function(req, res) {
 
 app.put('/:key', authorization.auth ,function(req, res) {
     var client = req.app.get('redis'),
-        key = req && req.params && req.params.key || "";
+        key = req && req.params && req.params.key || "",
+        data = req && req.body || null;
 
     if(!!key){
         if(key === "calendar"){
@@ -164,18 +193,26 @@ app.put('/:key', authorization.auth ,function(req, res) {
 
             request(options, function (error, response, body) {
               if (error){
-                res.sendStatus(400);
-                return;
+                return res.sendStatus(400);
               } 
-              res.sendStatus(200);
+              return res.sendStatus(200);
             });
         } else{
-            res.sendStatus(400).send("Not yet implemented..."); // TODO: haven't implemented yet, do it soon
-            return;
+            if(!!data){
+                if(key === "officerList"){
+                    var util = require('../utils/utils.js');
+                    util.parseOfficerJSON(client);
+                    return res.sendStatus(200);
+                } else{
+                    client.set(key, JSON.stringify(data));
+                    return res.sendStatus(200);
+                }
+            } else{
+                return res.sendStatus(400);
+            }
         }
     } else{
-        res.sendStatus(400); // bad request
-        return;
+        return res.sendStatus(400); // bad request
     }
 });
 

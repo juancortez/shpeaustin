@@ -1791,34 +1791,75 @@ html ::-webkit-scrollbar {
     width: 90%;
   }
 }
-.admin-container .form-container {
+.admin-container .cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.admin-container .cards .form-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 20px;
+  min-width: 480px;
+  max-width: 480px;
 }
-.admin-container .form-container.update {
+@media only screen and (max-width: 500px) {
+  .admin-container .cards .form-container {
+    min-width: initial;
+    max-width: initial;
+  }
+}
+.admin-container .cards .form-container.update {
   margin-top: 30px;
   margin-bottom: 30px;
 }
-.admin-container .form-container .check-container {
+.admin-container .cards .form-container.update .label-area {
+  margin-top: 10px;
+}
+.admin-container .cards .form-container.update .parenthesis {
+  font-weight: normal;
+  font-style: italic;
+}
+.admin-container .cards .form-container .check-container {
   border: 1px solid #ddd;
   padding: 25px;
   border-radius: 15px;
 }
-.admin-container .form-container .check-container .title {
+.admin-container .cards .form-container .check-container textarea.form-control {
+  margin-bottom: 20px;
+}
+.admin-container .cards .form-container .check-container .title {
   text-align: center;
   position: relative;
   bottom: 10px;
 }
-.admin-container .form-container .check-container .form-check {
+.admin-container .cards .form-container .check-container .form-check,
+.admin-container .cards .form-container .check-container .form-group {
   min-width: 25%;
 }
-.admin-container .form-container .check-container .button-container {
+.admin-container .cards .form-container .check-container .form-check label {
+  font-weight: normal;
+}
+.admin-container .cards .form-container .check-container .button-container {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.admin-container .form-container .check-container .fa-cog {
+.admin-container .cards .form-container .check-container .fa-cog {
   font-size: 2em;
+}
+.admin-container .json-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-container .json-container div {
+  display: none;
+  max-height: 750px;
+  overflow-y: auto;
+  max-width: 75%;
+  margin: 25px 0px 50px 0px;
 }

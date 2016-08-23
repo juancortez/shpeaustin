@@ -1832,44 +1832,92 @@ html{
 } // .membership-container
 
 .admin-container{
-  .form-container{
+  .cards{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-wrap: wrap;
 
-    &.update{
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
+    .form-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin: 20px;
+      min-width: 480px;
+      max-width: 480px;
 
-    .check-container{
-      border: 1px solid #ddd;
-      padding: 25px;
-      border-radius: 15px;
-
-      .title{
-        text-align: center;
-        position: relative;
-        bottom: 10px;
+      @media only screen and (max-width: 500px){
+        min-width: initial;
+        max-width: initial;
       }
 
-      .form-check{
-        min-width: 25%;
+      &.update{
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        .label-area{
+          margin-top: 10px;
+        }
+
+        .parenthesis{
+          font-weight: normal;
+          font-style: italic;
+        }
       }
 
-      .button-container{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
+      .check-container{
+        border: 1px solid #ddd;
+        padding: 25px;
+        border-radius: 15px;
+        // min-height: 330px;
 
-      .fa-cog{
-        font-size: 2em;
-      }
-    } // .form-check
+        textarea.form-control{
+          margin-bottom: 20px;
+        }
 
+        .title{
+          text-align: center;
+          position: relative;
+          bottom: 10px;
+        }
 
-  } // .form-container
+        .form-check, .form-group{
+          min-width: 25%;
+        }
+
+        .form-check{
+          label{
+            font-weight: normal;
+          }
+        }
+
+        .button-container{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+
+        .fa-cog{
+          font-size: 2em;
+        }
+      } // .form-check
+    } // .form-container
+  } // .cards
+
+  .json-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div{
+      display: none;
+      max-height: 750px;
+      overflow-y: auto;
+      max-width: 75%;
+      margin: 25px 0px 50px 0px;
+    } 
+  } // .data-container
+
 } // .admin-container
 

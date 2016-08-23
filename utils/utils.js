@@ -1,4 +1,4 @@
-function parseOfficerJSON(client, redis) {
+function parseOfficerJSON(client) {
     var Officer = require('../models/officers.js'),
         officerList = [],
         data = [],
@@ -24,7 +24,7 @@ function parseOfficerJSON(client, redis) {
         officerList.push(officer);
     }
 
-    client.set('officerList', JSON.stringify(officerList), redis.print); // put the officerList on the redis database
+    client.set('officerList', JSON.stringify(officerList)); // put the officerList on the redis database
 }
 
 module.exports.parseOfficerJSON = parseOfficerJSON;

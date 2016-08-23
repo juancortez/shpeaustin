@@ -10,8 +10,8 @@ var express = require('express'),
     privateCredentials = require('./private_credentials/credentials.json'),
     redisCredentials = privateCredentials.redis.credentials,
     slackCredentials = privateCredentials.slack,
-    redis_connect = require("./redis/redis.js"),
-    socket_connect = require("./socket/socket.js"),
+    redis_connect = require("./services/redis.js"),
+    socket_connect = require("./services/socket.js"),
     socket = require('socket.io'),
     config = require('config');
 
@@ -85,4 +85,4 @@ var bot = controller.spawn({
 }).startRTM();
 
 app.set('bot', bot); 
-require('./slackbot/slack.js')(controller, client); // Listen to different requests
+require('./services/slack.js')(controller, client); // Listen to different requests
