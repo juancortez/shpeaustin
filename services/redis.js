@@ -9,7 +9,7 @@
 var config = require('config'),
     revision = config.revision;
 
-function onRedisConnection(client, redis) {
+function onRedisConnection(client) {
     console.log('Connected to Redis');
 
     //cache metadata files into redis
@@ -40,7 +40,13 @@ function onRedisConnection(client, redis) {
                 } catch (ignore) {
                     console.error("Failed to load data from calendar_data.json");
                 }
-                client.set('calendar', JSON.stringify(calendarData), redis.print);
+                client.set('calendar', JSON.stringify(calendarData), function(err, reply){
+                    if(err){
+                        console.error(err);
+                        return;
+                    }
+                    console.log("calendar data successully set on Redis database!");
+                });
             } else {
                 //console.log(JSON.parse(reply)); // used to check if redis database got populated
             }
@@ -57,7 +63,13 @@ function onRedisConnection(client, redis) {
                 } catch (ignore) {
                     console.error("Failed to load data from newsletter_data.json");
                 }
-                client.set('newsletterdata', JSON.stringify(newsletterdata), redis.print);
+                client.set('newsletterdata', JSON.stringify(newsletterdata), function(err, reply){
+                    if(err){
+                        console.error(err);
+                        return;
+                    }
+                    console.log("newsletterdata data successully set on Redis database!");
+                });
             } else {
                 //console.log(JSON.parse(reply)); // used to check if redis database got populated
             }
@@ -72,7 +84,13 @@ function onRedisConnection(client, redis) {
                 // set the version number on the Redis database
                 client.set('revisionNumber', JSON.stringify({
                     revision: revision
-                }), redis.print);
+                }), function(err, reply){
+                    if(err){
+                        console.error(err);
+                        return;
+                    }
+                    console.log("revisionNumber data successully set on Redis database!");
+                });
             } else {
                 //console.log("Revision is: " + revision);
             }
@@ -90,7 +108,13 @@ function onRedisConnection(client, redis) {
                 } catch (ignore) {
                     console.error("Failed to load data from announcements.json");
                 }
-                client.set("announcements", JSON.stringify(announcements), redis.print);
+                client.set("announcements", JSON.stringify(announcements), function(err, reply){
+                    if(err){
+                        console.error(err);
+                        return;
+                    }
+                    console.log("announcements data successully set on Redis database!");
+                });
             } else {
                 //console.log(JSON.parse(reply));
             }

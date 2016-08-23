@@ -70,17 +70,22 @@ app.post('/calendar', authorization.auth, function(req, res){
         res.sendStatus(404);
         return;
     }
+
     google_calendar.authorize(google_content, function(err, results){
         if(!!err){
             console.error("There was an error in the request");
             res.sendStatus(400);
             return;
         }
-        console.log("Updated redis data: " + JSON.stringify(results, null, 4));
-        client.set('calendar', JSON.stringify(results)); // put the officerList on the redis database
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).send(results);
-        return;
+        client.set('calendar', JSON.stringify(results), function(err, reply){
+            if(err){
+                console.error(err);
+                return res.sendStatus(400);
+            }
+            console.log("Updated redis data: " + JSON.stringify(results, null, 4));
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(200).send(results);
+        }); // put the officerList on the redis database
     });
 });
 

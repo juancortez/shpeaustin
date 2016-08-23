@@ -1,15 +1,19 @@
-function parseOfficerJSON(client) {
+function parseOfficerJSON(client, incomingData, callback) {
     var Officer = require('../models/officers.js'),
         officerList = [],
         data = [],
         file = "../metadata/officers.json";
-
-    try {
-        //console.log("Loading officer data from " + file);
-        data = require(file);
-        //console.log("Successfully loaded data from " + file);
-    } catch (ignore) {
-        console.error("Failed to load data from " + file);
+    
+    if(!!incomingData){
+        data = incomingData;
+    } else{
+        try {
+            //console.log("Loading officer data from " + file);
+            data = require(file);
+            //console.log("Successfully loaded data from " + file);
+        } catch (ignore) {
+            console.error("Failed to load data from " + file);
+        }
     }
 
     for (var i = 0; i < data.executive.length; i++) {
@@ -24,7 +28,19 @@ function parseOfficerJSON(client) {
         officerList.push(officer);
     }
 
-    client.set('officerList', JSON.stringify(officerList)); // put the officerList on the redis database
+    client.set('officerList', JSON.stringify(officerList), function(err, reply){
+        if(err){
+            console.error(err);
+            if(!!callback){
+                callback(true);
+            }
+            return;
+        }
+        console.log("officerList data successully set on Redis database!");
+        if(!!callback){
+            callback(false);
+        }
+    }); // put the officerList on the redis database
 }
 
 module.exports.parseOfficerJSON = parseOfficerJSON;

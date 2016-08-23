@@ -201,11 +201,21 @@ app.put('/:key', authorization.auth ,function(req, res) {
             if(!!data){
                 if(key === "officerList"){
                     var util = require('../utils/utils.js');
-                    util.parseOfficerJSON(client);
-                    return res.sendStatus(200);
+                    util.parseOfficerJSON(client, data, function(err){
+                        if(err){
+                            return res.sendStatus(400);
+                        }
+                        return res.sendStatus(200);
+                    });
                 } else{
-                    client.set(key, JSON.stringify(data));
-                    return res.sendStatus(200);
+                    client.set(key, JSON.stringify(data), function(err, reply){
+                        if(err){
+                            console.error(err);
+                            return res.sendStatus(400);
+                        }
+                        console.log("Successully saved " + key + " to the Redis database.");
+                        return res.sendStatus(200);
+                    });
                 }
             } else{
                 return res.sendStatus(400);

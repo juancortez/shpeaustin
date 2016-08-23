@@ -26,7 +26,7 @@ client.auth(redisCredentials.password, function (err) {
     }
 });
 client.on('connect', function() {
-    redis_connect.onRedisConnection(client, redis);
+    redis_connect.onRedisConnection(client);
 });
 
 /************************************************************************************************************

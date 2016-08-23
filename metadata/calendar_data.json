@@ -1,12 +1,6 @@
 {
     "calendar": [
         {
-            "event": "Softball Game VS Anytime Anyplace Field 05--AWAY",
-            "time": "2016-08-22T20:20:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=MnRoODU1bTU5MTUxdmhodTZva2dibTRmdXMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
-        },
-        {
             "event": "Officer Meeting",
             "time": "2016-08-24",
             "link": "https://www.google.com/calendar/event?eid=dXE0MDBtOWFwZ2VxdWhvM3QwdWpqZWRjbzRfMjAxNjA4MjQgaWNxZGRrNWtkdHE2MXI0dmNqZGMyZmZnZzBAZw"
@@ -82,15 +76,15 @@
             "link": "https://www.google.com/calendar/event?eid=MGFxdDdzYzJvZDI5YWx0YTY3azZwbGhpN3NfMjAxNjEwMDMgNGJ1bWZrNm1qZThpOG5zb29pNDdnNTV1dmNAZw"
         },
         {
-            "event": "Happy Hour w/IBM-HIP",
-            "time": "2016-10-05T18:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=ODZsM3BlbTJmdTU2YjEyNnF0ajBobGJoMmMgc2hwZS5hdXN0aW5AbQ",
-            "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
-        },
-        {
             "event": "Happy Hour w/ IBM-HIP",
             "time": "2016-10-05T18:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=MXA0OWttMnAya3JuczA2NnVycGRnNjV2dDAganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
+            "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
+        },
+        {
+            "event": "Happy Hour w/IBM-HIP",
+            "time": "2016-10-05T18:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=ODZsM3BlbTJmdTU2YjEyNnF0ajBobGJoMmMgc2hwZS5hdXN0aW5AbQ",
             "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
         },
         {
