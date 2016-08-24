@@ -77,15 +77,15 @@
                 "link": "https://www.google.com/calendar/event?eid=MGFxdDdzYzJvZDI5YWx0YTY3azZwbGhpN3NfMjAxNjEwMDMgNGJ1bWZrNm1qZThpOG5zb29pNDdnNTV1dmNAZw"
             },
             {
-                "event": "Happy Hour w/ IBM-HIP",
-                "time": "2016-10-05T18:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=MXA0OWttMnAya3JuczA2NnVycGRnNjV2dDAganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
-                "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
-            },
-            {
                 "event": "Happy Hour w/IBM-HIP",
                 "time": "2016-10-05T18:00:00-05:00",
                 "link": "https://www.google.com/calendar/event?eid=ODZsM3BlbTJmdTU2YjEyNnF0ajBobGJoMmMgc2hwZS5hdXN0aW5AbQ",
+                "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
+            },
+            {
+                "event": "Happy Hour w/ IBM-HIP",
+                "time": "2016-10-05T18:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=MXA0OWttMnAya3JuczA2NnVycGRnNjV2dDAganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
                 "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
             },
             {
@@ -96,12 +96,12 @@
             {
                 "event": "Noche de Ciencias",
                 "time": "2016-10-13T17:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=YmpvcTQ1Zjk2NHQ3NzZhZG9iYWoyY2R1cDQgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw"
+                "link": "https://www.google.com/calendar/event?eid=bzVkMG81azAxcDlzZGY5bDc0Y2huczBuMzAgc2hwZS5hdXN0aW5AbQ"
             },
             {
                 "event": "Noche de Ciencias",
                 "time": "2016-10-13T17:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=bzVkMG81azAxcDlzZGY5bDc0Y2huczBuMzAgc2hwZS5hdXN0aW5AbQ"
+                "link": "https://www.google.com/calendar/event?eid=YmpvcTQ1Zjk2NHQ3NzZhZG9iYWoyY2R1cDQgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw"
             },
             {
                 "event": "Bowling Scholarship Fundraiser (Tentative)",

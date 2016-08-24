@@ -7,6 +7,7 @@
  */
 
 var config = require('config'),
+    database = require("../lib/database.js"),
     revision = config.revision;
 
 function onRedisConnection(client) {
@@ -20,12 +21,26 @@ function onRedisConnection(client) {
             if (reply == null) {
                 try {
                     var util = require('../utils/utils.js');
-                    util.parseOfficerJSON(client);
                 } catch (e) {
                     console.error("Did not find utils.js");
                 }
+
+                util.parseOfficerJSON(null, function(err, data){
+                    if(!!err){
+                        console.error(err.reason);
+                        return;
+                    }
+                    database.setData("officerList", JSON.stringify(data), function(err){
+                        if(err){
+                            console.error("Error: " + err.reason);
+                            return;
+                        }
+                        console.log("Successully saved and cached officerList to Redis!");
+                    });
+                });
+            
             } else {
-                //console.log(JSON.parse(reply)); // used to check if redis database got populated
+                cacheData("officerList", reply);
             }
         }
     });
@@ -40,15 +55,15 @@ function onRedisConnection(client) {
                 } catch (ignore) {
                     console.error("Failed to load data from calendar_data.json");
                 }
-                client.set('calendar', JSON.stringify(calendarData), function(err, reply){
+                database.setData("calendar", JSON.stringify(calendarData), function(err){
                     if(err){
-                        console.error(err);
+                        console.error("Error: " + err.reason);
                         return;
                     }
-                    console.log("calendar data successully set on Redis database!");
+                    console.log("Successully saved and cached calendar to Redis!");
                 });
             } else {
-                //console.log(JSON.parse(reply)); // used to check if redis database got populated
+                cacheData("calendar", reply);
             }
         }
     });
@@ -63,15 +78,15 @@ function onRedisConnection(client) {
                 } catch (ignore) {
                     console.error("Failed to load data from newsletter_data.json");
                 }
-                client.set('newsletterdata', JSON.stringify(newsletterdata), function(err, reply){
+                database.setData("newsletterdata", JSON.stringify(newsletterdata), function(err){
                     if(err){
-                        console.error(err);
+                        console.error("Error: " + err.reason);
                         return;
                     }
-                    console.log("newsletterdata data successully set on Redis database!");
+                    console.log("Successully saved and cached newsletterdata to Redis!");
                 });
             } else {
-                //console.log(JSON.parse(reply)); // used to check if redis database got populated
+                cacheData("newsletterdata", reply);
             }
         }
     });
@@ -82,17 +97,15 @@ function onRedisConnection(client) {
         } else {
             if (reply == null) {
                 // set the version number on the Redis database
-                client.set('revisionNumber', JSON.stringify({
-                    revision: revision
-                }), function(err, reply){
+                database.setData("revisionNumber", JSON.stringify({revision: revision}), function(err){
                     if(err){
-                        console.error(err);
+                        console.error("Error: " + err.reason);
                         return;
                     }
-                    console.log("revisionNumber data successully set on Redis database!");
+                    console.log("Successully saved and cached revisionNumber to Redis!");
                 });
             } else {
-                //console.log("Revision is: " + revision);
+                cacheData("revisionNumber", reply);
             }
 
         }
@@ -108,17 +121,39 @@ function onRedisConnection(client) {
                 } catch (ignore) {
                     console.error("Failed to load data from announcements.json");
                 }
-                client.set("announcements", JSON.stringify(announcements), function(err, reply){
+                database.setData("announcements", JSON.stringify(announcements), function(err){
                     if(err){
-                        console.error(err);
+                        console.error("Error: " + err.reason);
                         return;
                     }
-                    console.log("announcements data successully set on Redis database!");
+                    console.log("Successully saved and cached announcements to Redis!");
                 });
             } else {
-                //console.log(JSON.parse(reply));
+                cacheData("announcements", reply);
             }
         }
+    });
+
+    client.get("id", function(err, reply) {
+        if (err) {
+            console.error("Error: " + err);
+        } else {
+            if (reply == null) {
+               // no id's provided
+            } else {
+                cacheData("id", reply);
+            }
+        }
+    });
+}
+
+function cacheData(key, data){
+    database.cacheData(key, data, function(err){
+        if(!!err){
+            console.error(err.reason);
+            return;
+        }
+        console.log("Successully cached " + key + " data!");
     });
 }
 module.exports.onRedisConnection = onRedisConnection;

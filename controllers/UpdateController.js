@@ -9,6 +9,7 @@ var express = require('express'),
     config = require('config'),
     privateCredentials = require('../private_credentials/credentials.json'),
     authorization = require('../lib/authorization.js').authorization,
+    database = require('../lib/database.js'),
     revision = config.revision;
 
 // posts an announcement to the redis database
@@ -67,14 +68,13 @@ app.post('/calendar', authorization.auth, function(req, res){
         google_calendar = require('../services/google_calendar.js');
     } catch(err){
         console.error("Failed to loaded google calendar files...");
-        res.sendStatus(404);
-        return;
+        return res.status(404).send("Failed to loaded google calendar files...");
     }
 
     google_calendar.authorize(google_content, function(err, results){
         if(!!err){
             console.error("There was an error in the request");
-            res.sendStatus(400);
+            res.status(400).send("There was an error in the request");
             return;
         }
         client.set('calendar', JSON.stringify(results), function(err, reply){
@@ -140,15 +140,23 @@ app.post('/newsletterdata', function(req, res) {
 
 // opens up the views/newsletters/newsletter.html page and sends it to the /newsletterload endpoint
 app.get('/admin', authorization.auth, function(req, res) {
-    var client = req.app.get('redis');
+    database.getKeys(function(err, keys){
+        if(err){
+            console.error("Error: " + err.reason);
+            return res.status(400).send(err.reason);
+        }
 
-    client.keys('*', function (err, keys) {
-        res.render('admin.html', {
-            revision: revision,
-            keys: keys
-        });
+        database.getCachedData("revisionNumber", function(err, data){
+            if(!!err){
+                console.error(err.reason);
+            }
+            revision = (!(!!err)) ? data.revision : revision;
+            res.render('admin.html', {
+                revision: revision,
+                keys: keys
+            });
+        }); 
     });
-
 });
 
 module.exports = app;

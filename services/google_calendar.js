@@ -126,8 +126,11 @@ function listEvents(auth, callback) {
                 }
                 calendars.push(response.items[i].id);
             }    
+            getCalendarData(false, calendar, auth, calendars, callback);
+        } else{
+            console.error("No calendars found in google calendar...");
+            getCalendarData(true);
         }
-        getCalendarData(false, calendar, auth, calendars, callback);
     }, getCalendarData);
 }
 
@@ -218,9 +221,9 @@ function sendServerResponse(data, callback){
             console.error(err);
             return;
         }
+        console.log("Successfully created the calendar_data.json file under the metadata folder.");
+        callback(false, data);
     });
-    console.log("Successfully created the calendar_data.json file under the metadata folder.");
-    callback(false, data);
 }
 
 

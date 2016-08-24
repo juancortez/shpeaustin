@@ -1312,7 +1312,7 @@ html ::-webkit-scrollbar {
   color: #002266;
 }
 .contact-container #chat-container {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 10%;
   height: 368px;

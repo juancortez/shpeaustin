@@ -13,20 +13,27 @@ var express = require('express'),
     redis_connect = require("./services/redis.js"),
     socket_connect = require("./services/socket.js"),
     socket = require('socket.io'),
-    config = require('config');
+    config = require('config'),
+    database = require("./lib/database.js");
 
 /************************************************************************************************************
 *                                   Redis Database Connection
 ************************************************************************************************************/
 var client = redis.createClient(redisCredentials.port, redisCredentials.hostname, {no_ready_check: true});
-app.set('redis', client); 
+app.set('redis', client);  // To access client: var client = req.app.get('redis');
 client.auth(redisCredentials.password, function (err) {
     if (err){
         console.error(err);
     }
 });
 client.on('connect', function() {
-    redis_connect.onRedisConnection(client);
+    database.create(client, function(err){
+        if(err){
+            console.error(err.reason);
+        }
+        console.log("Database Singleton successfully created!");
+        redis_connect.onRedisConnection(client);
+    });
 });
 
 /************************************************************************************************************

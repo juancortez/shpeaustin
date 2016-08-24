@@ -2,47 +2,72 @@
 //module.exports = function(app, con){
 module.exports = function(app, client) {
     var config = require('config'),
-        revision = config.revision,
+        revision = config.revision, // default if database isn't working
+        database = require("../lib/database.js"),
         authorization = require('../lib/authorization.js').authorization; // global variable for revision number
     
     /*************************************************************************/
     // The following endpoints serve HTML pages
     /*************************************************************************/
     app.get('/', function(req, res) {
-        res.render('index.html', {
-            revision: revision
+        database.getCachedData("revisionNumber", function(err, data){
+            if(!!err){
+                console.error(err.reason);
+            }
+            revision = (!(!!err)) ? data.revision : revision;
+            res.render('index.html', {
+                revision: revision
+            });
         });
     });
 
     app.get('/about', function(req, res) {
-        res.render('about.html', {
-            revision: revision
+        database.getCachedData("revisionNumber", function(err, data){
+            if(!!err){
+                console.error(err.reason);
+            }
+            revision = (!(!!err)) ? data.revision : revision;
+            res.render('about.html', {
+                revision: revision
+            });
         });
     });
 
     app.get('/officers', function(req, res) {
-        client.get('officerList', function (err, officerList) {
-            if(officerList){
-                res.render('officers.ejs', {
-                    officerList: JSON.parse(officerList),
-                    revision: revision
-                });
-            } else{
-                console.error(err);
-                res.sendStatus(404);
+        database.getCachedData(["revisionNumber", "officerList"], function(err, data){
+            if(!!err){
+                console.error(err.reason);
             }
+            revision = (!(!!err)) ? data.revisionNumber.revision : revision;
+            var officerList = data && data.officerList || [];
+            res.render('officers.ejs', {
+                officerList: officerList,
+                revision: revision
+            }); 
         });
     });
 
     app.get('/membership', function(req, res) {
-        res.render('membership.html', {
-            revision: revision
+        database.getCachedData("revisionNumber", function(err, data){
+            if(!!err){
+                console.error(err.reason);
+            }
+            revision = (!(!!err)) ? data.revision : revision;
+            res.render('membership.html', {
+                revision: revision
+            });
         });
     });
 
     app.get('/contact', function(req, res) {
-        res.render('contact.html', {
-            revision: revision
+        database.getCachedData("revisionNumber", function(err, data){
+            if(!!err){
+                console.error(err.reason);
+            }
+            revision = (!(!!err)) ? data.revision : revision;
+            res.render('contact.html', {
+                revision: revision
+            });
         });
     });
 
@@ -86,10 +111,15 @@ module.exports = function(app, client) {
     /*************************************************************************/
 
     app.get('*', function(req, res) {
-        res.render('404.html', {
-            revision: revision 
+        database.getCachedData("revisionNumber", function(err, data){
+            if(!!err){
+                console.error(err.reason);
+            }
+            revision = (!(!!err)) ? data.revision : revision;
+            res.render('404.html', {
+                revision: revision 
+            });
         });
-        //res.status(400).send({ error: 'HTML Error 404: Not Found!' });
     });
 
 } // end of module exports

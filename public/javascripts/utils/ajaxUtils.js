@@ -10,9 +10,9 @@ var ajaxUtils = (function(){
 
 	var endpoints = {
 		newsletter : "/data/newsletterdata",
-		calendar : "/data/calendardata",
+		calendar : "/data/calendar",
 		announcements : "/data/announcements",
-		officers : "/data/officerlist",
+		officers : "/data/officerList",
 		officerLogin: "/data/officerlogin",
 		postAnnouncement: "/update/announcements",
 		login: "/authentication/login",
