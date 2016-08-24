@@ -104,32 +104,29 @@ function storeToken(token) {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function listEvents(auth, callback) {
-    var calendar = google.calendar('v3');
-    var ignoreCalendars = ["PNS", "UT-SHPE"]; // these are the calendars we do NOT want
+    var calendar = google.calendar('v3'),
+        ignoreCalendars = ["PNS", "UT-SHPE"], // these are the calendars we do NOT want
+        calendars = [];
 
-    var calendars = [];
     calendar.calendarList.list({
         auth: auth
     },function(err, response){
-        if(err){
-            console.error("Error in calendarList request...");
-            getCalendarData(true);
-            return;
+        if(!!err){
+            return callback({reason: "Error in calendarList request..."});
         }
         var length = response && response.items && response.items.length || 0;
         if(!!length){
             for(var i = 0; i < length; i++){
-                var summary = response.items.summary || "";
-                if(ignoreCalendars.indexOf(response.items.summary) != -1){
-                    console.log("Skipping calendar, " + response.items.summary);
+                var summary = response.items[i].summary || "";
+                if(ignoreCalendars.indexOf(summary) != -1){
+                    console.log("Skipping calendar, " + summary);
                     continue; // we do not want to add these calendars
                 }
                 calendars.push(response.items[i].id);
             }    
-            getCalendarData(false, calendar, auth, calendars, callback);
+            getCalendarData(calendar, auth, calendars, callback);
         } else{
-            console.error("No calendars found in google calendar...");
-            getCalendarData(true);
+            callback({reason: "No calendars found in google calendar..."});
         }
     }, getCalendarData);
 }
@@ -147,12 +144,7 @@ function listEvents(auth, callback) {
 *  'u3auomldt06gtokg9qk4dls6io@group.calendar.google.com',
 *  'en.usa#holiday@group.v.calendar.google.com' ]
 */
-function getCalendarData(err, calendar, auth, calendars, callback){
-    if(!!err){
-        callback(true);
-        return;
-    }
-
+function getCalendarData(calendar, auth, calendars, callback){
     var calendarJSON = {
         calendar: []
     };
@@ -218,8 +210,7 @@ function sendServerResponse(data, callback){
     var file = path.join(__dirname, '../metadata', 'calendar_data.json');
     jsonfile.writeFile(file, data, function(err) {
         if(err){
-            console.error(err);
-            return;
+            return callback({reason: "Unable to write file"});
         }
         console.log("Successfully created the calendar_data.json file under the metadata folder.");
         callback(false, data);

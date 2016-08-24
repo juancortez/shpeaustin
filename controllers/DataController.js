@@ -55,14 +55,14 @@ app.delete('/:key', authorization.auth, function(req, res) {
         database.deleteData(key, function(err){
             if(err){
                 console.error("Error: " + err.reason);
-                return res.send(400).status(err.reason); // bad request
+                return res.status(400).send(err.reason); // bad request
             }
             console.log("Successfully removed " + key +  " from database!");
             return res.sendStatus(200);
         });
     } else{
         console.error("No key provided in delete request");
-        return res.send(400).status("No key provided in delete request"); // bad request
+        return res.status(400).send("No key provided in delete request"); // bad request
     }
 });
 
@@ -102,12 +102,12 @@ app.put('/:key', authorization.auth ,function(req, res) {
         util.parseOfficerJSON(data, function(err, data){
             if(err){
                 console.error(err.reason);
-                return res.send(400).status(err.reason);
+                return res.status(400).send(err.reason);
             }
             database.setData(key, JSON.stringify(data), function(err){
                 if(err){
                     console.error("Error: " + err.reason);
-                    res.send(400).status(err.reason);
+                    res.status(400).send(err.reason);
                 }
                 console.log("Successully saved and cached " + key + " to Redis!");
                 return res.sendStatus(200);
@@ -117,7 +117,7 @@ app.put('/:key', authorization.auth ,function(req, res) {
         database.setData(key, JSON.stringify(data), function(err){
             if(err){
                 console.error("Error: " + err.reason);
-                res.send(400).status(err.reason);
+                res.status(400).send(err.reason);
             }
             console.log("Successully saved and cached " + key + " to Redis!");
             return res.sendStatus(200);

@@ -61,8 +61,7 @@ app.post('/announcements', function(req, res){
 app.post('/calendar', authorization.auth, function(req, res){
     // Get access to the Google Calendar
     var google_calendar,
-        google_content = privateCredentials.google_oauth,
-        client = req.app.get('redis');
+        google_content = privateCredentials.google_oauth;
 
     try{
         google_calendar = require('../services/google_calendar.js');
@@ -73,26 +72,32 @@ app.post('/calendar', authorization.auth, function(req, res){
 
     google_calendar.authorize(google_content, function(err, results){
         if(!!err){
-            console.error("There was an error in the request");
-            res.status(400).send("There was an error in the request");
-            return;
+            console.error(err.reason);
+            return res.status(400).send(err.reason);
         }
-        client.set('calendar', JSON.stringify(results), function(err, reply){
-            if(err){
-                console.error(err);
-                return res.sendStatus(400);
+  
+        database.setData('calendar', JSON.stringify(results), function(err){
+            if(!!err){
+                console.error("Error: " + err.reason);
+                return res.status(400).send(err.reason);
             }
-            console.log("Updated redis data: " + JSON.stringify(results, null, 4));
+            console.log("Successully saved and cached calendar to Redis!");
             res.setHeader('Content-Type', 'application/json');
             return res.status(200).send(results);
-        }); // put the officerList on the redis database
+        });
     });
 });
 
 // Load data from the newsletter contained in views/newsletters
 app.get('/newsletterload', function(req, res) {
-    res.render('newsletter_load.html', {
-        revision: revision 
+    database.getCachedData("revisionNumber", function(err, data){
+        if(!!err){
+            console.error(err.reason);
+        }
+        revision = (!(!!err)) ? data.revision : revision;
+        res.render('newsletter_load.html', {
+            revision: revision 
+        });
     });
 });
 
