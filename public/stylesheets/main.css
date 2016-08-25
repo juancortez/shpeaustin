@@ -1816,6 +1816,10 @@ html ::-webkit-scrollbar {
   margin-top: 30px;
   margin-bottom: 30px;
 }
+.admin-container .cards .form-container.update .update-description {
+  text-align: center;
+  font-style: italic;
+}
 .admin-container .cards .form-container.update .label-area {
   margin-top: 10px;
 }
@@ -1856,10 +1860,39 @@ html ::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
 }
-.admin-container .json-container div {
+.admin-container .json-container #hidden-output {
   display: none;
+}
+.admin-container .json-container .copy-status {
+  display: none;
+  position: absolute;
+  left: 43%;
+  color: green;
+  background: white;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 30px;
+  top: 10px;
+}
+.admin-container .json-container .output-container {
+  display: none;
+  padding: 30px;
+  position: relative;
   max-height: 750px;
   overflow-y: auto;
   max-width: 75%;
   margin: 25px 0px 50px 0px;
+  min-width: 325px;
+}
+.admin-container .json-container .output-container i {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  right: 15px;
+  top: 15px;
+  background: white;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
 }

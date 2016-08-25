@@ -105,16 +105,18 @@ $(document).ready(function() {
                 method: "GET",
                 url: "/data/" + radioValue
             }).done(function(data) {
-                $(".json-container div").show();
+                $(".json-container .output-container").show();
+                $(".json-container .output-container i").show();
+                $("#hidden-output").text(JSON.stringify(data));
                 $(".output").text(JSON.stringify(data, null, 4));
+                $('html, body').animate({
+                    scrollTop: $(".json-container").offset().top - 90
+                }, 1000);
                 complete(false, false);
             }).fail(function(e) {
                 complete(true, false);
                 console.error("Unable to find " + radioValue + ". Error: " + JSON.stringify(e));
             }).always(function() {
-                $('html, body').animate({
-                    scrollTop: $(".json-container").offset().top - 20
-                }, 1000);
             });
         }
 
@@ -156,4 +158,88 @@ $(document).ready(function() {
         }
         return false;
     });
+
+    $('input[type=radio][name=updateoptions]').change(function(evt) { 
+        var radioChangeValue = evt.target.value;
+        switch(radioChangeValue){
+            case "calendar":
+                $(".change-data").hide();
+                $(".update-description").text("Will send a REST call to the Google Calendar API.");
+                break;
+            case "newsletterdata":
+                $(".change-data").hide();
+                $(".update-description").text("External call to newsletter page. Close new page when complete.");
+                break;
+            default:
+                $(".update-description").text("");
+                $(".change-data").show();
+                break;
+        }
+    });
+
+    // $("#copy-text").click(function(evt){
+    //     debugger;
+    //     var json = document.querySelector('.hidden-output');  
+    //     var range = document.createRange();  
+    //     range.selectNode(json);  
+    //     window.getSelection().addRange(range); 
+    //     try {  
+    //         // Now that we've selected the anchor text, execute the copy command  
+    //         var successful = document.execCommand('copy');  
+    //         var msg = successful ? 'successful' : 'unsuccessful';  
+    //         console.log('Copy email command was ' + msg);  
+    //     } catch(err) {  
+    //         console.log('Oops, unable to copy');  
+    //     }  
+    // });
+document.getElementById("copy-text").addEventListener("click", function() {
+    var success = copyToClipboard(document.getElementById("hidden-output"));
+    $('html, body').animate({
+        scrollTop: $(".json-container").offset().top - 90
+    }, 1);
+    var text = success ? "Successfully copied!" : "Copy unsuccessful!";
+    var copyStatus = $(".copy-status");
+    if(success){
+        copyStatus.css({color: "green"});
+    } else{
+        copyStatus.css({color: "red"});
+    }
+    $(".copy-status").text(text).show();
+    setTimeout(function(){
+        copyStatus.hide();
+    }, 2000);
+});
+
+function copyToClipboard(elem) {
+      // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_",
+        origSelectionStart, origSelectionEnd;
+    var target = document.createElement("textarea");
+    target.style.position = "absolute";
+    target.style.left = "-9999px";
+    target.style.top = "1200px";
+    target.id = targetId;
+    document.body.appendChild(target);
+
+    target.textContent = elem.textContent;
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+          succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    target.textContent = "";
+    return succeed;
+}
 });

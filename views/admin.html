@@ -5,7 +5,7 @@
      <link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.css">
      <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
      <script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
-     <!-- <script src="/javascripts/admin.js?v=<%= revision %>"></script> -->
+     <script src="/javascripts/admin.js?v=<%= revision %>"></script>
      <script src="/dist/admin.min.js?v=<%= revision %>"></script>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -58,7 +58,7 @@
           </div> <!-- .check-container -->
       </div> <!-- .form-container -->
 
-            <div class="form-container update">
+        <div class="form-container update">
           <div class="check-container">
             <h3 class="title"> Updating Data </h3>  
             <p> Select the keys that you would like to update in the Redis database.</p>
@@ -75,9 +75,9 @@
                 <% }); %>
               </fieldset>
 
-              <label class="label-area" for="data-update">New Data <span class="parenthesis">(JSON format)</span></label>
-              <textarea class="form-control" id="data-update" rows="3"></textarea>
-
+              <p class="update-description"></p>
+              <label class="change-data label-area" for="data-update">New Data <span class="parenthesis">(JSON format)</span></label>
+              <textarea class="change-data form-control" id="data-update" rows="3"></textarea>
               <div class="button-container">
                 <button data-request="update" type="submit" class="btn btn-primary submit-request">Submit</button>
               </div>
@@ -87,12 +87,15 @@
     </div> <!-- .cards -->
 
       <div class ="json-container">
-        <div>
+        <div class="output-container">
+          <p class="copy-status"></p>
+          <i class="fa fa-files-o" id="copy-text" title="Copy JSON" aria-hidden="true"></i>
           <pre>
             <code class="output">
             </code>
           </pre>
         </div>
+        <div id="hidden-output"></div>
       </div>
    </div> <!-- .admin-container -->
    

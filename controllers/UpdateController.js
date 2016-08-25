@@ -164,4 +164,23 @@ app.get('/admin', authorization.auth, function(req, res) {
     });
 });
 
+app.post('/cache', function(req,res){
+    var key = req && req.body && req.body.key || "";
+
+    if(!!key){
+        database.updateCache(key, function(err, response){
+            if(err){
+                console.error("Error: " + err.reason);
+                return res.status(400).send("Error: " + err.reason);
+            }
+            console.log("Successfully updated local cache from Redis database.");
+            res.status(200).send(response);
+        });        
+    } else{
+        res.status(400).send("Did not provide a key");
+    }
+
+
+});
+
 module.exports = app;

@@ -223,7 +223,9 @@ var ajaxUtils = (function(){
             url: endpoints.login,
             headers: { 
      			authorization: 'Basic ' + endcodedCredentials
- 			}
+ 			},
+ 			json: true,
+ 			dataType: "json"
         }).done(function(login){
             var id = login.uuid; // a unique UUID sent from the server
             $(".form-announ #post-announcement").attr('data-login', true);

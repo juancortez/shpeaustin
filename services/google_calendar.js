@@ -119,7 +119,7 @@ function listEvents(auth, callback) {
             for(var i = 0; i < length; i++){
                 var summary = response.items[i].summary || "";
                 if(ignoreCalendars.indexOf(summary) != -1){
-                    console.log("Skipping calendar, " + summary);
+                    //console.log("Skipping calendar, " + summary);
                     continue; // we do not want to add these calendars
                 }
                 calendars.push(response.items[i].id);

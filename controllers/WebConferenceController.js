@@ -7,17 +7,30 @@
 var express = require('express'),
     app = express(),
     config = require('config'),
+    database = require("../lib/database.js"),
     revision = config.revision;
 
 app.get('/', function(req, res){
-    res.render('meeting.html', {
-        revision: revision 
+    database.getCachedData("revisionNumber", function(err, data){
+        if(!!err){
+            console.error(err.reason);
+        }
+        revision = (!(!!err)) ? data.revision : revision;
+	    res.render('meeting.html', {
+	        revision: revision 
+	    });
     });
 });
 
 app.get('/officermeeting', function(req, res){
-    res.render('officer_meeting.html', {
-        revision: revision 
+    database.getCachedData("revisionNumber", function(err, data){
+        if(!!err){
+            console.error(err.reason);
+        }
+        revision = (!(!!err)) ? data.revision : revision;
+	    res.render('officer_meeting.html', {
+	        revision: revision 
+	    });
     });
 });
 

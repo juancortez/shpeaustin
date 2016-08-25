@@ -7,51 +7,41 @@
 var express = require('express'),
     app = express(),
     uuid = require('node-uuid'),
+    database = require('../lib/database.js'),
     authorization = require('../lib/authorization.js').authorization;
  
 app.post('/login', authorization.webAuth, function(req, res) {
     console.log("Login successful!");
-    var client = req.app.get('redis');
-
+    var key = "id",
+        uniqueId = uuid.v4();
     //store all users that have logged in
-    client.get('id', function(err, redisId) {
-        if (redisId) {
-            // create JSON to send to front end
-            var uuidNumber = uuid.v4();
-            var id = {};
-            id['uuid'] = [];
-            id.uuid.push(uuidNumber);
-            // update the Redis database
-            var uuidRedis = JSON.parse(redisId);
-            uuidRedis.uuid.push(uuidNumber);
-            client.set('id', JSON.stringify(uuidRedis), function(err, reply){
-                if(err){
-                    console.error();
-                    return res.sendStatus(400);
-                }
-                // send id JSON to front end
-                console.log("id data successully set on Redis database!");
-                res.setHeader('Content-Type', 'application/json');
-                return res.status(200).send(id);
-            });
-        } else {
-            // create JSON to send to front end
-            var uuidNumber = uuid.v4();
-            var id = {};
-            id['uuid'] = [];
-            id.uuid.push(uuidNumber);
-            // create the 'id' key on the Redis database
-            client.set('id', JSON.stringify(id), function(err, reply){
-                if(err){
-                    console.error();
-                    return res.sendStatus(400);
-                }
-                // send id JSON to front end
-                console.log("id data successully set on Redis database!");
-                res.setHeader('Content-Type', 'application/json');
-                return res.status(200).send(id);
-            });
+    database.getCachedData(key, function(err, data){
+        if(!!err){
+            if(err.reason === (key + " not found in cache")){
+                var id = {}; // create new id and store in redis database
+                id.uuid = [];
+                id.uuid.push(uniqueId);
+                var result = id;
+            } else{
+                console.error(err.reason);
+                return;
+            }
+        } else if(!!data){
+            data.uuid.push(uniqueId); // push new uuid
+            var result = data;
+        } else{
+            return res.status(400).send("Invalid data passed from database");
         }
+
+        database.setData(key, JSON.stringify(result), function(err){
+            if(err){
+                console.error("Error: " + err.reason);
+                return res.status(400).send(err.reason);
+            }
+            console.log("id data successully set on Redis database!");
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(200).send({uuid: uniqueId});
+        });
     });
 });
 
