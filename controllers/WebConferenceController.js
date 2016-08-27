@@ -1,9 +1,9 @@
-/*************************************************************************/
-// DataController.js 
-// Endpoint: /meeting
-// 
-// The following endpoints enable WebRTC connection capabilities with appear.in
-/*************************************************************************/
+`
+ DataController.js 
+ Endpoint: /meeting
+ 
+ The following endpoints enable WebRTC connection capabilities with appear.in
+`
 var express = require('express'),
     app = express(),
     config = require('config'),

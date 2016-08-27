@@ -131,13 +131,13 @@ $(document).ready(function() {
             $(self).html();
 
             if(!!err){
-                $(self).text("Failure");
+                $(self).text("Failure").css({background: "#D8000C"});
             } else{
-                $(self).text("Success!");
+                $(self).text("Success!").css({background: "green"});
             }
 
             setTimeout(function(){
-                $(self).text("Submit");
+                $(self).text("Submit").css({background: "#0137A2"});
             }, 2000);
 
             if (!!reload) {
@@ -177,69 +177,54 @@ $(document).ready(function() {
         }
     });
 
-    // $("#copy-text").click(function(evt){
-    //     debugger;
-    //     var json = document.querySelector('.hidden-output');  
-    //     var range = document.createRange();  
-    //     range.selectNode(json);  
-    //     window.getSelection().addRange(range); 
-    //     try {  
-    //         // Now that we've selected the anchor text, execute the copy command  
-    //         var successful = document.execCommand('copy');  
-    //         var msg = successful ? 'successful' : 'unsuccessful';  
-    //         console.log('Copy email command was ' + msg);  
-    //     } catch(err) {  
-    //         console.log('Oops, unable to copy');  
-    //     }  
-    // });
-document.getElementById("copy-text").addEventListener("click", function() {
-    var success = copyToClipboard(document.getElementById("hidden-output"));
-    $('html, body').animate({
-        scrollTop: $(".json-container").offset().top - 90
-    }, 1);
-    var text = success ? "Successfully copied!" : "Copy unsuccessful!";
-    var copyStatus = $(".copy-status");
-    if(success){
-        copyStatus.css({color: "green"});
-    } else{
-        copyStatus.css({color: "red"});
-    }
-    $(".copy-status").text(text).show();
-    setTimeout(function(){
-        copyStatus.hide();
-    }, 2000);
-});
+    document.getElementById("copy-text").addEventListener("click", function() {
+        var success = copyToClipboard(document.getElementById("hidden-output"));
+        $('html, body').animate({
+            scrollTop: $(".json-container").offset().top - 90
+        }, 1);
+        var text = success ? "Successfully copied!" : "Copy unsuccessful!";
+        var copyStatus = $(".copy-status");
+        if(success){
+            copyStatus.css({color: "green"});
+        } else{
+            copyStatus.css({color: "red"});
+        }
+        $(".copy-status").text(text).show();
+        setTimeout(function(){
+            copyStatus.hide();
+        }, 2000);
+    });
 
-function copyToClipboard(elem) {
-      // create hidden text element, if it doesn't already exist
-    var targetId = "_hiddenCopyText_",
-        origSelectionStart, origSelectionEnd;
-    var target = document.createElement("textarea");
-    target.style.position = "absolute";
-    target.style.left = "-9999px";
-    target.style.top = "1200px";
-    target.id = targetId;
-    document.body.appendChild(target);
+    function copyToClipboard(elem) {
+          // create hidden text element, if it doesn't already exist
+        var targetId = "_hiddenCopyText_",
+            origSelectionStart, origSelectionEnd;
+        var target = document.createElement("textarea");
+        target.style.position = "absolute";
+        target.style.left = "-9999px";
+        target.style.top = "1200px";
+        target.id = targetId;
+        document.body.appendChild(target);
 
-    target.textContent = elem.textContent;
-    // select the content
-    var currentFocus = document.activeElement;
-    target.focus();
-    target.setSelectionRange(0, target.value.length);
-    
-    // copy the selection
-    var succeed;
-    try {
-          succeed = document.execCommand("copy");
-    } catch(e) {
-        succeed = false;
+        target.textContent = elem.textContent;
+        // select the content
+        var currentFocus = document.activeElement;
+        target.focus();
+        target.setSelectionRange(0, target.value.length);
+        
+        // copy the selection
+        var succeed;
+        try {
+              succeed = document.execCommand("copy");
+        } catch(e) {
+            succeed = false;
+        }
+        // restore original focus
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+        
+        target.textContent = "";
+        return succeed;
     }
-    // restore original focus
-    if (currentFocus && typeof currentFocus.focus === "function") {
-        currentFocus.focus();
-    }
-    
-    target.textContent = "";
-    return succeed;
-}
 });

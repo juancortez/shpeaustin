@@ -1,5 +1,6 @@
-var express = require('express'),
+const express = require('express'),
     app = express(),
+    _console = require("./lib/console.js")
     bodyParser = require('body-parser'),
     fs = require('fs'),
     request = require('request'),
@@ -19,9 +20,9 @@ var express = require('express'),
 /************************************************************************************************************
 *                                   Redis Database Connection
 ************************************************************************************************************/
-var client = redis.createClient(redisCredentials.port, redisCredentials.hostname, {no_ready_check: true});
+const client = redis.createClient(redisCredentials.port, redisCredentials.hostname, {no_ready_check: true});
 app.set('redis', client);  // To access client: var client = req.app.get('redis');
-client.auth(redisCredentials.password, function (err) {
+client.auth(redisCredentials.password, (err) => {
     if (err){
         console.error(err);
     }
@@ -57,34 +58,34 @@ app.engine('html', require('ejs').__express); // rendering HTML files through EJ
 ************************************************************************************************************/
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
-var cfenv = require('cfenv');
+const cfenv = require('cfenv');
 
 // get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
+const appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
-var server = app.listen(appEnv.port, '0.0.0.0', function() {
-    console.log("Server starting on " + appEnv.url);
+const server = app.listen(appEnv.port, '0.0.0.0', function() {
+    console.log(`Server starting on ${appEnv.url}`);
 });
 
 /************************************************************************************************************
 *                                  Web Socket Configuration
 ************************************************************************************************************/
-var io = socket.listen(server);
+const io = socket.listen(server);
 socket_connect.initiateSocket(io, client);
 
 /************************************************************************************************************
 *                                  BotKit Configuration
 * SHPE-Austin Slack Integrations: https://shpeaustin.slack.com/apps/manage/custom-integrations
 ************************************************************************************************************/
-var Botkit = require('botkit');
+const Botkit = require('botkit');
 
-var controller = Botkit.slackbot({
+const controller = Botkit.slackbot({
   debug: false
 });
 
 // connect the bot to a stream of messages
-var bot = controller.spawn({
+const bot = controller.spawn({
   token: slackCredentials.botToken,
   incoming_webhook:{
     url: slackCredentials.subscribeRequestWebHook

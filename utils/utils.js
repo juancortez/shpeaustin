@@ -23,20 +23,17 @@ function parseOfficerJSON(incomingData, callback) {
         return callback({reason: "Incorrect JSON format for Officers."});
     }
 
+    data.executive.forEach(officer => {
+        officerList.push(new Officer(officer.name, officer.position, officer.email, officer.phone, officer.hometown, officer.company, officer.executive, officer.image_url, officer.linkedin));
+    });
 
-    for (var i = 0; i < data.executive.length; i++) {
-        var current = data.executive[i];
-        var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url, current.linkedin);
-        officerList.push(officer);
-    }
-
-    for (var i = 0; i < data.chairs.length; i++) {
-        var current = data.chairs[i];
-        var officer = new Officer(current.name, current.position, current.email, current.phone, current.hometown, current.company, current.executive, current.image_url, current.linkedin);
-        officerList.push(officer);
-    }
+    data.chairs.forEach(officer  => {
+        officerList.push(new Officer(officer.name, officer.position, officer.email, officer.phone, officer.hometown, officer.company, officer.executive, officer.image_url, officer.linkedin));
+    });
 
     return callback(false, officerList);
 }
 
-module.exports.parseOfficerJSON = parseOfficerJSON;
+module.exports = {
+    parseOfficerJSON
+}

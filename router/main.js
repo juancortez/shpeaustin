@@ -1,72 +1,71 @@
 // module.exports exposes functions that we want to use in a different file
 //module.exports = function(app, con){
 module.exports = function(app, client) {
-    var config = require('config'),
-        revision = config.revision, // default if database isn't working
+    const config = require('config'),
         database = require("../lib/database.js"),
         authorization = require('../lib/authorization.js').authorization; // global variable for revision number
-    
+    let revision = config.revision; // default if database isn't working
     /*************************************************************************/
     // The following endpoints serve HTML pages
     /*************************************************************************/
-    app.get('/', function(req, res) {
-        database.getCachedData("revisionNumber", function(err, data){
+    app.get('/', (req, res) => {
+        database.getCachedData("revisionNumber", (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
             revision = (!(!!err)) ? data.revision : revision;
             res.render('index.html', {
-                revision: revision
+                revision
             });
         });
     });
 
-    app.get('/about', function(req, res) {
-        database.getCachedData("revisionNumber", function(err, data){
+    app.get('/about', (req, res) => {
+        database.getCachedData("revisionNumber", (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
             revision = (!(!!err)) ? data.revision : revision;
             res.render('about.html', {
-                revision: revision
+                revision
             });
         });
     });
 
-    app.get('/officers', function(req, res) {
-        database.getCachedData(["revisionNumber", "officerList"], function(err, data){
+    app.get('/officers', (req, res) => {
+        database.getCachedData(["revisionNumber", "officerList"], (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
             revision = (!(!!err)) ? data.revisionNumber.revision : revision;
             var officerList = data && data.officerList || [];
             res.render('officers.ejs', {
-                officerList: officerList,
-                revision: revision
+                officerList,
+                revision
             }); 
         });
     });
 
-    app.get('/membership', function(req, res) {
-        database.getCachedData("revisionNumber", function(err, data){
+    app.get('/membership', (req, res) => {
+        database.getCachedData("revisionNumber", (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
             revision = (!(!!err)) ? data.revision : revision;
             res.render('membership.html', {
-                revision: revision
+                revision
             });
         });
     });
 
-    app.get('/contact', function(req, res) {
-        database.getCachedData("revisionNumber", function(err, data){
+    app.get('/contact', (req, res) => {
+        database.getCachedData("revisionNumber", (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
             revision = (!(!!err)) ? data.revision : revision;
             res.render('contact.html', {
-                revision: revision
+                revision
             });
         });
     });
@@ -110,14 +109,14 @@ module.exports = function(app, client) {
     // If endpoint does not exist, render an error
     /*************************************************************************/
 
-    app.get('*', function(req, res) {
-        database.getCachedData("revisionNumber", function(err, data){
+    app.get('*', (req, res)  => {
+        database.getCachedData("revisionNumber", (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
             revision = (!(!!err)) ? data.revision : revision;
             res.render('404.html', {
-                revision: revision 
+                revision
             });
         });
     });

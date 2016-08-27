@@ -5,9 +5,9 @@
       <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/main.css?v=<%= revision %>"> -->
       <link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
       <script src="/javascripts/libs/jquery-2.1.4.min.js"></script>
-      <script src="/javascripts/utils/ajaxUtils.js"></script>
+      <!--<script src="/javascripts/utils/ajaxUtils.js?v=<%= revision %>"></script>-->
       <!--<script src="/javascripts/index.js?v=<%= revision %>"></script>-->
-      <!--<script src="/dist/ajaxUtils.min.js?v=<%= revision %>"></script>-->
+      <script src="/dist/ajaxUtils.min.js?v=<%= revision %>"></script>
       <script src="/dist/index.min.js?v=<%= revision %>"></script>
       <script src="/stylesheets/libs/bootstrap-3.3.6-dist/js/bootstrap.min.js?v=<%= revision %>"></script>
       <!-- https://www.addevent.com/buttons/add-to-calendar -->
@@ -207,10 +207,9 @@
                      </div>
                      <div id="form-submission" class="form-group row">
                         <div class="col-sm-offset-2 col-sm-10">
-                           <button style="bottom: 0px;" id="submit-button" type="submit" class="custom-button">Send It</button>
+                           <button style="bottom: 0px;" id="submit-button" type="submit" class="custom-button">Login</button>
                         </div>
                      </div>
-                     <div class='status'>Status</div>
                   </form>
                </div> <!-- modal-body -->
                <div class="modal-footer">

@@ -1,23 +1,23 @@
-/*************************************************************************/
-// DataController.js 
-// Endpoint: /data
-// 
-// The following GET endpoints send requests to the Redis database and send the
-// data to the front end.
-// 
-// The DELETE endpoints remove the data from the Redis database.  
-/*************************************************************************/
-var express = require('express'),
+`
+    DataController.js 
+    Endpoint: /data
+
+    The following GET endpoints send requests to the Redis database and send the
+    data to the front end.
+
+    The DELETE endpoints remove the data from the Redis database.  
+`
+const express = require('express'),
     app = express(),
     authorization = require('../lib/authorization.js').authorization,
-    database = require('../lib/database.js');
+    database = require('../lib/database.js'),
     privateCredentials = require('../private_credentials/credentials.json');
 
 // determines whether or not someone has logged in to the website
-app.get('/officerlogin', function(req, res){ 
+app.get('/officerlogin', (req, res) => { 
     var credentials = req.query.credentials;
 
-    database.getCachedData('id', function(err, data){
+    database.getCachedData('id', (err, data) => {
         if(!!err){
             console.error(err.reason);
             return res.status(400).send(err.reason); // doesn't exist
@@ -31,15 +31,16 @@ app.get('/officerlogin', function(req, res){
     });
 });
 
-app.get('/:key', function(req, res) {
+app.get('/:key', (req, res) => {
     var key = req && req.params && req.params.key || "";
 
     if(!!key){
-        database.getCachedData(key, function(err, data){
+        database.getCachedData(key, (err, data) => {
             if(!!err){
                 console.error(err.reason);
                 return res.status(400).send(err.reason); // doesn't exist
             }
+            console.log(`Successfully retrieved ${key}!`);
             res.setHeader('Content-Type', 'application/json');
             return res.status(200).send(data);
         });
@@ -48,7 +49,7 @@ app.get('/:key', function(req, res) {
     }
 });
 
-app.delete('/:key', authorization.auth, function(req, res) {
+app.delete('/:key', authorization.auth, (req, res) => {
     var key = req && req.params && req.params.key || "";
 
     if(!!key){
@@ -57,7 +58,7 @@ app.delete('/:key', authorization.auth, function(req, res) {
                 console.error("Error: " + err.reason);
                 return res.status(400).send(err.reason); // bad request
             }
-            console.log("Successfully removed " + key +  " from database!");
+            console.log(`Successfully removed ${key} from database!`);
             return res.sendStatus(200);
         });
     } else{
@@ -67,7 +68,7 @@ app.delete('/:key', authorization.auth, function(req, res) {
 });
 
 
-app.put('/:key', authorization.auth ,function(req, res) {
+app.put('/:key', authorization.auth, (req, res) => {
     var key = req && req.params && req.params.key || "",
         data = req && req.body || null;
 
@@ -85,47 +86,44 @@ app.put('/:key', authorization.auth ,function(req, res) {
 
         var options = { 
             method: 'POST',
-            url: baseUrl + '/update/calendar',
+            url: `${baseUrl}/update/calendar`,
             headers: { 
                 authorization: authorization
             }
         };
 
-        request(options, function (error, response, body) {
+        request(options, (error, response, body) => {
           if (error){
             return res.sendStatus(400);
           } 
           return res.sendStatus(200);
         });
     } else if(key === "officerList"){
-        var util = require('../utils/utils.js');
-        util.parseOfficerJSON(data, function(err, data){
+        const util = require('../utils/utils.js');
+        util.parseOfficerJSON(data, (err, data) => {
             if(err){
                 console.error(err.reason);
                 return res.status(400).send(err.reason);
             }
-            database.setData(key, JSON.stringify(data), function(err){
+            database.setData(key, JSON.stringify(data), (err) => {
                 if(err){
-                    console.error("Error: " + err.reason);
+                    console.error(`Error: ${err.reason}`);
                     res.status(400).send(err.reason);
                 }
-                console.log("Successully saved and cached " + key + " to Redis!");
+                console.log(`Successully saved and cached ${key} to Redis!`);
                 return res.sendStatus(200);
             });
         });
     } else{
-        database.setData(key, JSON.stringify(data), function(err){
+        database.setData(key, JSON.stringify(data), (err) => {
             if(err){
-                console.error("Error: " + err.reason);
+                console.error(`Error: ${err.reason}`);
                 res.status(400).send(err.reason);
             }
-            console.log("Successully saved and cached " + key + " to Redis!");
+            console.log(`Successully saved and cached ${key} to Redis!`);
             return res.sendStatus(200);
         });
     }
-
 });
-
-
 
 module.exports = app;

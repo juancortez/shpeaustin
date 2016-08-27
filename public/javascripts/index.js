@@ -79,7 +79,7 @@ $(document).ready(function() { // HTML has loaded
 
     // login for the website
     $('#login-form').submit(function(formText) {
-        ajaxUtils.login(formText, function(err){
+        ajaxUtils.login.call(this, formText, function(err){
             if(err){
                 console.error(err);
             }

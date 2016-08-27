@@ -1,9 +1,9 @@
-/*************************************************************************/
-// UpdateController.js 
-// Endpoint: /update
-// 
-// The following endpoints update data in the Redis Database and /metadata folder
-/*************************************************************************/
+`
+    UpdateController.js 
+    Endpoint: /update
+
+    The following endpoints update data in the Redis Database and /metadata folder
+`
 var express = require('express'),
     app = express(),
     config = require('config'),
@@ -166,7 +166,6 @@ app.get('/admin', authorization.auth, function(req, res) {
 
 app.post('/cache', function(req,res){
     var key = req && req.body && req.body.key || "";
-
     if(!!key){
         database.updateCache(key, function(err, response){
             if(err){
@@ -179,8 +178,6 @@ app.post('/cache', function(req,res){
     } else{
         res.status(400).send("Did not provide a key");
     }
-
-
 });
 
 module.exports = app;

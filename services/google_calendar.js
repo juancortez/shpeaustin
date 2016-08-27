@@ -2,25 +2,21 @@
  * IMPORTANT: followed directions from here https://developers.google.com/google-apps/calendar/quickstart/nodejs to enable Google Calendar.
  *
  * NOTE: If you are getting this error, "The API returned an error: Error: invalid_grant" navigate to the following directory and remove the
- *       calendar-nodejs-quickstart.json file.
- *      $cd /Users/{username}/.credentials/
- *      *rm calendar-nodejs-quickstart.json
+ *       google_calendar.json file in the following directory: private_credentials/google_calendar.json
+ *
  * Created credentials with: shpe.austin@gmail.com
  */
 
-// shpe.austin@gmail.com
-var fs = require('fs');
-var readline = require('readline');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
+const fs = require('fs');
+    readline = require('readline'),
+    google = require('googleapis'),
+    googleAuth = require('google-auth-library');
 
-// If modifying these scopes, delete your previously saved credentials
-// at private_credentials/google_calendar.json
-var SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-var TOKEN_DIR = __dirname + ""
-var path = require("path");
-var TOKEN_DIR = path.join(__dirname, '../private_credentials/');
-var TOKEN_PATH = TOKEN_DIR + 'google_calendar.json';
+const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
+    TOKEN_DIR = __dirname + ""
+    path = require("path");
+    TOKEN_DIR = path.join(__dirname, '../private_credentials/');
+    TOKEN_PATH = TOKEN_DIR + 'google_calendar.json';
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -30,11 +26,11 @@ var TOKEN_PATH = TOKEN_DIR + 'google_calendar.json';
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-    var clientSecret = credentials.installed.client_secret;
-    var clientId = credentials.installed.client_id;
-    var redirectUrl = credentials.installed.redirect_uris[0];
-    var auth = new googleAuth();
-    var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
+    const clientSecret = credentials.installed.client_secret,
+        clientId = credentials.installed.client_id,
+        redirectUrl = credentials.installed.redirect_uris[0];
+    const auth = new googleAuth();
+    const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
     // Check if we have previously stored a token.
     fs.readFile(TOKEN_PATH, function(err, token) {
@@ -47,8 +43,6 @@ function authorize(credentials, callback) {
     });
 }
 
-module.exports.authorize = authorize;
-
 /**
  * Get and store new token after prompting for user authorization, and then
  * execute the given callback with the authorized OAuth2 client.
@@ -58,7 +52,7 @@ module.exports.authorize = authorize;
  *     client.
  */
 function getNewToken(oauth2Client, callback) {
-    var authUrl = oauth2Client.generateAuthUrl({
+    const authUrl = oauth2Client.generateAuthUrl({
         access_type: 'offline',
         scope: SCOPES
     });
@@ -200,7 +194,7 @@ function getCalendarData(calendar, auth, calendars, callback){
 
 function sendServerResponse(data, callback){
     // sort before sending it to the front end
-    var answer = data.calendar.sort(function(a,b){
+    var answer = data.calendar.sort((a,b) => {
        return new Date(a.time).getTime() - new Date(b.time).getTime()
     })
     data.calendar = answer;
@@ -217,6 +211,7 @@ function sendServerResponse(data, callback){
     });
 }
 
-
-
-module.exports.listEvents = listEvents;
+module.exports = {
+    authorize: authorize,
+    listEvents: listEvents
+}

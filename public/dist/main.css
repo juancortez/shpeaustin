@@ -783,10 +783,6 @@ html ::-webkit-scrollbar {
 .main-page-container .modal-container .modal-body .custom-button:focus {
   transform: rotate(30deg);
 }
-.main-page-container .modal-container .modal-body .status {
-  display: none;
-  text-align: center;
-}
 .main-page-container .modal-container .modal-footer .mes {
   text-align: left;
   display: inline-block;
@@ -1031,21 +1027,28 @@ html ::-webkit-scrollbar {
   position: relative;
   top: 63px;
   position: absolute;
-  margin: 0 auto;
-  left: 0;
   z-index: 1001;
   text-align: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex: 1;
+      flex: 1;
 }
 .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .mobile-icon-container {
   width: 100%;
-  position: absolute;
-  padding: 0px;
-  margin-top: 30px;
+  -ms-flex: 1;
+      flex: 1;
 }
 .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .mobile-icon-container .mobile-twitter,
 .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .mobile-icon-container .mobile-facebook {
   margin: 0 15px 0 15px;
   display: inline-block;
+}
+.navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav {
+  -ms-flex: 1;
+      flex: 1;
 }
 .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav a {
   display: block;
@@ -1062,20 +1065,12 @@ html ::-webkit-scrollbar {
   background-color: #DDDADA;
   color: white;
   cursor: pointer;
-}
-@media only screen and (max-width: 375px) {
-  .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav a {
-    padding: 15px 0px 15px 0px;
-  }
-}
-@media screen and (orientation: landscape) {
-  .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav a {
-    padding: 8px 0px 8px 0px;
-  }
+  height: 100%;
 }
 .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav .active {
   background-color: #002266;
   color: white;
+  height: 100%;
 }
 .navigator-container .shpe-austin {
   display: none;
@@ -1260,23 +1255,6 @@ html ::-webkit-scrollbar {
 .contact-container .contact-form #sel1 {
   margin-bottom: 10px;
 }
-.contact-container .contact-form .status {
-  display: none;
-  width: 300px;
-  height: auto;
-  position: absolute;
-  left: 43%;
-  margin-left: -100px;
-  bottom: -46px;
-  background-color: white;
-  color: #F44336;
-  font-family: Calibri;
-  font-size: 16px;
-  padding: 3px;
-  text-align: center;
-  border-radius: 2px;
-  box-shadow: 0px 0px 8px -1px #383838;
-}
 .contact-container .contact-form .new-user {
   color: #002266;
 }
@@ -1402,6 +1380,7 @@ html ::-webkit-scrollbar {
   position: absolute;
   width: 100%;
   height: 100%;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 .officers-container .officer-container .officer-list .container .card .front .officers {

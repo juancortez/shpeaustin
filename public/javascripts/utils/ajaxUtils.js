@@ -214,7 +214,8 @@ var ajaxUtils = (function(){
 	}
 
 	function login(formText, callback){
-		var username = formText.target.name.value,
+		var self = this,
+			username = formText.target.name.value,
 			password = formText.target.password.value;
 			endcodedCredentials = btoa(username + ":" + password);
 
@@ -232,17 +233,17 @@ var ajaxUtils = (function(){
             console.log("Login successful with UUID " + id);
             localStorage.setItem('credentials', id);
             $(".mes").hide();
-            $(".status").text("Login successful!").css({'color': '#4CAF50'}).show();
+            $(self).find('.custom-button').text("Success!").css({background: "green"});
             $(".post-announcement").show();
             $(".announcement-container").css({'height':'275px'});
             setTimeout(function(){
-                $(".status").hide();
+            	$(self).find('.custom-button').text("Login").css({background: "#337ab7"});
                 $(".close-modal").click();
             }, 1500);
         }).fail(function(status){
-            $(".status").text("Login unsuccessful.").css({'color': '#F44336'}).show();
+            $(self).find('.custom-button').text("Failure").css({background: "#D8000C"});
             setTimeout(function(){
-                $(".status").hide();
+                $(self).find('.custom-button').text("Login").css({background: "#0137A2"});
                 $(".mes").show();
             }, 2500);
             callback("Login unsuccessful.. Error Code: " + JSON.stringify(status))

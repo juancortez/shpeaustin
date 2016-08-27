@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "cli-color": "^1.1.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-jshint": "^2.0.0",
@@ -52,6 +53,7 @@
     "less": "^2.7.1"
   },
   "engines": {
-    "node": "0.12.7"
+    "node": "6.2.1",
+    "npm": "3.9.5"
   }
 }
