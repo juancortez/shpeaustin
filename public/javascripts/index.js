@@ -180,6 +180,7 @@ $(document).ready(function() { // HTML has loaded
         if (newsletterItem < populatedItems) {
             $($('ol li')[newsletterItem]).addClass('active');
             $("#title").append(newsletterData.newsletter[newsletterItem].title);
+            $("#title").attr('title', newsletterData.newsletter[newsletterItem].title);
             $("#description").append("<span class = 'bold'> Description: </span>" + newsletterData.newsletter[newsletterItem].description);
             $("#image-newsletter").attr('src', "../assets/newsletter/newsletter"+ newsletterData.newsletter[newsletterItem].image+"?v="+revision);
             $("#image-newsletter").parent()[0].setAttribute('href', newsletterData.newsletter[newsletterItem].image_link);

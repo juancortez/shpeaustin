@@ -74,8 +74,16 @@
                         <ol class="carousel-indicators">
                            <li class="active"></li>
                         </ol>
-                        <h3 id="title"></h3>
-                        <p id="description"></p>
+                        <div class="newsletter-data-container">
+                           <h3 id="title"></h3>
+                           <p id="description"></p>
+                           <div id="newsletter-buttons">
+                              <div id="buttons">
+                                 <a class="btn btn-primary" id="prev-newsletter" role="button">Prev</a>
+                                 <a id="next-newsletter" class="btn btn-default" role="button">Next</a>
+                              </div>
+                           </div> <!-- #newsletter-buttons -->
+                        </div> <!-- .newsletter-data-container -->
                         <div id="subscribe-container">
                            <div id="subscribe-div">
                               <i id="close-subscribe" class="fa fa-times" aria-hidden="true"></i>
@@ -86,12 +94,6 @@
                            </div>
                         </div> <!-- #subscribe-container -->
                      </div> <!-- .caption -->
-                     <div id="newsletter-buttons">
-                        <div id="buttons">
-                           <a class="btn btn-primary" id="prev-newsletter" role="button">Prev</a>
-                           <a id="next-newsletter" class="btn btn-default" role="button">Next</a>
-                        </div>
-                     </div> <!-- #newsletter-buttons -->
                      <i title="Newsletter Archives" class="fa fa-archive dark-shpe-blue"></i>
                      <i title="Subscribe" class="fa fa-envelope dark-shpe-blue"></i>
                   </div> <!-- .thumb-newsletter -->
@@ -104,37 +106,39 @@
                            <div id="fpc_corner-button"></div>
                            <i id="calendar" class="fa fa-calendar dark-shpe-blue"></i>
                            <div class="caption">
-                              <div id="google-calendar-content">
-                                 <h4 id="event-title"></h4>
-                                 <h4 id="event-date"></h4>
-                                 <h4 id="event-location"></h4>
+                              <div class="calendar-data-container">
+                                 <div class="calendar-information">
+                                    <h4 id="event-title"></h4>
+                                    <h4 id="event-date"></h4>
+                                    <h4 id="event-location"></h4>
+                                    <h4> <b>More Info:</b> <a href="" id ="event-link">Link</a></h4>
+                                 </div> <!-- .calendar-data-container -->
                                  <i id="calendar-loader" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw dark-shpe-blue"></i>
-                                 <h4> <b>More Info:</b> <a href="" id ="event-link">Link</a></h4>
-                              </div>
+                                 <div class="calendar-controls">
+                                    <i class="fa fa-angle-double-left fa-2x dark-shpe-blue cal-button"></i>
+                                    <div title="Add to Calendar" class="addeventatc">
+                                       Add to Calendar
+                                       <span class="start">04/03/2016 09:00 AM</span>
+                                       <span class="end">04/03/2016 11:00 AM</span>
+                                       <span class="timezone">America/Chicago</span>
+                                       <span class="title">Summary of the event</span>
+                                       <span class="description">Description of the event<br>Example of a new line</span>
+                                       <span class="location">Location of the event</span>
+                                       <span class="organizer">Organizer</span>
+                                       <span class="organizer_email">Organizer e-mail</span>
+                                       <span class="facebook_event">https://www.facebook.com/events/703782616363133</span>
+                                       <span class="all_day_event">false</span>
+                                       <span class="date_format">MM/DD/YYYY</span>
+                                    </div>
+                                    <i class="fa fa-angle-double-right fa-2x dark-shpe-blue cal-button"></i>
+                                 </div> <!-- .calendar-controls -->
+                              </div> <!-- .calendar-data-container -->
                            </div>
                         </div>
                         <div id="fpc_corner-box">
                            <a id="fpc_page-tip"></a>
                         </div>
                      </div> <!-- #fpc_box -->
-                     <div class="calendar-controls">
-                        <i class="fa fa-angle-double-left fa-2x dark-shpe-blue cal-button"></i>
-                        <div title="Add to Calendar" class="addeventatc">
-                           Add to Calendar
-                           <span class="start">04/03/2016 09:00 AM</span>
-                           <span class="end">04/03/2016 11:00 AM</span>
-                           <span class="timezone">America/Chicago</span>
-                           <span class="title">Summary of the event</span>
-                           <span class="description">Description of the event<br>Example of a new line</span>
-                           <span class="location">Location of the event</span>
-                           <span class="organizer">Organizer</span>
-                           <span class="organizer_email">Organizer e-mail</span>
-                           <span class="facebook_event">https://www.facebook.com/events/703782616363133</span>
-                           <span class="all_day_event">false</span>
-                           <span class="date_format">MM/DD/YYYY</span>
-                        </div>
-                        <i class="fa fa-angle-double-right fa-2x dark-shpe-blue cal-button"></i>
-                     </div> <!-- .calendar-controls -->
                   </div> <!-- #event-thumbnail -->
                </div> <!-- .col-sm-6 -->
                <div class="col-sm-6 col-md-4">

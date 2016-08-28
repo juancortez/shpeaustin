@@ -39,6 +39,7 @@ var ajaxUtils = (function(){
 	        }
 	        $($('ol li')[newsletterItem]).addClass('active');
 	        $("#title").append(data.newsletter[newsletterItem].title);
+	        $("#title").attr('title', data.newsletter[newsletterItem].title);
 	        $("#description").append("<span class = 'bold'> Description: </span>" + data.newsletter[newsletterItem].description);
 	        $("#image-newsletter").attr('src', "../assets/newsletter/newsletter" + data.newsletter[newsletterItem].image + "?v="+revision);
 	        var image_link = document.createElement('a');
