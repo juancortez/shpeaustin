@@ -68,7 +68,7 @@
                 <% keys.forEach(function(key, index) { %>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="updateoptions" value=<%= key %> <%if(index == 0){ %> checked <%};%>>
+                      <input type="radio" name="updateoptions" id="data-<%= key %>" value=<%= key %> <%if(index == 0){ %> checked <%};%>>
                         <%= key %>
                     </label>
                   </div>

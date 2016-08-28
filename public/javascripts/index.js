@@ -181,7 +181,7 @@ $(document).ready(function() { // HTML has loaded
             $($('ol li')[newsletterItem]).addClass('active');
             $("#title").append(newsletterData.newsletter[newsletterItem].title);
             $("#description").append("<span class = 'bold'> Description: </span>" + newsletterData.newsletter[newsletterItem].description);
-            $("#image-newsletter").attr('src', "../assets/newsletter/newsletter"+newsletterItem+"?v="+revision);
+            $("#image-newsletter").attr('src', "../assets/newsletter/newsletter"+ newsletterData.newsletter[newsletterItem].image+"?v="+revision);
             $("#image-newsletter").parent()[0].setAttribute('href', newsletterData.newsletter[newsletterItem].image_link);
             if(!newsletterData.newsletter[newsletterItem].image_link){
                 $("#image-newsletter").parent()[0].setAttribute('onclick', "return false;");
@@ -206,9 +206,9 @@ $(document).ready(function() { // HTML has loaded
 var modal = (function(){
     var 
     method = {},
-    $overlay = $('<div id="overlay"></div>');
-    $modal = $('<div id="modal"></div>');
-    $content = $('<div id="modal-content"></div>');
+    $overlay = $('<div id="overlay"></div>'),
+    $modal = $('<div id="modal"></div>'),
+    $content = $('<div id="modal-content"></div>'),
     $close = $('<a id="close" href="#">close</a>');
 
     $modal.hide();

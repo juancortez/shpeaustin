@@ -4,81 +4,71 @@
 
     The following endpoints update data in the Redis Database and /metadata folder
 `
-var express = require('express'),
+const express = require('express'),
     app = express(),
     config = require('config'),
     privateCredentials = require('../private_credentials/credentials.json'),
     authorization = require('../lib/authorization.js').authorization,
-    database = require('../lib/database.js'),
-    revision = config.revision;
+    database = require('../lib/database.js');
+let revision = config.revision;
 
 // posts an announcement to the redis database
-app.post('/announcements', function(req, res){
-	var client = req.app.get('redis');   
-    //TODO: authenticate user again
-    client.get('announcements', function (err, announcements) {
-        if (announcements) {
-            if(announcements.length > 0){
-                var parsedJSON = JSON.parse(announcements);
-                var length = parsedJSON.announcements.length;
-                if(length > 1){
-                    parsedJSON.announcements[length] = req.body;
-                    client.set("announcements", JSON.stringify(parsedJSON));
-                    res.setHeader('Content-Type', 'application/json');
-                    var jsonfile = require('jsonfile');
-                    jsonfile.spaces = 4;
-                    var path = require("path");
-                    var file = path.join(__dirname, '../metadata', 'announcements.json');
-                    jsonfile.writeFile(file, parsedJSON, function(err) {
-                        console.error(err);
-                    });
-                    console.log("Successfully  updated the announcements.json file under the metadata folder.");
-                    res.send(parsedJSON);
-                } 
-            } else{
-                var announcements = {};
-                announcements['announcements'] = [];
-                announcements.announcements[0] = req.body;
-                client.set("announcements", JSON.stringify(announcements));
-                res.setHeader('Content-Type', 'application/json');
-                var jsonfile = require('jsonfile');
-                jsonfile.spaces = 4;
-                var path = require("path");
-                var file = path.join(__dirname, '../metadata', 'announcements.json');
-                jsonfile.writeFile(file, announcements, function(err) {
-                    console.error(err);
-                });
-                console.log("Successfully  updated the announcements.json file under the metadata folder.");
-                res.send(announcements);
-            }
-        } else{
-            res.sendStatus(404);
+app.post('/announcements', (req, res) => {
+    let key = "announcements";
+    database.getCachedData(key, (err, data) => {
+        if(!!err){
+            console.warn(`${key} key doesn't exist, so creating announcements.`);
+            data = null;
         }
-    }); 
+        let announcements = data && data.announcements || null,
+            newAnnouncement = req.body || null,
+            {officer, timestamp, announcement} = newAnnouncement;
+
+        if(!(!!officer) || !(!!timestamp) || !(!!announcement)){
+            console.error("Did not send appropriate inputs for a new announcement.");
+            return res.status(400).send("Did not send appropriate inputs for a new announcement.");
+        }
+
+        let length = announcements && announcements.length || 0;
+        if(!(!!length)){
+            announcements = [];
+        }
+        announcements[length] = newAnnouncement;
+        database.setData(key, JSON.stringify({announcements: announcements}), (err) => {
+            if(err){
+                console.error(`Error: ${err.reason}`);
+                return res.status(400).send(`Error: ${err.reason}`);
+            }
+            const jsonfile = require('jsonfile'),
+                path = require("path"),
+                file = path.join(__dirname, '../metadata', 'announcements.json');
+            jsonfile.spaces = 4;
+
+            jsonfile.writeFile(file, {announcements: announcements}, (err) => {
+                if(!!err) console.error(err);
+                else console.log("Successfully updated the announcements.json file under the metadata folder.");        
+                return res.json({announcements: announcements});
+            });
+        });   
+       
+    });
 });
 
 // updates Google Calendar data in the Redis Database
-app.post('/calendar', authorization.auth, function(req, res){
+app.post('/calendar', authorization.auth, (req, res) => {
     // Get access to the Google Calendar
-    var google_calendar,
+    const google_calendar = require('../services/google_calendar.js'),
         google_content = privateCredentials.google_oauth;
 
-    try{
-        google_calendar = require('../services/google_calendar.js');
-    } catch(err){
-        console.error("Failed to loaded google calendar files...");
-        return res.status(404).send("Failed to loaded google calendar files...");
-    }
-
-    google_calendar.authorize(google_content, function(err, results){
+    google_calendar.authorize(google_content, (err, results) => {
         if(!!err){
-            console.error(err.reason);
+            console.error(`${err.reason}`);
             return res.status(400).send(err.reason);
         }
   
-        database.setData('calendar', JSON.stringify(results), function(err){
+        database.setData('calendar', JSON.stringify(results), (err) => {
             if(!!err){
-                console.error("Error: " + err.reason);
+                console.error(`Error: ${err.reason}`);
                 return res.status(400).send(err.reason);
             }
             console.log("Successully saved and cached calendar to Redis!");
@@ -88,89 +78,111 @@ app.post('/calendar', authorization.auth, function(req, res){
     });
 });
 
-// Load data from the newsletter contained in views/newsletters
-app.get('/newsletterload', function(req, res) {
-    database.getCachedData("revisionNumber", function(err, data){
-        if(!!err){
-            console.error(err.reason);
-        }
-        revision = (!(!!err)) ? data.revision : revision;
-        res.render('newsletter_load.html', {
-            revision: revision 
+app.post('/newsletter', (req, res) =>{
+    const $ = require('cheerio'),
+        path = require('path'),
+        request = require('request'),
+        file = path.join(__dirname, '../views/newsletters/', 'newsletters.html'),
+        fs = require('fs'),
+        fileDestination = path.join(__dirname, '../public/assets/newsletter/'),
+        htmlString = fs.readFileSync(file).toString(),
+        parsedHTML = $.load(htmlString),
+        ignoreItems = ["Recommended for desktop or horizontal mobile viewing", "View this email in your browser"];
+    let titlesAndDescriptions = [],
+        imageLinks = [];
+
+        parsedHTML('.footerContainer').map((i, data) => {
+            let tables = $(data).children() // has table elements
+
+            // get all titles and descriptions
+            parsedHTML('.mcnTextContent').map((i, data) =>{
+                let currentItem = _cleanText($(data).text());
+                if(ignoreItems.indexOf(currentItem) >= 0) return; 
+                else titlesAndDescriptions.push(currentItem);
+            });
+
+            // get all images
+            parsedHTML('img').map((i, image) => {
+                let imageSource = $(image).attr('src') || "";
+                if(!!imageSource && imageSource.indexOf('cdn') == -1){
+                    imageLinks.push(imageSource);    
+                }
+            });
+        });
+
+    const download = (uri, filename, callback) => {
+        request.head(uri, (err, res, body) => {
+            if(!!err){
+                console.error(`There was an error downloading newsletter image: ${err}`);
+                return;
+            }
+            request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+        });
+    };
+
+    imageLinks.forEach((image, index) =>{
+        download(image, fileDestination + "newsletter" + index, () => {
+            console.log(`Downloaded image, ${image}, as newsletter${index}`);
         });
     });
-});
 
-// opens up the views/newsletters/newsletter.html page and sends it to the /newsletterload endpoint
-app.get('/newsletters', function(req, res) {
-    var path = require('path');
-    res.sendFile(path.resolve('views/newsletters/newsletters.html'));
-});
-
-// gets called from the /newsletterload endpoint and updates the /metadata/newsletter_data.json file
-app.post('/newsletterdata', function(req, res) {
-    var jsonfile = require('jsonfile');
-    jsonfile.spaces = 4;
-    var path = require("path");
-    var request = require('request');
-    var fs = require("fs");
-    var content = req.body.newsletter;
-    var numItems = content.length;
-    for (var i = 0; i < numItems; i++) {
-        var download = function(uri, filename, callback) {
-            request.head(uri, function(err, res, body) {
-                request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-            });
-        };
-        
-        var fileDestination = path.join(__dirname, '../public/assets/newsletter/');
-        download(content[i].image, fileDestination + "newsletter" + i, function() {
+    if(titlesAndDescriptions.length > 0 && imageLinks.length > 0){
+        const newsletterFile = path.join(__dirname, '../metadata', 'newsletter_scraped.json'),
+            jsonfile = require('jsonfile');
+        jsonfile.spaces = 4;
+        jsonfile.writeFile(newsletterFile, {titlesAndDescriptions: titlesAndDescriptions, imageLinks: imageLinks}, (err) => {
+            if(err){
+                console.error(err);
+                return res.sendStatus(400);    
+            } else{
+                console.log("Successfully created the newsletter_scraped.json file under the metadata folder.");
+                return res.json({
+                    titlesAndDescriptions,
+                    imageLinks
+                });   
+            }
         });
+
+    } else{
+        console.error("Was not able to parse the newsletter.");
+        res.status(204).send("Was not able to parse the newsletter.");
     }
 
-    var file = path.join(__dirname, '../metadata', 'newsletter_data.json');
-    jsonfile.writeFile(file, req.body, function(err) {
-        if(err){
-            console.error(err);
-            res.sendStatus(400);    
-            return;
-        } else{
-            console.log("Successfully created the newsletter_data.json file under the metadata folder.");
-            res.sendStatus(200);    
-            return;
-        }
-    });
-
 });
 
+// removes spaces before and after string, as well as any line breaks (\n)
+function _cleanText(str){
+    return str.trim().replace(/(\r\n|\n|\r)/gm," ");
+}
+
 // opens up the views/newsletters/newsletter.html page and sends it to the /newsletterload endpoint
-app.get('/admin', authorization.auth, function(req, res) {
-    database.getKeys(function(err, keys){
+app.get('/admin', authorization.auth, (req, res) => {
+    database.getKeys((err, keys) => {
         if(err){
-            console.error("Error: " + err.reason);
+            console.error(`Error: ${err.reason}`);
             return res.status(400).send(err.reason);
         }
 
-        database.getCachedData("revisionNumber", function(err, data){
+        database.getCachedData("revisionNumber", (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
             revision = (!(!!err)) ? data.revision : revision;
             res.render('admin.html', {
-                revision: revision,
-                keys: keys
+                revision,
+                keys
             });
         }); 
     });
 });
 
-app.post('/cache', function(req,res){
+app.post('/cache', (req,res) => {
     var key = req && req.body && req.body.key || "";
     if(!!key){
-        database.updateCache(key, function(err, response){
+        database.updateCache(key, (err, response) => {
             if(err){
-                console.error("Error: " + err.reason);
-                return res.status(400).send("Error: " + err.reason);
+                console.error(`Error: ${err.reason}`);
+                return res.status(400).send(`Error: ${err.reason}`);
             }
             console.log("Successfully updated local cache from Redis database.");
             res.status(200).send(response);

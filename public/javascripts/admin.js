@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $("#data-newsletterdata").attr('disabled',true); // can't update data through the UI
     $(".submit-request").click(function(evt) {
         var formElements = evt && evt.target && evt.target.form && evt.target.form.children || null,
             request = $(this).attr('data-request'),
@@ -48,6 +49,9 @@ $(document).ready(function() {
             $(this).html('<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>');
             var radioValueUpdate = findSelectedRadio("updateoptions");
 
+            /*
+                Newsletter structure changed, so this code no longer works :(
+
             if (radioValueUpdate == "newsletterdata") {
                 var baseUrl = window.location.protocol + "//" + window.location.host + "/";
                 window.open(baseUrl + "update/newsletterload");
@@ -58,6 +62,7 @@ $(document).ready(function() {
                 }
                 return;
             }
+            */
 
             var data = $("#data-update").val(),
                 type,

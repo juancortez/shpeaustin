@@ -21,7 +21,6 @@ const express = require('express'),
 *                                   Redis Database Connection
 ************************************************************************************************************/
 const client = redis.createClient(redisCredentials.port, redisCredentials.hostname, {no_ready_check: true});
-app.set('redis', client);  // To access client: var client = req.app.get('redis');
 client.auth(redisCredentials.password, (err) => {
     if (err){
         console.error(err);

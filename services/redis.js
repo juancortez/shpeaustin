@@ -155,7 +155,7 @@ function cacheData(key, data){
             console.error(`Error: ${err.reason}`);
             return;
         }
-        console.log("Successully cached " + key + " data!");
+        console.log(`Successully cached ${key} data!`);
     });
 }
 

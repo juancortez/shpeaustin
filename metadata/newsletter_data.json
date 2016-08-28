@@ -1,28 +1,49 @@
 {
     "newsletter": [
         {
-            "title": "Habitat for Humanity Volunteering Event",
-            "description": "SHPE Austin partnered with Habitat For Humanity on June 11th to help local area families obtain affordable housing. Members participated in construction, landscaping, and painting activities. This was a fun and memorable experience!",
-            "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/6b168082-4c15-4b52-9c81-b6155cd2ef94.jpg",
+            "title": "1st General Body Meeting: Skills for Recent Grads & Young Professionals",
+            "description": "Wednesday September 21, 2016 6:30 PM\nAustin Energy Room 130\n721 Barton Springs Rd.\nAustin, TX 78704\n Join Society of Hispanic Professional Engineers as we kick off the 2016-2017 year. Our first keynote speaker, Jo Anna Ordonez, is dedicated to the improvement and success of underrepresented communities in STEM (Science, Technology, Engineering, and Mathematics). Stop by and learn the \"TALONS: Talents, Adaptability, Leadership, Openness, Networking, and Service\" successful leaders employ to soar above others in all aspects of their lives.",
+            "image": "1",
             "image_link": ""
         },
         {
-            "title": "Elections Meeting",
-            "description": "Join SHPE Austin for 2016-17 elections meeting this Thursday at 7PM at the HEB Community Room (1801 E 51st St, Austin, TX 78723). We will be electing our new executive board, which includes the following positions: President, Vice-President, Treasurer, and Secretary. If you would like to nominate someone, including yourself, please email your nominations by Wed. June 29th by 11PM CST. Free food and drinks will be provided.",
-            "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/4c9d67ed-7005-4910-95eb-80997bc28549.jpg",
-            "image_link": "https://docs.google.com/document/d/1q3lMeYuGDrUJMwaGeZoa64OwVL7Hby2mTMFktQRIKoU/edit?usp=sharing"
+            "title": "MentorNet",
+            "description": "Feeling inspired to mentor a future STEM professional? Think you lack the time in your busy schedule? THINK AGAIN!\n\nSHPE provides a new virtual mentoring avenue allowing professionals to pair with students nationwide.\n\nJoin MentorNet today!",
+            "image": "3",
+            "image_link": ""
         },
         {
-            "title": "SHPE and NSBE Pool Party",
-            "description": "SHPE Austin and NSBE Austin Professional will be hosting a pool party for Austin area engineering interns. Have some fun in the sun and join us for good food and  \nDate: July 16th (10AM-1PM) Location: Willow Bend PoolAccess the event page by clicking on the image ",
-            "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/539ecb37-8655-4315-a7a3-df8e876fcebc.jpg",
-            "image_link": "https://www.eventbrite.com/e/pool-party-tickets-25824989238"
+            "title": "Membership",
+            "description": "AS EASY AS 1-2-3\n\n\n\n1. Log in at SHPEConnect\n \n2. Select MY ACCOUNT, ONLINE RENEWAL\n\n3. Choose Region V ATX Professional",
+            "image": "4",
+            "image_link": ""
         },
         {
-            "title": "SHPE Summer Event",
-            "description": "Every summer SHPE Austin gets together to host a cook-out. This event will be open to all existing and prospective members. Stay tuned for more details in the coming July newsletter. ",
-            "image": "https://gallery.mailchimp.com/c8b5a41c875ce918bbd091e52/images/c46d9f8a-4ad6-4052-a4ca-7c8a8b0a82a8.jpg",
-            "image_link": "http://"
+            "title": "SHPE National Conference",
+            "description": "Washington State Convention Center\nNovember 2-6, 2016\n\nRegister on SHPEConnect\n\nMore Conference Details",
+            "image": "6",
+            "image_link": ""
+        },
+        {
+            "title": "SHPE Region V - Director Opening",
+            "description": "Click on the image to apply!",
+            "image": "7",
+            "image_link": "http://shpe.org/region5/about/committees/"
+        },{
+            "title": "Communicate with SLACK",
+            "description": "1. Download the Slack APP\n\n2. Subscribe to Channels\n\n3. Receive channel specific texts and invitations",
+            "image": "8",
+            "image_link": ""
+        },{
+            "title": "News You Can Use",
+            "description": "IBM is coordinating a global competition to develop and demonstrate how humans can utilize AI technologies to tackles the world's grand challenges. This is a 3 year competition that will provide a $3 MIL grand prize to the top team. If you're interested in being a part of this breakthrough competition, you must sign up by December 1st, 2016 (OR October 15th for Early Bird Registration). To register, on the image.",
+            "image": "9",
+            "image_link": "http://ai.xprize.org/"
+        },{
+            "title": "FREE Membership",
+            "description": "Random Fact Friday\n\n\nBe the first person to post a random fact on any of our social media pages @SHPEAustin on 8/26/16 and get a FREE yearly membership.\n\n#SHPEAustin; #RandomFactFriday",
+            "image": "10",
+            "image_link": ""
         }
     ]
 }

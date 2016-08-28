@@ -4,11 +4,11 @@
  
  The following endpoints enable WebRTC connection capabilities with appear.in
 `
-var express = require('express'),
+const express = require('express'),
     app = express(),
     config = require('config'),
-    database = require("../lib/database.js"),
-    revision = config.revision;
+    database = require("../lib/database.js");
+let revision = config.revision;
 
 app.get('/', function(req, res){
     database.getCachedData("revisionNumber", function(err, data){

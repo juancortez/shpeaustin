@@ -527,7 +527,7 @@ html ::-webkit-scrollbar {
   margin-top: 0px;
 }
 .main-page-container .bs-example-a .row .caption #description {
-  height: 118px;
+  height: 76px;
   overflow: scroll;
 }
 .main-page-container .bs-example-a .row .caption .membership-header {

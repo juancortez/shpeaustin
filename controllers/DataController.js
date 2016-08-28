@@ -15,15 +15,14 @@ const express = require('express'),
 
 // determines whether or not someone has logged in to the website
 app.get('/officerlogin', (req, res) => { 
-    var credentials = req.query.credentials;
+    let credentials = req.query.credentials;
 
     database.getCachedData('id', (err, data) => {
         if(!!err){
             console.error(err.reason);
             return res.status(400).send(err.reason); // doesn't exist
         }
-        var keys = data;
-        if(keys.uuid.indexOf(credentials) >= 0){
+        if(data.uuid.indexOf(credentials) >= 0){
             return res.sendStatus(200);
         } else{
             return res.sendStatus(401); // HTTP Code: Unauthorized
@@ -32,7 +31,7 @@ app.get('/officerlogin', (req, res) => {
 });
 
 app.get('/:key', (req, res) => {
-    var key = req && req.params && req.params.key || "";
+    let key = req && req.params && req.params.key || "";
 
     if(!!key){
         database.getCachedData(key, (err, data) => {
@@ -50,12 +49,12 @@ app.get('/:key', (req, res) => {
 });
 
 app.delete('/:key', authorization.auth, (req, res) => {
-    var key = req && req.params && req.params.key || "";
+    let key = req && req.params && req.params.key || "";
 
     if(!!key){
         database.deleteData(key, function(err){
             if(err){
-                console.error("Error: " + err.reason);
+                console.error(`Error: ${err.reason}`);
                 return res.status(400).send(err.reason); // bad request
             }
             console.log(`Successfully removed ${key} from database!`);
@@ -69,7 +68,7 @@ app.delete('/:key', authorization.auth, (req, res) => {
 
 
 app.put('/:key', authorization.auth, (req, res) => {
-    var key = req && req.params && req.params.key || "",
+    let key = req && req.params && req.params.key || "",
         data = req && req.body || null;
 
     if(!(!!key) || !(!!data)){
@@ -77,14 +76,14 @@ app.put('/:key', authorization.auth, (req, res) => {
     }
 
     if(key === "calendar"){
-        var credentials = privateCredentials.websiteLogin,
+        const credentials = privateCredentials.websiteLogin,
             authorizationToken = credentials.username + ":" + credentials.password;
 
-        var request = require("request"),
+        const request = require("request"),
             authorization = "Basic " + new Buffer(authorizationToken).toString('base64'),
             baseUrl = req.protocol + '://' + req.get('host');
 
-        var options = { 
+        const options = { 
             method: 'POST',
             url: `${baseUrl}/update/calendar`,
             headers: { 

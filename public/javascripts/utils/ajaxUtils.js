@@ -18,7 +18,7 @@ var ajaxUtils = (function(){
 		login: "/authentication/login",
 		subscribe: "/communication/contact"
 	}
-
+	
     function getNewsletterData(revision, callback){
     	$.ajax({
 	        method: "GET",
@@ -40,7 +40,7 @@ var ajaxUtils = (function(){
 	        $($('ol li')[newsletterItem]).addClass('active');
 	        $("#title").append(data.newsletter[newsletterItem].title);
 	        $("#description").append("<span class = 'bold'> Description: </span>" + data.newsletter[newsletterItem].description);
-	        $("#image-newsletter").attr('src', "../assets/newsletter/newsletter0?v="+revision);
+	        $("#image-newsletter").attr('src', "../assets/newsletter/newsletter" + data.newsletter[newsletterItem].image + "?v="+revision);
 	        var image_link = document.createElement('a');
 	        image_link.href = data.newsletter[newsletterItem].image_link;
 	        $("#image-newsletter").wrap(image_link);
