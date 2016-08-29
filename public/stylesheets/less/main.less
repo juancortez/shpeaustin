@@ -914,6 +914,7 @@ html{
     #modal-content {
       border-radius:8px;
       padding:20px;
+      background-color: white;
       overflow: auto;
     }
 
@@ -1821,8 +1822,52 @@ html{
             }
         } // .join-shpe-container
     }   // .bottom-container
+
+    #overlay {
+      position: fixed; 
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 0.5;
+      filter: alpha(opacity=50);
+    }
+     #close{
+          position:absolute;
+          background:url(../assets/close.png) 0 0 no-repeat;
+          width:24px;
+          height:27px;
+          display:block;
+          text-indent:-9999px;
+          top:-7px;
+          right:-7px;
+        }
     #modal{
+        position:absolute;
+        background:rgba(0,0,0,0.2);
+        border-radius:14px;
+        padding:8px;
+
+      #modal-content{
+        background-color: white;
+        .modal-title{
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+        .modal-description{
+          padding: 5px;
+          margin: 5px;
+          text-align: center;
+        }
+        .more-info{
+           margin-top: 25px;
+        }
         .modal-images{
+          height: 233px;
+          width: 415px;
+          border: 1px solid #CCC;
+          border-radius: 5px;
             @media only screen and (max-width: 768px){
                     height: 191px;
                     width: 340px;
@@ -1833,6 +1878,7 @@ html{
                 width: 90%;
             }
         } // .modal-images
+      } // #modal-content
     } // #modal
 } // .membership-container
 
@@ -1958,6 +2004,5 @@ html{
       }
     } 
   } // .data-container
-
 } // .admin-container
 

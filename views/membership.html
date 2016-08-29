@@ -9,68 +9,6 @@
    <script type="text/javascript" src="/javascripts/libs/jquery-2.1.4.min.js"></script>
    <script type="text/javascript" src="/stylesheets/libs/owl.carousel/owl-carousel/owl.carousel.min.js"></script>
    <script type="text/javascript" src="/dist/membership.min.js?v=<%= revision %>"></script> 
-   <style>
-      #overlay {
-        position: fixed; 
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        opacity: 0.5;
-        filter: alpha(opacity=50);
-      }
-      #modal {
-        position:absolute;
-        background:rgba(0,0,0,0.2);
-        border-radius:14px;
-        padding:8px;
-      }
-      #content {
-        border-radius:8px;
-        background:#fff;
-        padding:20px;
-        overflow-y: auto;
-        overflow-x: hidden;
-      }
-      #close{
-        position:absolute;
-        background:url(../assets/close.png) 0 0 no-repeat;
-        width:24px;
-        height:27px;
-        display:block;
-        text-indent:-9999px;
-        top:-7px;
-        right:-7px;
-      }
-      .modal-title{
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-      .modal-images{
-        height: 233px;
-        width: 415px;
-        border: 1px solid #CCC;
-        border-radius: 5px;
-      }
-      .modal-description{
-        padding: 5px;
-        margin: 5px;
-        text-align: center;
-      }
-      .more-info{
-       margin-top: 25px;
-      }
-   </style>
-   <script type="text/javascript">
-      jQuery(function($) {
-          $(document).ready(function() {
-              $("#owl-example").owlCarousel();
-              var cal = CALENDAR(); 
-              cal.init();
-          });
-      });
-   </script>
 </head>
 <% include navigation.html %>
 <body>

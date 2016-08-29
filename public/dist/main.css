@@ -850,6 +850,7 @@ html ::-webkit-scrollbar {
 .main-page-container #modal #modal-content {
   border-radius: 8px;
   padding: 20px;
+  background-color: white;
   overflow: auto;
 }
 .main-page-container #modal #close {
@@ -1725,14 +1726,61 @@ html ::-webkit-scrollbar {
   margin: 0px 20px 0px 0px;
   text-align: center;
 }
+.membership-container #overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.membership-container #close {
+  position: absolute;
+  background: url(../assets/close.png) 0 0 no-repeat;
+  width: 24px;
+  height: 27px;
+  display: block;
+  text-indent: -9999px;
+  top: -7px;
+  right: -7px;
+}
+.membership-container #modal {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  padding: 8px;
+}
+.membership-container #modal #modal-content {
+  background-color: white;
+}
+.membership-container #modal #modal-content .modal-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.membership-container #modal #modal-content .modal-description {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+.membership-container #modal #modal-content .more-info {
+  margin-top: 25px;
+}
+.membership-container #modal #modal-content .modal-images {
+  height: 233px;
+  width: 415px;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+}
 @media only screen and (max-width: 768px) {
-  .membership-container #modal .modal-images {
+  .membership-container #modal #modal-content .modal-images {
     height: 191px;
     width: 340px;
   }
 }
 @media only screen and (max-width: 440px) {
-  .membership-container #modal .modal-images {
+  .membership-container #modal #modal-content .modal-images {
     height: 191px;
     width: 90%;
   }

@@ -39,7 +39,7 @@ app.post('/login', authorization.webAuth, (req, res) => {
                 console.error(`Error: ${err.reason}`);
                 return res.status(400).send(err.reason);
             }
-            console.log(`${id} data successully set on Redis database!`);
+            console.log(`${key} data successully set on Redis database!`);
             res.setHeader('Content-Type', 'application/json');
             return res.status(200).send({uuid: uniqueId});
         });

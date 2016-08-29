@@ -426,6 +426,4 @@ var ajaxUtils = (function(){
 		_parseCalendarTime: _parseCalendarTime,
 		_convertToDateFormat: _convertToDateFormat
 	}
-
-
 })();

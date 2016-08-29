@@ -38,7 +38,7 @@ gulp.task('lint', () => {
     the concatenated file.
 `
 gulp.task('index_script', () => {
-    return gulp.src([javascript_src + "index.js", all_utils_src + "ajaxUtils.js"])
+    return gulp.src([javascript_src + "index.js", all_utils_src + "ajaxUtils.js", all_utils_src + "modal.js"])
         .pipe(plugins.concat('index.js'))
         .pipe(plugins.rename('index.min.js'))
         .pipe(plugins.uglify())
@@ -46,7 +46,7 @@ gulp.task('index_script', () => {
 });
 
 gulp.task('membership_script', () => {
-    return gulp.src(javascript_src + "membership.js")
+    return gulp.src([javascript_src + "membership.js", all_utils_src + "modal.js", all_utils_src + "calendar.js"])
         .pipe(plugins.concat('membership.js'))
         .pipe(plugins.rename('membership.min.js'))
         .pipe(plugins.uglify())

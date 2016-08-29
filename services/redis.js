@@ -41,20 +41,21 @@ function onRedisConnection(client) {
                 });
             
             } else {
-                cacheData("officerList", reply);
+                _cacheData("officerList", reply);
             }
         }
     });
 
     client.get("calendar", (err, reply) => {
+        let fileName = "calendar_data.json";
         if (err) {
             console.error(`Error: ${err}`);
         } else {
             if (reply == null) {
                 try {
-                    calendarData = require("../metadata/calendar_data.json");
+                    calendarData = require(`../metadata/${fileName}`);
                 } catch (ignore) {
-                    console.error("Failed to load data from calendar_data.json, exiting");
+                    console.error(`Failed to load data from ${fileName}, exiting`);
                     return;
                 }
                 database.setData("calendar", JSON.stringify(calendarData), (err) =>{
@@ -65,20 +66,22 @@ function onRedisConnection(client) {
                     console.log("Successully saved and cached calendar to Redis!");
                 });
             } else {
-                cacheData("calendar", reply);
+                _cacheData("calendar", reply);
+                _updateMetadata(`${fileName}`, reply);
             }
         }
     });
 
     client.get("newsletterdata", (err, reply) => {
+        let fileName = "newsletter_data.json";
         if (err) {
             console.error(`Error: ${err}`);
         } else {
             if (reply == null) {
                 try {
-                    newsletterdata = require("../metadata/newsletter_data.json");
+                    newsletterdata = require(`../metadata/${fileName}`);
                 } catch (ignore) {
-                    console.error("Failed to load data from newsletter_data.json");
+                    console.error(`Failed to load data from ${fileName}`);
                 }
                 database.setData("newsletterdata", JSON.stringify(newsletterdata), (err) => {
                     if(err){
@@ -88,7 +91,8 @@ function onRedisConnection(client) {
                     console.log("Successully saved and cached newsletterdata to Redis!");
                 });
             } else {
-                cacheData("newsletterdata", reply);
+                _cacheData("newsletterdata", reply);
+                _updateMetadata(`${fileName}`, reply);
             }
         }
     });
@@ -107,21 +111,22 @@ function onRedisConnection(client) {
                     console.log("Successully saved and cached revisionNumber to Redis!");
                 });
             } else {
-                cacheData("revisionNumber", reply);
+                _cacheData("revisionNumber", reply);
             }
 
         }
     });
 
     client.get("announcements", (err, reply) => {
+        let fileName = "announcements.json";
         if (err) {
             console.error(`Error: ${err}`);
         } else {
             if (reply == null) {
                 try {
-                    announcements = require("../metadata/announcements.json");
+                    announcements = require(`../metadata/${fileName}`);
                 } catch (ignore) {
-                    console.error("Failed to load data from announcements.json");
+                    console.error(`Failed to load data from ${fileName}`);
                 }
                 database.setData("announcements", JSON.stringify(announcements), (err) => {
                     if(err){
@@ -131,25 +136,30 @@ function onRedisConnection(client) {
                     console.log("Successully saved and cached announcements to Redis!");
                 });
             } else {
-                cacheData("announcements", reply);
+                _cacheData("announcements", reply);
+                _updateMetadata(`${fileName}`, reply);
             }
         }
     });
 
     client.get("id", (err, reply) => {
+        let fileName = "id.json";
         if (err) {
             console.error(`Error: ${err}`);
         } else {
             if (reply == null) {
                // no id's provided
             } else {
-                cacheData("id", reply);
+                _cacheData("id", reply);
+                _updateMetadata(`${fileName}`, reply);
             }
         }
     });
 }
 
-function cacheData(key, data){
+// cache data on local memory for faster retrival times
+function _cacheData(key, data){
+    if(_checkNumArguments(arguments, 2) === false) return;
     database.cacheData(key, data, (err) => {
         if(!!err){
             console.error(`Error: ${err.reason}`);
@@ -157,6 +167,31 @@ function cacheData(key, data){
         }
         console.log(`Successully cached ${key} data!`);
     });
+}
+
+// Function used to update the metadata file to match what is on the Redis database on launch
+function _updateMetadata(filename, data){
+    if(_checkNumArguments(arguments, 2) === false) return;
+    const jsonfile = require('jsonfile'),
+        path = require("path"),
+        file = path.join(__dirname, '../metadata', filename);
+    jsonfile.spaces = 4;
+
+    jsonfile.writeFile(file, JSON.parse(data), (err) => {
+        if(!!err) console.error(err);
+        else console.log(`Successfully updated the ${filename} file under the metadata folder!`);        
+    });
+}
+
+// verifies that the function got the correct number of arguments
+function _checkNumArguments(args, expected){
+    let numArgs = args.length || 0;
+
+    if(numArgs !== expected){
+        console.error(`Incorrect number of arguments! Expected ${expected} and got ${numArgs}.`);
+        return false;
+    }
+    return true;
 }
 
 module.exports = {
