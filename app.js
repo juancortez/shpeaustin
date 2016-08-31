@@ -1,6 +1,7 @@
 const express = require('express'),
     app = express(),
-    _console = require("./lib/console.js")
+    cfenv = require('cfenv'),
+    appEnv = cfenv.getAppEnv(),
     bodyParser = require('body-parser'),
     fs = require('fs'),
     request = require('request'),
@@ -16,6 +17,11 @@ const express = require('express'),
     socket = require('socket.io'),
     config = require('config'),
     database = require("./lib/database.js");
+
+// only load up console if developing locally
+if(appEnv.isLocal){
+    const _console = require("./lib/console.js");
+}
 
 /************************************************************************************************************
 *                                   Redis Database Connection
@@ -50,17 +56,6 @@ require('./router/main')(app, client); // adds the main.js file to send response
 app.set('views', __dirname + '/views'); // defines where our HTML files are placed
 app.set('view engine', 'ejs'); // used for HTML rendering
 app.engine('html', require('ejs').__express); // rendering HTML files through EJS
-
-
-/************************************************************************************************************
-*                                  BlueMix Configurations
-************************************************************************************************************/
-// cfenv provides access to your Cloud Foundry environment
-// for more info, see: https://www.npmjs.com/package/cfenv
-const cfenv = require('cfenv');
-
-// get the app environment from Cloud Foundry
-const appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
 const server = app.listen(appEnv.port, () => {

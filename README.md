@@ -85,7 +85,7 @@ shpeaustin/
 ## Developing Locally
 There are various tools that are included in this project that makes development easier and automated. All automated tasks are located in the gulpfile.js. Some of the more important features are minifying and concatinating *.js files, and compiling *.less files. When developing, run the app locally with `node app.js` and open up another terminal to run the gulp file by typing, `gulp`. The gulpfile will watch all the changes and will run the tasks automatically. 
 
-### SendGrid Application
+## SendGrid Application
 The sole purpose of the SendGrid application is to serve as a mailing client for the Bluemix application. The SendGrid API is connected to the
 Contact Us page, but can be placed in multiple locations. You just have to make a POST to the communication/contact endpoint with the appropriate data in the
 BODY of the request. The recipient of e-mails is set in the config/default.json file under the sendGridEmail key.
@@ -151,7 +151,7 @@ I have created an admin page that has made it easier to update the SHPEAustin ap
 [Install Node.js]: https://nodejs.org/en/download/
 [IBM Bluemix account]: https://console.ng.bluemix.net/registration/
 [Create a Bluemix account]: https://console.ng.bluemix.net/registration/
-[Follow the instructions 3-6 on this page]: https://www.ng.bluemix.net/docs/starters/install_cli.html
+[Follow instructions 3-6 on this page]: https://www.ng.bluemix.net/docs/starters/install_cli.html
 [IBM Console]: https://console.ng.bluemix.net/dashboard/
 [Redis Cloud]: https://console.ng.bluemix.net/catalog/services/redis-cloud/
 [Bluemix dashboard]: https://console.ng.bluemix.net/?direct=classic
