@@ -12,7 +12,9 @@
 		disconnect 		: 	executed when a user disconnects from the server
 		chat message	: 	used in contact.html whenever a user sends a message in the chat log
 `
-const config = require('config');
+const database = require('../lib/database.js'),
+	config = require('config');
+let revision = config.revision;
 
 function initiateSocket(io,client){
 	var usersOnline = 0;
@@ -37,13 +39,13 @@ function initiateSocket(io,client){
 	    });
 
 	    socket.on('revision', (msg) => {
-	    	let revision;
-	    	try{
-	    		revision = config.revision;
-	    	} catch(err){
-	    		revision = -1; // error
-	    	}
-	    	io.emit('revision', revision);
+	        database.getCachedData("revisionNumber", (err, data) => {
+	            if(!!err){
+	                console.error(err.reason);
+	            }
+	            revision = (!(!!err)) ? data.revision : revision;
+	            io.emit('revision', revision);
+	        });
 	    });
 	});
 }

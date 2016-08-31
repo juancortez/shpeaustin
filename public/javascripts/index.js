@@ -19,10 +19,11 @@ $(document).ready(function() { // HTML has loaded
     ////////////////////////////////////////////////////////////////////
     socket.emit('revision', "Get revision number from backend.");
     socket.on('revision', function(rev){
+        console.log("Revision is: " + rev);
         revision = rev;
     });
        
-
+    // clicks on next-newsletter every nth seconds
     var newsletterInterval = setInterval(function(e){
         $("#next-newsletter").click(); 
     }, 5000);
@@ -39,6 +40,7 @@ $(document).ready(function() { // HTML has loaded
                 console.error(err);
                 return;
             }
+            $(".thumb-newsletter .caption").show();
             newsletterData = params.newsletterData;
             populatedItems = params.populatedItems;
         });
@@ -49,7 +51,10 @@ $(document).ready(function() { // HTML has loaded
                 return;
             }
             calendarData = params.calendarData;
-            numCalendarItems = params.numCalendarItems;
+            numCalendarItems = calendarData.length;
+            // don't know why i have to do this but it works...
+            $(".fa-angle-double-right").click();
+            $(".fa-angle-double-left").click();
         });
 
         ajaxUtils.getAnnouncements(function(err){
@@ -123,7 +128,7 @@ $(document).ready(function() { // HTML has loaded
             }
         }
         $('.fa-calendar').toggleClass('dark-shpe-blue mid-blue');
-        calendarHtml = calendarData.calendar[calendarItem];
+        var calendarHtml = calendarData[calendarItem];
 
         $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
         $("span.title").text(calendarHtml.event);
@@ -199,6 +204,18 @@ $(document).ready(function() { // HTML has loaded
     Number.prototype.pad = function(n) {
         return new Array(n).join('0').slice((n || 2) * -1) + this;
     };
+
+    $(document).keydown(function(event){
+        if (event.keyCode == 13) {  // 13 is the Enter key
+            if($("#subscribe-container").is(':visible') && $("#subscribe-email").is(':focus')){
+                $(".fa-envelope-o").click();
+            }
+        } else if(event.keyCode == 27){ // 27 is the ESC key
+            if($("#subscribe-container").is(':visible')){
+                $("#close-subscribe").click();
+            }
+        }
+    });
 
     /**********************************************************************************************************************************
     * Modal Code for Newsletter Popup

@@ -29,6 +29,7 @@ var ajaxUtils = (function(){
 	    		callback("", "GET method for " + endpoints.newsletter + " failed.");
 	    		return;
 	    	}
+	    	$("#newsletter-loader").hide();
 	    	var returnParams = {};
 	    	var newsletterItem = 0;
 			var newsletterData = data;
@@ -69,20 +70,27 @@ var ajaxUtils = (function(){
 	    		callback("", "GET method for " + endpoints.calendar + " failed.");
 	    		return;
 	    	}
-	    	var returnParams = {};
-	    	var calendarItem = 0;
-	        var calendarData = calendar;
-	        var numCalendarItems = calendarData.calendar.length;
-	        var valid = false;
-	        var dateFormat;
-	        var date = new Date();
-	        var currentMonth = date.getMonth();
-	        var currentDay = date.getDate();
-	        while(valid === false){
-	            calendarHtml = calendarData.calendar[calendarItem];
-	            $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
-	            $("span.title").text(calendarHtml.event);
-	            var time = _parseCalendarTime(calendarHtml.time);
+
+	    	// Filters out the old calendar entries
+	    	var dateNow = new Date();
+	    		dateNow = dateNow.getTime();
+	    	calendar.calendar = calendar.calendar.filter(function(item){
+	    		var startTime = new Date(item.time).getTime();
+	    		if(startTime >= dateNow){
+	    			return true;
+	    		} else{
+	    			return false;
+	    		}
+	    	});
+
+	    	var returnParams = {},
+	        	calendarData = calendar.calendar,
+	        	dateFormat;
+
+	        calendarData.forEach(function(calendar){
+	        	$("#event-title").html("<b>Event: </b>" + calendar.event);
+	        	$("span.title").text(calendar.event);
+	        	var time = _parseCalendarTime(calendar.time);
 	            if(time.startTime){
 	                $("#event-date").html("<b>Date: </b>" + time.month + " " + time.day + ", " + time.year + " at " +  time.startTime);
 	                dateFormat = _convertToDateFormat(time.month, time.day, time.year, time.startTime);
@@ -94,27 +102,18 @@ var ajaxUtils = (function(){
 	                $("span.start").text(dateFormat);
 	                $("span.end").text(dateFormat); //TODO: add ending time support
 	            }
-
-	            if(time.month <= currentMonth && time.day < currentDay) {
-	                calendarData.calendar.splice(0, 1); // remove all of the old calendar items from the array
-	                numCalendarItems--;
-	                continue;
-	            } else{
-	                valid = true;
-	            }
-	            if(calendarHtml.location){
-	                $("#event-location").html("<b>Location: </b>" + calendarHtml.location);
-	                $("span.location").text(calendarHtml.location);
+	            if(calendar.location){
+	                $("#event-location").html("<b>Location: </b>" + calendar.location);
+	                $("span.location").text(calendar.location);
 	            } else{
 	                $("span.location").text("");
 	            }
-	            $("#event-link").attr('href', calendarHtml.link);
-	            $("span.description").text(calendarHtml.link);
-	        }
+	            $("#event-link").attr('href', calendar.link);
+	            $("span.description").text(calendar.link);
+	        });
 	        $("#calendar-loader").hide();
 
 	        returnParams.calendarData = calendarData; 
-	        returnParams.numCalendarItems = numCalendarItems;
 	        callback(returnParams);
 	    }).fail(function(e){
 	    	callback("", "GET method for " + endpoints.calendar + " failed.");

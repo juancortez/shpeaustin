@@ -507,7 +507,12 @@ html{
           flex-direction: column;
           height: 100%;
           overflow-y: hidden;
+          justify-content: center;
+          #newsletter-loader{
+            align-self: center;
+          }
         .caption{
+          display: none;
           #subscribe-container{
             display: none;
             align-items: center;
@@ -772,6 +777,7 @@ html{
             flex-direction: column;
             justify-content: center;
             height: 100%;
+            position: relative;
 
             .calendar-information{
               min-height: 215px;
@@ -786,6 +792,10 @@ html{
               }  
             } // .calendar-information
         } // .calendar-data-container
+        #calendar-loader{
+          position: absolute;
+          align-self: center;
+        }
       } // #fpc_box
 
       .calendar-controls{
@@ -793,7 +803,7 @@ html{
         margin-top: 5px;
 
         @media only screen and (max-width: 515px){
-          margin-top: 35px;
+          margin-top: 60px;
         }
 
         i{
@@ -1471,12 +1481,12 @@ html{
                          -o-transform: rotateY(180deg);
                             transform: rotateY(180deg);
                     }
-                    &:focus{
-                      -webkit-transform: rotateY(180deg);
-                       -moz-transform: rotateY(180deg);
-                         -o-transform: rotateY(180deg);
-                            transform: rotateY(180deg);
-                    }
+                    // &:focus{
+                    //   -webkit-transform: rotateY(180deg);
+                    //    -moz-transform: rotateY(180deg);
+                    //      -o-transform: rotateY(180deg);
+                    //         transform: rotateY(180deg);
+                    // }
                     figure {
                       margin: 0;
                       display: block;
@@ -1851,6 +1861,7 @@ html{
 
       #modal-content{
         background-color: white;
+        overflow-y: scroll;
         .modal-title{
           font-weight: bold;
           margin-bottom: 5px;

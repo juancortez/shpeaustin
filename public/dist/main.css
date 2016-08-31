@@ -473,6 +473,15 @@ html ::-webkit-scrollbar {
       flex-direction: column;
   height: 100%;
   overflow-y: hidden;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.main-page-container .bs-example-a .row .thumb-newsletter #newsletter-loader {
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+.main-page-container .bs-example-a .row .thumb-newsletter .caption {
+  display: none;
 }
 .main-page-container .bs-example-a .row .thumb-newsletter .caption #subscribe-container {
   display: none;
@@ -735,6 +744,7 @@ html ::-webkit-scrollbar {
   -ms-flex-pack: center;
       justify-content: center;
   height: 100%;
+  position: relative;
 }
 .main-page-container .bs-example-a .row #fpc_box .calendar-data-container .calendar-information {
   min-height: 215px;
@@ -750,13 +760,18 @@ html ::-webkit-scrollbar {
 .main-page-container .bs-example-a .row #fpc_box .calendar-data-container .calendar-information h4 {
   text-align: center;
 }
+.main-page-container .bs-example-a .row #fpc_box #calendar-loader {
+  position: absolute;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
 .main-page-container .bs-example-a .row .calendar-controls {
   text-align: center;
   margin-top: 5px;
 }
 @media only screen and (max-width: 515px) {
   .main-page-container .bs-example-a .row .calendar-controls {
-    margin-top: 35px;
+    margin-top: 60px;
   }
 }
 .main-page-container .bs-example-a .row .calendar-controls i {
@@ -1409,9 +1424,6 @@ html ::-webkit-scrollbar {
 .officers-container .officer-container .officer-list .container .card:hover {
   transform: rotateY(180deg);
 }
-.officers-container .officer-container .officer-list .container .card:focus {
-  transform: rotateY(180deg);
-}
 .officers-container .officer-container .officer-list .container .card figure {
   margin: 0;
   display: block;
@@ -1754,6 +1766,7 @@ html ::-webkit-scrollbar {
 }
 .membership-container #modal #modal-content {
   background-color: white;
+  overflow-y: scroll;
 }
 .membership-container #modal #modal-content .modal-title {
   font-weight: bold;

@@ -1,6 +1,6 @@
 # SHPE Austin Node.js Application
 
-The following Node.js application contains both the server and client side code for the [shpeaustin.mybluemix.net][] website. The application runs on IBM's Bluemix platform, so creating an [IBM Bluemix account][] is necessary. Since this application only requires 512MB of memory and only one instance, the hosting is **free**. In order to forward the [austinshpe.org][] domain to the BlueMix application, you will need to have domain access to the austinshpe.org domain on [GoDaddy][]. The credentials for the GoDaddy account are located in the private_credentials/.json file. Once the GoDaddy account is accessible, follow the directions in the ***Forwarding Addresses*** section at the end of the README file.  This application also has access to the Google Calendar API, SendGrid, and Redis Cloud services so additional steps are required. Please start in the ***Running the app locally*** section and further instructions will be provided to set everything up. Any questions can be forwarded to the webmaster at Juan_Cortez@utexas.edu
+The following Node.js application (v6.2.1) contains both the server and client side code for the [austinshpe.org][] website. The application runs on IBM's Bluemix platform, so creating an [IBM Bluemix account][] is necessary. Since this application only requires 512MB of memory and only one instance, the hosting is **free**. In order to forward the [austinshpe.org][] domain to the BlueMix application, you will need to have domain access to the austinshpe.org domain on [GoDaddy][]. The credentials for the GoDaddy account are located in the private_credentials/*.json file. Once the GoDaddy account is accessible, follow the directions in the 'Setting up Bluemix and GoDaddy' section at the end of the README file. This application also has access to the Google Calendar API, SendGrid, Slack, and Redis Cloud services so additional steps are required. Please start in the 'Getting Started' section and further instructions will be provided to set everything up. Any questions can be forwarded to the webmaster at Juan_Cortez@utexas.edu
 
 *IMPORTANT* The .gitignore file includes the private_credentials folder. Please ask the current SHPE webmaster for these credentials
 so that all of the services work properly.
@@ -9,13 +9,18 @@ so that all of the services work properly.
 ```
 shpeaustin/
 	config/
-		default.json 			File that holds important keys for the application
-	google_service/
-		google_calendar.js 		This script sends an API request to the SHPE Austin Google Calendar and outputs it to metadata/calendar_data.json
+		default.json 			File that holds data for the application
+	controllers/
+		*.js 					Controllers that serve all endpoints {GET, POST, DELETE, PUT} to the SHPE Austin Application
+	lib/
+		authorization.js 		A module that determines if a user is authorized to perform actions on the website
+		console.js 				Enhancements to the logging on the terminal
+		database.js 			A wrapper for the Redis database that includes retrieval, setting, and updating of data
 	metadata/
+		backup/*.json			Files that are automatically generated after database is deleted
 		announcements.json 		Contains the announcements data that populates the index.html file
-		backup.json 			File automatically generated after database is cleared
 		calendar_data.json 		Contains the calendar data that populates the index.html
+		id.json 				Contains the unique ID's of all users that have logged into the website
 		newsletter_data.json 	Contains the newsletter data that populates the index.html
 		officers.json 			Contains the officer data that populates the officers.ejs file.	 
 	models/
@@ -35,22 +40,24 @@ shpeaustin/
 		javascripts/
 			utils/ 				
 				ajaxUtils.js 	Module that contains all the AJAX requests made from the index.html file
+				calendar.js  	Module used to create a calendar on the membership page
+				modal.js  		Module used to create a modal on the home and membership page
 			libs/				jQuery library
-				index.js 		The javascript file used for the index.html page
+			*.js 				JavaScript files used on the website, as specified by the title name
 		stylesheets/
 			/less
 				*.less			The CSS pre-processor file that gets convert to .css with gulp				
 			/libs 				Bootstrap, FontAwesome, and OwlCarousel
 			*.css 				Styling pages used for all views
-	redis/
-		redis.js 				File used to cache all data stored in the /metadata folder
 	router/
 		main.js 				Contains all the routes for the SHPE Austin website
-	socket/
+	services/
+		google_calendar.js 		This script sends an API request to the SHPE Austin Google Calendar and outputs it to metadata/calendar_data.json
+		redis.js 				File that creates a connection to the Redis database and caches data locally using the lib/database.js file
+		slack.js 				Holds a method that listens to requests made by the Slackbot on the SHPE Austin slack channel
 		socket.js 				Contains all web socket code for the SHPE Austin website
 	utils/
-		util.js 				Helper functions used throughout the node.js application.
-		update.sh 				Script used to update the calendar and newsletter data in the metadata folder 
+		util.js 				Helper functions used throughout the node.js application
 	views/
 		newsletters/ 			These are the newsletters written by the Secretary every month
 		*.html 					The HTML pages for all the routes defined in router/main.js
@@ -61,45 +68,43 @@ shpeaustin/
 	gulpfile.js 				Gulp file used for development
 ```
 
-## Running the app locally
-1. [Install Node.js][] (version 0.12.7)
+## Getting Started
+1. [Install Node.js][] (v6.2.1)
 2. Clone this project onto your computer.
 3. Run `npm install` to install the app's dependencies.
-5. Run `node app.js` to start the application
-6. Access the running app in a browser at http://localhost:6001
-7. [Note] In order to connect the Node.js application to SendGrid (the service that sends out e-mails) and the
-Redis database, please follow the directions in the 'Deploying to Bluemix' section.
+4. [Create a Bluemix account][]. It's free. 
+5. [Follow instructions 3-6 on this page][] 
+6. Follow the directions in the 'Creating and Binding SendGrid' section below to connect to the SendGrid application.
+7. Follow the directions in the 'Redis Database Binding' section below to connect to the Redis service.
+8. Setup the Google Calendar API by following the directions in the 'Setting up the Google Calendar API' section.
+9. Once all of these steps are done, run `$node app.js`. If the SendGrid and Redis applications were binded correctly, the app should run with no problems.
+10. Access the running app in a browser at http://localhost:6001
+11. When developing locally, please keep in mind there are tools available to make development easier. Please read the 'Developing Locally' section for further instructions.
+12. Follow the directions in the 'Setting up Bluemix and GoDaddy' section to route the bluemix application to the austinshpe.org domain.
 
 ## Developing Locally
-There are various tools that are included in this project that makes development easier and automated. All automated tasks are located in the gulpfile.js. Some of the more important features are minifying and concatinating *.js files, and compiling *.less files. When developing, run the app locally with `node app.js` and open up another terminal to run the gulp file by typing, `gulp`. The gulpfile will watch all the changes and will run the tasks automatically.
+There are various tools that are included in this project that makes development easier and automated. All automated tasks are located in the gulpfile.js. Some of the more important features are minifying and concatinating *.js files, and compiling *.less files. When developing, run the app locally with `node app.js` and open up another terminal to run the gulp file by typing, `gulp`. The gulpfile will watch all the changes and will run the tasks automatically. 
 
-## Deploying to Bluemix
-1. In the terminal, navigate to the project's root directory.
-2. [Create a Bluemix account][]. It's free. 
-3. [Follow the instructions 3-6 on this page][] 
-4. Follow the directions in the 'Creating and Binding SendGrid' section below to connect to the SendGrid application.
-5. Follow the directions in the 'Redis Database Binding' section below to connect to the Redis service.
+### SendGrid Application
+The sole purpose of the SendGrid application is to serve as a mailing client for the Bluemix application. The SendGrid API is connected to the
+Contact Us page, but can be placed in multiple locations. You just have to make a POST to the communication/contact endpoint with the appropriate data in the
+BODY of the request. The recipient of e-mails is set in the config/default.json file under the sendGridEmail key.
 
-## Creating and Binding SendGrid to Application
+### Creating and Binding SendGrid to Application
 In the root directory of the shpeaustin application, run the following commands:
 ```
 $cf create-service sendgrid free shpeaustinemail
 $cf bind-service shpeaustin shpeaustinemail
 $cf restage shpeaustin
 ```
-
 After those steps have been completed, follow the directions below.
  1. Go to the online [IBM Console][]. 
  2. Click on the shpeaustin nodejs application. 
  3. Under SendGrid, click on the Show Credentials button. 
  4. Copy those credentials and replace them with the existing /private_credentials *.json file
- 5. Verify that it works by running node app.js locally and sending an email.
- 6. If it suceeded, the terminal output should output: { message: 'success' }
 
-### SendGrid Application
-The sole purpose of the SendGrid application is to serve as a mailing client for the Bluemix application. The SendGrid API is connected to the
-Contact Us page, but can be placed in multiple locations. You just have to make a POST to the /contact endpoint with the appropriate data in the
-BODY of the request. The recipient of e-mails is set in the models/global.js file under the sendGridEmail e-mail.
+### Redis Database
+Redis is an open source (BSD licensed), in-memory data structure store, used as database, cache and message broker. When the node application first runs, the application populates the database with the data. After each subsequent run, the application loads data from the database, and caches it, which enables quicker performance.
 
 ## Redis Cloud Database Binding
  1. Go to the online [IBM Console][].
@@ -108,45 +113,36 @@ BODY of the request. The recipient of e-mails is set in the models/global.js fil
  4. On the right hand side of the screen, you should be able to add a Service. Bind it to the Node.js application and click on create. [The 30MB selected plan is sufficient and is free.]
  5. Once the application has been binded, go back to the [IBM Console][] and click on the shpeaustin nodejs application.
  6. Under the Redis Cloud application, click on the Show Credentials button.
- 7. Copy those credentials and replace them with the existing /private_credentials *.json file
- 8. Verify that the binding was succesful by running the node application. The terminal should output {Connected to Redis}
-
-### Redis Database
-When the node application first runs, the application populates the database with the data. After each subsequent run, the application
-loads data from the database, which enables quicker performance. To clear the database, set the clearRedisDatabase variable in the models/global.js file
-to TRUE and re run the server. Don't forget to reset the variable to false so it doesn't clear the database after each run. If the database is accidentally cleared, a backup file is saved in /metadata/backup.json
-
-## Forwarding Addresses
-This is probably the best method to connect GoDaddy to the application hosted on BlueMix. In order to do this, go to the GoDaddy [My Domain][] page, and click
-on the option to forward addresses. In the URL field, enter shpeaustin.mybluemix.net and make sure the forward option is set. If the forwarding address option is not available, click on Manage Connection, look for the Forwarding section, and click on Manage. 
-When finished, it should look something like this: 
-
-**Forward To:** http://shpeaustin.mybluemix.net/
-**Redirect:** 301 (Permanent)
-**Type:** Forward
-
-### Connecting Bluemix to GoDaddy Account (Alternate Option)
- 1. Follow the directions in the [Using Custom Domain Names In Bluemix][] to set up routes on Bluemix. 
- 2. Follow the directions in the [Linking godaddy domain to my bluemix web Application][] article to set up CName Alias.
- 3. It may take a couple of [minutes to hours][] for the changes to propagate. 
 
 ### Setting up the Google Calendar API
-In order to set up the Google Calendar API, you need to authorization between the node application and the Google Calendar API. Go to the `google_service/google_calendar.js` file, and follow the directions in the comments. After it is done, copy down the google credentials and replace them in
-the private_credentials/credentials.json file, under the google_oauth.installed key.
+In order to set up the Google Calendar API, you need to authorize the node application to the Google Calendar API. Go to the `services/google_calendar.js` file, and follow the directions in the comments at the top of the file. After it is done, copy down the google credentials and replace them in the private_credentials/google_calendar.json file, under the access_token key.
+
+## Setting up Bluemix and GoDaddy
+Pre-requisites: You must have shpeaustin.mybluemix.net deployed to BlueMix, and have access to the GoDaddy account. If you haven't deployed to BlueMix, follow the directions in the 'Deploying to Bluemix' section. 
+In order to set up BlueMix and GoDaddy, there are a couple of steps we need to do to re-route shpeaustin.mybluemix.net to the austinshpe.org domain. I was unable to figure out how to preserve austinshpe.org in its entirety, but it will instead go to me.austinshpe.org. In order to do this, following the directions below:
+
+ 1. Login to GoDaddy and go to the GoDaddy [My Domain][] page. Click on the settings icon, and click on Manage DNS. 
+ 2. Click ADD under the Records section, and select CNAME. 
+ 3. Set HOST to `www`, Points to to `shpeaustin.mybluemix.net`, and TTL, 1/2 Hour.
+ 4. Click Save.
+ 5. Look for the Forwarding Section, and click ADD. 
+ 6. Forward `http` to me.austinshpe.org, with a `Permanent (301)` option, `Forward only` option, and click on the checkbox to update DNS settings. Click Save.
+ 7. This concludes the steps on the GoDaddy side. It may take a couple of [minutes to hours][] for the changes to propagate. 
+ 8. Login to Bluemix using the credentials provided in the private_credentials/*.json file. 
+ 9. In the [Bluemix dashboard][] view, look for the shpeaustin application and click on the settings icon. Then, click on `Edit Routes and App Access` option.
+ 10. Click on, `Manage Domains`. This will bring you to another window. Make sure you are on the DOMAINS tab. Click, `Add Domain`, and type in austinshpe.org, and click on `SAVE`. 
+ 11. Go back to the [Bluemix dashboard][] view, and go back to the `Edit Routes and App Access` window.
+ 12. Click on Add route and type, `me`, as the Host. On the right, there should be a drop down menu. Select `austinshpe.org`, and click on Save.
+ 13. Once it has been saved, you may have to wait a couple of minutes to hours, depending on how quickly GoDaddy processes the results. Once everything is setup, austinshpe.org will forward you to me.austinshpe.org and everything is complete!
 
 ## Steps to Completely Update Website
-The following steps will clear the Redis database, make an API request to the Google Calendar API for shpe.austin@gmail.com, update the newsletter data, and change the revision number of the *.css and *.js files. Before doing these steps, make sure you are not running the node application.
+I have created an admin page that has made it easier to update the SHPEAustin application. Navigate to the following URL http://me.austinshpe.org/update/admin and login with the credentials in the private_credentials.json file. In this UI, you are able to View, Delete, and Update data to the Redis database. Please contact the webmaster for instructions on how to appropriately update the data on the application.
 
- 1. To update the newsletter information displayed on the main page, download the HTMLs source of the latest newsletter and place it with the newsletter in the views/newsletters folder. Make sure the file is renamed to **newsletters.html**.
- 2. Go to the config/default.json file and change the clearRedisDatabase key to TRUE. There is also a JSON list of keys that are stored in the database under the redis.keys key. Set all the keys that you would like to clear to true. Setting them to true will delete the data from the database. If any of the keys are accidentally deleted, a backup.json file is automatically created in metadata/backup.json that includes all the data that was deleted.
- 3. In the terminal, start up the node server `node app.js`. 
- 4. Open up another terminal tab and run `gulp` to run the gulpfile.js
- 5. After all the gulp tasks are done, open up another terminal tab and navigate to the /utils folder and run the update.sh file. `./update.sh`
- 6. Go back to the config/default.json file and reset the redis.clearRedisDatabase to false, as well as any other keys you set to true.
- 7. Verify that all the files successfully updated by re-running the node application `node app.js`
- 8. Run `cf push shpeaustin` to update the data on BlueMix. 
- 9. Commit all of the code to Github. Most of the changes should be in the public/dist folder, globals.js file, and newsletter data.
- 10. The application now has the newest data and it is all cached on the database! 
+## BlueMix Auto Deployment with Travis CI
+
+ 1. Register at https://travis-ci.org/
+ 2. Authorize application to access GitHub account
+ 3. Follow Directions in the https://travis-ci.org/getting_started page. Enable the shpeaustin application
 
 
 [austinshpe.org]: http://austinshpe.org
@@ -158,6 +154,7 @@ The following steps will clear the Redis database, make an API request to the Go
 [Follow the instructions 3-6 on this page]: https://www.ng.bluemix.net/docs/starters/install_cli.html
 [IBM Console]: https://console.ng.bluemix.net/dashboard/
 [Redis Cloud]: https://console.ng.bluemix.net/catalog/services/redis-cloud/
+[Bluemix dashboard]: https://console.ng.bluemix.net/?direct=classic
 [Using Custom Domain Names In Bluemix]: https://www.youtube.com/watch?v=fG7UbOHywXc
 [Linking godaddy domain to my bluemix web Application]: http://myutilite.com/utility/75/linking-godaddy-domain-to-my-bluemix-web-application/utility.htm/
 [minutes to hours]: http://stackoverflow.com/questions/5696937/godaddy-set-name-server-long-time-to-take-effect

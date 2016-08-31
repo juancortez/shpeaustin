@@ -1,18 +1,13 @@
-<head>
+<!DOCTYPE html>
+	<head>
 	<title>Officers</title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/libs/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/dist/main.css?v=<%= revision %>">
 	<script src = "/javascripts/libs/jquery-2.1.4.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		.navigator-container .navcontent .navleft span.small{
-			line-height: 18px;
-		}
-	</style>
-
 	<script type="text/javascript">
-         jQuery(function($){
-         	$(document).ready(function() {
+	     jQuery(function($){
+	     	$(document).ready(function() {
 	           var showFlip = true;
 	           var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 	           if(isMobile){
@@ -42,93 +37,95 @@
 					var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 					if(isMobile){
 						$('.card').removeClass('flipped-0');
-						$(this).toggleClass('flipped');
+						//$(this).toggleClass('flipped');
+						$(this).toggleClass('flipped-0');
 					}
 				});	
 			});
-         }); 
-  </script>
+	     }); 
+	</script>
 
-</head>
+	</head>
 
-<% include navigation.html %>
-<body>
-	<!-- Officer(name, position, email, phone, hometown, company) -->
-	<div class = "officers-container">
-		<h2 class = "center-text officer-header"> Executive Officers </h2>
-		<div class='officer-container'>
-			<ul class ="officer-list">
-				<% officerList.forEach(function(officer) { %>
-					<%if(officer.executive == false){ return };%>
-					<section class="container">
-					  <div class="card">
-					    <figure class="front">
-					    	<img class = "officers" src=<%= officer.image_url %>?v=<%= revision %>></img>
-					    	<div class ="front-officer-info">
-						    	<p class = "center-text name bold"> <%= officer.name %>  </p>
-						    	<p class = "center-text position italic"> <%= officer.position %>  </p>
-						    </div>
-					    </figure>
-					    
-					    <figure class="back">
-					    	<div class = "information">
-					    		<div>
-							    	<p class = "center-text"><span class="bold">Name:</span> <%= officer.name %></p>
-							    	<p class = "center-text"><span class="bold">Position:</span> <%= officer.position %></p>
-							    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:"+<%= officer.email %>+"?subject=Contact SHPE Austin"><%= officer.email %></a></p>
-							    	<p class = "center-text"><span class="bold">Phone:</span> <a href="tel:+<%=officer.phone%>"><%=officer.phone%></a></p>
-							    	<p class = "center-text"><span class="bold">Hometown:</span> <%= officer.hometown %></p>
-							    	<p class = "center-text"><span class="bold">Company:</span> <%= officer.company %></p>
-							    	<a href = "<%= officer.linkedin %>"
-							    	<i id="officer-linkedin" class="center-text fa fa-linkedin fa-2x"></i>
-							    	</a>
+	<% include navigation.html %>
+	<body>
+		<!-- Officer(name, position, email, phone, hometown, company) -->
+		<div class = "officers-container">
+			<h2 class = "center-text officer-header"> Executive Officers </h2>
+			<div class='officer-container'>
+				<ul class ="officer-list">
+					<% officerList.forEach(function(officer) { %>
+						<%if(officer.executive == false){ return };%>
+						<section class="container">
+						  <div class="card">
+						    <figure class="front">
+						    	<img class = "officers" src=<%= officer.image_url %>?v=<%= revision %>></img>
+						    	<div class ="front-officer-info">
+							    	<p class = "center-text name bold"> <%= officer.name %>  </p>
+							    	<p class = "center-text position italic"> <%= officer.position %>  </p>
 							    </div>
-						    </div>
-					    </figure>
-					  </div>
-					</section>
-				<% }); %>
-			</ul>
-		</div>
-
-		<h2 class = "center-text officer-header"> Chairs</h2>
-		<div class='officer-container'>
-			<ul class = "officer-list">
-				<% officerList.forEach(function(officer) { %>
-					<%if(officer.executive == true){ return };%>
-					<section class="container">
-					  <div class="card">
-					    <figure class="front">
-					    	<img class = "officers" src=<%=officer.image_url%>></img>
-					    	<div class ="front-officer-info">
-						    	<p class = "center-text name bold"> <%= officer.name %>  </p>
-						    	<p class = "center-text position italic"> <%= officer.position %>  </p>
-						    </div>
-					    </figure>
-					    <figure class="back">
-					    	<div class = "information">
-					    		<div>
-							    	<p class = "center-text"><span class="bold">Name:</span> <%= officer.name %></p>
-							    	<p class = "center-text"><span class="bold">Position:</span> <%= officer.position %></p>
-							    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:"+<%= officer.email %>+"?subject=Contact SHPE Austin"><%= officer.email %></a></p>
-							    	<p class = "center-text"><span class="bold">Phone:</span> <a href="tel:+<%=officer.phone%>"><%=officer.phone%></a></p>
-							    	<p class = "center-text"><span class="bold">Hometown:</span> <%= officer.hometown %></p>
-							    	<p class = "center-text"><span class="bold">Company:</span> <%= officer.company %></p>
-							    	<a href = "<%= officer.linkedin %>"
-							    		<i id="officer-linkedin" class="center-text fa fa-linkedin fa-3x"></i>
-							    	</a>
-							    	<% if(officer.name == "Juan Cortez"){%>
-							    	<a href = "meeting">
-							    		<i id="hidden-video" class="center-text fa fa-video-camera fa-3x"></i>
-							    	</a>
-							    	<% } %> 
+						    </figure>
+						    
+						    <figure class="back">
+						    	<div class = "information">
+						    		<div>
+								    	<p class = "center-text"><span class="bold">Name:</span> <%= officer.name %></p>
+								    	<p class = "center-text"><span class="bold">Position:</span> <%= officer.position %></p>
+								    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:"+<%= officer.email %>+"?subject=Contact SHPE Austin"><%= officer.email %></a></p>
+								    	<p class = "center-text"><span class="bold">Phone:</span> <a href="tel:+<%=officer.phone%>"><%=officer.phone%></a></p>
+								    	<p class = "center-text"><span class="bold">Hometown:</span> <%= officer.hometown %></p>
+								    	<p class = "center-text"><span class="bold">Company:</span> <%= officer.company %></p>
+								    	<a href = "<%= officer.linkedin %>"
+								    	<i id="officer-linkedin" class="center-text fa fa-linkedin fa-2x"></i>
+								    	</a>
+								    </div>
 							    </div>
-						    </div>
-					    </figure>
-					  </div>
-					</section>
-				<% }); %>
-			</ul>
-		</div>
-	</div> <!-- .officers-container -->
-</body>
+						    </figure>
+						  </div>
+						</section>
+					<% }); %>
+				</ul>
+			</div>
+
+			<h2 class = "center-text officer-header"> Chairs</h2>
+			<div class='officer-container'>
+				<ul class = "officer-list">
+					<% officerList.forEach(function(officer) { %>
+						<%if(officer.executive == true){ return };%>
+						<section class="container">
+						  <div class="card">
+						    <figure class="front">
+						    	<img class = "officers" src=<%=officer.image_url%>></img>
+						    	<div class ="front-officer-info">
+							    	<p class = "center-text name bold"> <%= officer.name %>  </p>
+							    	<p class = "center-text position italic"> <%= officer.position %>  </p>
+							    </div>
+						    </figure>
+						    <figure class="back">
+						    	<div class = "information">
+						    		<div>
+								    	<p class = "center-text"><span class="bold">Name:</span> <%= officer.name %></p>
+								    	<p class = "center-text"><span class="bold">Position:</span> <%= officer.position %></p>
+								    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:"+<%= officer.email %>+"?subject=Contact SHPE Austin"><%= officer.email %></a></p>
+								    	<p class = "center-text"><span class="bold">Phone:</span> <a href="tel:+<%=officer.phone%>"><%=officer.phone%></a></p>
+								    	<p class = "center-text"><span class="bold">Hometown:</span> <%= officer.hometown %></p>
+								    	<p class = "center-text"><span class="bold">Company:</span> <%= officer.company %></p>
+								    	<a href = "<%= officer.linkedin %>"
+								    		<i id="officer-linkedin" class="center-text fa fa-linkedin fa-3x"></i>
+								    	</a>
+								    	<% if(officer.name == "Juan Cortez"){%>
+								    	<a href = "meeting">
+								    		<i id="hidden-video" class="center-text fa fa-video-camera fa-3x"></i>
+								    	</a>
+								    	<% } %> 
+								    </div>
+							    </div>
+						    </figure>
+						  </div>
+						</section>
+					<% }); %>
+				</ul>
+			</div>
+		</div> <!-- .officers-container -->
+	</body>
+</html>

@@ -63,7 +63,7 @@ const cfenv = require('cfenv');
 const appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
-const server = app.listen(appEnv.port, '0.0.0.0', function() {
+const server = app.listen(appEnv.port, () => {
     console.log(`Server starting on ${appEnv.url}`);
 });
 
