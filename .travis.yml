@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- 6.2.1
+deploy:
+  edge: true
+  provider: cloudfoundry
+  api: https://api.ng.bluemix.net
+  username: cortezjuanjr@gmail.com
+  password:
+    secure: lehEfqzTDQLK+eHpxc4hvASERUBX+AUvyyAGTRhBrBc78UfRs7BnUaOqizTaZ6mXUL8nGdTc1Pn+LMpA01C7e/OM8xt3duZ+ST7StDzYBA1rwCvzYIAun8KaLm6USsR9hedU+cKwubC+BJlPl46I6Sih0izJ/hxF8F5i9YIi7Sb9O4nrxF+9kFdvfYGJAkXEU3PpYxzVEYYpkBC/UaXB+0Bbebte4mAbCdcGb2mS4N4zxcjfpBwszpZGanesCQq+U2nX6od1qCgAB8qiHaD/Ge2RG8gQAXIVE6D8B4IXgCvVVNYp26oleIiVEUFIUunh8mKAwtFVaXQwrp0/XDm5gfeK1zRZZoHRhk/Y7qA0ly3s+27/hIWZGpfEEjZmkz86S1qaYsyhbH/NA7SD+xjGhcxZJ+8bVuZXh725vtGFKXtK9qUqrJM+9IQ7NzD4OHI9FyRCCBIe47ODcO2WEIFU5bFJO/jcCVcYbyRfuxvzpeChO9C4mf5tDiC+Sb7IRSXHLsGy20xbE3gbwsDlLSA5/PCUV1x6f9xFae2bYrQYgvu5cFSRNTAUx7kYH8y/6KTMbHT/gfDZ6ANru2xvrwcc87E+wV7/HUciNzCUAy4cj70cEnrzIx4BQGgq8Uq50fjGxyz8c+bt5qkyC8pFjGP9IFWoS+vtKby/Jb1lBfO1pY8=
+  organization: cortezjuanjr@gmail.com
+  space: dev
+  on:
+    branch: master
