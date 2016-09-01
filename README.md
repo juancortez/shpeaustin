@@ -139,6 +139,7 @@ In order to set up BlueMix and GoDaddy, there are a couple of steps we need to d
 I have created an admin page that has made it easier to update the SHPEAustin application. Navigate to the following URL http://me.austinshpe.org/update/admin and login with the credentials in the private_credentials.json file. In this UI, you are able to View, Delete, and Update data to the Redis database. Please contact the webmaster for instructions on how to appropriately update the data on the application.
 
 ## BlueMix Auto Deployment with Travis CI
+Everytime that GitHub receives a new commit, it will utilize Travis CI to automatically deploy to Bluemix. Follow the instructions below to get it set up. You can view all results and profile settings here: https://travis-ci.org/juancortez-ut/shpeaustin/settings.
 
  1. Register at https://travis-ci.org/
  2. Authorize the Travis CI application to access the GitHub account

@@ -1,56 +1,13 @@
 $(document).ready(function() { 
-    var socket = io(); // get a handle to the websocket
-    var name;
-    var usersOnline = 0;
 
+    Chat.initialize();
+    
     // form submission for chat
     $('#chat').submit(function(message){
-        // the first time, get the name of the user
-        if(name === undefined){
-            name = $('#chat-message').val();
-            $('#chat-message').val('');
-            $("p#name-prompt").remove();
-            name = name.capitalizeFirstLetter();
-            socket.emit('joined-chat', name);
-            $('#chat-content').append("<div class='msgln italic'> Welcome " + name + "! There are " + usersOnline + " users online, including yourself.</div>");
-            return false;
-        }
-
-        var msg = {
-            'message' : $('#chat-message').val(),
-            'name'    : name,
-            'time'    : getTime()
-        };
-        socket.emit('chat message', msg);
-        $('#chat-message').val('');
+        Chat.sendMessage(message);
         return false;
     });
-
-    socket.on('chat message', function(msg){
-        $('#chat-content').append("<div class='msgln'> " + "<span class='bold'>" + msg.name + " (" + msg.time + "): </span>" + msg.message + "</div>");
-        $('#chat-content').scrollTop($('#chat-content')[0].scrollHeight); // automatically scrolls textbox with chat
-    });
-
-    socket.on('usersOnline', function(users){
-        usersOnline = users;
-        console.log("There are " + users + " users online.");
-    });
-
-    socket.on('new-user', function(userName){
-        if(userName == name || name === undefined){
-            return;
-        }
-        console.log(userName + " joined the chat!");
-        $('#chat-content').append("<div class='msgln new-user'>"+ userName + " just joined the chat!</div>");
-    });
-
-    // get the current time in CST in the following format: hh:mm
-    function getTime() {
-        var date = new Date();
-        var utc = date.getTime() + (date.getTimezoneOffset() * 60000);
-        var nd = new Date(utc + (3600000 * (-5)));
-        return nd.toLocaleTimeString();
-    }    
+ 
 
     $("#chat-header i").click(function(){
         $(".content-container").toggle();
@@ -101,7 +58,5 @@ $(document).ready(function() {
         }, 2500);
     }
 
-    String.prototype.capitalizeFirstLetter = function() {
-        return this.charAt(0).toUpperCase() + this.slice(1);
-    };
+
 });

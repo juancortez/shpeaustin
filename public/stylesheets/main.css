@@ -1374,6 +1374,9 @@ html ::-webkit-scrollbar {
   padding: 8px 5px 5px 5px;
   height: 100%;
 }
+.contact-container #chat-container .content-container #chat-content .error {
+  color: red;
+}
 .contact-container #chat-container .content-container #chat-content #name-prompt {
   position: relative;
   text-align: center;

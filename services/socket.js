@@ -17,7 +17,7 @@ const database = require('../lib/database.js'),
 let revision = config.revision;
 
 function initiateSocket(io,client){
-	var usersOnline = 0;
+	let usersOnline = 0;
 	io.on('connection', (socket) =>{
 		usersOnline++;
 
