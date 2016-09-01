@@ -141,8 +141,13 @@ I have created an admin page that has made it easier to update the SHPEAustin ap
 ## BlueMix Auto Deployment with Travis CI
 
  1. Register at https://travis-ci.org/
- 2. Authorize application to access GitHub account
- 3. Follow Directions in the https://travis-ci.org/getting_started page. Enable the shpeaustin application
+ 2. Authorize the Travis CI application to access the GitHub account
+ 3. Follow Directions in the https://travis-ci.org/getting_started page. Enable the shpeaustin application.
+ 4. Go to the root directoy of the SHPE Austin application and execute `$gem install travis`
+ 5. Run `$travis encrypt XXXX`, where XXXX corresponds to the bluemix password on private_credentials/*.json
+ 6. Replace the current "secure" string with the one outputted on the console
+ 7. Encrypt the Bluemix email, and run the same command as step 6. Replace the new "secure" string in both the organization and username section.
+ 8. Everytime you push to the repository, austinshpe.org will re-deploy with the new changes :)
 
 
 [austinshpe.org]: http://austinshpe.org
