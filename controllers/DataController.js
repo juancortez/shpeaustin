@@ -11,7 +11,8 @@ const express = require('express'),
     app = express(),
     authorization = require('../lib/authorization.js').authorization,
     database = require('../lib/database.js'),
-    privateCredentials = require('../private_credentials/credentials.json');
+    credentialsBuilder = require('../lib/credentialsBuilder.js'),
+    privateCredentials = credentialsBuilder.init();
 
 // determines whether or not someone has logged in to the website
 app.get('/officerlogin', (req, res) => { 

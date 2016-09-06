@@ -9,7 +9,8 @@ const express = require('express'),
     app = express(),
     config = require('config'),
     database = require('../lib/database.js'),
-    privateCredentials = require('../private_credentials/credentials.json');
+    credentialsBuilder = require('../lib/credentialsBuilder.js'),
+    privateCredentials = credentialsBuilder.init();
 
 app.post('/contact', function(req, res) {
     const bot = req.app.get('bot');
@@ -140,6 +141,13 @@ app.post('/bot/officers', (req, res) => {
         });
         return;
     }
+});
+
+
+// Interactive Buttons https://api.slack.com/docs/message-buttons
+app.post('/bot/interactive', (req, res) => {
+    console.log(req);
+    return res.sendStatus(200);
 });
 
 module.exports = app;

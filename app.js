@@ -9,7 +9,8 @@ const express = require('express'),
     redis = require('redis'),
     router = express.Router(),
     compression = require('compression'),
-    privateCredentials = require('./private_credentials/credentials.json'),
+    credentialsBuilder = require('./lib/credentialsBuilder.js'),
+    privateCredentials = credentialsBuilder.init(),
     redisCredentials = privateCredentials.redis.credentials,
     slackCredentials = privateCredentials.slack,
     redis_connect = require("./services/redis.js"),
@@ -17,7 +18,6 @@ const express = require('express'),
     socket = require('socket.io'),
     config = require('config'),
     database = require("./lib/database.js");
-
 // only load up console if developing locally
 if(appEnv.isLocal){
     const _console = require("./lib/console.js");
@@ -75,10 +75,11 @@ socket_connect.initiateSocket(io, client);
 const Botkit = require('botkit');
 
 const controller = Botkit.slackbot({
-  debug: false
+    interactive_replies: true,
+    debug: false
 });
 
-// connect the bot to a stream of messages
+//connect the bot to a stream of messages
 const bot = controller.spawn({
   token: slackCredentials.botToken,
   incoming_webhook:{
@@ -88,3 +89,4 @@ const bot = controller.spawn({
 
 app.set('bot', bot); 
 require('./services/slack.js')(controller, client); // Listen to different requests
+

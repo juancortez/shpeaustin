@@ -7,13 +7,13 @@ module.exports = (controller, client) => {
 
     var pizzaUsers = {}; // TODO, move this over to database
 
-    controller.hears(['pizzatime'], ['direct_message', 'direct_mention', 'mention'], (bot, message) => {
+    controller.hears(['pizzatime', 'pizza', 'order pizza'], ['direct_message', 'direct_mention', 'mention'], (bot, message) => {
         askName = (response, convo) => {
-            convo.ask("Hi! Who will be placing the order today?", (response, convo) => {
+            convo.ask(_buildPizzaMessage("Hi! Who will be placing the order today?"), (response, convo) => {
                 const userName = _capitalizeFirstLetter(_returnResponse(response, 'text')),
                     userid = _returnResponse(response, 'user');
                 if (pizzaUsers[userid]) {
-                    convo.say(`Hi, ${userName}! We noticed you have ordered from us before!`);
+                    convo.say(_buildPizzaMessage(`Hi, ${userName}! We noticed you have ordered from us before!`));
                     const currentUser = pizzaUsers[userid],
                         speech = `Last time, you ordered a ${currentUser.size} ${currentUser.flavor} pizza, delivered to ${currentUser.delivery}. Would you like to place the same order?`;
                      _verifyResponse(userid, convo, {
@@ -23,8 +23,8 @@ module.exports = (controller, client) => {
                      });
                 } else {
                     pizzaUsers[userid] = {};
-                    _updateData(userid, "name", userName);
-                    convo.say(`Hi, ${userName}, we noticed that this is your first time here. Welcome!`);
+                    _updatePizzaData(userid, "name", userName);
+                    convo.say(_buildPizzaMessage(`Hi, ${userName}, we noticed that this is your first time here. Welcome!`));
                     askFlavor(userid, convo);
                 }
                 convo.next();
@@ -32,26 +32,26 @@ module.exports = (controller, client) => {
         };
 
         askFlavor = (userid, convo) => {
-            convo.ask('What flavor of pizza do you want?', (response, convo) => {
+            convo.ask(_buildPizzaMessage('What flavor of pizza do you want?'), (response, convo) => {
                 const flavor = _returnResponse(response, 'text');
-                _updateData(userid, "flavor", flavor);
+                _updatePizzaData(userid, "flavor", flavor);
                 askSize(userid, convo);
                 convo.next();
             });
         }
 
         askSize = (userid, convo) => {
-            convo.ask('What size do you want?', (response, convo) => {
+            convo.ask(_buildPizzaMessage('What size do you want?'), (response, convo) => {
                 const size = _returnResponse(response, 'text');
-                _updateData(userid, "size", size);
+                _updatePizzaData(userid, "size", size);
                 askWhereDeliver(userid, convo);
                 convo.next();
             });
         }
         askWhereDeliver = (userid, convo) => {
-            convo.ask('So where do you want it delivered?', (response, convo) => {
+            convo.ask(_buildPizzaMessage('So where do you want it delivered?'), (response, convo) => {
                 const delivery = _returnResponse(response, 'text');
-                _updateData(userid, "delivery", delivery);
+                _updatePizzaData(userid, "delivery", delivery);
                 _verifyPizzaOrder(userid, convo);
                 convo.next();
             });
@@ -61,7 +61,7 @@ module.exports = (controller, client) => {
             const currentUser = pizzaUsers[userid],
                 order = `${currentUser.name}, I have a ${currentUser.size} ${currentUser.flavor} pizza being delivered to ${currentUser.delivery}, is this correct?`;
 
-            convo.ask(order, (response, convo) => {
+            convo.ask(_buildPizzaMessage(order), (response, convo) => {
                 const yesNo = _returnResponse(response, 'text').toLowerCase();
                 if (yesNo === "yes") {
                     _deliverPizza(userid, convo);
@@ -73,11 +73,11 @@ module.exports = (controller, client) => {
         };
 
         _changeOrder = (userid, convo) => {
-            convo.ask('Would you like to change the flavor, size, or delivery?', (response, convo) => {
+            convo.ask(_buildPizzaMessage('Would you like to change the flavor, size, or delivery?'), (response, convo) => {
                 const changeOrder = _returnResponse(response, 'text').toLowerCase(),
                     validChanges = ['flavor', 'size', 'delivery'];
                 if(!validChanges.includes(changeOrder)){
-                    convo.say(`Sorry, ${changeOrder} is not a valid.`);
+                    convo.say(_buildPizzaMessage(`Sorry, ${changeOrder} is not a valid.`));
                     _changeOrder(userid, convo);
                 } else{
                     _changeToOrder(changeOrder, userid, convo);
@@ -87,9 +87,9 @@ module.exports = (controller, client) => {
         };
 
         _changeToOrder = (changeOrder, userid, convo) => {
-            convo.ask(`What would you like to change ${changeOrder} to?`, (response, convo) => {
+            convo.ask(_buildPizzaMessage(`What would you like to change ${changeOrder} to?`), (response, convo) => {
                 const newRequest = _returnResponse(response, 'text');
-                _updateData(userid, changeOrder, newRequest);
+                _updatePizzaData(userid, changeOrder, newRequest);
                 _verifyPizzaOrder(userid, convo);
                 convo.next();
             });
@@ -97,7 +97,7 @@ module.exports = (controller, client) => {
 
         _verifyResponse = (userid, convo, next) => {
             let speech = next.speech;
-            convo.ask(speech, (response, convo) => {
+            convo.ask(_buildPizzaMessage(speech), (response, convo) => {
                 let yesNo = _returnResponse(response, 'text').toLowerCase();
                 if (yesNo === "yes") {
                     next.yes(userid, convo);
@@ -109,15 +109,45 @@ module.exports = (controller, client) => {
         };
 
         _deliverPizza = (userid, convo) => {
-            convo.say(`Great, ${pizzaUsers[userid].name}! Your order will be delivered in 10 minutes!`);
+            convo.say(_buildPizzaMessage(`Great, ${pizzaUsers[userid].name}! Your order will be delivered in 10 minutes!`));
         };
 
-        _updateData = (userid, key, data) => {
+        _updatePizzaData = (userid, key, data) => {
             pizzaUsers[userid][key] = data;
         }
 
+        _buildPizzaMessage = (text) => {
+            return {
+              text,
+              username: "PizzaBot",
+              icon_emoji: ":pizza:",
+            }
+        }
+
+
         bot.startConversation(message, askName);
     });
+
+
+    _buildOptionMessage = (options) => {
+        if(options.constructor !== Array && options.length > 5){
+            console.error(`Must provide an array of options greater than 0 and less than 5.`);
+            return text;
+        }
+        const numberOptions = [":one:", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:"];
+
+        let text = `Here are your options: \n`;
+
+        options.forEach(function(option, index){
+            text += `${numberOptions[index]}: ${options[index]}\n`;
+        });
+
+        return {
+          text,
+          username: "PizzaBot",
+          icon_emoji: ":pizza:",
+        }
+    }
 
 
     `
