@@ -9,8 +9,7 @@ const express = require('express'),
     app = express(),
     config = require('config'),
     database = require('../lib/database.js'),
-    credentialsBuilder = require('../lib/credentialsBuilder.js'),
-    privateCredentials = credentialsBuilder.init();
+    privateCredentials = require('../lib/credentialsBuilder.js').init();
 
 app.post('/contact', function(req, res) {
     const bot = req.app.get('bot');

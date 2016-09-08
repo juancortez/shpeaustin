@@ -1,3 +1,15 @@
+`
+    Author: Juan Cortez
+
+    This node.js application serves both the client and server side of the SHPE Austin Website (austinshpe.org).
+
+    When running locally:
+        $nodemon --ignore metadata/
+    Deploying application to Bluemix:
+        $cf push
+
+`
+
 const express = require('express'),
     app = express(),
     cfenv = require('cfenv'),
@@ -9,8 +21,7 @@ const express = require('express'),
     redis = require('redis'),
     router = express.Router(),
     compression = require('compression'),
-    credentialsBuilder = require('./lib/credentialsBuilder.js'),
-    privateCredentials = credentialsBuilder.init(),
+    privateCredentials = require('./lib/credentialsBuilder.js').init(),
     redisCredentials = privateCredentials.redis.credentials,
     slackCredentials = privateCredentials.slack,
     redis_connect = require("./services/redis.js"),
@@ -21,8 +32,7 @@ const express = require('express'),
 // only load up console if developing locally
 if(appEnv.isLocal){
     const _console = require("./lib/console.js");
-}
-
+}   
 /************************************************************************************************************
 *                                   Redis Database Connection
 ************************************************************************************************************/
@@ -67,7 +77,6 @@ const server = app.listen(appEnv.port, () => {
 ************************************************************************************************************/
 const io = socket.listen(server);
 socket_connect.initiateSocket(io, client);
-
 /************************************************************************************************************
 *                                  BotKit Configuration
 * SHPE-Austin Slack Integrations: https://shpeaustin.slack.com/apps/manage/custom-integrations

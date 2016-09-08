@@ -2,7 +2,7 @@
   "name": "SHPE_Austin_Website",
   "version": "1.0.0",
   "description": "Node.JS Application that hosts the SHPE Austin website.",
-  "main": "index.html",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "predeploy": "echo im about to deploy",
@@ -53,7 +53,8 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
     "jshint": "^2.9.1",
-    "less": "^2.7.1"
+    "less": "^2.7.1",
+    "nodemon": "^1.10.2"
   },
   "engines": {
     "node": "6.2.1",

@@ -7,8 +7,7 @@
 const express = require('express'),
     app = express(),
     config = require('config'),
-    credentialsBuilder = require('../lib/credentialsBuilder.js'),
-    privateCredentials = credentialsBuilder.init(),
+    privateCredentials = require('../lib/credentialsBuilder.js').init(),
     authorization = require('../lib/authorization.js').authorization,
     database = require('../lib/database.js');
 let revision = config.revision;
