@@ -4,7 +4,7 @@
     This node.js application serves both the client and server side of the SHPE Austin Website (austinshpe.org).
 
     When running locally:
-        $nodemon --ignore metadata/
+        $npm start
     Deploying application to Bluemix:
         $cf push
 

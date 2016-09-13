@@ -4,7 +4,7 @@
   "description": "Node.JS Application that hosts the SHPE Austin website.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon --ignore metadata/ app.js",
     "predeploy": "echo im about to deploy",
     "postdeploy": "echo ive deployed"
   },
