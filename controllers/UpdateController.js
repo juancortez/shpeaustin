@@ -54,6 +54,50 @@ app.post('/announcements', (req, res) => {
     });
 });
 
+// posts a new job to the redis database
+app.post('/jobs', (req, res) => {
+    let key = "jobs";
+    database.getCachedData(key, (err, data) => {
+        if(!!err){
+            console.warn(`${key} key doesn't exist, so creating jobs.`);
+            data = null;
+        }
+        let jobs = data && data.jobs || null,
+            newJob = req.body || null,
+            {position, company, description, url, ts, poster} = newJob;
+
+        if(!(!!position) || !(!!company) || !(!!description) || !(!!url) || !(!!ts) || !(!!poster)){
+            console.error("Did not send appropriate inputs for a new job posting.");
+            return res.status(400).send("Did not send appropriate inputs for a new job posting.");
+        }
+
+        newJob.ts = +newJob.ts;
+
+        let length = jobs && jobs.length || 0;
+        if(!(!!length)){
+            jobs = [];
+        }
+        jobs[length] = newJob;
+        database.setData(key, JSON.stringify({jobs: jobs}), (err) => {
+            if(err){
+                console.error(`Error: ${err.reason}`);
+                return res.status(400).send(`Error: ${err.reason}`);
+            }
+            const jsonfile = require('jsonfile'),
+                path = require("path"),
+                file = path.join(__dirname, '../metadata', 'jobs.json');
+            jsonfile.spaces = 4;
+
+            jsonfile.writeFile(file, {jobs: jobs}, (err) => {
+                if(!!err) console.error(err);
+                else console.log("Successfully updated the jobs.json file under the metadata folder.");        
+                return res.json({jobs: jobs});
+            });
+        });   
+       
+    });
+});
+
 // updates Google Calendar data in the Redis Database
 app.post('/calendar', authorization.auth, (req, res) => {
     // Get access to the Google Calendar

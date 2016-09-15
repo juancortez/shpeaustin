@@ -47,13 +47,16 @@ module.exports = function(app, client) {
     });
 
     app.get('/membership', (req, res) => {
-        database.getCachedData("revisionNumber", (err, data) => {
+        database.getCachedData(["revisionNumber", "jobs"], (err, data) => {
+            const jobs = data.jobs.jobs,
+                revisionNumber = data.revisionNumber.revision;
             if(!!err){
                 console.error(err.reason);
             }
-            revision = (!(!!err)) ? data.revision : revision;
+            revision = (!(!!err) && revisionNumber) ? revisionNumber : revision;
             res.render('membership.html', {
-                revision
+                revision: revision,
+                jobList: jobs
             });
         });
     });

@@ -72,6 +72,32 @@ function onRedisConnection(client) {
         }
     });
 
+    client.get("jobs", (err, reply) => {
+        let fileName = "jobs.json";
+        if (err) {
+            console.error(`Error: ${err}`);
+        } else {
+            if (reply == null) {
+                try {
+                    jobData = require(`../metadata/${fileName}`);
+                } catch (ignore) {
+                    console.error(`Failed to load data from ${fileName}, exiting`);
+                    return;
+                }
+                database.setData("jobs", JSON.stringify(jobData), (err) =>{
+                    if(err){
+                        console.error(`Error: ${err.reason}`);
+                        return;
+                    }
+                    console.log("Successully saved and cached jobs to Redis!");
+                });
+            } else {
+                _cacheData("jobs", reply);
+                _updateMetadata(`${fileName}`, reply);
+            }
+        }
+    });
+
     client.get("newsletterdata", (err, reply) => {
         let fileName = "newsletter_data.json";
         if (err) {

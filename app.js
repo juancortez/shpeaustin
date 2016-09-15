@@ -98,4 +98,3 @@ const bot = controller.spawn({
 
 app.set('bot', bot); 
 require('./services/slack.js')(controller, client); // Listen to different requests
-

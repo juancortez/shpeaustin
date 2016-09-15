@@ -65,84 +65,108 @@
          </div>
       </div>
       <div class="bottom-container">
-         <div class = "cal-container">
-            <h1 class="dark-shpe-blue center-text main-title">SHPE Calendar</h1>
-            <div id="cal">
-               <div id="cal-info">
-                  <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                  <p class="calendar-info"><b>Event: </b><span id="event"> </span></p>
-                  <p class="calendar-info"><b>Date: </b><span id="date"> </span></p>
-                  <p class="calendar-info locationWrapper"><b>Location: </b><span id="location"> </span></p>
-                  <p class="calendar-info"><b>More Info: </b><span id="calLink">Link</span></p>
+         <div class ="member-info">
+            <div class ="outer-cal">
+               <div class="cal-title">
+                  <p>SHPE Calendar</p>
                </div>
-               <div class="header"> 
-                  <span class="left button" id="prev"> &lang; </span> 
-                  <span class="left hook"></span> 
-                  <span class="month-year" id="label"> June 2002 </span> 
-                  <span class="right hook"></span> 
-                  <span class="right button" id="next"> &rang; </span>
-               </div>
-               <table id="days">
-                  <td>sun</td>
-                  <td>mon</td>
-                  <td>tue</td>
-                  <td>wed</td>
-                  <td>thu</td>
-                  <td>fri</td>
-                  <td>sat</td>
-               </table>
-               <div id="cal-frame">
-                  <table class="curr">
-                     <tbody>
-                        <tr>
-                           <td class="nil"></td>
-                           <td class="nil"></td>
-                           <td>1</td>
-                           <td>2</td>
-                           <td>3</td>
-                           <td>4</td>
-                           <td>5</td>
-                        </tr>
-                        <tr>
-                           <td>6</td>
-                           <td>7</td>
-                           <td>8</td>
-                           <td>9</td>
-                           <td>10</td>
-                           <td class="today">11</td>
-                           <td>12</td>
-                        </tr>
-                        <tr>
-                           <td>13</td>
-                           <td>14</td>
-                           <td>15</td>
-                           <td>16</td>
-                           <td>17</td>
-                           <td>18</td>
-                           <td>19</td>
-                        </tr>
-                        <tr>
-                           <td>20</td>
-                           <td>21</td>
-                           <td>22</td>
-                           <td>23</td>
-                           <td>24</td>
-                           <td>25</td>
-                           <td>26</td>
-                        </tr>
-                        <tr>
-                           <td>27</td>
-                           <td>28</td>
-                           <td>29</td>
-                           <td>30</td>
-                           <td class="nil"></td>
-                           <td class="nil"></td>
-                           <td class="nil"></td>
-                        </tr>
-                     </tbody>
+               <div class = "cal-container">
+               <div id="cal">
+                  <div id="cal-info">
+                     <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                     <p class="calendar-info"><b>Event: </b><span id="event"> </span></p>
+                     <p class="calendar-info"><b>Date: </b><span id="date"> </span></p>
+                     <p class="calendar-info locationWrapper"><b>Location: </b><span id="location"> </span></p>
+                     <p class="calendar-info"><b>More Info: </b><span id="calLink">Link</span></p>
+                  </div>
+                  <div class="header"> 
+                     <span class="left button" id="prev"> &lang; </span> 
+                     <span class="left hook"></span> 
+                     <span class="month-year" id="label"> June 2002 </span> 
+                     <span class="right hook"></span> 
+                     <span class="right button" id="next"> &rang; </span>
+                  </div>
+                  <table id="days">
+                     <td>sun</td>
+                     <td>mon</td>
+                     <td>tue</td>
+                     <td>wed</td>
+                     <td>thu</td>
+                     <td>fri</td>
+                     <td>sat</td>
                   </table>
+                  <div id="cal-frame">
+                     <table class="curr">
+                        <tbody>
+                           <tr>
+                              <td class="nil"></td>
+                              <td class="nil"></td>
+                              <td>1</td>
+                              <td>2</td>
+                              <td>3</td>
+                              <td>4</td>
+                              <td>5</td>
+                           </tr>
+                           <tr>
+                              <td>6</td>
+                              <td>7</td>
+                              <td>8</td>
+                              <td>9</td>
+                              <td>10</td>
+                              <td class="today">11</td>
+                              <td>12</td>
+                           </tr>
+                           <tr>
+                              <td>13</td>
+                              <td>14</td>
+                              <td>15</td>
+                              <td>16</td>
+                              <td>17</td>
+                              <td>18</td>
+                              <td>19</td>
+                           </tr>
+                           <tr>
+                              <td>20</td>
+                              <td>21</td>
+                              <td>22</td>
+                              <td>23</td>
+                              <td>24</td>
+                              <td>25</td>
+                              <td>26</td>
+                           </tr>
+                           <tr>
+                              <td>27</td>
+                              <td>28</td>
+                              <td>29</td>
+                              <td>30</td>
+                              <td class="nil"></td>
+                              <td class="nil"></td>
+                              <td class="nil"></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
                </div>
-            </div>
+               </div> <!-- .cal-container -->
+            </div> <!-- .outer-cal -->
+            <div class = "job-postings-container">
+               <div class="jobs-title">
+                  <p>Job Postings</p>
+               </div>
+               <div class="job-tiles">
+                  <% jobList.forEach(function(job) { %>
+                     <div class="job-tile">
+                        <div class="job-info">
+                           <p class="job-position-label">Position:<span class="job-position"><%= job.position %></span></p>
+                           <p class="job-company-label">Company:<span class="job-company"><%= job.company %></span></p>
+                           <p class="job-company-description">Description:<span class="job-description"><%= job.description %></span></p>
+                           <p class="job-company-poster">Posted by:<span class="job-poster"><%= job.poster %> on <%= new Date(job.ts).toLocaleDateString()%></span></p>
+                        </div>
+                        <button type="button" class="btn btn-default job-button"><a class="job-link" href="<%= job.url %>">More Info</a></button>
+                     </div> <!-- .job-tile -->
+                  <% }); %>
+               </div>
+            </div> <!-- .job-postings-container -->
          </div>
          <div class="join-shpe-container">
             <div class="jumbotron">

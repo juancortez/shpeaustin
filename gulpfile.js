@@ -136,7 +136,7 @@ let javaScriptWatch = ['lint', 'index_script', 'membership_script', 'contact_scr
 gulp.task('watch', () => {
     gulp.watch([all_javascripts, all_utils_src], javaScriptWatch);
     gulp.watch(less_stylesheets, cssWatch);
-    gulp.watch(all_json, allWatch);
+    gulp.watch(all_json, jsonWatch);
 });
 
 `
