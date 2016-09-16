@@ -1,16 +1,10 @@
 {
     "calendar": [
         {
-            "event": "Softball Game VS Biohazards Field 03--HOME",
-            "time": "2016-09-05T21:15:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=NGc5bnNodnFqb2IyOXA1NTViOGdwY2w4cmsgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
-        },
-        {
-            "event": "Softball Game VS Dataverts Field 02--AWAY",
-            "time": "2016-09-12T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=bTRqMHJtZ29tZm9vbmg5OXE0cXNsdDU1Z28gdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-            "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+            "event": "Softball Game VS Slump Busters Field 01--AWAY",
+            "time": "2016-09-19T21:15:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=dWp0aHBmMWlqOXJtcDUxYnI4NjZlMnNxZWcgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Athletics Office, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
         },
         {
             "event": "General Body Meeting 1",
@@ -19,15 +13,15 @@
         },
         {
             "event": "Softball Game VS Anytime Anyplace Field 01--HOME",
-            "time": "2016-09-26T19:25:00-05:00",
+            "time": "2016-09-26T21:15:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=dWhndWFoNnRycGFtaWVrbDVjbGVnMXVzOGMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
             "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
         },
         {
-            "event": "Happy Hour w/ IBM-HIP",
-            "time": "2016-10-05T18:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=MXA0OWttMnAya3JuczA2NnVycGRnNjV2dDAganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
-            "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
+            "event": "Softball DOUBLE HEADER--Field 05--AWAY",
+            "time": "2016-10-03T19:25:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=bWlwNDNnM2F1a3VobjV1dnBsMnUxNXNnNXMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Softball Game VS Anytime Anyplace Field 05--AWAY"
         },
         {
             "event": "Happy Hour w/IBM-HIP",
@@ -36,14 +30,20 @@
             "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
         },
         {
-            "event": "Noche de Ciencias",
-            "time": "2016-10-13T17:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=bzVkMG81azAxcDlzZGY5bDc0Y2huczBuMzAgc2hwZS5hdXN0aW5AbQ"
+            "event": "Happy Hour w/ IBM-HIP",
+            "time": "2016-10-05T18:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=MXA0OWttMnAya3JuczA2NnVycGRnNjV2dDAganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
+            "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
         },
         {
             "event": "Noche de Ciencias",
             "time": "2016-10-13T17:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=YmpvcTQ1Zjk2NHQ3NzZhZG9iYWoyY2R1cDQgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw"
+        },
+        {
+            "event": "Noche de Ciencias",
+            "time": "2016-10-13T17:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=bzVkMG81azAxcDlzZGY5bDc0Y2huczBuMzAgc2hwZS5hdXN0aW5AbQ"
         },
         {
             "event": "Bowling Scholarship Fundraiser (Tentative)",
@@ -58,12 +58,12 @@
         {
             "event": "General Body Meeting 2",
             "time": "2016-11-16T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NDg4Nzc1NHA5NjhxbHVzcDd2ZDhqdmVycGcgc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=NzRpOHRxZ3NydWl0aWt2bTNwOW1jMGJzMDggZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
         },
         {
             "event": "General Body Meeting 2",
             "time": "2016-11-16T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NzRpOHRxZ3NydWl0aWt2bTNwOW1jMGJzMDggZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
+            "link": "https://www.google.com/calendar/event?eid=NDg4Nzc1NHA5NjhxbHVzcDd2ZDhqdmVycGcgc2hwZS5hdXN0aW5AbQ"
         },
         {
             "event": "Holiday Party!!!",

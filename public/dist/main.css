@@ -1815,6 +1815,7 @@ html ::-webkit-scrollbar {
       justify-content: center;
   -ms-flex-flow: row wrap;
       flex-flow: row wrap;
+  position: relative;
 }
 .membership-container .bottom-container .member-info .job-postings-container .job-tiles .job-tile {
   width: 240px;
@@ -1847,8 +1848,7 @@ html ::-webkit-scrollbar {
 .membership-container .bottom-container .member-info .job-postings-container .job-tiles .job-tile .job-button {
   -ms-flex-item-align: center;
       align-self: center;
-  position: absolute;
-  bottom: 10px;
+  margin-top: 10px;
 }
 .membership-container .bottom-container .member-info .job-postings-container .job-tiles .job-tile span {
   margin-left: 5px;

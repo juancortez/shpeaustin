@@ -27,19 +27,19 @@ function onRedisConnection(client) {
                 }
 
                 util.parseOfficerJSON(null, (err, data) => {
-                    if(!!err){
+                    if (!!err) {
                         console.error(err.reason);
                         return;
                     }
                     database.setData("officerList", JSON.stringify(data), (err) => {
-                        if(err){
+                        if (err) {
                             console.error(`Error: ${err}`);
                             return;
                         }
                         console.log("Successully saved and cached officerList to Redis!");
                     });
                 });
-            
+
             } else {
                 _cacheData("officerList", reply);
             }
@@ -58,8 +58,8 @@ function onRedisConnection(client) {
                     console.error(`Failed to load data from ${fileName}, exiting`);
                     return;
                 }
-                database.setData("calendar", JSON.stringify(calendarData), (err) =>{
-                    if(err){
+                database.setData("calendar", JSON.stringify(calendarData), (err) => {
+                    if (err) {
                         console.error(`Error: ${err.reason}`);
                         return;
                     }
@@ -84,8 +84,8 @@ function onRedisConnection(client) {
                     console.error(`Failed to load data from ${fileName}, exiting`);
                     return;
                 }
-                database.setData("jobs", JSON.stringify(jobData), (err) =>{
-                    if(err){
+                database.setData("jobs", JSON.stringify(jobData), (err) => {
+                    if (err) {
                         console.error(`Error: ${err.reason}`);
                         return;
                     }
@@ -110,7 +110,7 @@ function onRedisConnection(client) {
                     console.error(`Failed to load data from ${fileName}`);
                 }
                 database.setData("newsletterdata", JSON.stringify(newsletterdata), (err) => {
-                    if(err){
+                    if (err) {
                         console.error(`Error: ${err.reason}`);
                         return;
                     }
@@ -129,8 +129,10 @@ function onRedisConnection(client) {
         } else {
             if (reply == null) {
                 // set the version number on the Redis database
-                database.setData("revisionNumber", JSON.stringify({revision: revision}), (err) => {
-                    if(err){
+                database.setData("revisionNumber", JSON.stringify({
+                    revision: revision
+                }), (err) => {
+                    if (err) {
                         console.error(`Error: ${err.reason}`);
                         return;
                     }
@@ -155,7 +157,7 @@ function onRedisConnection(client) {
                     console.error(`Failed to load data from ${fileName}`);
                 }
                 database.setData("announcements", JSON.stringify(announcements), (err) => {
-                    if(err){
+                    if (err) {
                         console.error(`Error: ${err.reason}`);
                         return;
                     }
@@ -174,7 +176,7 @@ function onRedisConnection(client) {
             console.error(`Error: ${err}`);
         } else {
             if (reply == null) {
-               // no id's provided
+                // no id's provided
             } else {
                 _cacheData("id", reply);
                 _updateMetadata(`${fileName}`, reply);
@@ -184,10 +186,10 @@ function onRedisConnection(client) {
 }
 
 // cache data on local memory for faster retrival times
-function _cacheData(key, data){
-    if(_checkNumArguments(arguments, 2) === false) return;
+function _cacheData(key, data) {
+    if (_checkNumArguments(arguments, 2) === false) return;
     database.cacheData(key, data, (err) => {
-        if(!!err){
+        if (!!err) {
             console.error(`Error: ${err.reason}`);
             return;
         }
@@ -196,24 +198,24 @@ function _cacheData(key, data){
 }
 
 // Function used to update the metadata file to match what is on the Redis database on launch
-function _updateMetadata(filename, data){
-    if(_checkNumArguments(arguments, 2) === false) return;
+function _updateMetadata(filename, data) {
+    if (_checkNumArguments(arguments, 2) === false) return;
     const jsonfile = require('jsonfile'),
         path = require("path"),
         file = path.join(__dirname, '../metadata', filename);
     jsonfile.spaces = 4;
 
     jsonfile.writeFile(file, JSON.parse(data), (err) => {
-        if(!!err) console.error(err);
-        else console.log(`Successfully updated the ${filename} file under the metadata folder!`);        
+        if (!!err) console.error(err);
+        else console.log(`Successfully updated the ${filename} file under the metadata folder!`);
     });
 }
 
 // verifies that the function got the correct number of arguments
-function _checkNumArguments(args, expected){
+function _checkNumArguments(args, expected) {
     let numArgs = args.length || 0;
 
-    if(numArgs !== expected){
+    if (numArgs !== expected) {
         console.error(`Incorrect number of arguments! Expected ${expected} and got ${numArgs}.`);
         return false;
     }
