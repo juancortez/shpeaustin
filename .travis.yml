@@ -1,12 +1,9 @@
-sudo: true
 language: node_js
 node_js:
 - 6.2.1
-before_deploy: npm install -g cf-blue-green
 deploy:
   edge: true
-  provider: script
-  script: cf-blue-green-travis
+  provider: cloudfoundry
   api: https://api.ng.bluemix.net
   username: 
     secure: "mAzAaf9d8PSni4Vb0ZiQdCV5e0+WV68dXwNQITXWSTP6B54RV8STyWY0AtvPMyRDhZMCBgLd2Y5+8iohlTC0Z+sGbnJTu1eLGAmPd4fN4xtytSALjoqFf/GWzeLWGckeh8xDW1QW2DoMY42nPnuDQm3JIFseh5yxk0/rQozyLjOLc0VqzDd+PVKUkBQiGb3qdG/3gTtwt0o14/hYNO31mbNRFTReEIdTTrBUWUi82Bw/oNhQAXDes+8ZnoqqzqGiHG/UxHy5Wt/5WZp4g2/HDJG304tSAzQLcN41EKcDJ0fG0laK1CC1XJ/s8sBhyUsPo/WvgaXBR7oP9opA12dSUL1zWy73ljsFKUyNVDRrhZfmCJw+INQOxLSq1TF6445bRciNXBb2XgqGws99g+9xLIB/OiYzNxqLokeIY97I0MbQ5Lp03EaTc7KLkNDUrDq4EgepAbXzpnlGnxA+YRU4zSapCntn1dVGYBHeKeHG7kCFtLHXBgJruQkVfG1qJJ3E1481GDv07Or0Qyd0lCyQiTjpX9mZn/VU9JbvFF5F/0klnIwu/HTt35FfeQ3au4WECJA592uzgmDgOcbARIEja5bbwusFVYu97KochnuiGnAXbCqkNF4QbsMUI13UGDRrn1Zzs7wOyfUgU8leLhk59j5vxQ3W2CEKiKxHyDikH9s="
