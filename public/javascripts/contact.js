@@ -58,5 +58,124 @@ $(document).ready(function() {
         }, 2500);
     }
 
+    var $overlay = $('<div id="overlay"></div>'),
+        $modal = $('<div id="modal"></div>'),
+        $close = $('<a id="close" href="#">close</a>'),
+        $content = $('<div id="modal-content"></div>');
+
+    $modal.hide();
+    $overlay.hide();
+    $modal.append($content, $close);
+    $('.contact-container').append($overlay, $modal);
+
+    modal.initialize({
+        $overlay: $("#overlay"),
+        $modal: $("#modal"),
+        $close: $("#close"),
+        $content: $("#modal-content")
+    });
+
+    $('.subscribe-container').click(function(){
+        var height = 400;
+        var width = 500;
+        window_height = $(window).height();
+        window_width = $(window).width();
+
+        // make sure that it fits within the frame
+        height = window_height < height ? window_height - 50: height;
+        width = window_width < width ? window_width - 50 : width;
+        $("#modal").css({'background':'white'});
+        var subscribeData = '<h1>SHPE Austin Newsletter</h1>' + 
+        '<form>' +
+            '<div class="form-group row">' + 
+                '<label for="first_name" class="col-xs-2 col-form-label">First Name:</label>' +
+                '<div class="col-xs-10">' + 
+                '   <input class="form-control" type="text" placeholder="First Name" name="first_name" id="first_name">'+
+                '</div>' +
+            '</div>' +
+            '<div class="form-group row">' + 
+                '<label for="last_name" class="col-xs-2 col-form-label">Last Name:</label>' +
+                '<div class="col-xs-10">' + 
+                '   <input class="form-control" type="text" placeholder="Last Name" name="last_name" id="last_name">'+
+                '</div>' +
+            '</div>' +            
+            '<div class="form-group row">' + 
+                '<label for="email" class="col-xs-2 col-form-label">Email:</label>' +
+                '<div class="col-xs-10">' + 
+                '   <input class="form-control" type="email" placeholder="E-Mail Address" name="email" id="email">'+
+                '</div>' +
+            '</div>' +  
+            '<div class="button-container">' + 
+                '<button type="submit" class="btn btn-primary submit-request">Submit</button>' +
+            '</div>'+
+        '</form>';
+        
+        modal.open({content: $(subscribeData), width: width+"px", height: height+"px", align: "center"});
+
+        $(".submit-request").bind('click', function(evt){
+            var first_name = evt.target.form.first_name.value,
+                last_name = evt.target.form.last_name.value,
+                email = evt.target.form.email.value;
+            var mailchimpId = $(".mailchimp-subscribe").attr('data-mailchimp');
+            $.ajax({
+                type: 'POST',
+                url: "/communication/mailchimp/lists/" + mailchimpId + "/subscribe",
+                data: {
+                    email: email
+                }
+            }).done(function(status) {
+                complete(false, false);
+                console.log(email + " was successfully subscribed!");
+            }).fail(function(e) {
+                if (e.status === 200) {
+                    complete(false, false);
+                    return;
+                }
+                complete(true, false);
+                console.error(e);
+            });
+            return false;
+        });
+    });
+
+    $close.click(function(e){
+        e.preventDefault();
+         modal.close();
+    });
+
+    function complete(err, reload) {
+        console.log("Request complete");
+        var self = ".submit-request";
+        $(self).html();
+
+        var time = 2000;
+        if (!!err) {
+            $(self).text("Failed, try Again.").css({
+                background: "#D8000C"
+            });
+        } else {
+            $(self).text("Success! Please check your email to verify subscription!").css({
+                background: "green"
+            });
+            time = 4000;
+        }
+
+        setTimeout(function() {
+            var status = $(self).text();
+            $(self).text("Submit").css({
+                background: "#0137A2"
+            });
+            if(status === "Success!"){
+                modal.close();
+            }
+        }, time);
+
+        if (!!reload) {
+            location.reload();
+        }
+        return false;
+    }
+
+
 
 });

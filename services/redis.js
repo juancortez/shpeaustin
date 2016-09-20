@@ -8,7 +8,10 @@
 
 const config = require('config'),
     database = require("../lib/database.js"),
-    revision = config.revision;
+    revision = config.revision,
+    cfenv = require('cfenv'),
+    request = require('request'),
+    appEnv = cfenv.getAppEnv();
 
 function onRedisConnection(client) {
     console.log('Connected to Redis');
@@ -179,6 +182,37 @@ function onRedisConnection(client) {
                 // no id's provided
             } else {
                 _cacheData("id", reply);
+                _updateMetadata(`${fileName}`, reply);
+            }
+        }
+    });
+
+
+    client.get("mailchimp", (err, reply) => {
+        let fileName = "mailchimp.json",
+            key = "mailchimp";
+
+        if (err) {
+            console.error(`Error: ${err}`);
+        } else {
+            if (reply == null) {
+                const baseUrl = appEnv.isLocal ? config.get('app.local') : config.get('app.deployed');
+                request({
+                    method: "GET",
+                    url: `${baseUrl}/communication/mailchimp/lists`
+                    }, (error, response, body) => {
+                    if (error) return console.error(error);
+
+                    database.setData(key, body, (err) => {
+                        if (err) {
+                            console.error(`Error: ${err.reason}`);
+                            return;
+                        }
+                        console.log(`Successully saved and cached ${key} to Redis!`);
+                    });
+                });
+            } else {
+                _cacheData(key, reply);
                 _updateMetadata(`${fileName}`, reply);
             }
         }

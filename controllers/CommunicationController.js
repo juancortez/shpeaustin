@@ -11,7 +11,7 @@ const express = require('express'),
     database = require('../lib/database.js'),
     privateCredentials = require('../lib/credentialsBuilder.js').init();
 
-app.post('/contact', function(req, res) {
+app.post('/contact', (req, res) => {
     const bot = req.app.get('bot');
     let body = req.body || null;
 
@@ -143,10 +143,35 @@ app.post('/bot/officers', (req, res) => {
 });
 
 
-// Interactive Buttons https://api.slack.com/docs/message-buttons
-app.post('/bot/interactive', (req, res) => {
-    console.log(req);
-    return res.sendStatus(200);
+/*
+ * Return the SHPE Austin List
+ */
+app.get('/mailchimp/lists', (req, res) => {
+    const mc = req.app.get('mc'); // mail-chimp handler
+    mc.lists.list({}, (data) => {
+        let shpeList = data.data.find((list) => list.default_from_name === "SHPE Austin");
+        res.json(shpeList);
+    });
 });
+
+/*
+ * POST subscribe an email to a list.
+ */
+app.post('/mailchimp/lists/:id/subscribe', (req, res) => {
+    const mc = req.app.get('mc'); // mail-chimp handler
+    mc.lists.subscribe({
+        id: req.params.id,
+        email: {
+            email: req.body.email
+        }
+    }, (data) => {
+        console.log(`Successfully subscribed ${req.body.email}!`);
+        res.sendStatus(200);
+    }, (error) => {
+        console.error(error);
+        res.status(400).send('There was an error subscribing that user');
+    });
+});
+
 
 module.exports = app;

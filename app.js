@@ -28,7 +28,8 @@ const express = require('express'),
     socket_connect = require("./services/socket.js"),
     socket = require('socket.io'),
     config = require('config'),
-    database = require("./lib/database.js");
+    database = require("./lib/database.js"),
+    mcapi = require('mailchimp-api');
 // only load up console if developing locally
 if(appEnv.isLocal){
     const _console = require("./lib/console.js");
@@ -95,6 +96,13 @@ const bot = controller.spawn({
     url: slackCredentials.subscribeRequestWebHook
   }
 }).startRTM();
-
 app.set('bot', bot); 
+
+/************************************************************************************************************
+*                                  MailChimp Configuration
+* Basic Subscribe Form: https://apidocs.mailchimp.com/api/how-to/basic-subscribe.php
+************************************************************************************************************/
+const mc = new mcapi.Mailchimp(privateCredentials.mailchimp.api_key);
+app.set('mc', mc);
+
 require('./services/slack.js')(controller, client); // Listen to different requests

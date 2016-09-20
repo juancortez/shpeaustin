@@ -54,7 +54,7 @@ gulp.task('membership_script', () => {
 });
 
 gulp.task('contact_script', () => {
-    return gulp.src([javascript_src + "contact.js", all_utils_src + "chat.js"])
+    return gulp.src([javascript_src + "contact.js", all_utils_src + "chat.js", all_utils_src + "modal.js"])
         .pipe(plugins.concat('contact.js'))
         .pipe(plugins.rename('contact.min.js'))
         .pipe(plugins.uglify())

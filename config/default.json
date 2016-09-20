@@ -1,10 +1,9 @@
 {
 	"app":{
-		"name": "SHPE Austin Website"
+		"name": "SHPE Austin Website",
+		"local": "http://localhost:6006",
+		"deployed": "http://shpeaustin.mybluemix.net"
 	},
-	/* @utilizedIn	 router/main.js. 
-	 * The following e-mail is the recipient of e-mails sent in the Contact Us page.
-	*/
 	"sendGrid": {
 		"sendGridEmail": "cortezjuanjr@gmail.com"
 	},

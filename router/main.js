@@ -62,13 +62,16 @@ module.exports = function(app, client) {
     });
 
     app.get('/contact', (req, res) => {
-        database.getCachedData("revisionNumber", (err, data) => {
+        database.getCachedData(["revisionNumber", "mailchimp"], (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
+            const mailchimp = data.mailchimp.id,
+                revisionNumber = data.revisionNumber.revision;
             revision = (!(!!err)) ? data.revision : revision;
             res.render('contact.html', {
-                revision
+                revision,
+                mailchimp
             });
         });
     });

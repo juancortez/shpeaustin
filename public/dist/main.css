@@ -1389,6 +1389,151 @@ html ::-webkit-scrollbar {
   text-decoration: none;
   border-radius: 2px;
 }
+.contact-container .mailchimp-subscribe {
+  position: fixed;
+  bottom: 10px;
+  left: 5%;
+  background: white;
+  width: 250px;
+  z-index: 100;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  cursor: pointer;
+}
+@media only screen and (max-width: 736px) {
+  .contact-container .mailchimp-subscribe {
+    width: 120px;
+  }
+}
+@media only screen and (max-width: 535px) {
+  .contact-container .mailchimp-subscribe {
+    width: 40px;
+  }
+}
+.contact-container .mailchimp-subscribe .subscribe-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  width: 100%;
+  padding: 5px;
+}
+.contact-container .mailchimp-subscribe .subscribe-container i {
+  color: black;
+  font-size: 1.5em;
+}
+.contact-container .mailchimp-subscribe .subscribe-container p#regular {
+  margin: 0px 0px 0px 10px;
+  color: #23527c;
+}
+@media only screen and (max-width: 736px) {
+  .contact-container .mailchimp-subscribe .subscribe-container p#regular {
+    display: none;
+  }
+}
+.contact-container .mailchimp-subscribe .subscribe-container p#small {
+  margin: 0px 0px 0px 10px;
+  color: #23527c;
+  display: none;
+}
+@media only screen and (max-width: 735px) {
+  .contact-container .mailchimp-subscribe .subscribe-container p#small {
+    display: block;
+  }
+}
+@media only screen and (max-width: 535px) {
+  .contact-container .mailchimp-subscribe .subscribe-container p#small {
+    display: none;
+  }
+}
+.contact-container .modal-container .modal-body .custom-button {
+  display: block;
+  border-radius: 0;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  background: #002266;
+  font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 auto;
+  transform: rotate(0);
+  transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+  position: relative;
+}
+.contact-container .modal-container .modal-body .custom-button:hover {
+  transform: rotate(60deg);
+  background: #0137A2;
+}
+.contact-container .modal-container .modal-body .custom-button:focus {
+  transform: rotate(30deg);
+}
+.contact-container .modal-container .modal-footer .mes {
+  text-align: left;
+  display: inline-block;
+}
+.contact-container .modal-container .col-sm-10 {
+  width: 100% !important;
+}
+.contact-container .modal-container .col-sm-offset-2 {
+  margin-left: 0px !important;
+}
+.contact-container #overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.contact-container #modal {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  padding: 8px;
+  z-index: 1000;
+}
+.contact-container #modal #modal-content {
+  border-radius: 8px;
+  padding: 20px;
+  background-color: white;
+  overflow: auto;
+}
+.contact-container #modal #close {
+  position: absolute;
+  background: url(../assets/close.png) 0 0 no-repeat;
+  width: 24px;
+  height: 27px;
+  display: block;
+  text-indent: -9999px;
+  top: -7px;
+  right: -7px;
+}
+.contact-container #modal .newsletterList {
+  padding: 0px;
+}
+.contact-container #modal .newsletterList li {
+  font-size: 20px;
+  margin-top: 10px;
+  list-style-type: none;
+}
 .officers-container .officer-header {
   color: #06063e;
   font-size: 40px;
