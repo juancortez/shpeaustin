@@ -1445,6 +1445,8 @@ html ::-webkit-scrollbar {
 @media only screen and (max-width: 736px) {
   .contact-container .mailchimp-subscribe {
     width: 120px;
+    bottom: 5px;
+    left: 5px;
   }
 }
 @media only screen and (max-width: 535px) {
@@ -2091,9 +2093,8 @@ html ::-webkit-scrollbar {
   background-color: white;
   overflow-y: scroll;
 }
-.membership-container #modal #modal-content .modal-title {
-  font-weight: bold;
-  margin-bottom: 5px;
+.membership-container #modal #modal-content .button-container {
+  margin-top: 10px;
 }
 .membership-container #modal #modal-content .modal-description {
   padding: 5px;

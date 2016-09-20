@@ -85,7 +85,7 @@ $(document).ready(function() {
         height = window_height < height ? window_height - 50: height;
         width = window_width < width ? window_width - 50 : width;
         $("#modal").css({'background':'white'});
-        var subscribeData = '<h1>SHPE Austin Newsletter</h1>' + 
+        var subscribeData = '<h2>Subscribe to SHPE Newsletter</h2>' + 
         '<form>' +
             '<div class="form-group row">' + 
                 '<label for="first_name" class="col-xs-2 col-form-label">First Name:</label>' +
@@ -106,7 +106,7 @@ $(document).ready(function() {
                 '</div>' +
             '</div>' +  
             '<div class="button-container">' + 
-                '<button type="submit" class="btn btn-primary submit-request">Submit</button>' +
+                '<button type="submit" class="btn btn-primary submit-request">Subscribe</button>' +
             '</div>'+
         '</form>';
         
@@ -117,6 +117,8 @@ $(document).ready(function() {
                 last_name = evt.target.form.last_name.value,
                 email = evt.target.form.email.value;
             var mailchimpId = $(".mailchimp-subscribe").attr('data-mailchimp');
+            var self = ".submit-request";
+            $(self).html('<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>');
             $.ajax({
                 type: 'POST',
                 url: "/communication/mailchimp/lists/" + mailchimpId + "/subscribe",
@@ -147,17 +149,15 @@ $(document).ready(function() {
         console.log("Request complete");
         var self = ".submit-request";
         $(self).html();
-
         var time = 2000;
         if (!!err) {
             $(self).text("Failed, try Again.").css({
                 background: "#D8000C"
             });
         } else {
-            $(self).text("Success! Please check your email to verify subscription!").css({
+            $(self).text("Success!").css({
                 background: "green"
             });
-            time = 4000;
         }
 
         setTimeout(function() {
