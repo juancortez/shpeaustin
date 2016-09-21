@@ -12,8 +12,11 @@ const fs = require('fs');
     google = require('googleapis'),
     googleAuth = require('google-auth-library');
 
+const cfenv = require('cfenv'),
+    appEnv = cfenv.getAppEnv();
+
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-    TOKEN_DIR = __dirname + ""
+    TOKEN_DIR = __dirname + "";
     path = require("path");
     TOKEN_DIR = path.join(__dirname, '../private_credentials/');
     TOKEN_PATH = TOKEN_DIR + 'google_calendar.json';
@@ -32,15 +35,24 @@ function authorize(credentials, callback) {
     const auth = new googleAuth();
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
-    // Check if we have previously stored a token.
-    fs.readFile(TOKEN_PATH, function(err, token) {
-        if (err) {
-            getNewToken(oauth2Client, callback);
-        } else {
-            oauth2Client.credentials = JSON.parse(token);
+    if(appEnv.isLocal){
+        // Check if we have previously stored a token.
+        fs.readFile(TOKEN_PATH, function(err, token) {
+            if (err) {
+                getNewToken(oauth2Client, callback);
+            } else {
+                oauth2Client.credentials = JSON.parse(token);
+                listEvents(oauth2Client, callback);
+            }
+        });
+    } else{
+        try{
+            oauth2Client.credentials = require('../lib/credentialsBuilder.js').init().googleAuth;
             listEvents(oauth2Client, callback);
+        } catch(e){
+            console.error(e);
         }
-    });
+    }
 }
 
 /**

@@ -97,7 +97,6 @@ const bot = controller.spawn({
   }
 }).startRTM();
 app.set('bot', bot); 
-
 /************************************************************************************************************
 *                                  MailChimp Configuration
 * Basic Subscribe Form: https://apidocs.mailchimp.com/api/how-to/basic-subscribe.php
