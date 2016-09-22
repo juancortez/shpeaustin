@@ -134,6 +134,38 @@ app.post('/jobs', (req, res) => {
     });
 });
 
+app.put('/survey', (req, res) => {
+    let key = "googleForm"
+    database.getCachedData(key, function(err, data){
+        if(!!err){
+            console.error(`${err.reason}`);
+            return res.status(400).send(err.reason);
+        }
+
+        let newLink = req.body.link || "";
+        let redisData = data;
+
+        if(!newLink.includes('viewform?embedded=true')){
+            console.error(`Link did not contain an embedded flag for an iframe.`);
+            return res.status(400).send(`Link did not contain an embedded flag for an iframe.`);
+        }
+        
+        
+        if(!!newLink) redisData.google_form.link = newLink;
+        else return res.status(400).send(`Did not provide a link for the ${key} database key.`);
+
+        database.setData(key, JSON.stringify(redisData), (err) => {
+            if (!!err) {
+                console.error(`Error: ${err.reason}`);
+                return res.status(400).send(err.reason);
+            }
+            console.log("Successully saved and cached calendar to Redis!");
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(200).send(redisData);
+        });
+    });
+});
+
 // updates Google Calendar data in the Redis Database
 app.post('/calendar', authorization.auth, (req, res) => {
     // Get access to the Google Calendar

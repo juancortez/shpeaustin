@@ -47,7 +47,6 @@ $(document).ready(function() {
 
         if (request == "new-job") {
             var ts = new Date().getTime();
-            console.log(evt);
             var position = evt.target.form.position.value,
                 company = evt.target.form.company.value,
                 description = evt.target.form.description.value,
@@ -106,6 +105,32 @@ $(document).ready(function() {
                 console.error(e);
             });
             return false; // won't refresh the page
+        }
+
+        if(request == "googleForm"){
+            var googleLink = evt.target.form.googleLink.value;
+            $(this).html('<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>');
+            $.ajax({
+                type: 'PUT',
+                url: "/update/survey",
+                data: {
+                    link: googleLink
+                }
+            }).done(function(status) {
+                complete(false, false);
+                console.log("Google survey link was successfully updated!");
+            }).fail(function(e) {
+                if (e.status === 200) {
+                    complete(false, false);
+                    return;
+                }
+                complete(true, false);
+                console.error("Google survey could not be updated.");
+                console.error(e);
+            });
+
+
+            return false;
         }
 
         if (request == "update") {

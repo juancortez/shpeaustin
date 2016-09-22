@@ -60,33 +60,53 @@
                </form>
             </div>
          </div>
-         <div class="form-container">
-            <div class="check-container">
-               <h3 class="title"> New Announcement </h3>
-               <p> Please select your name first, then input your new announcement. Result will appear in the <a href="/"> home page.</a></p>
-               <form>
-                  <div class="form-group">
-                     <div class="col-sm-6 form-announ">
-                        <label for="officer" class="sr-only">Officer Name:</label>
-                        <select class="form-control" id="officer" name="officer">
-                           <!-- Options get dynamically populated -->
-                        </select>
+
+         <div class="vertical-stack">
+            <div class="form-container">
+               <div class="check-container">
+                  <h3 class="title"> New Announcement </h3>
+                  <p> Please select your name first, then input your new announcement. Result will appear in the <a href="/"> home page.</a></p>
+                  <form>
+                     <div class="form-group">
+                        <div class="col-sm-6 form-announ">
+                           <label for="officer" class="sr-only">Officer Name:</label>
+                           <select class="form-control" id="officer" name="officer">
+                              <!-- Options get dynamically populated -->
+                           </select>
+                        </div>
+                        <div class="col-sm-6 form-announ">
+                           <label for="announcement" class="sr-only">Announcement</label>
+                           <input id="announcement" class="form-control input-group-lg reg_name" type="text" name="announcement" title="announcement" placeholder="Announcement">
+                        </div>
                      </div>
-                     <div class="col-sm-6 form-announ">
-                        <label for="announcement" class="sr-only">Announcement</label>
-                        <input id="announcement" class="form-control input-group-lg reg_name" type="text" name="announcement" title="announcement" placeholder="Announcement">
+                     <div class="button-container">
+                        <button data-request="new-announcement" type="submit" class="btn btn-primary submit-request">Submit</button>
                      </div>
-                  </div>
-                  <div class="button-container">
-                     <button data-request="new-announcement" type="submit" class="btn btn-primary submit-request">Submit</button>
-                  </div>
-               </form>
-            </div>
-            <!-- .check-container -->
-         </div>
-         <!-- .form-container -->
-      </div>
-      <!-- .cards -->
+                  </form>
+               </div> <!-- .check-container -->
+            </div> <!-- .form-container -->
+
+
+            <div class="form-container">
+               <div class="check-container">
+                  <h3 class="title"> Google Form </h3>
+                  <p> Please input the new URL for the google form. Form is located in the <a href="/survey">survey page.</a></p>
+                  <form>
+                     <div class="form-group">
+                        <div class="col-sm-6 google-link-container">
+                           <label for="googleLink" class="sr-only">Google Link</label>
+                           <input id="googleLink" class="form-control input-group-lg reg_name" type="text" name="googleLink" title="googleLink" placeholder="Embedded Google Link">
+                        </div>
+                     </div>
+                     <div class="button-container">
+                        <button data-request="googleForm" type="submit" class="btn btn-primary submit-request">Submit</button>
+                     </div>
+                  </form>
+               </div> <!-- .check-container -->
+            </div> <!-- .form-container -->
+         </div> <!-- .vertical-stack -->
+
+      </div> <!-- .cards -->
       <hr>
       <h1 class = "dark-shpe-blue center-text">Database Operations</h1>
       <h4 class = "center-text">Please only use this if you know what you're doing!</h4>

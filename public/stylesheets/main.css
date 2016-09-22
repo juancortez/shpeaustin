@@ -2181,6 +2181,9 @@ html ::-webkit-scrollbar {
 .admin-container .cards .form-container .check-container .form-group {
   min-width: 25%;
 }
+.admin-container .cards .form-container .check-container .google-link-container {
+  width: 100% !important;
+}
 .admin-container .cards .form-container .check-container .form-check label {
   font-weight: normal;
 }
@@ -2232,4 +2235,35 @@ html ::-webkit-scrollbar {
   padding: 5px;
   border: 1px solid black;
   border-radius: 5px;
+}
+.survey-container {
+  min-height: 100%;
+  padding: 0px 35px 0px 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+@media only screen and (max-width: 570px) {
+  .survey-container .main-title {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .survey-container .main-title {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 570px) {
+  .survey-container {
+    padding: 0px 15px 0px 15px;
+  }
+}
+.survey-container iframe {
+  width: 90%;
+  max-width: 860px;
+  height: 700px;
+  display: block;
+  border: 1px solid black;
+  margin: 15px 0px 35px 0px;
 }

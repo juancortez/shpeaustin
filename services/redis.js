@@ -218,6 +218,34 @@ function onRedisConnection(client) {
             }
         }
     });
+
+    client.get("googleForm", (err, reply) => {
+        let fileName = "google_form.json",
+            key = "googleForm";
+        var googleForm;
+
+        if (err) {
+            console.error(`Error: ${err}`);
+        } else {
+            if (reply == null) {
+                try {
+                    googleForm = require(`../metadata/${fileName}`);
+                } catch (ignore) {
+                    return console.error(`Failed to load data from ${fileName}`);
+                }
+                database.setData(`${key}`, JSON.stringify(googleForm), (err) => {
+                    if (err) {
+                        console.error(`Error: ${err.reason}`);
+                        return;
+                    }
+                    console.log(`Successully saved and cached ${key} to Redis!`);
+                });
+            } else {
+                _cacheData(key, reply);
+                _updateMetadata(`${fileName}`, reply);
+            }
+        }
+    });
 }
 
 // cache data on local memory for faster retrival times

@@ -68,10 +68,27 @@ module.exports = function(app, client) {
             }
             const mailchimp = data.mailchimp.id,
                 revisionNumber = data.revisionNumber.revision;
-            revision = (!(!!err)) ? data.revision : revision;
+            revision = (!(!!err)) ? revisionNumber : revision;
             res.render('contact.html', {
                 revision,
                 mailchimp
+            });
+        });
+    });
+
+    app.get('/survey', (req, res) => {
+        database.getCachedData(["revisionNumber", "googleForm"], (err, data) => {
+            if(!!err){
+                console.error(err.reason);
+            }
+            const revisionNumber = data.revisionNumber.revision,
+                googleLink = data.googleForm.google_form.link || "";
+
+            revision = (!(!!err)) ? revisionNumber : revision;
+
+            res.render('survey.html', {
+                revision,
+                googleLink
             });
         });
     });

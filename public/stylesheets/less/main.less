@@ -1298,221 +1298,220 @@ html{
 } // .about-container
 
 .contact-container{
-    .contact-form {
-        padding: 0px 35px 0px 35px;
-        .row{
-            .col-sm-10{
-                width: 100%;
-            } // .col-sm-10
-            .col-sm-offset-2{
-                @media (min-width: 768px){
-                    margin-left: 0px !important;
-                }
-            }
-            .custom-button{
-                display: block;
-                border-radius: 0;
-                width: 10rem;
-                height: 10rem;
-                border-radius: 100%;
-                background: #002266;
-                font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
-                font-weight: 700;
-                text-transform: uppercase;
-                color: #fff;
-                margin: 0 auto;
-                -webkit-transform: rotate(0);
-                -ms-transform: rotate(0);
-                transform: rotate(0);
-                -webkit-transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
-                transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
-                position: relative;
-                bottom: 64px;
-                &:hover{
-                      -webkit-transform: rotate(60deg);
-                   -moz-transform: rotate(60deg);
-                     -o-transform: rotate(60deg);
-                        transform: rotate(60deg);
-                        background: #0137A2;
-                }
-
-                &:focus{
-                      -webkit-transform: rotate(30deg);
-                   -moz-transform: rotate(30deg);
-                     -o-transform: rotate(30deg);
-                        transform: rotate(30deg);
-                }
-            } // .custom-button
-        } // .row
-        #sel1{
-            margin-bottom: 10px;
-        }
-        .new-user{
-            color: #002266;
-        }
-    } // .contact-form
-    #chat-container{
-        position: fixed;
-        bottom: 0;
-        right: 10%;
-        height: 368px;
-        background: white;
-        width: 250px;
-        z-index: 100;
-        border: 1px solid @silverBorder;
-        border-radius: 5px 5px 0px 0px;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        -webkit-flex-wrap: nowrap;
-            -ms-flex-wrap: nowrap;
-                flex-wrap: nowrap;
-        -webkit-box-pack: start;
-        -webkit-justify-content: flex-start;
-            -ms-flex-pack: start;
-                justify-content: flex-start;
-        -webkit-box-align: start;
-        -webkit-align-items: flex-start;
-            -ms-flex-align: start;
-                align-items: flex-start;
-        div, form{
-            width: 100%;
-        }
-        input{
-            width: 80%;
-        }
-        button{
-            width: 20%;
-        }
-        .content-container{
-            display: block;
-            height: 85%;
-            #chat-content{
-                padding: 8px 5px 5px 5px;
-                overflow-y: auto;
-                overflow-x: hidden;
-                padding: 8px 5px 5px 5px;
-                height: 100%;
-                .error{
-                  color: red;
-                }
-                #name-prompt{
-                    position: relative;
-                    text-align: center;
-                    color: black;
-                    top: 150px;
-                    font-size: 12px;
-                    font-style: italic;
-                }
-            }
-        } // .content-container
-        #chat-header{
-            border-bottom: 1px solid #E6E6E6;
-            padding: 5px;
-            height: 30px;
-            i{
-                float: right;
-                padding: 2px;
-                cursor: pointer;
-            }
-        } // #chat-header
-        #chat{
-            margin: 0px;
-            padding:0px;
-            #send-chat{
-                font-family: inherit;
-                font-size: 100%;
-                padding: 4px;
-                color: #444;
-                color: rgba(0,0,0,.8);
-                border: 1px solid #999;
-                border: 0 rgba(0,0,0,0);
-                background-color: #E6E6E6;
-                text-decoration: none;
-                border-radius: 2px;
-            }
-        } // #chat
-    }
-
-    .mailchimp-subscribe{
-      position: fixed;
-        bottom: 10px;
-        left: 5%;
-        background: white;
-        width: 250px;
-        z-index: 100;
-        border: 1px solid @silverBorder;
-        border-radius: 5px;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        -webkit-flex-wrap: nowrap;
-            -ms-flex-wrap: nowrap;
-                flex-wrap: nowrap;
-        -webkit-box-pack: start;
-        -webkit-justify-content: flex-start;
-            -ms-flex-pack: start;
-                justify-content: flex-start;
-        -webkit-box-align: start;
-        -webkit-align-items: flex-start;
-            -ms-flex-align: start;
-                align-items: flex-start;
-                cursor: pointer;
-
-                @media only screen and (max-width: 736px){
-                    width: 120px;
-                    bottom: 5px;
-                    left: 5px;
-                }
-                @media only screen and (max-width: 535px){
-                    width: 40px;
-                }
-      .subscribe-container{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        width: 100%;
-        padding: 5px;
-        i{
-          color: black;
-          font-size: 1.5em;
-        }
-        p#regular{
-          margin: 0px 0px 0px 10px;
-          color: @blueHover;
-            @media only screen and (max-width: 736px){
-              display: none;
+  .contact-form {
+      padding: 0px 35px 0px 35px;
+      .row{
+          .col-sm-10{
+              width: 100%;
+          } // .col-sm-10
+          .col-sm-offset-2{
+              @media (min-width: 768px){
+                  margin-left: 0px !important;
+              }
           }
-        }
-        p#small{
-          margin: 0px 0px 0px 10px;
-          color: @blueHover;
-          display: none;
-           @media only screen and (max-width: 735px){
+          .custom-button{
               display: block;
+              border-radius: 0;
+              width: 10rem;
+              height: 10rem;
+              border-radius: 100%;
+              background: #002266;
+              font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
+              font-weight: 700;
+              text-transform: uppercase;
+              color: #fff;
+              margin: 0 auto;
+              -webkit-transform: rotate(0);
+              -ms-transform: rotate(0);
+              transform: rotate(0);
+              -webkit-transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+              transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+              position: relative;
+              bottom: 64px;
+              &:hover{
+                    -webkit-transform: rotate(60deg);
+                 -moz-transform: rotate(60deg);
+                   -o-transform: rotate(60deg);
+                      transform: rotate(60deg);
+                      background: #0137A2;
+              }
+
+              &:focus{
+                    -webkit-transform: rotate(30deg);
+                 -moz-transform: rotate(30deg);
+                   -o-transform: rotate(30deg);
+                      transform: rotate(30deg);
+              }
+          } // .custom-button
+      } // .row
+      #sel1{
+          margin-bottom: 10px;
+      }
+      .new-user{
+          color: #002266;
+      }
+  } // .contact-form
+  #chat-container{
+      position: fixed;
+      bottom: 0;
+      right: 10%;
+      height: 368px;
+      background: white;
+      width: 250px;
+      z-index: 100;
+      border: 1px solid @silverBorder;
+      border-radius: 5px 5px 0px 0px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+          -ms-flex-align: start;
+              align-items: flex-start;
+      div, form{
+          width: 100%;
+      }
+      input{
+          width: 80%;
+      }
+      button{
+          width: 20%;
+      }
+      .content-container{
+          display: block;
+          height: 85%;
+          #chat-content{
+              padding: 8px 5px 5px 5px;
+              overflow-y: auto;
+              overflow-x: hidden;
+              padding: 8px 5px 5px 5px;
+              height: 100%;
+              .error{
+                color: red;
+              }
+              #name-prompt{
+                  position: relative;
+                  text-align: center;
+                  color: black;
+                  top: 150px;
+                  font-size: 12px;
+                  font-style: italic;
+              }
           }
-         @media only screen and (max-width: 535px){
-              display: none;
+      } // .content-container
+      #chat-header{
+          border-bottom: 1px solid #E6E6E6;
+          padding: 5px;
+          height: 30px;
+          i{
+              float: right;
+              padding: 2px;
+              cursor: pointer;
           }
+      } // #chat-header
+      #chat{
+          margin: 0px;
+          padding:0px;
+          #send-chat{
+              font-family: inherit;
+              font-size: 100%;
+              padding: 4px;
+              color: #444;
+              color: rgba(0,0,0,.8);
+              border: 1px solid #999;
+              border: 0 rgba(0,0,0,0);
+              background-color: #E6E6E6;
+              text-decoration: none;
+              border-radius: 2px;
+          }
+      } // #chat
+  }
+
+  .mailchimp-subscribe{
+    position: fixed;
+      bottom: 10px;
+      left: 5%;
+      background: white;
+      width: 250px;
+      z-index: 100;
+      border: 1px solid @silverBorder;
+      border-radius: 5px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+          -ms-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+          -ms-flex-align: start;
+              align-items: flex-start;
+              cursor: pointer;
+
+              @media only screen and (max-width: 736px){
+                  width: 120px;
+                  bottom: 5px;
+                  left: 5px;
+              }
+              @media only screen and (max-width: 535px){
+                  width: 40px;
+              }
+    .subscribe-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      width: 100%;
+      padding: 5px;
+      i{
+        color: black;
+        font-size: 1.5em;
+      }
+      p#regular{
+        margin: 0px 0px 0px 10px;
+        color: @blueHover;
+          @media only screen and (max-width: 736px){
+            display: none;
         }
-      } // .subscribe-container
+      }
+      p#small{
+        margin: 0px 0px 0px 10px;
+        color: @blueHover;
+        display: none;
+         @media only screen and (max-width: 735px){
+            display: block;
+        }
+       @media only screen and (max-width: 535px){
+            display: none;
+        }
+      }
+    } // .subscribe-container
+  } // .mailchimp-subscribe
 
-    } // .mailchimp-subscribe
-
-      .modal-container{
+  .modal-container{
     .modal-body{
       .custom-button{
           display: block;
@@ -2186,6 +2185,10 @@ html{
     justify-content: center;
     flex-wrap: wrap;
 
+    .vertical-stack{
+      // display: flex;
+    }
+
 
     .form-container{
       display: flex;
@@ -2248,6 +2251,10 @@ html{
 
         .form-check, .form-group{
           min-width: 25%;
+        }
+
+        .google-link-container{
+          width: 100% !important;
         }
 
         .form-check{
@@ -2313,4 +2320,37 @@ html{
     } 
   } // .data-container
 } // .admin-container
+
+.survey-container{
+    min-height: 100%;
+    padding: 0px 35px 0px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .main-title{
+       @media only screen and (max-width: 570px){
+          font-size: 30px;
+      }
+       @media only screen and (max-width: 500px){
+          font-size: 24px;
+      }
+    }
+
+    @media only screen and (max-width: 570px){
+        padding: 0px 15px 0px 15px;
+    }
+
+    iframe{
+      width: 90%;
+      max-width: 860px;
+      height: 700px;
+      display: block;
+      border: 1px solid black;
+      margin: 15px 0px 35px 0px;
+    }
+
+
+
+} // .survey-container
 
