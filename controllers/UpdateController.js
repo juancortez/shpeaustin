@@ -7,9 +7,11 @@
 const express = require('express'),
     app = express(),
     config = require('config'),
+    path = require('path'),
     privateCredentials = require('../lib/credentialsBuilder.js').init(),
     authorization = require('../lib/authorization.js').authorization,
-    database = require('../lib/database.js');
+    database = require('../lib/database.js'),
+    exporter = require('../lib/exporter.js');
 let revision = config.revision;
 
 // posts an announcement to the redis database
@@ -45,19 +47,22 @@ app.post('/announcements', (req, res) => {
                 console.error(`Error: ${err.reason}`);
                 return res.status(400).send(`Error: ${err.reason}`);
             }
-            const jsonfile = require('jsonfile'),
-                path = require("path"),
-                file = path.join(__dirname, '../metadata', 'announcements.json');
-            jsonfile.spaces = 4;
+            const destination = path.join(__dirname, '../metadata', 'announcements.json');
 
-            jsonfile.writeFile(file, {
-                announcements: announcements
-            }, (err) => {
-                if (!!err) console.error(err);
-                else console.log("Successfully updated the announcements.json file under the metadata folder.");
-                return res.json({
+            exporter.save.json({
+                destination,
+                filename: "announcements.json", 
+                data: {
                     announcements: announcements
-                });
+                }, 
+                cb: (err, data) => {
+                    if(err){
+                        console.error(err.reason);
+                    }
+                    return res.json({
+                        announcements: announcements
+                    });
+                }
             });
         });
 
@@ -107,19 +112,22 @@ app.post('/jobs', (req, res) => {
                 console.error(`Error: ${err.reason}`);
                 return res.status(400).send(`Error: ${err.reason}`);
             }
-            const jsonfile = require('jsonfile'),
-                path = require("path"),
-                file = path.join(__dirname, '../metadata', 'jobs.json');
-            jsonfile.spaces = 4;
-
-            jsonfile.writeFile(file, {
-                jobs: jobs
-            }, (err) => {
-                if (!!err) console.error(err);
-                else console.log("Successfully updated the jobs.json file under the metadata folder.");
-                return res.json({
+            
+            const destination = path.join(__dirname, '../metadata', 'jobs.json');
+            exporter.save.json({
+                destination,
+                filename: "jobs.json", 
+                data: {
                     jobs: jobs
-                });
+                }, 
+                cb: (err, data) => {
+                    if(err){
+                        console.error(err.reason);
+                    }
+                    return res.json({
+                        jobs
+                    });
+                }
             });
         });
 
@@ -152,7 +160,6 @@ app.post('/calendar', authorization.auth, (req, res) => {
 
 app.post('/newsletter', (req, res) => {
     const $ = require('cheerio'),
-        path = require('path'),
         request = require('request'),
         file = path.join(__dirname, '../views/newsletters/', 'newsletters.html'),
         fs = require('fs'),
@@ -199,25 +206,27 @@ app.post('/newsletter', (req, res) => {
     });
 
     if (titlesAndDescriptions.length > 0 && imageLinks.length > 0) {
-        const newsletterFile = path.join(__dirname, '../metadata', 'newsletter_scraped.json'),
-            jsonfile = require('jsonfile');
-        jsonfile.spaces = 4;
-        jsonfile.writeFile(newsletterFile, {
-            titlesAndDescriptions: titlesAndDescriptions,
-            imageLinks: imageLinks
-        }, (err) => {
-            if (err) {
-                console.error(err);
-                return res.sendStatus(400);
-            } else {
-                console.log("Successfully created the newsletter_scraped.json file under the metadata folder.");
+        const destination = path.join(__dirname, '../metadata', 'newsletter_scraped.json');
+        
+
+        exporter.save.json({
+            destination,
+            filename: "newsletter_scraped.json",
+            data: {
+                titlesAndDescriptions,
+                imageLinks
+            },
+            cb: (err, data) => {
+                if(err){
+                    console.error(err); 
+                    return res.sendStatus(400);
+                }
                 return res.json({
                     titlesAndDescriptions,
                     imageLinks
                 });
             }
         });
-
     } else {
         console.error("Was not able to parse the newsletter.");
         res.status(204).send("Was not able to parse the newsletter.");

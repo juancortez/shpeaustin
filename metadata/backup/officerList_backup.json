@@ -25,8 +25,8 @@
         {
             "name": "Stephanie Castillo",
             "position": "Secretary",
-            "email": "steph.castillo89@gmail.com",
-            "phone": 1000000000,
+            "email": "stephaniecastillo@utexas.edu",
+            "phone": 5127774546,
             "hometown": "Austin, TX",
             "company": "Halff Associates",
             "executive": true,
@@ -45,17 +45,6 @@
             "linkedin": "https://www.linkedin.com/in/manuel-espinosa-66897358?authType=NAME_SEARCH&authToken=VrnQ&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A205437680%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769891261%2Ctas%3AManuel%20Es"
         },
         {
-            "name": "Stephanie Amrite",
-            "position": "Scholarship Director",
-            "email": "stephanie.amrite@gmail.com",
-            "phone": 2106432425,
-            "hometown": "N/A",
-            "company": "Scholarship Director",
-            "executive": false,
-            "image_url": "../assets/officer_pictures/default.jpg",
-            "linkedin": "https://www.linkedin.com/in/stephanieamrite?authType=NAME_SEARCH&authToken=a6JX&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A289349272%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1455769839379%2Ctas%3AStephan"
-        },
-        {
             "name": "Karen Siles",
             "position": "Fundraising Director",
             "email": "Ksiles1@gmail.com",
@@ -65,6 +54,17 @@
             "executive": false,
             "image_url": "../assets/officer_pictures/default.jpg",
             "linkedin": "https://www.linkedin.com/in/karenmsiles?authType=NAME_SEARCH&authToken=UTev&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A13939101%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769861717%2Ctas%3AKaren%20Siles"
+        },
+        {
+            "name": "Stephanie Amrite",
+            "position": "Scholarship Director",
+            "email": "stephanie.amrite@gmail.com",
+            "phone": 2106432425,
+            "hometown": "N/A",
+            "company": "Scholarship Director",
+            "executive": false,
+            "image_url": "../assets/officer_pictures/steph.jpg",
+            "linkedin": "https://www.linkedin.com/in/stephanieamrite?authType=NAME_SEARCH&authToken=a6JX&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A289349272%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1455769839379%2Ctas%3AStephan"
         },
         {
             "name": "Rodrigo Estrada",

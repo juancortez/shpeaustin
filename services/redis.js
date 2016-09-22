@@ -11,6 +11,7 @@ const config = require('config'),
     revision = config.revision,
     cfenv = require('cfenv'),
     request = require('request'),
+    exporter = require('../lib/exporter.js'),
     appEnv = cfenv.getAppEnv();
 
 function onRedisConnection(client) {
@@ -234,14 +235,17 @@ function _cacheData(key, data) {
 // Function used to update the metadata file to match what is on the Redis database on launch
 function _updateMetadata(filename, data) {
     if (_checkNumArguments(arguments, 2) === false) return;
-    const jsonfile = require('jsonfile'),
-        path = require("path"),
-        file = path.join(__dirname, '../metadata', filename);
-    jsonfile.spaces = 4;
 
-    jsonfile.writeFile(file, JSON.parse(data), (err) => {
-        if (!!err) console.error(err);
-        else console.log(`Successfully updated the ${filename} file under the metadata folder!`);
+    const path = require("path"),
+        destination = path.join(__dirname, '../metadata', filename);
+
+    exporter.save.json({
+        destination,
+        filename: `${filename}`,
+        data: JSON.parse(data),
+        cb: (err, data) => {
+            if (!!err) return console.error(err.reason);
+        }
     });
 }
 

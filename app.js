@@ -96,7 +96,8 @@ const bot = controller.spawn({
     url: slackCredentials.subscribeRequestWebHook
   }
 }).startRTM();
-app.set('bot', bot); 
+app.set('bot', bot);             
+
 /************************************************************************************************************
 *                                  MailChimp Configuration
 * Basic Subscribe Form: https://apidocs.mailchimp.com/api/how-to/basic-subscribe.php

@@ -10,7 +10,8 @@
 const fs = require('fs');
     readline = require('readline'),
     google = require('googleapis'),
-    googleAuth = require('google-auth-library');
+    googleAuth = require('google-auth-library'),
+    exporter = require('../lib/exporter.js');
 
 const cfenv = require('cfenv'),
     appEnv = cfenv.getAppEnv();
@@ -211,15 +212,17 @@ function sendServerResponse(data, callback){
     })
     data.calendar = answer;
 
-    var jsonfile = require('jsonfile');
-    jsonfile.spaces = 4;
-    var file = path.join(__dirname, '../metadata', 'calendar_data.json');
-    jsonfile.writeFile(file, data, function(err) {
-        if(err){
-            return callback({reason: "Unable to write file"});
+    let destination = path.join(__dirname, '../metadata', 'calendar_data.json');
+    exporter.save.json({
+        destination,
+        filename: "calendar_data.json",
+        data,
+        cb: (err, data) => {
+            if(err){
+                return callback(err);
+            }
+            callback(false, data);
         }
-        console.log("Successfully created the calendar_data.json file under the metadata folder.");
-        callback(false, data);
     });
 }
 
