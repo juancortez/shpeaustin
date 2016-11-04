@@ -67,16 +67,17 @@
                   <h3 class="title"> New Announcement </h3>
                   <p> Please select your name first, then input your new announcement. Result will appear in the <a href="/"> home page.</a></p>
                   <form>
-                     <div class="form-group">
+                     <div class="form-group announcement-input">
                         <div class="col-sm-6 form-announ">
                            <label for="officer" class="sr-only">Officer Name:</label>
                            <select class="form-control" id="officer" name="officer">
                               <!-- Options get dynamically populated -->
                            </select>
                         </div>
-                        <div class="col-sm-6 form-announ">
+                        <div class="form-announ">
                            <label for="announcement" class="sr-only">Announcement</label>
-                           <input id="announcement" class="form-control input-group-lg reg_name" type="text" name="announcement" title="announcement" placeholder="Announcement">
+                           <!-- <input id="announcement" class="form-control input-group-lg reg_name" type="text" name="announcement" title="announcement" placeholder="Announcement"> -->
+                           <textarea id="announcement" type="text" name="announcement" title="announcement" class="form-control" rows="5"></textarea>
                         </div>
                      </div>
                      <div class="button-container">

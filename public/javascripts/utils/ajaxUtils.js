@@ -400,7 +400,9 @@ var ajaxUtils = (function(){
                 }
             }
         }
-        $(postContent).html(content + " ");
+        content = content.replace(/\n/g, "<br /><br />");
+        $(postContent).html(content + " ")
+        
         $(postContent).append(announcementLink);
         var innerP = '<p class="officer-post">';
         var completeHtml = innerP;

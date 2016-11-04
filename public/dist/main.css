@@ -2165,6 +2165,23 @@ html ::-webkit-scrollbar {
 .admin-container .cards .form-container .check-container .fa-cog {
   font-size: 2em;
 }
+.admin-container .cards .form-container .check-container .announcement-input {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.admin-container .cards .form-container .check-container .announcement-input .form-announ {
+  width: 100%;
+  margin-top: 10px;
+}
+.admin-container .cards .form-container .check-container .announcement-input textarea.form-control {
+  margin-bottom: 0px;
+}
 .admin-container .json-container {
   display: -ms-flexbox;
   display: flex;

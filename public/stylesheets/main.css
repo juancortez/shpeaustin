@@ -2195,6 +2195,19 @@ html ::-webkit-scrollbar {
 .admin-container .cards .form-container .check-container .fa-cog {
   font-size: 2em;
 }
+.admin-container .cards .form-container .check-container .announcement-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.admin-container .cards .form-container .check-container .announcement-input .form-announ {
+  width: 100%;
+  margin-top: 10px;
+}
+.admin-container .cards .form-container .check-container .announcement-input .form-announ textarea.form-control {
+  margin-bottom: 0px;
+}
 .admin-container .json-container {
   display: flex;
   align-items: center;
