@@ -102,31 +102,6 @@ function onRedisConnection(client) {
         }
     });
 
-    // client.get("newsletterdata", (err, reply) => {
-    //     let fileName = "newsletter_data.json";
-    //     if (err) {
-    //         console.error(`Error: ${err}`);
-    //     } else {
-    //         if (reply == null) {
-    //             try {
-    //                 newsletterdata = require(`../metadata/${fileName}`);
-    //             } catch (ignore) {
-    //                 console.error(`Failed to load data from ${fileName}`);
-    //             }
-    //             database.setData("newsletterdata", JSON.stringify(newsletterdata), (err) => {
-    //                 if (err) {
-    //                     console.error(`Error: ${err.reason}`);
-    //                     return;
-    //                 }
-    //                 console.log("Successully saved and cached newsletterdata to Redis!");
-    //             });
-    //         } else {
-    //             _cacheData("newsletterdata", reply);
-    //             _updateMetadata(`${fileName}`, reply);
-    //         }
-    //     }
-    // });
-
     client.get("revisionNumber", (err, reply) => {
         if (err) {
             console.error(`Error: ${err}`);
@@ -234,6 +209,34 @@ function onRedisConnection(client) {
                     return console.error(`Failed to load data from ${fileName}`);
                 }
                 database.setData(`${key}`, JSON.stringify(googleForm), (err) => {
+                    if (err) {
+                        console.error(`Error: ${err.reason}`);
+                        return;
+                    }
+                    console.log(`Successully saved and cached ${key} to Redis!`);
+                });
+            } else {
+                _cacheData(key, reply);
+                _updateMetadata(`${fileName}`, reply);
+            }
+        }
+    });
+
+    client.get("newsletter", (err, reply) => {
+        let fileName = "newsletter.json",
+            key = "newsletter";
+        var newsletter;
+
+        if (err) {
+            console.error(`Error: ${err}`);
+        } else {
+            if (reply == null) {
+                try {
+                    newsletter = require(`../metadata/${fileName}`);
+                } catch (ignore) {
+                    return console.error(`Failed to load data from ${fileName}`);
+                }
+                database.setData(`${key}`, JSON.stringify(newsletter), (err) => {
                     if (err) {
                         console.error(`Error: ${err.reason}`);
                         return;

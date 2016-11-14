@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $("#data-newsletterdata").attr('disabled', true); // can't update data through the UI
     $(".submit-request").click(function(evt) {
         var formElements = evt && evt.target && evt.target.form && evt.target.form.children || null,
             request = $(this).attr('data-request'),
@@ -247,10 +246,6 @@ $(document).ready(function() {
             case "calendar":
                 $(".change-data").hide();
                 $(".update-description").text("Will send a REST call to the Google Calendar API.");
-                break;
-            case "newsletterdata":
-                $(".change-data").hide();
-                $(".update-description").text("External call to newsletter page. Close new page when complete.");
                 break;
             default:
                 $(".update-description").text("");

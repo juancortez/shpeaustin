@@ -9,7 +9,6 @@ var ajaxUtils = (function(){
 	var _months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 	var endpoints = {
-		newsletter : "/data/newsletterdata",
 		calendar : "/data/calendar",
 		announcements : "/data/announcements",
 		officers : "/data/officerList",
@@ -17,48 +16,6 @@ var ajaxUtils = (function(){
 		postAnnouncement: "/update/announcements",
 		login: "/authentication/login",
 		subscribe: "/communication/contact"
-	}
-	
-    function getNewsletterData(revision, callback){
-    	$.ajax({
-	        method: "GET",
-	        url: endpoints.newsletter
-	    })
-	    .done(function(data) {
-	    	if(typeof data != "object"){
-	    		callback("", "GET method for " + endpoints.newsletter + " failed.");
-	    		return;
-	    	}
-	    	$("#newsletter-loader").hide();
-	    	var returnParams = {};
-	    	var newsletterItem = 0;
-			var newsletterData = data;
-	        var populatedItems = data.newsletter.length;
-	        for (var i = 1; i < populatedItems; i++) {
-	            var elem = document.createElement("li"); // create carousel indicators
-	            $('.carousel-indicators').append(elem);
-	        }
-	        $($('ol li')[newsletterItem]).addClass('active');
-	        $("#title").append(data.newsletter[newsletterItem].title);
-	        $("#title").attr('title', data.newsletter[newsletterItem].title);
-	        $("#description").append("<span class = 'bold'> Description: </span>" + data.newsletter[newsletterItem].description);
-	        $("#image-newsletter").attr('src', "../assets/newsletter/newsletter" + data.newsletter[newsletterItem].image + "?v="+revision);
-	        var image_link = document.createElement('a');
-	        image_link.href = data.newsletter[newsletterItem].image_link;
-	        $("#image-newsletter").wrap(image_link);
-	        
-	        if(!data.newsletter[newsletterItem].image_link){
-	            $("#image-newsletter").parent()[0].setAttribute('onclick', "return false;");
-	        } else{
-	            $("#image-newsletter").parent()[0].setAttribute('onclick', "return true;");
-	        }
-	        returnParams.newsletterData = data;
-	        returnParams.populatedItems = populatedItems;
-	        returnParams.message = "[GET] newsletter data successful.";
-	        callback(returnParams);
-	    }).fail(function(e) {
-	    	callback("", "GET method for " + endpoints.newsletter + " failed.");
-	    });
 	}
 
 	function getCalendarData(callback){

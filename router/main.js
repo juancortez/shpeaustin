@@ -9,13 +9,16 @@ module.exports = function(app, client) {
     // The following endpoints serve HTML pages
     /*************************************************************************/
     app.get('/', (req, res) => {
-        database.getCachedData("revisionNumber", (err, data) => {
+        database.getCachedData(["revisionNumber", "newsletter"], (err, data) => {
             if(!!err){
                 console.error(err.reason);
             }
-            revision = (!(!!err)) ? data.revision : revision;
+            revision = (!(!!err)) ? data.revisionNumber.revision : revision;
+            let newsletter = (data.newsletter) ? data.newsletter : "";
+
             res.render('index.html', {
-                revision
+                revision,
+                newsletter: newsletter.newsletter.link
             });
         });
     });
