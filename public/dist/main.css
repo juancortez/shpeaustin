@@ -466,116 +466,6 @@ html ::-webkit-scrollbar {
   max-height: 199px;
   min-height: 199px;
 }
-.main-page-container .bs-example-a .row .thumb-newsletter {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  height: 100%;
-  overflow-y: hidden;
-  -ms-flex-pack: center;
-      justify-content: center;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter #newsletter-loader {
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption {
-  display: none;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption #subscribe-container {
-  display: none;
-  -ms-flex-align: center;
-      -ms-grid-row-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 18px;
-  z-index: 100;
-  background-color: white;
-  position: relative;
-  bottom: 58px;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption #subscribe-container .fa-envelope-o {
-  cursor: pointer;
-  font-size: 1.5em !important;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption #subscribe-container #subscribe-email {
-  width: 60% !important;
-  margin: 0px 5px;
-  display: inline-block;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption #subscribe-container #subscribe-div {
-  width: 300px;
-  text-align: center;
-  position: relative;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption #subscribe-container #subscribe-div i {
-  position: absolute;
-  right: 5px;
-  cursor: pointer;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption #subscribe-container #subscribe-div i:hover {
-  color: #23527c;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption .membership-header {
-  text-align: center;
-  margin-top: 0px;
-}
-@media only screen and (max-width: 1211px) {
-  .main-page-container .bs-example-a .row .thumb-newsletter .caption .membership-header {
-    font-size: 20px;
-  }
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption .carousel-indicators {
-  display: inline-block;
-  position: relative;
-  padding: -11px;
-  bottom: 25px;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption .carousel-indicators li {
-  background-color: #f2f2f2;
-  border: 1px solid black;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption .newsletter-data-container {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-  height: 100%;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption .newsletter-data-container #title {
-  min-height: 27px;
-  max-height: 27px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-  text-align: center;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption .newsletter-data-container #description {
-  min-height: 120px;
-  max-height: 120px;
-  overflow-y: scroll;
-}
-@media only screen and (max-width: 768px) {
-  .main-page-container .bs-example-a .row .thumb-newsletter .caption .newsletter-data-container #description {
-    min-height: 79px;
-    max-height: 79px;
-  }
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption .newsletter-data-container #newsletter-buttons {
-  text-align: center;
-}
-.main-page-container .bs-example-a .row .thumb-newsletter .caption .newsletter-data-container #newsletter-buttons #prev-newsletter {
-  margin-right: 15px;
-}
 .main-page-container .bs-example-a .row .social-media {
   width: 100%;
   display: -ms-flexbox;
@@ -877,14 +767,6 @@ html ::-webkit-scrollbar {
   text-indent: -9999px;
   top: -7px;
   right: -7px;
-}
-.main-page-container #modal .newsletterList {
-  padding: 0px;
-}
-.main-page-container #modal .newsletterList li {
-  font-size: 20px;
-  margin-top: 10px;
-  list-style-type: none;
 }
 .navigator-container {
   z-index: 999;
@@ -1527,14 +1409,6 @@ html ::-webkit-scrollbar {
   text-indent: -9999px;
   top: -7px;
   right: -7px;
-}
-.contact-container #modal .newsletterList {
-  padding: 0px;
-}
-.contact-container #modal .newsletterList li {
-  font-size: 20px;
-  margin-top: 10px;
-  list-style-type: none;
 }
 .officers-container .officer-header {
   color: #06063e;
@@ -2179,7 +2053,7 @@ html ::-webkit-scrollbar {
   width: 100%;
   margin-top: 10px;
 }
-.admin-container .cards .form-container .check-container .announcement-input textarea.form-control {
+.admin-container .cards .form-container .check-container .announcement-input .form-announ textarea.form-control {
   margin-bottom: 0px;
 }
 .admin-container .json-container {

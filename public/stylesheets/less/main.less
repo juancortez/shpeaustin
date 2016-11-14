@@ -502,112 +502,6 @@ html{
         min-height: 199px;
       }
 
-      .thumb-newsletter{
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          overflow-y: hidden;
-          justify-content: center;
-          #newsletter-loader{
-            align-self: center;
-          }
-        .caption{
-          display: none;
-          #subscribe-container{
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 18px;
-            z-index: 100;
-            background-color: white;
-            position: relative;
-            bottom: 58px;
-
-            .fa-envelope-o{
-              cursor: pointer;
-              font-size: 1.5em !important;
-            }
-
-            #subscribe-email{
-              width: 60% !important;
-              margin: 0px 5px;
-              display: inline-block;
-            }
-
-            #subscribe-div{
-                width: 300px;
-                text-align: center;
-                position: relative;
-                i{
-                  position: absolute;
-                  right: 5px;
-                  cursor: pointer;
-                  &:hover{
-                    color: @blueHover;
-                  }
-                }
-            }
-          } // #subscribe-container
-          .membership-header{
-            text-align: center;
-            margin-top: 0px;
-            @media only screen and (max-width: 1211px){
-              font-size: 20px;
-            }
-          }
-          .carousel-indicators{
-              display: inline-block;
-              position: relative;
-              padding: -11px;
-              bottom: 25px;
-
-              li{
-                background-color: #f2f2f2;
-                border: 1px solid black;
-              }
-          } // carousel-indicators
-
-
-          .newsletter-data-container{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-
-            #title{
-              min-height: 27px;
-              max-height: 27px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              width: 100%;
-              text-align: center;
-            } // #title
-
-            #description{
-              min-height: 120px;
-              max-height: 120px;
-              overflow-y: scroll;
-              @media only screen and (max-width: 768px){
-                min-height: 79px;
-                max-height: 79px;
-              }
-            } // #description
-            #newsletter-buttons{
-              text-align:center;
-
-              #prev-newsletter{
-                margin-right: 15px;
-              }
-            } // #newsletter-buttons
-          } // .newsletter-data-container
-
-        } // .caption
-      } // .thumb-newsletter
-
       .social-media{
         width: 100%;
         display: flex;
@@ -939,15 +833,6 @@ html{
         right:-7px;
     }
 
-    .newsletterList{
-      padding: 0px;
-
-      li{
-        font-size: 20px;
-        margin-top: 10px;
-        list-style-type: none;
-        }
-    } // .newsletterList
   } // #modal
 } // .main-page-container
 
@@ -1599,15 +1484,6 @@ html{
         right:-7px;
     }
 
-    .newsletterList{
-      padding: 0px;
-
-      li{
-        font-size: 20px;
-        margin-top: 10px;
-        list-style-type: none;
-        }
-    } // .newsletterList
   } // #modal
 } // .contact-container
 

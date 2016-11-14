@@ -102,30 +102,30 @@ function onRedisConnection(client) {
         }
     });
 
-    client.get("newsletterdata", (err, reply) => {
-        let fileName = "newsletter_data.json";
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                try {
-                    newsletterdata = require(`../metadata/${fileName}`);
-                } catch (ignore) {
-                    console.error(`Failed to load data from ${fileName}`);
-                }
-                database.setData("newsletterdata", JSON.stringify(newsletterdata), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log("Successully saved and cached newsletterdata to Redis!");
-                });
-            } else {
-                _cacheData("newsletterdata", reply);
-                _updateMetadata(`${fileName}`, reply);
-            }
-        }
-    });
+    // client.get("newsletterdata", (err, reply) => {
+    //     let fileName = "newsletter_data.json";
+    //     if (err) {
+    //         console.error(`Error: ${err}`);
+    //     } else {
+    //         if (reply == null) {
+    //             try {
+    //                 newsletterdata = require(`../metadata/${fileName}`);
+    //             } catch (ignore) {
+    //                 console.error(`Failed to load data from ${fileName}`);
+    //             }
+    //             database.setData("newsletterdata", JSON.stringify(newsletterdata), (err) => {
+    //                 if (err) {
+    //                     console.error(`Error: ${err.reason}`);
+    //                     return;
+    //                 }
+    //                 console.log("Successully saved and cached newsletterdata to Redis!");
+    //             });
+    //         } else {
+    //             _cacheData("newsletterdata", reply);
+    //             _updateMetadata(`${fileName}`, reply);
+    //         }
+    //     }
+    // });
 
     client.get("revisionNumber", (err, reply) => {
         if (err) {

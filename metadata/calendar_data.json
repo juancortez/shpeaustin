@@ -1,37 +1,14 @@
 {
     "calendar": [
         {
-            "event": "Newsletter Submission DEADLINE!!!!",
-            "time": "2016-11-04",
-            "link": "https://www.google.com/calendar/event?eid=dWJ1ajlwa2JjdHJxNHRvaWVmZ2t0ZjA2b2cga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw",
-            "location": "Stephanie Castillo's Email (steph.castillo89@gmail.com)"
-        },
-        {
-            "event": "Volleyball game vs lil Bump & Grind -Court 2 Away",
-            "time": "2016-11-06T19:05:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=bm92cG92MTZobjYwbW1mOW0zOGhnZzhoazggdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-            "location": "Austin Recreation Center, 1301 Shoal Creek Blvd, Austin, TX 78701, USA"
-        },
-        {
-            "event": "Bowling Scholarship Fundraiser (Tentative)",
-            "time": "2016-11-12",
-            "link": "https://www.google.com/calendar/event?eid=OXBzdGZhMHNmcHNoZnNxNjlkdjI2OWMyNmsga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
-        },
-        {
-            "event": "Volleyball Game VS You Won't Like It When We Spike It-Court 1 Home",
-            "time": "2016-11-13T19:05:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=dm0yOWdjbXNha2E3OGYwOWZjcGlsOTdram8gdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-            "location": "Austin Recreation Center, 1301 Shoal Creek Blvd, Austin, TX 78701, USA"
-        },
-        {
             "event": "General Body Meeting 2",
-            "time": "2016-11-16T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NDg4Nzc1NHA5NjhxbHVzcDd2ZDhqdmVycGcgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "General Body Meeting 2",
-            "time": "2016-11-16T19:00:00-06:00",
+            "time": "2016-11-16T18:00:00-06:00",
             "link": "https://www.google.com/calendar/event?eid=NzRpOHRxZ3NydWl0aWt2bTNwOW1jMGJzMDggZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
+        },
+        {
+            "event": "General Body Meeting 2",
+            "time": "2016-11-16T18:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=NDg4Nzc1NHA5NjhxbHVzcDd2ZDhqdmVycGcgc2hwZS5hdXN0aW5AbQ"
         },
         {
             "event": "HOLIDAY Newsletter Submission DEADLINE",
@@ -80,12 +57,12 @@
         {
             "event": "General Body Meeting 3",
             "time": "2017-02-09T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=aWRudDNscjdkM3I4cnAzMWRpOTQyMDVtM2sgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
         },
         {
             "event": "General Body Meeting 3",
             "time": "2017-02-09T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=aWRudDNscjdkM3I4cnAzMWRpOTQyMDVtM2sgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
+            "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
         },
         {
             "event": "Joint E-week event with NSBE AP",
@@ -115,6 +92,11 @@
             "link": "https://www.google.com/calendar/event?eid=bjZranE3YjhicGpia3F1c2t1bm8yNnMybHMgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
         },
         {
+            "event": "Scholarship Awards Banquet",
+            "time": "2017-04-28",
+            "link": "https://www.google.com/calendar/event?eid=bzdtbDdoaHA2bm8xcmNkcHNhY2g1MTcwZGMga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
+        },
+        {
             "event": "Networking Social w/Upperclassman",
             "time": "2017-05-09T18:30:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=NTduZ3Nra2NyYm9xMWt0cDBjczBsaDdiM2cganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
@@ -124,6 +106,11 @@
             "event": "Elections Happy Hour!!!",
             "time": "2017-05-11T18:30:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=M3RzdW0wZzEwbjU0MnRmNWdhODRvMjl2cWMganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
+        },
+        {
+            "event": "NRP #2 Deadline",
+            "time": "2017-06-15",
+            "link": "https://www.google.com/calendar/event?eid=OXBiNnVpbDRpcTJhMjBzdmk3MmR2bm5nMHMga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
         }
     ]
 }
