@@ -15,22 +15,22 @@
     "beamer_address": "us1-3aa2e79eb8-dda825be58@inbound.mailchimp.com",
     "visibility": "pub",
     "stats": {
-        "member_count": 322,
+        "member_count": 326,
         "unsubscribe_count": 55,
-        "cleaned_count": 129,
+        "cleaned_count": 133,
         "member_count_since_send": 0,
         "unsubscribe_count_since_send": 0,
-        "cleaned_count_since_send": 0,
-        "campaign_count": 108,
+        "cleaned_count_since_send": 1,
+        "campaign_count": 110,
         "grouping_count": 0,
         "group_count": 0,
         "merge_var_count": 2,
         "avg_sub_rate": 1,
         "avg_unsub_rate": 1,
         "target_sub_rate": 5,
-        "open_rate": 20.439763488544,
-        "click_rate": 2.0310054408586,
-        "date_last_campaign": "2016-09-19 12:29:16"
+        "open_rate": 20.543548041943,
+        "click_rate": 1.9856829382352,
+        "date_last_campaign": "2016-11-07 13:29:45"
     },
     "modules": []
 }

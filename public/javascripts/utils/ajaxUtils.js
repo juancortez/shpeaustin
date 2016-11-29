@@ -373,7 +373,6 @@ var ajaxUtils = (function(){
     }
 
 	return {
-		getNewsletterData: getNewsletterData,
 		getCalendarData: getCalendarData,
 		getAnnouncements: getAnnouncements,
 		postAnnouncement: postAnnouncement,
