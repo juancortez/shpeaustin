@@ -480,6 +480,9 @@ html ::-webkit-scrollbar {
   font-weight: bold;
   text-align: center;
 }
+.main-page-container .bs-example-a .thumbnail-title .newsletter-frame {
+  max-height: 473px;
+}
 .main-page-container .bs-example-a .row img {
   max-height: 199px;
   min-height: 199px;

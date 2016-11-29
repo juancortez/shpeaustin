@@ -462,15 +462,8 @@ html ::-webkit-scrollbar {
   font-weight: bold;
   text-align: center;
 }
-@media only screen and (max-width: 768px) {
-  .main-page-container .bs-example-a .newsletter-frame {
-    max-height: 473px;
-  }
-}
-@media only screen and (max-width: 515px) {
-  .main-page-container .bs-example-a .newsletter-frame {
-    max-height: 525px;
-  }
+.main-page-container .bs-example-a .thumbnail-title .newsletter-frame {
+  max-height: 473px;
 }
 .main-page-container .bs-example-a .row img {
   max-height: 199px;
