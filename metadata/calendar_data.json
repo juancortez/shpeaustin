@@ -1,50 +1,6 @@
 {
     "calendar": [
         {
-            "event": "General Body Meeting 2",
-            "time": "2016-11-16T18:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NzRpOHRxZ3NydWl0aWt2bTNwOW1jMGJzMDggZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
-        },
-        {
-            "event": "General Body Meeting 2",
-            "time": "2016-11-16T18:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NDg4Nzc1NHA5NjhxbHVzcDd2ZDhqdmVycGcgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "HOLIDAY Newsletter Submission DEADLINE",
-            "time": "2016-11-18",
-            "link": "https://www.google.com/calendar/event?eid=cTIybDFxM2NhNjZzajZjOHFnbTI4dW5uaTAga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw",
-            "location": "Stephanie Castillo's Email (steph.castillo89@gmail.com)"
-        },
-        {
-            "event": "Volleyball Game VS European Wax Center--Court 2 Away",
-            "time": "2016-11-20T19:05:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=cHI0bmNmcmlnMGxoNTh2YWtxYWc5aDJodXMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-            "location": "Austin Recreation Center, 1301 Shoal Creek Blvd, Austin, TX 78701, USA"
-        },
-        {
-            "event": "Volleyball Game VS Sugar & Spike--Court 2 Home",
-            "time": "2016-12-04T19:05:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=dW9ubzIzaWNmaGtjcmJzOXFwa3RrcTRjajAgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-            "location": "Austin Recreation Center, 1301 Shoal Creek Blvd, Austin, TX 78701, USA"
-        },
-        {
-            "event": "Holiday Party!!!",
-            "time": "2016-12-10T18:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=ODZ2bXZmanZqdjd2NG8zbGhlZTg3c2MwbWMgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
-            "event": "Holiday Party!!!",
-            "time": "2016-12-10T18:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=cnVsNDVkYmMyZXAxZmt0ZTRuYTJjbmYzYTgganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
-        },
-        {
-            "event": "Volleyball Game VS Burrito--Court 1 Away",
-            "time": "2016-12-11T20:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NTdnNXBsZ3VzNWpkOXRvaXFxNnVzMDcwZ2cgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-            "location": "Austin Recreation Center, 1301 Shoal Creek Blvd, Austin, TX 78701, USA"
-        },
-        {
             "event": "Officer Retreat 2",
             "time": "2017-01-07",
             "link": "https://www.google.com/calendar/event?eid=amY0MXFkNHNub2Y3dWRzc3VzaTRrZ2U4cTAga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
@@ -92,6 +48,11 @@
             "link": "https://www.google.com/calendar/event?eid=bjZranE3YjhicGpia3F1c2t1bm8yNnMybHMgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
         },
         {
+            "event": "General Body Meeting 4: Nominations & Leadership Development",
+            "time": "2017-04-20T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=ZnMzMWsxbDZwZGYwMGJwOTltMjY5ajJub2Mgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
             "event": "Scholarship Awards Banquet",
             "time": "2017-04-28",
             "link": "https://www.google.com/calendar/event?eid=bzdtbDdoaHA2bm8xcmNkcHNhY2g1MTcwZGMga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
@@ -100,6 +61,12 @@
             "event": "Networking Social w/Upperclassman",
             "time": "2017-05-09T18:30:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=NTduZ3Nra2NyYm9xMWt0cDBjczBsaDdiM2cganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
+            "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
+        },
+        {
+            "event": "Networking Social w/Upperclassman",
+            "time": "2017-05-09T18:30:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=OWNrNWpwMWM2bHBwNWFuY2hybG8zOTVwOTggc2hwZS5hdXN0aW5AbQ",
             "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
         },
         {
