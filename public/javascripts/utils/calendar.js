@@ -52,9 +52,9 @@ var Calendar = function() {
     }
 
     function populateCalendar() {
-        numCalendarItems = globalCalendarData.calendar.length;
+        var numCalendarItems = globalCalendarData.calendar.length;
         for (var i = 0; i < numCalendarItems; i++) {
-            calendarHtml = globalCalendarData.calendar[i];
+            var calendarHtml = globalCalendarData.calendar[i];
             var time = parseCalendarTime(calendarHtml.time);
             if (getMonthString(currentMonth + 1) == time.month) {
                 var day = time.day;
@@ -123,7 +123,7 @@ var Calendar = function() {
         var month = time.substring(0, time.indexOf('-'));
         month = getMonthString(month);
         time = time.substring(time.indexOf('-') + 1, time.length);
-        day = time.substring(0, 2);
+        var day = time.substring(0, 2);
         if (time.length > 2) {
             var hour = time.substring(3, time.length);
             var startTime = hour.substring(0, 5);

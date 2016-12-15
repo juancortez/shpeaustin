@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    $(".submit-request").click(function(evt) {
+$(document).ready(() => {
+    $(".submit-request").click((evt) =>{
         var formElements = evt && evt.target && evt.target.form && evt.target.form.children || null,
             request = $(this).attr('data-request'),
             self = this,
@@ -83,7 +83,7 @@ $(document).ready(function() {
                 officer = evt.target.form.officer.value,
                 announcement = evt.target.form.announcement.value;
             $(this).html('<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>');
-            announcement = announcement.replace(/(?:\r\n|\r|\n)/g, '<br />')
+            announcement = announcement.replace(/(?:\r\n|\r|\n)/g, '<br />');
             $.ajax({
                 type: 'POST',
                 url: "/update/announcements",

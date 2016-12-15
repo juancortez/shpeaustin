@@ -39,6 +39,9 @@ gulp.task('lint', () => {
 `
 gulp.task('index_script', () => {
     return gulp.src([javascript_src + "index.js", all_utils_src + "ajaxUtils.js", all_utils_src + "modal.js"])
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
         .pipe(plugins.concat('index.js'))
         .pipe(plugins.rename('index.min.js'))
         .pipe(plugins.uglify())
@@ -47,6 +50,9 @@ gulp.task('index_script', () => {
 
 gulp.task('membership_script', () => {
     return gulp.src([javascript_src + "membership.js", all_utils_src + "modal.js", all_utils_src + "calendar.js"])
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
         .pipe(plugins.concat('membership.js'))
         .pipe(plugins.rename('membership.min.js'))
         .pipe(plugins.uglify())
@@ -55,6 +61,9 @@ gulp.task('membership_script', () => {
 
 gulp.task('contact_script', () => {
     return gulp.src([javascript_src + "contact.js", all_utils_src + "chat.js", all_utils_src + "modal.js"])
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
         .pipe(plugins.concat('contact.js'))
         .pipe(plugins.rename('contact.min.js'))
         .pipe(plugins.uglify())
@@ -63,6 +72,9 @@ gulp.task('contact_script', () => {
 
 gulp.task('admin_script', () => {
     return gulp.src(javascript_src + "admin.js")
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
         .pipe(plugins.concat('admin.js'))
         .pipe(plugins.rename('admin.min.js'))
         .pipe(plugins.uglify())
