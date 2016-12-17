@@ -57,7 +57,7 @@ var Calendar = function() {
             var calendarHtml = globalCalendarData.calendar[i];
             var time = parseCalendarTime(calendarHtml.time);
             if (getMonthString(currentMonth + 1) == time.month) {
-                var day = time.day;
+                var day = time.day; // new day
                 day = parseInt(day.replace(/^0+/, '')); // strip leading 0's
                 var highlightDay = $('td:contains("' + day + '")')[0];
                 if(day == currentDate.getDate()){

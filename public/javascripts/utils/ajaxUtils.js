@@ -5,10 +5,10 @@ and is used in the /public/javascripts/index.js file. The REST
 calls are handled in the router/main.js file
 ******************************************************************/
 
-var ajaxUtils = (function(){
-	var _months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const ajaxUtils = (() => {
+	const _months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-	var endpoints = {
+	const endpoints = {
 		calendar : "/data/calendar",
 		announcements : "/data/announcements",
 		officers : "/data/officerList",
@@ -22,7 +22,7 @@ var ajaxUtils = (function(){
 		$.ajax({
 	        method: "GET",
 	        url: endpoints.calendar
-	    }).done(function(calendar){
+	    }).done((calendar) => {
 	    	if(typeof calendar != "object"){
 	    		callback("", "GET method for " + endpoints.calendar + " failed.");
 	    		return;
@@ -253,7 +253,7 @@ var ajaxUtils = (function(){
         var month = time.substring(0, time.indexOf('-'));
         month = _getMonthString(month);
         time = time.substring(time.indexOf('-')+1, time.length);
-        day = time.substring(0, 2);
+        var day = time.substring(0, 2);
         if(time.length > 2){
             var hour = time.substring(3, time.length);
             var startTime = hour.substring(0, 5);
@@ -373,14 +373,14 @@ var ajaxUtils = (function(){
     }
 
 	return {
-		getCalendarData: getCalendarData,
-		getAnnouncements: getAnnouncements,
-		postAnnouncement: postAnnouncement,
-		getOfficers: getOfficers,
-		getAuthentication: getAuthentication,
-		login: login,
-		subscribe: subscribe,
-		_parseCalendarTime: _parseCalendarTime,
-		_convertToDateFormat: _convertToDateFormat
+		getCalendarData,
+		getAnnouncements,
+		postAnnouncement,
+		getOfficers,
+		getAuthentication,
+		login,
+		subscribe,
+		_parseCalendarTime,
+		_convertToDateFormat
 	}
 })();

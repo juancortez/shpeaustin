@@ -78,8 +78,8 @@ $(document).ready(function() {
     $('.subscribe-container').click(function(){
         var height = 400;
         var width = 500;
-        window_height = $(window).height();
-        window_width = $(window).width();
+        var window_height = $(window).height();
+        var window_width = $(window).width();
 
         // make sure that it fits within the frame
         height = window_height < height ? window_height - 50: height;

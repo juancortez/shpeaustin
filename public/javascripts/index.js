@@ -1,5 +1,5 @@
-$(document).ready(function() { // HTML has loaded
-    var socket = io(); // get a handle to the websocket
+$(document).ready(() => { // HTML has loaded
+    const socket = io(); // get a handle to the websocket
     var revision; // contains the current revision number, as held by the Redis database
     
     /*********************************/
@@ -13,7 +13,7 @@ $(document).ready(function() { // HTML has loaded
     // Socket Code
     ////////////////////////////////////////////////////////////////////
     socket.emit('revision', "Get revision number from backend.");
-    socket.on('revision', function(rev){
+    socket.on('revision', (rev) => {
         console.log("Revision is: " + rev);
         revision = rev;
     });
@@ -108,7 +108,7 @@ $(document).ready(function() { // HTML has loaded
         $("span.description").text(calendarHtml.link);
     });
 
-    var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     if(isMobile){
         $(".show-login").empty();
     }

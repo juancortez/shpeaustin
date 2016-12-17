@@ -1,9 +1,11 @@
-$(document).ready(() => {
-    $(".submit-request").click((evt) =>{
+$(document).ready(function(){
+    $(".submit-request").click(function(evt){
         var formElements = evt && evt.target && evt.target.form && evt.target.form.children || null,
             request = $(this).attr('data-request'),
             self = this,
             keys = [];
+
+        console.log(formElements);
 
         if (!!formElements && formElements.length > 1) {
             var formArray = $.map(formElements, function(value, index) {
