@@ -2,95 +2,25 @@
     "calendar": {
         "calendar": [
             {
-                "event": "Softball Game VS Slump Busters Field 01--HOME",
-                "time": "2016-08-29T19:25:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=dm9nOTc1NnRjcGViY2UzcmN2dWx0MjN1OWMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
-            },
-            {
-                "event": "Softball Game VS Biohazards Field 01--HOME",
-                "time": "2016-09-05T21:15:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=NGc5bnNodnFqb2IyOXA1NTViOGdwY2w4cmsgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
-            },
-            {
-                "event": "Softball Game VS Dataverts Field 02--AWAY",
-                "time": "2016-09-12T18:30:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=bTRqMHJtZ29tZm9vbmg5OXE0cXNsdDU1Z28gdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
-            },
-            {
-                "event": "General Body Meeting 1",
-                "time": "2016-09-21T19:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=Y3ZzbXM4MjNqYmJhZDN2MnZwOTJndDA0b3Mgc2hwZS5hdXN0aW5AbQ"
-            },
-            {
-                "event": "Softball Game VS Anytime Anyplace Field 01--HOME",
-                "time": "2016-09-26T19:25:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=dWhndWFoNnRycGFtaWVrbDVjbGVnMXVzOGMgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
-                "location": "Krieg Softball Complex - Multi-Purpose Field, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
-            },
-            {
-                "event": "Happy Hour w/IBM-HIP",
-                "time": "2016-10-05T18:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=ODZsM3BlbTJmdTU2YjEyNnF0ajBobGJoMmMgc2hwZS5hdXN0aW5AbQ",
-                "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
-            },
-            {
-                "event": "Happy Hour w/ IBM-HIP",
-                "time": "2016-10-05T18:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=MXA0OWttMnAya3JuczA2NnVycGRnNjV2dDAganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
-                "location": "Punch Bowl Social Austin, 11310 Domain Dr, Austin, TX 78758, USA"
-            },
-            {
-                "event": "Noche de Ciencias",
-                "time": "2016-10-13T17:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=YmpvcTQ1Zjk2NHQ3NzZhZG9iYWoyY2R1cDQgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw"
-            },
-            {
-                "event": "Noche de Ciencias",
-                "time": "2016-10-13T17:00:00-05:00",
-                "link": "https://www.google.com/calendar/event?eid=bzVkMG81azAxcDlzZGY5bDc0Y2huczBuMzAgc2hwZS5hdXN0aW5AbQ"
-            },
-            {
-                "event": "Bowling Scholarship Fundraiser (Tentative)",
-                "time": "2016-10-21",
-                "link": "https://www.google.com/calendar/event?eid=ZnVqMm5yZWo5am43ajUxcXZlazAwMHFnZmsga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
-            },
-            {
-                "event": "Bowling Scholarship Fundraiser (Tentative)",
-                "time": "2016-11-12",
-                "link": "https://www.google.com/calendar/event?eid=OXBzdGZhMHNmcHNoZnNxNjlkdjI2OWMyNmsga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
-            },
-            {
-                "event": "General Body Meeting 2",
-                "time": "2016-11-16T19:00:00-06:00",
-                "link": "https://www.google.com/calendar/event?eid=NzRpOHRxZ3NydWl0aWt2bTNwOW1jMGJzMDggZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
-            },
-            {
-                "event": "General Body Meeting 2",
-                "time": "2016-11-16T19:00:00-06:00",
-                "link": "https://www.google.com/calendar/event?eid=NDg4Nzc1NHA5NjhxbHVzcDd2ZDhqdmVycGcgc2hwZS5hdXN0aW5AbQ"
-            },
-            {
-                "event": "Holiday Party!!!",
-                "time": "2016-12-10T18:00:00-06:00",
-                "link": "https://www.google.com/calendar/event?eid=cnVsNDVkYmMyZXAxZmt0ZTRuYTJjbmYzYTgganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
-            },
-            {
-                "event": "Holiday Party!!!",
-                "time": "2016-12-10T18:00:00-06:00",
-                "link": "https://www.google.com/calendar/event?eid=ODZ2bXZmanZqdjd2NG8zbGhlZTg3c2MwbWMgc2hwZS5hdXN0aW5AbQ"
-            },
-            {
                 "event": "Officer Retreat 2",
-                "time": "2017-01-07",
-                "link": "https://www.google.com/calendar/event?eid=amY0MXFkNHNub2Y3dWRzc3VzaTRrZ2U4cTAga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
+                "time": "2017-01-08T10:00:00-06:00",
+                "link": "https://www.google.com/calendar/event?eid=amY0MXFkNHNub2Y3dWRzc3VzaTRrZ2U4cTAga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw",
+                "location": "3107 Ray Wood Dr. austin, TX 78704"
             },
             {
                 "event": "NRP #1",
                 "time": "2017-01-15",
                 "link": "https://www.google.com/calendar/event?eid=b3QwYXQ5MWJpanB1bDI4dHMwcG41aGY4dmcga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
+            },
+            {
+                "event": "Newsletter Submission DEADLINE!!!!",
+                "time": "2017-01-18T21:00:00-06:00",
+                "link": "https://www.google.com/calendar/event?eid=NjRxM2lwMzNjcGkzZWJiMjY1ajNlYjlrNzVoM2liYjI3NHEzOGI5cDZzcjNjZWIxY2xoamVvcGtjNCBramFmZDc2YjQ1cHBlaTljcXJxZmtlaHBvZ0Bn"
+            },
+            {
+                "event": "General Body Meeting 3",
+                "time": "2017-02-09T19:00:00-06:00",
+                "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
             },
             {
                 "event": "General Body Meeting 3",
@@ -105,6 +35,12 @@
             {
                 "event": "Noche de Ciencias",
                 "time": "2017-04-06T17:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=cjBpYjNrMThza2szY3NuYzBzY2l2bDB2Nm8gc2hwZS5hdXN0aW5AbQ",
+                "location": "5300 Pecan Brook/Uray, United States"
+            },
+            {
+                "event": "Noche de Ciencias",
+                "time": "2017-04-06T17:00:00-05:00",
                 "link": "https://www.google.com/calendar/event?eid=Y281aDNwYnQxNTN1M3ZydXByMGcxaGd0NXMgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw",
                 "location": "5300 Pecan Brook/Uray, United States"
             },
@@ -112,6 +48,11 @@
                 "event": "General Body Meeting 4: Nominations & Leadership Development",
                 "time": "2017-04-20T19:00:00-05:00",
                 "link": "https://www.google.com/calendar/event?eid=bjZranE3YjhicGpia3F1c2t1bm8yNnMybHMgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
+            },
+            {
+                "event": "General Body Meeting 4: Nominations & Leadership Development",
+                "time": "2017-04-27T19:00:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=ZnMzMWsxbDZwZGYwMGJwOTltMjY5ajJub2Mgc2hwZS5hdXN0aW5AbQ"
             },
             {
                 "event": "Scholarship Awards Banquet",
@@ -125,9 +66,25 @@
                 "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
             },
             {
+                "event": "Networking Social w/Upperclassman",
+                "time": "2017-05-09T18:30:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=OWNrNWpwMWM2bHBwNWFuY2hybG8zOTVwOTggc2hwZS5hdXN0aW5AbQ",
+                "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
+            },
+            {
                 "event": "Elections Happy Hour!!!",
                 "time": "2017-05-11T18:30:00-05:00",
                 "link": "https://www.google.com/calendar/event?eid=M3RzdW0wZzEwbjU0MnRmNWdhODRvMjl2cWMganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
+            },
+            {
+                "event": "Elections Happy Hour!!!",
+                "time": "2017-05-11T18:30:00-05:00",
+                "link": "https://www.google.com/calendar/event?eid=amo4aDlqYWVnMTBoN2puN2EwOWdlcXZjb3Mgc2hwZS5hdXN0aW5AbQ"
+            },
+            {
+                "event": "NRP #2 Deadline",
+                "time": "2017-06-15",
+                "link": "https://www.google.com/calendar/event?eid=OXBiNnVpbDRpcTJhMjBzdmk3MmR2bm5nMHMga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
             }
         ]
     }

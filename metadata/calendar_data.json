@@ -1,19 +1,9 @@
 {
     "calendar": [
         {
-            "event": "Officer Retreat 2",
-            "time": "2017-01-07",
-            "link": "https://www.google.com/calendar/event?eid=amY0MXFkNHNub2Y3dWRzc3VzaTRrZ2U4cTAga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
-        },
-        {
-            "event": "NRP #1",
-            "time": "2017-01-15",
-            "link": "https://www.google.com/calendar/event?eid=b3QwYXQ5MWJpanB1bDI4dHMwcG41aGY4dmcga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
-        },
-        {
-            "event": "General Body Meeting 3",
-            "time": "2017-02-09T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=aWRudDNscjdkM3I4cnAzMWRpOTQyMDVtM2sgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
+            "event": "Newsletter Submission DEADLINE!!!!",
+            "time": "2017-01-18T21:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=NjRxM2lwMzNjcGkzZWJiMjY1ajNlYjlrNzVoM2liYjI3NHEzOGI5cDZzcjNjZWIxY2xoamVvcGtjNCBramFmZDc2YjQ1cHBlaTljcXJxZmtlaHBvZ0Bn"
         },
         {
             "event": "General Body Meeting 3",
@@ -21,9 +11,9 @@
             "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
         },
         {
-            "event": "Joint E-week event with NSBE AP",
-            "time": "2017-02-22T08:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NzByNjJwaG82b3BtNmI5ajZ0aDMyYjlrNmtybTZiYjE3MHBtMmJiMzZsZ2o2b3BrNzBzajZjMzM2YyBzaHBlLmF1c3RpbkBt"
+            "event": "General Body Meeting 3",
+            "time": "2017-02-09T19:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=aWRudDNscjdkM3I4cnAzMWRpOTQyMDVtM2sgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
         },
         {
             "event": "Joint E-week event with NSBE AP",
@@ -48,20 +38,14 @@
             "link": "https://www.google.com/calendar/event?eid=bjZranE3YjhicGpia3F1c2t1bm8yNnMybHMgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
         },
         {
-            "event": "General Body Meeting 4: Nominations & Leadership Development",
-            "time": "2017-04-20T19:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=ZnMzMWsxbDZwZGYwMGJwOTltMjY5ajJub2Mgc2hwZS5hdXN0aW5AbQ"
-        },
-        {
             "event": "Scholarship Awards Banquet",
             "time": "2017-04-28",
             "link": "https://www.google.com/calendar/event?eid=bzdtbDdoaHA2bm8xcmNkcHNhY2g1MTcwZGMga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
         },
         {
-            "event": "Networking Social w/Upperclassman",
-            "time": "2017-05-09T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=NTduZ3Nra2NyYm9xMWt0cDBjczBsaDdiM2cganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
-            "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
+            "event": "General Body Meeting 4: Nominations & Leadership Development",
+            "time": "2017-04-27T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=ZnMzMWsxbDZwZGYwMGJwOTltMjY5ajJub2Mgc2hwZS5hdXN0aW5AbQ"
         },
         {
             "event": "Networking Social w/Upperclassman",
@@ -70,9 +54,20 @@
             "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
         },
         {
+            "event": "Networking Social w/Upperclassman",
+            "time": "2017-05-09T18:30:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=NTduZ3Nra2NyYm9xMWt0cDBjczBsaDdiM2cganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw",
+            "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
+        },
+        {
             "event": "Elections Happy Hour!!!",
             "time": "2017-05-11T18:30:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=M3RzdW0wZzEwbjU0MnRmNWdhODRvMjl2cWMganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
+        },
+        {
+            "event": "Elections Happy Hour!!!",
+            "time": "2017-05-11T18:30:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=amo4aDlqYWVnMTBoN2puN2EwOWdlcXZjb3Mgc2hwZS5hdXN0aW5AbQ"
         },
         {
             "event": "NRP #2 Deadline",
