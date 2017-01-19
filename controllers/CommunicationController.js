@@ -68,8 +68,47 @@ app.post('/contact', (req, res) => {
             console.error(err);
             return res.sendStatus(400);
         }
+        bot.sendWebhook({
+            "attachments": [
+                {
+                    "fallback": messageSent,
+                    "color": "#36a64f",
+                    "pretext": "New message received from SHPE Website",
+                    "author_name": `Sent by: ${name}`,
+                    "fields": [
+                        {
+                            "title": "Subject",
+                            "value": category,
+                            "short": false
+                        },
+                        {
+                            "title": "Phone Number",
+                            "value": phone,
+                            "short": false
+                        },
+                        {
+                            "title": "E-Mail",
+                            "value": email,
+                            "short": false
+                        },
+                        {
+                            "title": "Message",
+                            "value": message,
+                            "short": false
+                        }
+                    ],
+                    "footer": "SHPE Austin Website",
+                    "ts": new Date().getTime()
+                }
+            ]
+        }, (err, result) => {
+            if (err) {
+                console.error(`Webhook error: ${err}`);
+            }
+            console.log(`Incoming webhook result: ${result}`);
+            return res.sendStatus(200);
+        });
         console.log(`E-mail sent successfully. ${JSON.stringify(json)} \nSent to: ${sendGridEmail}`);
-        return res.sendStatus(200);
     });
 });
 
