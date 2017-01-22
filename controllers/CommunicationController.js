@@ -39,11 +39,6 @@ app.post('/contact', (req, res) => {
         subscribe
     } = body;
 
-    let messageSent = `Name:${name}, Phone Number: ${phone}, E-mail Address: ${email}, Subject: ${category}, Message: ${message}.`;
-
-    console.log(`Sending the following message to: ${sendGridEmail}`);
-    console.log(messageSent);
-
     if (subscribe) {
         /* Incoming WebHook using botland*/
         // https://api.slack.com/incoming-webhooks
@@ -52,64 +47,84 @@ app.post('/contact', (req, res) => {
         }, (err, res) => {
             if (err) {
                 console.error(`Webhook error: ${err}`);
+                return res.sendStatus(400);
             }
             console.log('Incoming webhook result: ${res}');
-        });
-    }
-
-    sendgrid.send({
-        to: sendGridEmail,
-        from: email,
-        subject: 'SHPE Austin Website Message',
-        text: messageSent,
-        html: `<b>Name:</b> ${name} <br> <b>Phone number:</b> ${phone} <br><b>E-mail address:</b>${email}<br><b> Category:</b>${category}<br><b>Message:</b>${message}`
-    }, (err, json) => {
-        if (err) {
-            console.error(err);
-            return res.sendStatus(400);
-        }
-        bot.sendWebhook({
-            "attachments": [
-                {
-                    "fallback": messageSent,
-                    "color": "#36a64f",
-                    "pretext": "New message received from SHPE Website",
-                    "author_name": `Sent by: ${name}`,
-                    "fields": [
-                        {
-                            "title": "Subject",
-                            "value": category,
-                            "short": false
-                        },
-                        {
-                            "title": "Phone Number",
-                            "value": phone,
-                            "short": false
-                        },
-                        {
-                            "title": "E-Mail",
-                            "value": email,
-                            "short": false
-                        },
-                        {
-                            "title": "Message",
-                            "value": message,
-                            "short": false
-                        }
-                    ],
-                    "footer": "SHPE Austin Website",
-                    "ts": new Date().getTime()
-                }
-            ]
-        }, (err, result) => {
-            if (err) {
-                console.error(`Webhook error: ${err}`);
-            }
-            console.log(`Incoming webhook result: ${result}`);
             return res.sendStatus(200);
         });
-        console.log(`E-mail sent successfully. ${JSON.stringify(json)} \nSent to: ${sendGridEmail}`);
-    });
+    } else {
+        let messageSent = `Name:${name}, Phone Number: ${phone}, E-mail Address: ${email}, Subject: ${category}, Message: ${message}.`;
+
+        console.log(`Sending the following message to: ${sendGridEmail}: ${messageSent}`);
+        
+        let emailPromise = new Promise((resolve, reject) => {
+            sendgrid.send({
+                to: sendGridEmail,
+                from: email,
+                subject: 'SHPE Austin Website Message',
+                text: messageSent,
+                html: `<b>Name:</b> ${name} <br> <b>Phone number:</b> ${phone} <br><b>E-mail address:</b>${email}<br><b> Category:</b>${category}<br><b>Message:</b>${message}`
+            }, (err, json) => {
+                if (err) {
+                    console.error(err);
+                    return reject(err);
+                }
+                let success = `E-mail sent successfully. ${JSON.stringify(json)} \nSent to: ${sendGridEmail}`;
+                return resolve(success);
+            });
+        });
+
+        let slackPromise = new Promise((resolve, reject) => {
+            bot.sendWebhook({
+                "attachments": [
+                    {
+                        "fallback": messageSent,
+                        "color": "#36a64f",
+                        "pretext": "New message received from SHPE Website",
+                        "author_name": `Sent by: ${name}`,
+                        "fields": [
+                            {
+                                "title": "Subject",
+                                "value": category,
+                                "short": false
+                            },
+                            {
+                                "title": "Phone Number",
+                                "value": phone,
+                                "short": false
+                            },
+                            {
+                                "title": "E-Mail",
+                                "value": email,
+                                "short": false
+                            },
+                            {
+                                "title": "Message",
+                                "value": message,
+                                "short": false
+                            }
+                        ],
+                        "footer": "SHPE Austin Website",
+                        "ts": new Date().getTime()
+                    }
+                ]
+            }, (err, result) => {
+                if (err) {
+                    let webhookErr = `Webhook error: ${err}`;
+                    return reject(webhookErr);
+                }
+                return resolve(`Incoming webhook result: ${result}`);
+            });
+        });
+
+        Promise.all([emailPromise, slackPromise]).then(values => { 
+            console.log(values);
+            return res.sendStatus(200);
+        }, reason => {
+            console.error(reason);
+            return res.sendStatus(400);
+        });  
+    }
 });
 
 // Outgoing Webhook provided by the SHPE Austin Bot
