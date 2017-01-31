@@ -29,6 +29,7 @@ const express = require('express'),
     socket = require('socket.io'),
     config = require('config'),
     database = require("./lib/database.js"),
+    cloudant = require("./lib/cloudant.js"),
     mcapi = require('mailchimp-api');
 // only load up console if developing locally
 if(appEnv.isLocal){
@@ -52,6 +53,26 @@ client.on('connect', function() {
         redis_connect.onRedisConnection(client);
     });
 });
+/************************************************************************************************************
+*                                   Cloudant Database Creation
+************************************************************************************************************/
+// cloudant.init(privateCredentials.cloudant, (err) =>{
+//     if(err) return console.error(err);
+//     // race condition bug fix
+//     setTimeout(() => { console.log("Cloudant successfully initialized!"); testCloudant(); }, 2000);
+// });
+
+// function testCloudant(){
+//     cloudant.execute({
+//         "method" : "GET",
+//         "document" : "businesscard",
+//         "data" : null,
+//         "callback" : function(err, data){
+//             if(err) return console.error(err.reason);
+//             data && console.log(data);
+//         }
+//     });
+// }
 
 /************************************************************************************************************
 *                                  Express App Configuration

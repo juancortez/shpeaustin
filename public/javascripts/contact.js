@@ -49,13 +49,26 @@ $(document).ready(function() {
     // @param status 1 = success, -1 = failure
     function sendEmailStatus(status) {
         if (status == -1) {
+            modal.open({
+                content: "<b>Oh no!</b></br>Email wasn't sent...sorry, try again :(", 
+                width: width+"px", 
+                height: height+"px", 
+                align: "center"
+            });
             $("#submit-button").text("Failed").css({background: "#D8000C"});
         } else if (status == 1) {
+            modal.open({
+                content: "<b>E-mail sent!</b></br>We will answer as soon as we can!", 
+                width: "250px", 
+                height: "100px", 
+                align: "center"
+            });
+            console.log("open modal");
             $("#submit-button").text("Success").css({background: "green"});
         }
         setTimeout(function(){
             $("#submit-button").text("Send it").css({background: "#0137A2"});
-        }, 2500);
+        }, 10000);
     }
 
     var $overlay = $('<div id="overlay"></div>'),

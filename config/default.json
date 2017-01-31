@@ -7,5 +7,8 @@
 	"sendGrid": {
 		"sendGridEmail": "cortezjuanjr@gmail.com"
 	},
+	"cloudant": {
+
+	},
 	"revision": 35 // revision number of the SHPE Page, Revision 35 as of August 28, 2016 @ 21:32
 }

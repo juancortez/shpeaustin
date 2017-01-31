@@ -1,14 +1,10 @@
 {
     "calendar": [
         {
-            "event": "Newsletter Submission DEADLINE!!!!",
-            "time": "2017-01-18T21:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=NjRxM2lwMzNjcGkzZWJiMjY1ajNlYjlrNzVoM2liYjI3NHEzOGI5cDZzcjNjZWIxY2xoamVvcGtjNCBramFmZDc2YjQ1cHBlaTljcXJxZmtlaHBvZ0Bn"
-        },
-        {
-            "event": "General Body Meeting 3",
-            "time": "2017-02-09T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
+            "event": "VEX Robotics Team meeting at LBJ-SHPE Austin Mentors",
+            "time": "2017-01-28T11:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=ZDFyM3RkZXA2NTdmdmoxdWV2MG1rZDdyZ29fMjAxNzAxMjhUMTcwMDAwWiBwbWhkNmZiNm8wMzBkdGtpNzBmanVtMjBoa0Bn",
+            "location": "LBJ Early College High School, 7309 Lazy Creek Dr, Austin, TX 78724, USA"
         },
         {
             "event": "General Body Meeting 3",
@@ -16,20 +12,37 @@
             "link": "https://www.google.com/calendar/event?eid=aWRudDNscjdkM3I4cnAzMWRpOTQyMDVtM2sgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
         },
         {
+            "event": "General Body Meeting 3",
+            "time": "2017-02-09T19:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "VEX Robotics Team meeting at LBJ-SHPE Austin Mentors",
+            "time": "2017-02-18T11:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=ZDFyM3RkZXA2NTdmdmoxdWV2MG1rZDdyZ29fMjAxNzAyMThUMTcwMDAwWiBwbWhkNmZiNm8wMzBkdGtpNzBmanVtMjBoa0Bn",
+            "location": "LBJ Early College High School, 7309 Lazy Creek Dr, Austin, TX 78724, USA"
+        },
+        {
             "event": "Joint E-week event with NSBE AP",
             "time": "2017-02-22T08:00:00-06:00",
             "link": "https://www.google.com/calendar/event?eid=MjgyNGo2Njhza2dubnE5MTg3dWNrMHUxanMgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw"
         },
         {
-            "event": "Noche de Ciencias",
-            "time": "2017-04-06T17:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=cjBpYjNrMThza2szY3NuYzBzY2l2bDB2Nm8gc2hwZS5hdXN0aW5AbQ",
-            "location": "5300 Pecan Brook/Uray, United States"
+            "event": "VEX Robotics Team meeting at LBJ-SHPE Austin Mentors",
+            "time": "2017-02-25T11:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=NGY5dWFsYzA1bzM1M2lyaGhsZHJ2Y2ozbmdfMjAxNzAyMjVUMTcwMDAwWiBwbWhkNmZiNm8wMzBkdGtpNzBmanVtMjBoa0Bn",
+            "location": "LBJ Early College High School, 7309 Lazy Creek Dr, Austin, TX 78724, USA"
+        },
+        {
+            "event": "VEX Robotics Team meeting at LBJ-SHPE Austin Mentors",
+            "time": "2017-03-25T11:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=NGY5dWFsYzA1bzM1M2lyaGhsZHJ2Y2ozbmdfMjAxNzAzMThUMTYwMDAwWiBwbWhkNmZiNm8wMzBkdGtpNzBmanVtMjBoa0Bn",
+            "location": "LBJ Early College High School, 7309 Lazy Creek Dr, Austin, TX 78724, USA"
         },
         {
             "event": "Noche de Ciencias",
             "time": "2017-04-06T17:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=Y281aDNwYnQxNTN1M3ZydXByMGcxaGd0NXMgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw",
+            "link": "https://www.google.com/calendar/event?eid=cjBpYjNrMThza2szY3NuYzBzY2l2bDB2Nm8gc2hwZS5hdXN0aW5AbQ",
             "location": "5300 Pecan Brook/Uray, United States"
         },
         {
@@ -62,12 +75,12 @@
         {
             "event": "Elections Happy Hour!!!",
             "time": "2017-05-11T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=M3RzdW0wZzEwbjU0MnRmNWdhODRvMjl2cWMganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
+            "link": "https://www.google.com/calendar/event?eid=amo4aDlqYWVnMTBoN2puN2EwOWdlcXZjb3Mgc2hwZS5hdXN0aW5AbQ"
         },
         {
             "event": "Elections Happy Hour!!!",
             "time": "2017-05-11T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=amo4aDlqYWVnMTBoN2puN2EwOWdlcXZjb3Mgc2hwZS5hdXN0aW5AbQ"
+            "link": "https://www.google.com/calendar/event?eid=M3RzdW0wZzEwbjU0MnRmNWdhODRvMjl2cWMganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
         },
         {
             "event": "NRP #2 Deadline",
