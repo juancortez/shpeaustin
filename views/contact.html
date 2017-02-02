@@ -25,7 +25,32 @@
    <body>
       <div class = "contact-container">
          <div class = "contact-form">
-            <form id="email" method = "post" action="contact">
+            <div class="toggle">
+               <button class="active" id="email-toggle">E-Mail</button>
+               <button class="inactive" id="physical-toggle">Physical Mail</button>
+            </div>
+
+            <div class="envelope-container">
+               <div class="huge-envelope">
+                  <span class="stamp"></span>
+                  <div class="sendFrom">
+                     <ul class="sendInformation">
+                        <li>John Doe</li>
+                        <li>110 Inner Campus Drive</li>
+                        <li>PO Box 8312</li>
+                        <li>Austin, TX 78729</li>
+                     </ul>   
+                  </div>
+                  <div class="sendTo">
+                     <ul class="sendInformation">
+                        <li>Attn: SHPE Austin</li>
+                        <li>PO Box 80765</li>
+                        <li>Austin, TX 78708</li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <form class="form-email" id="email" method = "post" action="contact">
                <div class="form-group">
                   <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
                </div>

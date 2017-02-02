@@ -1190,6 +1190,97 @@ html{
 .contact-container{
   .contact-form {
       padding: 0px 35px 0px 35px;
+
+      .toggle{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+            margin-top: 15px;
+        button{
+          width: 120px;
+          height: 35px;
+          background: white;
+          border: 1px solid #ddd;
+          &#physical-toggle{
+            border-radius: 0px 5px 5px 0px;
+          }
+          &#email-toggle{
+            border-radius: 5px 0px 0px 5px;
+            border-right-width: 0px;
+          }
+          &.active{
+            background: #388bd1;
+            color: white;
+          }
+          &.inactive{
+            background: white;
+            color: black;
+          }
+        }
+      }
+
+      .envelope-container{
+        display: none;
+        // display: flex;
+        justify-content: center;
+        .huge-envelope{
+          position: relative;
+          width: 800px;
+          height:400px;
+          padding: 10px;
+          margin-top: 30px;
+          border-radius: 5px;
+          background-color: #d9edf7;
+          border: 5px solid #31708f;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .stamp{
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            padding: 15px;
+            font-size: 35px;
+            height: 100px;
+            width: 101px;
+            background: url(http://1.bp.blogspot.com/-Ur_T5E4eiGQ/UwJd8LzkIHI/AAAAAAAAPpU/JzPeoXiX1Ko/s1600/truestamp2014.png);
+            background-size: contain;
+
+          }
+          .sendTo, .sendFrom{
+            .sendInformation{
+              list-style-type: none;
+              li{
+                color: #5e6fa0;
+                font-family: "Brush Script MT", cursive;
+                font-size: 30px;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 500;
+                line-height: 26.4px;
+                letter-spacing: 3px;
+                margin-bottom: 12px;
+              }
+            }
+          }
+
+          .sendFrom{
+            position: absolute;
+            top: 0px;
+            left: 10px;
+            padding: 15px;
+            .sendInformation{
+              padding: 0px;
+              li{
+                margin-bottom: 0px;
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+
+
       .row{
           .col-sm-10{
               width: 100%;

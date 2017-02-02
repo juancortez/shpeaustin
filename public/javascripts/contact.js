@@ -22,6 +22,30 @@ $(document).ready(function() {
 
     $("#chat-header i").click();
 
+    $(".toggle button").click(function(e){
+        
+        var btn = e.currentTarget.id;
+        
+        if(btn === "physical-toggle"){
+            $("#email-toggle").removeClass('active');
+            $("#email-toggle").addClass('inactive');
+            $("#physical-toggle").removeClass('inactive');
+            $("#physical-toggle").addClass('active');
+
+            $(".form-email").css({'display': 'none'});
+            $(".envelope-container").css({'display': 'flex'});
+        } else{
+            $("#physical-toggle").removeClass('active');
+            $("#physical-toggle").addClass('inactive');
+            $("#email-toggle").removeClass('inactive');
+            $("#email-toggle").addClass('active');
+
+            $(".envelope-container").css({'display': 'none'});
+            $(".form-email").show();
+        }
+
+    });
+
 
     // form submission for e-mails
 	$('#email').submit(function(formText) {
