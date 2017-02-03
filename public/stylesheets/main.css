@@ -1201,6 +1201,7 @@ html ::-webkit-scrollbar {
 }
 .contact-container .contact-form .envelope-container {
   display: none;
+  margin-top: 25px;
   justify-content: center;
 }
 .contact-container .contact-form .envelope-container .huge-envelope {
@@ -1216,6 +1217,21 @@ html ::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
 }
+@media only screen and (max-width: 720px) {
+  .contact-container .contact-form .envelope-container .huge-envelope {
+    height: 350px;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .contact-container .contact-form .envelope-container .huge-envelope {
+    height: 300px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .contact-container .contact-form .envelope-container .huge-envelope {
+    height: 250px;
+  }
+}
 .contact-container .contact-form .envelope-container .huge-envelope .stamp {
   position: absolute;
   top: 10px;
@@ -1226,6 +1242,18 @@ html ::-webkit-scrollbar {
   width: 101px;
   background: url(http://1.bp.blogspot.com/-Ur_T5E4eiGQ/UwJd8LzkIHI/AAAAAAAAPpU/JzPeoXiX1Ko/s1600/truestamp2014.png);
   background-size: contain;
+}
+@media only screen and (max-width: 720px) {
+  .contact-container .contact-form .envelope-container .huge-envelope .stamp {
+    height: 75px;
+    width: 75px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .contact-container .contact-form .envelope-container .huge-envelope .stamp {
+    height: 50px;
+    width: 50px;
+  }
 }
 .contact-container .contact-form .envelope-container .huge-envelope .sendTo .sendInformation,
 .contact-container .contact-form .envelope-container .huge-envelope .sendFrom .sendInformation {
@@ -1243,6 +1271,19 @@ html ::-webkit-scrollbar {
   letter-spacing: 3px;
   margin-bottom: 12px;
 }
+@media only screen and (max-width: 720px) {
+  .contact-container .contact-form .envelope-container .huge-envelope .sendTo .sendInformation li,
+  .contact-container .contact-form .envelope-container .huge-envelope .sendFrom .sendInformation li {
+    font-size: 28px;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .contact-container .contact-form .envelope-container .huge-envelope .sendTo .sendInformation li,
+  .contact-container .contact-form .envelope-container .huge-envelope .sendFrom .sendInformation li {
+    font-size: 20px;
+    line-height: 12px;
+  }
+}
 .contact-container .contact-form .envelope-container .huge-envelope .sendFrom {
   position: absolute;
   top: 0px;
@@ -1255,6 +1296,20 @@ html ::-webkit-scrollbar {
 .contact-container .contact-form .envelope-container .huge-envelope .sendFrom .sendInformation li {
   margin-bottom: 0px;
   font-size: 16px;
+}
+@media only screen and (max-width: 720px) {
+  .contact-container .contact-form .envelope-container .huge-envelope .sendFrom .sendInformation li {
+    margin-bottom: 0px;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 1px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .contact-container .contact-form .envelope-container .huge-envelope .sendFrom .sendInformation li {
+    font-size: 10px;
+    line-height: 10px;
+  }
 }
 .contact-container .contact-form .row .col-sm-10 {
   width: 100%;

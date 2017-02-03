@@ -1222,6 +1222,7 @@ html{
       .envelope-container{
         display: none;
         // display: flex;
+        margin-top: 25px;
         justify-content: center;
         .huge-envelope{
           position: relative;
@@ -1235,6 +1236,19 @@ html{
           display: flex;
           justify-content: center;
           align-items: center;
+
+          @media only screen and (max-width: 720px){
+              height: 350px;
+          }
+
+          @media only screen and (max-width: 560px){
+              height: 300px;
+          }
+
+          @media only screen and (max-width: 450px){
+              height: 250px;
+          }
+
           .stamp{
             position: absolute;
             top: 10px;
@@ -1245,6 +1259,16 @@ html{
             width: 101px;
             background: url(http://1.bp.blogspot.com/-Ur_T5E4eiGQ/UwJd8LzkIHI/AAAAAAAAPpU/JzPeoXiX1Ko/s1600/truestamp2014.png);
             background-size: contain;
+
+            @media only screen and (max-width: 720px){
+              height: 75px;
+              width: 75px;
+            }
+
+            @media only screen and (max-width: 450px){
+              height: 50px;
+              width: 50px;
+            }
 
           }
           .sendTo, .sendFrom{
@@ -1260,6 +1284,15 @@ html{
                 line-height: 26.4px;
                 letter-spacing: 3px;
                 margin-bottom: 12px;
+
+                @media only screen and (max-width: 720px){
+                    font-size: 28px;
+                }
+
+                @media only screen and (max-width: 520px){
+                  font-size: 20px;
+                  line-height: 12px;
+                }
               }
             }
           }
@@ -1274,6 +1307,18 @@ html{
               li{
                 margin-bottom: 0px;
                 font-size: 16px;
+
+                @media only screen and (max-width: 720px){
+                  margin-bottom: 0px;
+                  font-size: 12px;
+                  line-height: 14px;
+                  letter-spacing: 1px;
+                }
+
+                @media only screen and (max-width: 450px){
+                  font-size: 10px;
+                  line-height: 10px;
+                }
               }
             }
           }
