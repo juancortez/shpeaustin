@@ -44,13 +44,18 @@ client.auth(redisCredentials.password, (err) => {
         console.error(err);
     }
 });
-client.on('connect', function() {
-    database.create(client, function(err){
-        if(err){
-            console.error(err.reason);
-        }
-        console.log("Database Singleton successfully created!");
-        redis_connect.onRedisConnection(client);
+
+const databaseInstantiated = new Promise((resolve, reject) =>{
+    client.on('connect', function() {
+        database.create(client, function(err){
+            if(err){
+                console.error(err.reason);
+                return reject(err.reason);
+            }
+            console.log("Database Singleton successfully created!");
+            redis_connect.onRedisConnection(client);
+            return resolve(true);
+        });
     });
 });
 /************************************************************************************************************
@@ -126,4 +131,8 @@ app.set('bot', bot);
 const mc = new mcapi.Mailchimp(privateCredentials.mailchimp.api_key);
 app.set('mc', mc);
 
-require('./services/slack.js')(controller, client); // Listen to different requests
+databaseInstantiated.then(function(){
+    require('./services/slack.js')(controller, client, database, privateCredentials, bot); // Listen to different requests
+}).catch(function(err){
+    console.error(err);
+});

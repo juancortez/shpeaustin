@@ -2,13 +2,15 @@
     "calendar": [
         {
             "event": "General Body Meeting 3",
-            "time": "2017-02-09T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=aWRudDNscjdkM3I4cnAzMWRpOTQyMDVtM2sgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
+            "time": "2017-02-16T19:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ",
+            "location": "The Brass Tap, 10910 Domain Dr #120, Austin, TX 78758, USA"
         },
         {
             "event": "General Body Meeting 3",
-            "time": "2017-02-09T19:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=c3E1ODJyMzdvdG9nbnFtcTdjZTF0MGpzdDAgc2hwZS5hdXN0aW5AbQ"
+            "time": "2017-02-16T19:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=aWRudDNscjdkM3I4cnAzMWRpOTQyMDVtM2sgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw",
+            "location": "The Brass Tap, 10910 Domain Dr #120, Austin, TX 78758, USA"
         },
         {
             "event": "VEX Robotics Team meeting at LBJ-SHPE Austin Mentors",
@@ -17,15 +19,52 @@
             "location": "LBJ Early College High School, 7309 Lazy Creek Dr, Austin, TX 78724, USA"
         },
         {
-            "event": "Joint E-week event with NSBE AP",
-            "time": "2017-02-22T08:00:00-06:00",
-            "link": "https://www.google.com/calendar/event?eid=MjgyNGo2Njhza2dubnE5MTg3dWNrMHUxanMgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw"
+            "event": "Softball Game vs Noex on Field 02--HOME",
+            "time": "2017-02-20T19:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=bDZyNmltbjg5djJmOTBiamMwdG5zbGQ5N2MgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Athletics Office, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
+            "event": "Networking & Trivia Night",
+            "time": "2017-02-21T18:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=MjgyNGo2Njhza2dubnE5MTg3dWNrMHUxanMgc2hwZS5hdXN0aW5AbQ",
+            "location": "Abel's on the Lake, 3825 Lake Austin Blvd, Austin, TX 78703, USA"
         },
         {
             "event": "VEX Robotics Team meeting at LBJ-SHPE Austin Mentors",
             "time": "2017-02-25T11:00:00-06:00",
             "link": "https://www.google.com/calendar/event?eid=NGY5dWFsYzA1bzM1M2lyaGhsZHJ2Y2ozbmdfMjAxNzAyMjVUMTcwMDAwWiBwbWhkNmZiNm8wMzBkdGtpNzBmanVtMjBoa0Bn",
             "location": "LBJ Early College High School, 7309 Lazy Creek Dr, Austin, TX 78724, USA"
+        },
+        {
+            "event": "Introduce a Girl to Engineering Day",
+            "time": "2017-02-25T12:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=Z2Y0bXJyZjc2N3MwbXJrM2IydG1zbWU1OWMgc2hwZS5hdXN0aW5AbQ",
+            "location": "North Office Building A, 101 E. 27th St, Austin, TX 78712 "
+        },
+        {
+            "event": "Softball Game vs 2.54s on Field 02--HOME",
+            "time": "2017-02-27T21:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=dDd2cTBrZmFncTJsYXA3NDk3ODIybjBlbG8gdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Athletics Office, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
+            "event": "Softball Game vs Slump Busters on Field 03---HOME",
+            "time": "2017-03-06T19:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=cDJvNDk3YmZyY2Uwb25iY2twYWNjYWh2djAgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Athletics Office, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
+            "event": "Softball Game vs Noex on Field 03--AWAY",
+            "time": "2017-03-13T21:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=b2l2Zmc1NDhmZWloOW44cWdyZWdqZDAwZGsgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Athletics Office, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
+        },
+        {
+            "event": "Softball Game vs 2.54s on Field 04--HOME",
+            "time": "2017-03-20T19:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=Y291dGkyZHRxNHExc2YxbWI5aHJzcTJjNmcgdTNhdW9tbGR0MDZndG9rZzlxazRkbHM2aW9AZw",
+            "location": "Krieg Softball Complex - Athletics Office, 515 S Pleasant Valley Rd, Austin, TX 78741, USA"
         },
         {
             "event": "VEX Robotics Team meeting at LBJ-SHPE Austin Mentors",
@@ -36,29 +75,29 @@
         {
             "event": "Noche de Ciencias",
             "time": "2017-04-06T17:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=Y281aDNwYnQxNTN1M3ZydXByMGcxaGd0NXMgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw",
+            "link": "https://www.google.com/calendar/event?eid=cjBpYjNrMThza2szY3NuYzBzY2l2bDB2Nm8gc2hwZS5hdXN0aW5AbQ",
             "location": "5300 Pecan Brook/Uray, United States"
         },
         {
             "event": "Noche de Ciencias",
             "time": "2017-04-06T17:00:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=cjBpYjNrMThza2szY3NuYzBzY2l2bDB2Nm8gc2hwZS5hdXN0aW5AbQ",
+            "link": "https://www.google.com/calendar/event?eid=Y281aDNwYnQxNTN1M3ZydXByMGcxaGd0NXMgcG1oZDZmYjZvMDMwZHRraTcwZmp1bTIwaGtAZw",
             "location": "5300 Pecan Brook/Uray, United States"
         },
         {
             "event": "General Body Meeting 4: Nominations & Leadership Development",
-            "time": "2017-04-20T19:00:00-05:00",
+            "time": "2017-04-27T19:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=bjZranE3YjhicGpia3F1c2t1bm8yNnMybHMgZWNsbDAxa283MTFyYWJjdWhhNHVkdXNxZzBAZw"
-        },
-        {
-            "event": "Scholarship Awards Banquet",
-            "time": "2017-04-28",
-            "link": "https://www.google.com/calendar/event?eid=bzdtbDdoaHA2bm8xcmNkcHNhY2g1MTcwZGMga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
         },
         {
             "event": "General Body Meeting 4: Nominations & Leadership Development",
             "time": "2017-04-27T19:00:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=ZnMzMWsxbDZwZGYwMGJwOTltMjY5ajJub2Mgc2hwZS5hdXN0aW5AbQ"
+        },
+        {
+            "event": "Scholarship Awards Banquet",
+            "time": "2017-04-28",
+            "link": "https://www.google.com/calendar/event?eid=bzdtbDdoaHA2bm8xcmNkcHNhY2g1MTcwZGMga2phZmQ3NmI0NXBwZWk5Y3FycWZrZWhwb2dAZw"
         },
         {
             "event": "Networking Social w/Upperclassman",
@@ -67,20 +106,9 @@
             "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
         },
         {
-            "event": "Networking Social w/Upperclassman",
-            "time": "2017-05-09T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=OWNrNWpwMWM2bHBwNWFuY2hybG8zOTVwOTggc2hwZS5hdXN0aW5AbQ",
-            "location": "Posse East, 2900 Duval St, Austin, TX 78705, USA"
-        },
-        {
             "event": "Elections Happy Hour!!!",
             "time": "2017-05-11T18:30:00-05:00",
             "link": "https://www.google.com/calendar/event?eid=M3RzdW0wZzEwbjU0MnRmNWdhODRvMjl2cWMganNvNTlkYTlybmo0cHNmM2x0NjJrMDQxbzhAZw"
-        },
-        {
-            "event": "Elections Happy Hour!!!",
-            "time": "2017-05-11T18:30:00-05:00",
-            "link": "https://www.google.com/calendar/event?eid=amo4aDlqYWVnMTBoN2puN2EwOWdlcXZjb3Mgc2hwZS5hdXN0aW5AbQ"
         },
         {
             "event": "NRP #2 Deadline",
