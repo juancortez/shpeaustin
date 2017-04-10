@@ -152,9 +152,10 @@ Everytime that GitHub receives a new commit, it will utilize Travis CI to automa
 
 ## Docker
 Pre-requisite: Download Docker at the [Docker Install][] page.
-The SHPE Austin application is also configured to run off a docker. A live image is being hosted in the [Docker Hub][]. To run a live image, go to the Live Image section. To develop locally, go to the Docker Developers section. To tag and push an image, go to the Docker Deploy section.
+The SHPE Austin application is also configured to run off a docker. A private live image is being hosted in the [Docker Hub][]. To run a live image, go to the Live Image section. To develop locally, go to the Docker Developers section. To tag and push an image, go to the Docker Deploy section.
 
 ### Live Image
+Pre-requisite: Since it is a private image, you must be given access by the creator.
  1. Run, `$docker pull juancortez/shpeaustin`
  2. Once the image has been downloaded, run `$docker run -p 6006:6006 juancortez/shpeaustin`
  3. Navigate to localhost:6006 to view the application.
@@ -164,13 +165,17 @@ The SHPE Austin application is also configured to run off a docker. A live image
  2. Once the Dockerfile has finished executing, run `$docker run -p 6006:6006 juancortez/shpeaustin`
  3. The app is running locally on localhost:6006. Go to your browser and navigate to view the application.
 
-## Docker Deploy
+### Docker Deploy
  1. Once all the changes in the application are done, run `$docker build -t juancortez/shpeaustin .`
  2. `$docker tag juancortez/shpeaustin juancortez/shpeaustin:0.X`, where X is the version number
  3. `$docker tag juancortez/shpeaustin:0.X juancortez/shpeaustin:latest`, to ensure that this is the latest image on dockerland
  4. Run `$docker login`
  5. Run `$docker push`
  6. To pull latest docker image, run `$docker pull juancortez/shpeaustin`
+
+ ### Misc Commands
+ Exploring the File System: Run `$docker images` and find the image id. Then run `docker run -t -i {ID} /bin/bash`, where {ID} is the image if of the shpe austin image.
+
 
 [Docker Hub]: https://hub.docker.com/r/juancortez/shpeaustin/
 [Docker Install]: https://docs.docker.com/docker-for-mac/
