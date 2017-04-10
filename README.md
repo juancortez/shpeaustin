@@ -150,7 +150,30 @@ Everytime that GitHub receives a new commit, it will utilize Travis CI to automa
  7. Encrypt the Bluemix email, and run the same command as step 6. Replace the new "secure" string in both the organization and username section.
  8. Everytime you push to the repository, austinshpe.org will re-deploy with the new changes :)
 
+## Docker
+Pre-requisite: Download Docker at the [Docker Install][] page.
+The SHPE Austin application is also configured to run off a docker. A live image is being hosted in the [Docker Hub][]. To run a live image, go to the Live Image section. To develop locally, go to the Docker Developers section. To tag and push an image, go to the Docker Deploy section.
 
+### Live Image
+ 1. Run, `$docker pull juancortez/shpeaustin`
+ 2. Once the image has been downloaded, run `$docker run -p 6006:6006 juancortez/shpeaustin`
+ 3. Navigate to localhost:6006 to view the application.
+ 
+### Docker Developers
+ 1. Navigate to the root directory of the application and run `$docker build -t juancortez/shpeaustin .`
+ 2. Once the Dockerfile has finished executing, run `$docker run -p 6006:6006 juancortez/shpeaustin`
+ 3. The app is running locally on localhost:6006. Go to your browser and navigate to view the application.
+
+## Docker Deploy
+ 1. Once all the changes in the application are done, run `$docker build -t juancortez/shpeaustin .`
+ 2. `$docker tag juancortez/shpeaustin juancortez/shpeaustin:0.X`, where X is the version number
+ 3. `$docker tag juancortez/shpeaustin:0.X juancortez/shpeaustin:latest`, to ensure that this is the latest image on dockerland
+ 4. Run `$docker login`
+ 5. Run `$docker push`
+ 6. To pull latest docker image, run `$docker pull juancortez/shpeaustin`
+
+[Docker Hub]: https://hub.docker.com/r/juancortez/shpeaustin/
+[Docker Install]: https://docs.docker.com/docker-for-mac/
 [austinshpe.org]: http://austinshpe.org
 [shpeaustin.mybluemix.net]: http://shpeaustin.mybluemix.net
 [GoDaddy]: https://www.godaddy.com/
