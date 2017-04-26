@@ -330,7 +330,6 @@ html ::-webkit-scrollbar {
   height: 80px;
   border: 1px solid #ddd;
   -ms-flex-align: center;
-      -ms-grid-row-align: center;
       align-items: center;
   -ms-flex-pack: center;
       justify-content: center;
@@ -656,6 +655,7 @@ html ::-webkit-scrollbar {
 .main-page-container .bs-example-a .row #fpc_box #calendar-loader {
   position: absolute;
   -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
       align-self: center;
 }
 .main-page-container .bs-example-a .row .calendar-controls {
@@ -2017,6 +2017,7 @@ html ::-webkit-scrollbar {
 }
 .membership-container .bottom-container .member-info .job-postings-container .job-tiles .job-tile .job-button {
   -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
       align-self: center;
   margin-top: 10px;
 }

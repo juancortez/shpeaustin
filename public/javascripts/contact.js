@@ -60,6 +60,7 @@ $(document).ready(function() {
                    }
         }).done(function(status){
         	console.log("Success!");
+            _clearBox();
         	sendEmailStatus(1);
         }).fail(function(status){
         	console.error("Unsuccessful. Error Code:");
@@ -68,6 +69,13 @@ $(document).ready(function() {
         });
         return false; // won't refresh the page
     }); 
+
+    function _clearBox(){
+        $("input[name='name']").val('');
+        $("input[name='email']").val('');
+        $("input[name='phone']").val('');
+        $("textarea[name='message']").val('');
+    }
 
     // this function displays the result of the REST call for 2.5 seconds
     // @param status 1 = success, -1 = failure
