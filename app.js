@@ -90,6 +90,7 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 }));
 app.use(favicon(__dirname + '/public/assets/shpe_austin_icon.png'));
 require('./router/main')(app, client); // adds the main.js file to send response to browser
+
 app.set('views', __dirname + '/views'); // defines where our HTML files are placed
 app.set('view engine', 'ejs'); // used for HTML rendering
 app.engine('html', require('ejs').__express); // rendering HTML files through EJS

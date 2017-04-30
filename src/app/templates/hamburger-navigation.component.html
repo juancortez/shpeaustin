@@ -1,0 +1,33 @@
+<div class="components">
+	<div (click)="toggleNavigation()" class = "hamburger-navigation">
+		<i class="fa fa-bars fa-3x dark-shpe-blue responsive-menu"></i>
+	</div>
+	<div class = "shpe-header">
+		<h1 class="dark-shpe-blue">	
+			SHPE Austin
+		</h1>
+	</div>
+	<social-media></social-media>
+</div>	
+
+<div *ngIf="showNavigation" class="link-navigation">
+	<ul class="link-list">
+		<li class = "links"> <a class="active" href="/">Home</a></li>
+		<li class = "links"> <a href="/about">About</a></li>
+		<li class = "links"> <a href="/officers">Officers</a></li>
+		<li class = "links"> <a href="/membership">Membership</a></li>
+		<li class = "links"> <a href="/contact">Contact Us</a></li>
+		<div>
+			<div class="social-media">
+			   <a class = "dark-shpe-blue" href="https://twitter.com/SHPEAustin/" target="_blank">
+			      <i class="fa fa-twitter" aria-hidden="true"></i>
+			   </a>
+			</div>
+			<div class="social-media">
+			   <a class = "dark-shpe-blue" href="https://www.facebook.com/SHPEAustin/?fref=ts" target="_blank">
+			      <i class="fa fa-facebook-f" aria-hidden="true"></i>
+			   </a>
+			</div>
+		</div>
+	</ul>
+</div>

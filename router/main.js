@@ -49,6 +49,14 @@ module.exports = function(app, client) {
         });
     });
 
+    app.get('/officersData', (req, res) => {
+        console.log("ROUTES");
+        database.getCachedData("officerList", (err, data) => {
+            console.log(data);
+            return res.json(data.officerList);
+        });
+    });
+
     app.get('/membership', (req, res) => {
         database.getCachedData(["revisionNumber", "jobs"], (err, data) => {
             const jobs = data.jobs.jobs,

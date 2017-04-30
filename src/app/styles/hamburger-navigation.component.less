@@ -1,0 +1,97 @@
+@blueHover: #23527c;
+
+:host{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    .components{
+    	display: flex;
+    	width: 100%;
+    	height: 100%;
+	    .hamburger-navigation{
+	    	flex: 1;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+	        cursor: pointer;
+	        i:hover{
+	            color: @blueHover;
+	        } 
+	    }
+	    .shpe-header{
+	    	flex: 7;
+	    	text-align: center;
+    	    font-weight: bold;
+    		text-transform: uppercase;
+		    border-right: 1px solid #ededed;
+	    	border-left: 1px solid #ededed;
+	    }
+    }
+}
+
+.link-navigation{
+    position: absolute;
+    background: gray;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+	.link-list{
+	    width: 100%;
+    	height: 100%;
+    	margin: 0px;
+    	padding: 0px;
+    	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+	    .links {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			background-color: #f1f1f1;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			flex: 1;
+            letter-spacing: 7px;
+            text-transform: uppercase;
+            font-weight: bold;
+            line-height: 0px;
+            transition: all 0.5s ease 0s;
+            -ms-transition: all 0.5s ease 0s;
+            -moz-transition: all 0.5s ease 0s;
+            -webkit-transition: all 0.5s ease 0s;
+            text-align: center;
+            a{
+            	text-decoration: none;
+            	letter-spacing: 1px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 29px;
+            }
+            &:hover {
+                background-color: #DDDADA;
+                cursor: pointer;
+                a{
+                	color: white;
+                }
+            }
+	    } // .ul-hamburger-nav
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
