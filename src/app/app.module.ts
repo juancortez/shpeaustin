@@ -9,18 +9,29 @@ import { AppRoutingModule } from './app-routing.module';
 /* API Services */
 import { OfficersService } from './services/officers.service';
 
-/* Component Services */
-import { AppComponent }             from './app.component';
-import { HomeComponent }            from './home.component';
-import { NavigationComponent }      from './navigation.component';
-import { SocialMediaComponent }     from './social-media.component';
-import { BannerComponent }          from './banner.component';
-import { NavigationLinksComponent } from './navigation-links.component';
-import { AboutComponent }           from './about.component';
-import { SmallCardComponent }       from './card.component';
-import { OfficersComponent }        from './officers.component';
-import { OfficerComponent }        from './officer.component';
-import { HamburgerNavigationComponent }        from './hamburger-navigation.component';
+/* App Component */
+import { AppComponent }                     from './app.component';
+
+/* Pages */
+import { HomeComponent }                    from './home.component';
+import { AboutComponent }                   from './about.component';
+import { OfficersComponent }                from './officers.component';
+import { MembershipComponent }              from './membership.component'
+import { ContactComponent }                 from './contact.component';
+
+/* Navigation Components */
+import { NavigationComponent }              from './navigation.component';
+import { NavigationLinksComponent }         from './navigation-links.component';
+import { SocialMediaComponent }             from './social-media.component';
+import { BannerComponent }                  from './banner.component';
+import { HamburgerNavigationComponent }     from './hamburger-navigation.component';
+
+/* Miscallaneous */
+import { SmallCardComponent }               from './card.component';
+import { OfficerComponent }                 from './officer.component';
+
+
+
 
 
 @NgModule({
@@ -41,7 +52,9 @@ import { HamburgerNavigationComponent }        from './hamburger-navigation.comp
     SmallCardComponent,
     OfficersComponent,
     OfficerComponent,
-    HamburgerNavigationComponent
+    HamburgerNavigationComponent,
+    MembershipComponent,
+    ContactComponent
   ],
   providers: [ 
     OfficersService
