@@ -42,3 +42,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+
+# Map and JavaScript files
+/src/app/*.map
+/src/app/*.js

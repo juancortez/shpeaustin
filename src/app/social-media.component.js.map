@@ -1,1 +1,0 @@
-{"version":3,"file":"social-media.component.js","sourceRoot":"","sources":["social-media.component.ts"],"names":[],"mappings":";;;;;;;;AAAA,sCAA0C;AAO1C,IAAa,oBAAoB;IAAjC;IACA,CAAC;IAAD,2BAAC;AAAD,CAAC,AADD,IACC;AADY,oBAAoB;IALhC,gBAAS,CAAC;QACT,QAAQ,EAAE,cAAc;QACxB,WAAW,EAAE,yCAAyC;QACtD,SAAS,EAAE,CAAC,qCAAqC,CAAC;KACnD,CAAC;GACW,oBAAoB,CAChC;AADY,oDAAoB"}
