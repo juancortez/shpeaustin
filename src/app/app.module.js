@@ -23,6 +23,7 @@ var navigation_links_component_1 = require("./navigation-links.component");
 var about_component_1 = require("./about.component");
 var card_component_1 = require("./card.component");
 var officers_component_1 = require("./officers.component");
+var officer_component_1 = require("./officer.component");
 var hamburger_navigation_component_1 = require("./hamburger-navigation.component");
 var AppModule = (function () {
     function AppModule() {
@@ -47,6 +48,7 @@ AppModule = __decorate([
             about_component_1.AboutComponent,
             card_component_1.SmallCardComponent,
             officers_component_1.OfficersComponent,
+            officer_component_1.OfficerComponent,
             hamburger_navigation_component_1.HamburgerNavigationComponent
         ],
         providers: [

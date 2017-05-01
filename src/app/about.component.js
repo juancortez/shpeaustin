@@ -14,9 +14,9 @@ var AboutComponent = (function () {
 }());
 AboutComponent = __decorate([
     core_1.Component({
-        selector: 'about',
-        templateUrl: './templates/about.component.html',
-        styleUrls: ['./styles/about.component.css'],
+        selector: "about",
+        templateUrl: "./templates/about.component.html",
+        styleUrls: ["./styles/about.component.css"],
     })
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;

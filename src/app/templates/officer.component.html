@@ -1,0 +1,28 @@
+<ul class ="officer-list">
+	<section class="container">
+		<div class="card">
+			<figure class="front">
+				<img class = "officers" src={{officer.image_url}} />
+				<div class ="front-officer-info">
+			    	<p class = "center-text name bold"> {{officer.name}}</p>
+			    	<p class = "center-text position italic">{{officer.position}}</p>
+			    </div>
+			</figure>
+			<figure class="back">
+				<div class = "information">
+					<div>
+				    	<p class = "center-text"><span class="bold">Name:</span> {{ officer.name }}</p>
+				    	<p class = "center-text"><span class="bold">Position:</span> {{ officer.position }}</p>
+				    	<p class = "center-text"><span class="bold">E-mail:</span> <a href="mailto:{{officer.email}}?subject=Contact SHPE Austin">{{ officer.email }}</a></p>
+				    	<p class = "center-text"><span class="bold">Phone:</span> <a href="tel:+{{officer.phone}}">{{officer.phone}}</a></p>
+				    	<p class = "center-text"><span class="bold">Hometown:</span> {{ officer.hometown }}</p>
+				    	<p class = "center-text"><span class="bold">Company:</span> {{ officer.company }}</p>
+				    	<a href={{officer.linkedin}}>
+				    		<i id="officer-linkedin" class="center-text fa fa-linkedin fa-2x"></i>
+				    	</a>
+				    </div>
+			    </div>
+			</figure>
+		</div>
+	</section>
+</ul>

@@ -14,13 +14,20 @@ var officers_service_1 = require("./services/officers.service");
 var OfficersComponent = (function () {
     function OfficersComponent(officersService) {
         this.officersService = officersService;
+        this.executiveOfficers = [];
         this.officers = [];
     }
     OfficersComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.officersService.getOfficers().subscribe(function (officers) {
-            console.log(officers);
-            _this.officers = officers;
+            officers.forEach(function (officer) {
+                if (officer.executive)
+                    _this.executiveOfficers.push(officer);
+                else
+                    _this.officers.push(officer);
+            });
+        }, function (err) {
+            console.error(err);
         });
     };
     return OfficersComponent;

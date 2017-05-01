@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'about',
-  templateUrl: './templates/about.component.html',
-  styleUrls: [ './styles/about.component.css' ],
+  selector: "about",
+  templateUrl: "./templates/about.component.html",
+  styleUrls: [ "./styles/about.component.css" ],
   
 })
 

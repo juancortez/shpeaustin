@@ -30,8 +30,9 @@ const express = require('express'),
     config = require('config'),
     database = require("./lib/database.js"),
     cloudant = require("./lib/cloudant.js"),
-    mcapi = require('mailchimp-api');
-// only load up console if developing locally
+    mcapi = require('mailchimp-api'),
+    path = require('path');
+
 if(appEnv.isLocal){
     const _console = require("./lib/console.js");
 }   
@@ -79,6 +80,7 @@ const databaseInstantiated = new Promise((resolve, reject) =>{
 //     });
 // }
 
+
 /************************************************************************************************************
 *                                  Express App Configuration
 ************************************************************************************************************/
@@ -89,11 +91,8 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 app.use(favicon(__dirname + '/public/assets/shpe_austin_icon.png'));
-require('./router/main')(app, client); // adds the main.js file to send response to browser
-
-app.set('views', __dirname + '/views'); // defines where our HTML files are placed
-app.set('view engine', 'ejs'); // used for HTML rendering
-app.engine('html', require('ejs').__express); // rendering HTML files through EJS
+app.use( express.static(__dirname + '/src' ) ); // hook up Angular2
+require('./router/main')(app, client, express); // adds the main.js file to send response to browser
 
 // start server on the specified port and binding host
 const server = app.listen(appEnv.port, () => {
@@ -137,3 +136,5 @@ databaseInstantiated.then(function(){
 }).catch(function(err){
     console.error(err);
 });
+
+

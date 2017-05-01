@@ -9,14 +9,19 @@ import { OfficersService } from './services/officers.service';
 
 
 export class OfficersComponent implements OnInit{
+	executiveOfficers: any = [];
 	officers: any = [];
 
 	constructor(private officersService: OfficersService) { }
 
 	ngOnInit(){
 		this.officersService.getOfficers().subscribe(officers => {
-			console.log(officers);
-			this.officers = officers;
-		})
+			officers.forEach((officer: any) => {
+				if(officer.executive) this.executiveOfficers.push(officer);
+				else this.officers.push(officer);
+			});
+		}, err => {
+			console.error(err);
+		});
 	}
 }

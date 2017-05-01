@@ -10,7 +10,9 @@ export class OfficersService {
 	constructor(private http: Http) { }
 
 	getOfficers(){
-		return this.http.get('/officersData')
-      		.map(res => res.json());
+		return this.http.get('./data/officerList')
+			.map(res => res.json());
 	}
 }
+
+    

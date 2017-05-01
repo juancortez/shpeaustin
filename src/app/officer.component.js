@@ -10,22 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-require("rxjs/add/operator/toPromise");
-require("rxjs/add/operator/map");
-var OfficersService = (function () {
-    function OfficersService(http) {
-        this.http = http;
+var OfficerComponent = (function () {
+    function OfficerComponent() {
     }
-    OfficersService.prototype.getOfficers = function () {
-        return this.http.get('./data/officerList')
-            .map(function (res) { return res.json(); });
-    };
-    return OfficersService;
+    return OfficerComponent;
 }());
-OfficersService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], OfficersService);
-exports.OfficersService = OfficersService;
-//# sourceMappingURL=officers.service.js.map
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], OfficerComponent.prototype, "officer", void 0);
+OfficerComponent = __decorate([
+    core_1.Component({
+        selector: 'officer',
+        templateUrl: './templates/officer.component.html',
+        styleUrls: ['./styles/officer.component.css']
+    })
+], OfficerComponent);
+exports.OfficerComponent = OfficerComponent;
+//# sourceMappingURL=officer.component.js.map

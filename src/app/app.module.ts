@@ -19,6 +19,7 @@ import { NavigationLinksComponent } from './navigation-links.component';
 import { AboutComponent }           from './about.component';
 import { SmallCardComponent }       from './card.component';
 import { OfficersComponent }        from './officers.component';
+import { OfficerComponent }        from './officer.component';
 import { HamburgerNavigationComponent }        from './hamburger-navigation.component';
 
 
@@ -39,6 +40,7 @@ import { HamburgerNavigationComponent }        from './hamburger-navigation.comp
     AboutComponent,
     SmallCardComponent,
     OfficersComponent,
+    OfficerComponent,
     HamburgerNavigationComponent
   ],
   providers: [ 

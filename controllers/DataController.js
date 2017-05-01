@@ -41,7 +41,7 @@ app.get('/:key', (req, res) => {
             }
             console.log(`Successfully retrieved ${key}!`);
             res.setHeader('Content-Type', 'application/json');
-            return res.status(200).send(data);
+            return res.status(200).json(data);
         });
     } else{
         return res.status(400).send("No key provided"); // bad request

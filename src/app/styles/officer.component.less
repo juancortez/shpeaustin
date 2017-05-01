@@ -1,0 +1,116 @@
+:host{
+    .officer-list{
+        padding: 0px;
+        margin: 0 auto;
+        text-align: center;
+        .container{
+            width: 320px;
+            height: 400px;
+            position: relative;
+            -webkit-perspective: 800px;
+            -moz-perspective: 800px;
+            -o-perspective: 800px;
+            perspective: 800px;
+            display: inline-block;
+            margin: 0px 20px 20px 10px;
+            .card{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                -webkit-transform-style: preserve-3d;
+                -moz-transform-style: preserve-3d;
+                -o-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+                -webkit-transition: transform 1s;
+                -moz-transition: transform 1s;
+                -o-transition: transform 1s;
+                transition: transform 1s;
+                border: 1px solid #002266;
+                border-radius: 13px;
+                &:hover{
+                  -webkit-transform: rotateY(180deg);
+                   -moz-transform: rotateY(180deg);
+                     -o-transform: rotateY(180deg);
+                        transform: rotateY(180deg);
+                }
+                // &:focus{
+                //   -webkit-transform: rotateY(180deg);
+                //    -moz-transform: rotateY(180deg);
+                //      -o-transform: rotateY(180deg);
+                //         transform: rotateY(180deg);
+                // }
+                figure {
+                  margin: 0;
+                  display: block;
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  -webkit-backface-visibility: hidden;
+                  -moz-backface-visibility: hidden;
+                  -o-backface-visibility: hidden;
+                   backface-visibility: hidden;
+                }
+
+                .front{
+                    .officers{
+                        width: 300px;
+                        height: 300px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        padding-top: 20px;
+                    }
+                    .name {
+                      margin-top: 14px;
+                      font-size: 20px;
+                      color: #06063e;
+                    }
+                    .position {
+                      color: #06063e;
+                    }
+                } // .front
+
+                .back{
+                  -webkit-transform: rotateY(180deg);
+                   -moz-transform: rotateY(180deg);
+                     -o-transform: rotateY(180deg);
+                        transform: rotateY(180deg);
+                    .information{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 300px;
+                        height: 400px;
+                        p{
+                          color: #06063e;
+                        }
+                        #officer-linkedin{
+                          margin-top: 20px;
+                        }
+                        #hidden-video{
+                          margin-left: 10px;
+                        }
+                    } // .information
+                } // .back
+            } // .card
+            .flipped {
+              -webkit-transform: rotateY(180deg);
+               -moz-transform: rotateY(180deg);
+                 -o-transform: rotateY(180deg);
+                    transform: rotateY(180deg);
+            } // .flipped
+            .flipped-60 {
+              -webkit-transform: rotateY(60deg);
+               -moz-transform: rotateY(60deg);
+                 -o-transform: rotateY(60deg);
+                    transform: rotateY(60deg);
+            } // .flipped-60
+            .flipped-0 {
+              -webkit-transform: rotateY(0deg);
+               -moz-transform: rotateY(0deg);
+                 -o-transform: rotateY(0deg);
+                    transform: rotateY(0deg);
+            } // .flipped-0
+        } // .container
+    } // .officer-list
+} // .officer-container
