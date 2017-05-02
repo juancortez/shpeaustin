@@ -18,17 +18,50 @@ var Calendar = function() {
                 currentMonth = 11;
             }
             populateCalendar();
+            addCSS();
         });
         wrap.find("#next").bind("click.calendar", function() {
             switchMonth(true);
             currentMonth = (currentMonth + 1) % 12;
             populateCalendar();
+            addCSS();
         });
         label.bind("click", function() {
             switchMonth(null, new Date().getMonth(), new Date().getFullYear());
+            addCSS();
         });
         label.click();
         populateCalendar();
+        addCSS();
+    }
+
+    function addCSS(){
+        $('td').css('color', '#2b2b2b');
+        $('td').css('width', '30px');
+        $('td').css('line-height', '30px');
+        $('td').css('text-align', 'center');
+        $('td').css('border', '1px solid #e6e6e6');
+        $('td:not(.forest-green)').css('cursor', 'default');
+
+        if(!$("td.today").hasClass('forest-green')){
+            $("td.today").css('background', '#ededed' );
+            $("td.today").css('color', '#8c8c8c');
+            $("td.today").css('box-shadow', '1px 1px 0px #fff inset');
+            $("td.today").css('-moz-box-shadow', '1px 1px 0px #fff inset');
+            $("td.today").css('-webkit-box-shadow', '1px 1px 0px #fff inset');
+        }
+
+        $("td:not(.nil):hover").css('color', '#fff');
+        $("td:not(.nil):hover").css('text-shadow', ' #6C1A07 0px -1px');
+        $("td:not(.nil):hover").css('background', '#CD310D');
+        $("td:not(.nil):hover").css('background', ' -moz-linear-gradient(top, #b32b0c, #cd310d)');
+        $("td:not(.nil):hover").css('background', ' -webkit-gradient(linear, left top, left bottom, from(#b32b0c), to(#cd310d))');
+        $("td:not(.nil):hover").css('-moz-box-shadow', '0px 0px 0px');
+        $("td:not(.nil):hover").css('-webkit-box-shadow', '0px 0px 0px');
+
+        $('table.curr').css('float', 'left');
+        $('table.temp').css('position', 'absolute');
+
     }
 
     function switchMonth(next, month, year) {
@@ -49,6 +82,7 @@ var Calendar = function() {
             });
 
         $('#label').text(calendar.label);
+        addCSS();
     }
 
     function populateCalendar() {

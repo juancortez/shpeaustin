@@ -46,3 +46,5 @@ Thumbs.db
 # Map and JavaScript files
 /src/app/*.map
 /src/app/*.js
+/src/app/services/*.js
+/src/app/services/*.map

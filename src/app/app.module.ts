@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 /* API Services */
 import { OfficersService } from './services/officers.service';
+import { CalendarService } from './services/calendar.service';
+import { JobService }      from './services/jobs.service';
 
 /* App Component */
 import { AppComponent }                     from './app.component';
@@ -26,9 +28,11 @@ import { SocialMediaComponent }             from './social-media.component';
 import { BannerComponent }                  from './banner.component';
 import { HamburgerNavigationComponent }     from './hamburger-navigation.component';
 
-/* Miscallaneous */
+/* Helpers */
 import { SmallCardComponent }               from './card.component';
 import { OfficerComponent }                 from './officer.component';
+import { CarouselComponent }                from './carousel.component';
+import { JobComponent }                     from './job.component';
 
 
 
@@ -54,10 +58,14 @@ import { OfficerComponent }                 from './officer.component';
     OfficerComponent,
     HamburgerNavigationComponent,
     MembershipComponent,
-    ContactComponent
+    ContactComponent,
+    CarouselComponent,
+    JobComponent
   ],
   providers: [ 
-    OfficersService
+    OfficersService,
+    CalendarService,
+    JobService
   ],
   bootstrap: [ AppComponent ]
 })
