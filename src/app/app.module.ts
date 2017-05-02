@@ -1,15 +1,16 @@
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { NgModule }                         from '@angular/core';
+import { BrowserModule }                    from '@angular/platform-browser';
+import { FormsModule }                      from '@angular/forms';
+import { HttpModule }                       from '@angular/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule }                 from './app-routing.module';
 
 
 /* API Services */
-import { OfficersService } from './services/officers.service';
-import { CalendarService } from './services/calendar.service';
-import { JobService }      from './services/jobs.service';
+import { OfficersService }                  from './services/officers.service';
+import { CalendarService }                  from './services/calendar.service';
+import { JobService }                       from './services/jobs.service';
+import { AnnouncementsService }             from './services/announcements.service';
 
 /* App Component */
 import { AppComponent }                     from './app.component';
@@ -33,9 +34,8 @@ import { SmallCardComponent }               from './card.component';
 import { OfficerComponent }                 from './officer.component';
 import { CarouselComponent }                from './carousel.component';
 import { JobComponent }                     from './job.component';
-
-
-
+import { WelcomeComponent }                 from './welcome.component';
+import { AnnouncementsComponent }           from './announcements.component';
 
 
 @NgModule({
@@ -60,12 +60,15 @@ import { JobComponent }                     from './job.component';
     MembershipComponent,
     ContactComponent,
     CarouselComponent,
-    JobComponent
+    JobComponent,
+    WelcomeComponent,
+    AnnouncementsComponent
   ],
   providers: [ 
     OfficersService,
     CalendarService,
-    JobService
+    JobService,
+    AnnouncementsService
   ],
   bootstrap: [ AppComponent ]
 })

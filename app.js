@@ -58,6 +58,10 @@ const databaseInstantiated = new Promise((resolve, reject) =>{
             return resolve(true);
         });
     });
+
+    client.on('error', function(err){
+       err && console.error(err);;
+    });
 });
 /************************************************************************************************************
 *                                   Cloudant Database Creation

@@ -1,0 +1,43 @@
+@color_1: #999;
+@color_2: #607D8B;
+@color_3: #039be5;
+@background_color_1: #eee;
+@background_color_2: #CFD8DC;
+
+:host{  
+  h1 {
+    font-size: 1.2em;
+    color: @color_1;
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 2em;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  nav {
+    a {
+      padding: 5px 10px;
+      text-decoration: none;
+      margin-top: 10px;
+      display: inline-block;
+      background-color: @background_color_1;
+      border-radius: 4px;
+      &:visited {
+        color: @color_2;
+      }
+      &:hover {
+        color: @color_3;
+        background-color: @background_color_2;
+      }
+    }
+    a.active {
+      color: @color_3;
+    }
+  }
+  a {
+    &:link {
+      color: @color_2;
+    }
+  }
+}

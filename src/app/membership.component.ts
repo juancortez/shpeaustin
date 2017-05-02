@@ -30,7 +30,6 @@ export class MembershipComponent implements OnInit{
 		});
 
 		this.jobService.getJobs().subscribe(data => {
-			console.log(data);
 			this.jobs = data.jobs;
 		}, err => {
 			console.error(err);
@@ -42,7 +41,7 @@ export class MembershipComponent implements OnInit{
 		console.log("more information");
 	}
 
-	private _constructCalendar(entries){
+	private _constructCalendar(entries: any){
 		var cal = Calendar();
         cal.init(null, entries);
 	}

@@ -1,0 +1,187 @@
+@silverBorder: #ebebeb;
+
+html{
+  width:100%;
+  min-height: 100%;
+  background:white;
+  position: relative; 
+  top: 0; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+  body{
+      width:100%;
+      min-height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      a {
+          color: #008CBA;
+          line-height: inherit;
+          text-decoration: none;
+      }
+
+      li{
+          margin: 0;
+          padding: 0;
+          border: 0;
+          vertical-align: baseline;
+          background: transparent;
+      }
+
+      .center-text{
+          text-align: center;
+      }
+
+      .bold {
+          font-weight: bold;
+      }
+
+      .italic {
+          font-style: italic;
+      }
+
+      /* Colors  */
+      .dark-cyan-text{
+          color: #42bdc2;
+      }
+
+      .dark-cyan{
+          background: #42bdc2;
+      }
+
+      .forest-green{
+          background: #7fc242;
+      }
+
+      .orange{
+          background: #ff8a3c;
+      }
+
+      .yellow{
+          background: #ffd800;
+      }
+
+      .dodger-blue{
+          background: #388bd1;
+      }
+
+      .dodger-blue-text{
+          color: #388bd1;
+      }
+
+      .sky-blue{
+          background: #a1def8;
+      }
+
+      .zombie-green{
+          background: #3fbf79;
+      }
+
+      .violet{
+          background: #db6ac5;
+      }
+
+      .mid-blue{
+          color: rgba(25,84,171,1);
+      }
+
+      .light-gray{
+          color: @silverBorder;
+          background: @silverBorder;
+      }
+
+      .dark-shpe-blue{
+          color: #002266;
+      }
+
+      .shpe-blue{
+          color: #039;
+      }
+
+      .thumbnail-title{
+        font-weight: bold;
+        text-align:center;
+      }
+
+    
+      .loading{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2c3e50;
+        flex-direction: column;
+        h1.load-text {
+            position: relative;
+            color: rgba(0, 0, 0, .2);
+            font-size: 4em;
+        }
+
+        h1.load-text:before {
+            content: attr(data-text);
+            position: absolute;
+            overflow: hidden;
+            max-width: 6em;
+            white-space: nowrap;
+            color: rgba(255, 255, 255, .7);
+            animation: loading 3s linear;
+        }
+        @keyframes loading {
+            0% {
+                max-width: 0;
+            }
+        }
+
+        .spinner {
+          width: 40px;
+          height: 40px;
+          position: relative;
+          margin: 100px auto;
+        }
+
+        .double-bounce1, .double-bounce2 {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: white;
+          opacity: 0.6;
+          position: absolute;
+          top: 0;
+          left: 0;
+          
+          -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+          animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+
+        .double-bounce2 {
+          -webkit-animation-delay: -1.0s;
+          animation-delay: -1.0s;
+        }
+
+        @-webkit-keyframes sk-bounce {
+          0%, 100% { -webkit-transform: scale(0.0) }
+          50% { -webkit-transform: scale(1.0) }
+        }
+
+        @keyframes sk-bounce {
+          0%, 100% { 
+            transform: scale(0.0);
+            -webkit-transform: scale(0.0);
+          } 50% { 
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+          }
+        }
+    }
+  }
+}    
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}

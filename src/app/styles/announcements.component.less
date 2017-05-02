@@ -1,0 +1,124 @@
+:host{
+  .announcements{
+    padding: 10px 120px 10px 120px;
+    margin: 25px 0px 25px 0px;
+
+    @media (max-width: 777px){
+        // padding: 0px;
+        padding: 0px 15px 0px 15px;
+        height: 240px;
+    }
+
+    @media (min-width: 768px){
+      padding: 0px;
+      // padding: 0px 15px 0px 15px;
+    }
+
+    #announcement-header{
+      display: none;
+      @media (max-width: 623px){
+        display: block;
+      }
+    }
+
+    .announcement-container{
+     display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: stretch;
+      -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+              align-items: stretch;
+      -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+              align-content: flex-start;
+      height: 200px;
+      /*height: 315px;*/
+      width: 80%;
+      margin: 0 auto;
+
+      @media (max-width: 1023px){
+          width: 700px;
+      }
+
+      @media (max-width: 777px){
+        width: 95%;
+      }
+
+      .announcement-icon-container{
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        padding: 0px;
+        margin: 0px;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 25px 0px 0px 25px;
+        height: 227px;
+
+      @media (max-width: 623px){
+        display: none;
+        -webkit-box-flex: 0;
+        -webkit-flex: 0;
+        -ms-flex: 0;
+        flex: 0;
+      }
+
+        .glyphicon-bullhorn{
+          font-size: 50px;
+          left: 5px;
+          margin-top: 10px;
+        }
+
+        #announcement-title{
+          margin-top: 50px;
+          font-weight: bold;
+          padding: 0px 5px 0px 5px;
+        }
+
+
+      } // .announcement-icon-container
+      .announcement-content-container{
+        -webkit-box-flex: 3;
+        -webkit-flex: 3;
+        -ms-flex: 3;
+        flex: 3;
+        border: 1px solid #ddd;
+        border-radius: 0px 25px 25px 0px;
+        padding: 10px 5px 5px 10px;
+        overflow-y: auto;
+        overflow-x: hidden; 
+        height: 227px;
+        text-align: center;
+        @media (max-width: 623px){
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            border-radius: 25px;
+        }
+
+        .fa-spinner{
+          margin-top: 80px;
+        }
+
+        .post-info{
+          font-weight: bold;
+        }
+      } // .announcement-content-container
+    } // .announcement-container
+  } // .announcements
+}
+
+:host /deep/ .post-info{
+  font-weight: bold;
+}
