@@ -6,7 +6,7 @@ import { AboutComponent }   	from './about.component';
 import { OfficersComponent } 	from './officers.component';
 import { MembershipComponent } 	from './membership.component';
 import { ContactComponent } 	from './contact.component';
-
+import { NotFoundComponent }	from './not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,7 +14,9 @@ const routes: Routes = [
   { path: 'about',  		component: AboutComponent },
   { path: 'membership',  	component: MembershipComponent },
   { path: 'officers',  		component: OfficersComponent },
-  { path: 'contact',  		component: ContactComponent }
+  { path: 'contact',  		component: ContactComponent },
+  { path: '404',			component: NotFoundComponent },
+  { path: '**', 			redirectTo: '/404' }
 ];
 
 @NgModule({

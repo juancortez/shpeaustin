@@ -21,6 +21,7 @@ import { AboutComponent }                   from './about.component';
 import { OfficersComponent }                from './officers.component';
 import { MembershipComponent }              from './membership.component'
 import { ContactComponent }                 from './contact.component';
+import { NotFoundComponent }                from './not-found.component';
 
 /* Navigation Components */
 import { NavigationComponent }              from './navigation.component';
@@ -62,7 +63,8 @@ import { AnnouncementsComponent }           from './announcements.component';
     CarouselComponent,
     JobComponent,
     WelcomeComponent,
-    AnnouncementsComponent
+    AnnouncementsComponent,
+    NotFoundComponent
   ],
   providers: [ 
     OfficersService,
