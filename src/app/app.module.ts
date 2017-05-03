@@ -5,12 +5,15 @@ import { HttpModule }                       from '@angular/http';
 
 import { AppRoutingModule }                 from './app-routing.module';
 
+/* Pipes */
+import { SafePipe }                         from './safe-pipe.component';
 
 /* API Services */
 import { OfficersService }                  from './services/officers.service';
 import { CalendarService }                  from './services/calendar.service';
 import { JobService }                       from './services/jobs.service';
 import { AnnouncementsService }             from './services/announcements.service';
+import { NewsletterService }                from './services/newsletter.service';
 
 /* App Component */
 import { AppComponent }                     from './app.component';
@@ -37,6 +40,7 @@ import { CarouselComponent }                from './carousel.component';
 import { JobComponent }                     from './job.component';
 import { WelcomeComponent }                 from './welcome.component';
 import { AnnouncementsComponent }           from './announcements.component';
+import { CardContainerComponent }           from './card-container.component';
 
 
 @NgModule({
@@ -64,13 +68,16 @@ import { AnnouncementsComponent }           from './announcements.component';
     JobComponent,
     WelcomeComponent,
     AnnouncementsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CardContainerComponent,
+    SafePipe
   ],
   providers: [ 
     OfficersService,
     CalendarService,
     JobService,
-    AnnouncementsService
+    AnnouncementsService,
+    NewsletterService
   ],
   bootstrap: [ AppComponent ]
 })

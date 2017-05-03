@@ -1,5 +1,93 @@
 :host{
 	.main-page-container{
 		width: 100%;
+
+		.bs-example-a{
+			padding: 0px 25px 0px 25px;
+			margin-right: auto;
+			margin-left: auto;
+			width: 85%;
+			margin-top :15px;
+
+
+			@media only screen and (max-width: 1137px){
+			    width: 750px;  
+			}
+
+			@media only screen and (max-width: 768px){
+			    width: 100%;
+			}
+		    .thumbnail-title{
+		    	font-weight: bold;
+		      	text-align:center;
+		      	.newsletter-frame{
+		        	max-height: 473px;
+		      	}
+		    }
+		    .row{
+		    	img{
+		        	max-height: 199px;
+		        	min-height: 199px;
+		      	}
+		      	.social-media{
+			        width: 100%;
+			        display: flex;
+			        justify-content: center;
+
+			        @media only screen and (max-width: 768px){
+			        	display: block;
+			        }
+			    }
+
+	            .thumbnail{
+			        min-height: 473px;
+			        max-height: 473px;
+	                @media only screen and (max-width: 768px){
+			          max-height: 433px;
+			          min-height: 433px;
+			        }
+
+			        @media only screen and (max-width: 514px){
+			          max-height: 486px;
+			          min-height: 486px;
+			        }
+	                &.facebook-thumbnail{
+			        	width: 100%;
+			          	overflow-y: hidden;
+			          	.facebook-iframe{
+				            border: none;
+				            overflow: hidden;
+				            display: block;
+				            margin: 0 auto;
+			          	}
+			        }
+
+	                &.twitter-thumbnail{
+						width: 100%;
+						height: 450px;
+						overflow-y: hidden;
+						display: flex;
+						justify-content: center;
+			        }
+			        .paypal{
+			        	text-align: center;
+			        }
+
+			        .fa-archive, .fa-envelope{
+			        	position: absolute;
+			        	bottom: 30px;
+			        	right: 26px;
+			        	cursor: pointer;
+			            @media only screen and (max-width: 768px){
+			            	bottom: 10px;
+			            } 
+			        }
+
+			        .fa-envelope{
+			          right: 48px;
+			        }
+			    } // .thumbnail
+		    } // .row
+		}
 	}
 }

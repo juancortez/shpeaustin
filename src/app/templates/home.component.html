@@ -1,5 +1,47 @@
 <div class="main-page-container">
-   <welcome></welcome>
-   <announcements></announcements>
+	<welcome></welcome>
+	<announcements></announcements>
+	<div class="bs-example-a">
+		<div class="row">
+			<card-container class="col-sm-6 col-md-4 newsletter-frame" title="Newsletter">
+				<iframe style="width:100%;padding:10px;" class="thumbnail" [src]="newsletter | safe" card-container-body></iframe>
+			</card-container>
 
+			<card-container class="col-sm-6 col-md-4" title="Membership">
+				<div card-container-body>
+					<div class="thumbnail">
+					 	<a href="https://www.shpeconnect.org/eweb/DynamicPage.aspx?WebCode=LoginRequired&expires=yes&Site=shpe" class="dark-shpe-blue" target="_">
+					 		<img src="/assets/shpe_icon.png" alt="SHPE-logo">
+					 	</a>
+					 <div class="caption">
+					    <h3 class="membership-header center-text">Become a SHPE Member</h3>
+					    <b>Local Membership:</b> Are you a recent grad and just moved to Austin? Join SHPE Austin and learn more about what Austin has to offer! Please visit our Membership Page to find out more about our chapter.
+					    <div class="paypal">
+					       <form method="post" action="https://www.paypal.com/cgi-bin/webscr" target="_blank">
+					          <input type="hidden" value="_s-xclick" name="cmd">
+					          <input type="hidden" value="44KD2JSH3CQX2" name="hosted_button_id">
+					          <input border="0" type="image" alt="PayPal - The safer, easier way to pay online!" name="submit" src="/assets/paypal.png">
+					       </form>
+					    </div> <!-- .paypal -->
+					    <b>National Membership:</b> If you are interested in becoming a SHPE National member, click on the SHPE icon above!
+					 </div> <!-- .caption -->
+					</div> <!-- .thumbnail -->
+				</div>
+			</card-container>
+
+			<div class="social-media">
+				<card-container class="col-sm-6 col-md-4" title="Facebook">
+                    <div class="thumbnail facebook-thumbnail" card-container-body>
+                    	<iframe class="facebook-iframe" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FSHPEAustin%2F%3Ffref%3Dts&tabs=timeline&width=320&height=430&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="320" height="430" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                    </div>
+				</card-container>
+				<card-container class="col-sm-6 col-md-4 twitter-block" title="Twitter">
+					<div class="thumbnail twitter-thumbnail" card-container-body>
+                         <a class="twitter-timeline" href="https://twitter.com/SHPEAustin" data-widget-id="738482761858732032">Tweets by @SHPEAustin</a>
+                     </div>
+				</card-container>
+			</div>
+
+		</div>
+	</div>
 </div>
