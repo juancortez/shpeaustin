@@ -1,0 +1,57 @@
+<div [hidden]="submitted" class="container">
+    <h1>Hero Form</h1>
+    <form (ngSubmit)="onSubmit()" #shpeForm="ngForm">
+      <div class="form-group">
+        <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
+      </div>
+      <div class="form-group">
+          <label for="name">Name: <span style="color:red;">*</span></label>
+          <input type="text" class="form-control" id="name"
+          required
+          [(ngModel)]="formName" name="name"
+          #name="ngModel">
+          <div [hidden]="name.valid || name.pristine"
+              class="alert alert-danger">
+              Name is required
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="name">Email: <span style="color:red;">*</span></label>
+          <input type="email" class="form-control" id="email"
+          required
+          [(ngModel)]="formEmail" name="email"
+          #email="ngModel">
+          <div [hidden]="email.valid || email.pristine"
+              class="alert alert-danger">
+              E-mail Address is required
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="name">Phone Number: <span style="color:red;">*</span></label>
+          <input type="tel" class="form-control" id="phone"
+          required
+          [(ngModel)]="formPhone" name="phone"
+          #phone="ngModel">
+          <div [hidden]="phone.valid || phone.pristine"
+              class="alert alert-danger">
+              Phone Number is required
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="category">Category: <span style="color:red;">*</span></label>
+          <select (change)="onCategoryChange($event.target.value)" class="form-control" id="category" required>
+          <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="name">Message: <span style="color:red;">*</span></label>
+          <textarea [(ngModel)]="formMessage" name="message"
+          #message="ngModel" class="form-control" id="message" rows="7" name="message" placeholder="How can we help?" required></textarea>
+          <div [hidden]="message.valid || message.pristine"
+              class="alert alert-danger">
+              Message is required
+          </div>
+      </div>
+      <button type="submit" class="btn btn-success custom-button" [disabled]="!shpeForm.form.valid">Submit</button>
+    </form>
+</div>
