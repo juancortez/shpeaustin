@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
 
+import { Http, Headers, RequestOptions } from '@angular/http';
+
+declare var $: any;
+
 @Component({
   selector: "contact",
   templateUrl: "./templates/contact.component.html",
   styleUrls: [ "./styles/contact.component.css" ]
 })
-
 
 export class ContactComponent {
 	categories:any = [
@@ -25,17 +28,68 @@ export class ContactComponent {
 	formCategory: string = this.categories[0];
 	formMessage: string = "";
 	submitted = false;
+	validEmail = true;
+	success = false;
+
+  constructor(private http: Http){}
+
+	isValidPhoneNumber(): boolean{
+		return /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/.test(this.formPhone);
+	}
+
+	isValidName(): boolean{
+		return /.{1,}/.test(this.formName);
+	}
+
+	isValidEmail(): boolean{
+		return /@.*\..{2,}/.test(this.formEmail);
+	}
+
+	isValidMessage(): boolean{
+		return /.{1,}/.test(this.formMessage);
+	}
 
 	onCategoryChange(category: string){
 		this.formCategory = category;
 	}
 
-	onMessageChange(message: string):void{
-		this.formMessage = message;
+	onSubmit():void {
+		let headers = new Headers({ 
+			'Content-Type': 'application/json'
+		});
+      	let options = new RequestOptions({ 
+      		headers: headers 
+      	});
+
+      	let payload = {
+        	'name': this.formName, 
+            'email': this.formEmail,
+            'phone': this.formPhone,
+            'category': this.formCategory,
+            'message': this.formMessage
+      	};
+
+
+  		let handle = this.http.post('/communication/contact', payload, options);
+
+		handle.subscribe(
+		    res => {
+		    	if(res && res.status === 200){
+		    		this.success = true;	
+		    		this.submitted = true;
+		    	} else{
+		    		console.error(res);
+		    	}	
+		    },
+		    error => {
+		    	this.success = false;
+		    	this.submitted = true;
+		      	console.error(error);
+		    }
+	  	);
 	}
 
-	onSubmit():void {
-		console.log(this);
-		this.submitted = true;
+	allValid(): boolean{
+		return this.isValidName() && this.isValidEmail() && this.isValidPhoneNumber();
 	}
 }

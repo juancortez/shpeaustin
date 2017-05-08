@@ -41,6 +41,7 @@ import { JobComponent }                     from './job.component';
 import { WelcomeComponent }                 from './welcome.component';
 import { AnnouncementsComponent }           from './announcements.component';
 import { CardContainerComponent }           from './card-container.component';
+import { OnlyNumber }                       from './only-number.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { CardContainerComponent }           from './card-container.component';
     AnnouncementsComponent,
     NotFoundComponent,
     CardContainerComponent,
-    SafePipe
+    SafePipe,
+    OnlyNumber
   ],
   providers: [ 
     OfficersService,
