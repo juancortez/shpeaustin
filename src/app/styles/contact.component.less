@@ -1,70 +1,215 @@
-.shpe-form input.valid, textarea.valid  {
-  border-left: 5px solid #42A948;
-}
+:host{
+	.shpe-form{
+		padding: 15px;
 
-.shpe-form input:not(.valid), textarea:not(.valid)  {
-  border-left: 5px solid #a94442;
-}
-.container{
-	margin-top: 15px;
-	.custom-button{
-		display: block;
-		border-radius: 0;
-		width: 10rem;
-		height: 10rem;
-		border-radius: 100%;
-		background: #002266;
-		font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
-		font-weight: 700;
-		text-transform: uppercase;
-		color: #fff;
-		margin: 0 auto;
-		-webkit-transform: rotate(0);
-		-ms-transform: rotate(0);
-		transform: rotate(0);
-		-webkit-transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
-		transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
-		position: relative;
-		bottom: 64px;
-		&:hover{
-		    -webkit-transform: rotate(60deg);
-		 -moz-transform: rotate(60deg);
-		   -o-transform: rotate(60deg);
-		      transform: rotate(60deg);
-		      background: #0137A2;
+		input.valid, textarea.valid  {
+		  border-left: 5px solid #42A948;
 		}
 
-		&:focus{
-		    -webkit-transform: rotate(30deg);
-		 -moz-transform: rotate(30deg);
-		   -o-transform: rotate(30deg);
-		      transform: rotate(30deg);
-		}
-	} // .custom-button
-}
-
-
-.submitted-email{
-	height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px;
-	.email-container{
-		i{
-			float: left;
-			cursor:pointer;
-			font-size: 20px;
-			color: black;
-			margin-left: 10px;
-			&:hover{
-				color: #026;
-			}
-		}
-		span.signature{
-			font-weight: bold;
-			float: right;
+		input:not(.valid), textarea:not(.valid)  {
+		  border-left: 5px solid #a94442;
 		}
 	}
+
+
+	.toggle{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		    margin-top: 15px;
+		button{
+	  		width: 120px;
+		  	height: 35px;
+		  	background: white;
+		  	border: 1px solid #ddd;
+		  	&#physical-toggle{
+		    	border-radius: 0px 5px 5px 0px;
+		  	}
+		  	&#email-toggle{
+		    	border-radius: 5px 0px 0px 5px;
+		    	border-right-width: 0px;
+		  	}
+		  	&.active{
+		    	background: #388bd1;
+		    	color: white;
+		  	}
+		  	&.inactive{
+			    background: white;
+			    color: black;
+		  	}
+		}
+	}
+
+	.envelope-container{
+		display: flex;
+		margin-top: 25px;
+		justify-content: center;
+		padding: 15px;
+
+		.huge-envelope{
+		  position: relative;
+		  width: 800px;
+		  height:400px;
+		  padding: 10px;
+		  margin-top: 30px;
+		  border-radius: 5px;
+		  background-color: #d9edf7;
+		  border: 5px solid #31708f;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+
+		  @media only screen and (max-width: 720px){
+		      height: 350px;
+		  }
+
+		  @media only screen and (max-width: 560px){
+		      height: 300px;
+		  }
+
+		  @media only screen and (max-width: 450px){
+		      height: 250px;
+		  }
+
+		  .stamp{
+		    position: absolute;
+		    top: 10px;
+		    right: 15px;
+		    padding: 15px;
+		    font-size: 35px;
+		    height: 100px;
+		    width: 101px;
+		    background: url(http://1.bp.blogspot.com/-Ur_T5E4eiGQ/UwJd8LzkIHI/AAAAAAAAPpU/JzPeoXiX1Ko/s1600/truestamp2014.png);
+		    background-size: contain;
+
+		    @media only screen and (max-width: 720px){
+		      height: 75px;
+		      width: 75px;
+		    }
+
+		    @media only screen and (max-width: 450px){
+		      height: 50px;
+		      width: 50px;
+		    }
+
+		  }
+		  .sendTo, .sendFrom{
+		    .sendInformation{
+		      list-style-type: none;
+		      li{
+		        color: #5e6fa0;
+		        font-family: "Brush Script MT", cursive;
+		        font-size: 30px;
+		        font-style: normal;
+		        font-variant: normal;
+		        font-weight: 500;
+		        line-height: 26.4px;
+		        letter-spacing: 3px;
+		        margin-bottom: 12px;
+
+		        @media only screen and (max-width: 720px){
+		            font-size: 28px;
+		        }
+
+		        @media only screen and (max-width: 520px){
+		          font-size: 20px;
+		          line-height: 12px;
+		        }
+		      }
+		    }
+		  }
+
+		  .sendFrom{
+		    position: absolute;
+		    top: 0px;
+		    left: 10px;
+		    padding: 15px;
+		    .sendInformation{
+		      padding: 0px;
+		      li{
+		        margin-bottom: 0px;
+		        font-size: 16px;
+
+		        @media only screen and (max-width: 720px){
+		          margin-bottom: 0px;
+		          font-size: 12px;
+		          line-height: 14px;
+		          letter-spacing: 1px;
+		        }
+
+		        @media only screen and (max-width: 450px){
+		          font-size: 10px;
+		          line-height: 10px;
+		        }
+		      }
+		    }
+		  }
+		}
+	}
+
+
+	.container{
+		margin-top: 15px;
+		.custom-button{
+			display: block;
+			border-radius: 0;
+			width: 10rem;
+			height: 10rem;
+			border-radius: 100%;
+			background: #002266;
+			font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
+			font-weight: 700;
+			text-transform: uppercase;
+			color: #fff;
+			margin: 0 auto;
+			-webkit-transform: rotate(0);
+			-ms-transform: rotate(0);
+			transform: rotate(0);
+			-webkit-transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+			transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);
+			position: relative;
+			bottom: 64px;
+			&:hover{
+			    -webkit-transform: rotate(60deg);
+			 -moz-transform: rotate(60deg);
+			   -o-transform: rotate(60deg);
+			      transform: rotate(60deg);
+			      background: #0137A2;
+			}
+
+			&:focus{
+			    -webkit-transform: rotate(30deg);
+			 -moz-transform: rotate(30deg);
+			   -o-transform: rotate(30deg);
+			      transform: rotate(30deg);
+			}
+		} // .custom-button
+	}
+
+
+	.submitted-email{
+		height: 100%;
+	    width: 100%;
+	    display: flex;
+	    justify-content: center;
+	    align-items: flex-start;
+	    padding: 40px;
+		.email-container{
+			i{
+				float: left;
+				cursor:pointer;
+				font-size: 20px;
+				color: black;
+				margin-left: 10px;
+				&:hover{
+					color: #026;
+				}
+			}
+			span.signature{
+				font-weight: bold;
+				float: right;
+			}
+		}
+	}
+
 }

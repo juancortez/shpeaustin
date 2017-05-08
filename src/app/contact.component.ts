@@ -30,8 +30,13 @@ export class ContactComponent {
 	submitted = false;
 	validEmail = true;
 	success = false;
+	physicalAddress = false;
 
-  constructor(private http: Http){}
+  	constructor(private http: Http){}
+
+  	toggle(){
+  		this.physicalAddress = !this.physicalAddress;
+  	}
 
 	isValidPhoneNumber(): boolean{
 		return /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/.test(this.formPhone);
@@ -90,6 +95,6 @@ export class ContactComponent {
 	}
 
 	allValid(): boolean{
-		return this.isValidName() && this.isValidEmail() && this.isValidPhoneNumber();
+		return this.isValidName() && this.isValidEmail() && this.isValidPhoneNumber() && this.isValidMessage();
 	}
 }
