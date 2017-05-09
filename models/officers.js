@@ -1,6 +1,6 @@
 // Officer pictures: https://drive.google.com/drive/u/0/folders/0B6Mzl2FjDeV0fmNzS1NIZDMycFp6UWlKRTlYeVgzY1BnNGdlOGpnTHNsbWxiMmNGa3pXME0
 // http://jpeg-optimizer.com/
-module.exports = function Officer(name, position, email, phone, hometown, company, executive, image_url, linkedin){
+function Officer(name, position, email, phone, hometown, company, executive, image_url, linkedin){
 	this.name = name;
 	this.position = position;
 	this.email = email;
@@ -11,3 +11,5 @@ module.exports = function Officer(name, position, email, phone, hometown, compan
 	this.image_url = image_url;
 	this.linkedin = linkedin;
 }
+
+module.exports = Officer;
