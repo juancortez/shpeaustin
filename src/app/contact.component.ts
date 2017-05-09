@@ -2,8 +2,6 @@ import { Component } from "@angular/core";
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 
-declare var $: any;
-
 @Component({
   selector: "contact",
   templateUrl: "./templates/contact.component.html",
