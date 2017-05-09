@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hamburger-navigation',
@@ -15,11 +16,19 @@ export class HamburgerNavigationComponent{
 		'39': 1, 
 		'40': 1
 	};
+	router;
+
+	constructor(private _router: Router){ this.router = _router; }
 
 	toggleNavigation(){
 		this.showNavigation = !this.showNavigation;
 		if(this.showNavigation) this.disableScroll();
 		else this.enableScroll();
+	}
+
+	getCurrentPath(route): boolean{
+		let currentUrl = this.router.url;
+		return route.match(currentUrl);
 	}
 
 	private enableScroll() {

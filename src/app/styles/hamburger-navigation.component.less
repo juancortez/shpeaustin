@@ -16,9 +16,14 @@
 		    justify-content: center;
 		    align-items: center;
 	        cursor: pointer;
-	        i:hover{
-	            color: @blueHover;
-	        } 
+            i{
+                @media(max-width:610px){
+                    font-size: 32px;
+                }
+                &:hover{
+                    color: @blueHover;
+                } 
+            }
 	    }
 	    .shpe-header{
 	    	flex: 7;
@@ -27,6 +32,18 @@
     		text-transform: uppercase;
 		    border-right: 1px solid #ededed;
 	    	border-left: 1px solid #ededed;
+            h1{
+                margin: 0px;
+                font-size: 4em;
+                @media(max-width:610px){
+                    margin: 10px;
+                    font-size: 3em;
+                }
+                @media(max-width:432px){
+                    font-size: 2em;
+                    margin-top: 20px;
+                }
+            }
 	    }
     }
 }
@@ -43,42 +60,40 @@
     	margin: 0px;
     	padding: 0px;
     	display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
 	    .links {
-			list-style-type: none;
 			margin: 0;
 			padding: 0;
 			width: 100%;
 			background-color: #f1f1f1;
-			text-align: center;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			flex: 1;
-            letter-spacing: 7px;
-            text-transform: uppercase;
-            font-weight: bold;
+            // letter-spacing: 7px;
             line-height: 0px;
             transition: all 0.5s ease 0s;
             -ms-transition: all 0.5s ease 0s;
             -moz-transition: all 0.5s ease 0s;
             -webkit-transition: all 0.5s ease 0s;
             text-align: center;
-            a{
-            	text-decoration: none;
-            	letter-spacing: 1px;
-                text-transform: uppercase;
-                font-weight: bold;
-                font-size: 29px;
-            }
+            text-decoration: none;
+        	letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 29px;
+            color: black;
             &:hover {
                 background-color: #DDDADA;
                 cursor: pointer;
-                a{
-                	color: white;
-                }
+                color: white;
+            }
+            &.active {
+                background-color: #002266;;
+                color: white;
+                height: 100%;
             }
 	    }
         .media-links{

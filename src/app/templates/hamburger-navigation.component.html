@@ -12,11 +12,11 @@
 
 <div *ngIf="showNavigation" class="link-navigation">
 	<ul class="link-list">
-		<li class = "links"> <a class="active" href="/">Home</a></li>
-		<li class = "links"> <a href="/about">About</a></li>
-		<li class = "links"> <a href="/officers">Officers</a></li>
-		<li class = "links"> <a href="/membership">Membership</a></li>
-		<li class = "links"> <a href="/contact">Contact Us</a></li>
+		<a class="links" [class.active]="getCurrentPath('/home')" href="/">Home</a>
+		<a class="links" [class.active]="getCurrentPath('/about')" href="/about">About</a>
+		<a class="links" [class.active]="getCurrentPath('/officers')" href="/officers">Officers</a>
+		<a class="links" [class.active]="getCurrentPath('/membership')" href="/membership">Membership</a>
+		<a class="links" [class.active]="getCurrentPath('/contact')" href="/contact">Contact</a>
 		<div class="media-links">
 			<div class="social-media">
 			   <a class = "dark-shpe-blue" href="https://twitter.com/SHPEAustin/" target="_blank">
