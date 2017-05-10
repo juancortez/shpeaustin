@@ -14,10 +14,12 @@ export class AuthService {
 	// store the URL so we can redirect after logging in
 	redirectUrl: string;
 
-	login(): Observable<any> {
+	login({username, password}: any): Observable<any> {
+		let endcodedCredentials = btoa(username + ":" + password)
+
 		let headers = new Headers({ 
 			'Content-Type': 'application/json',
-			'Authorization': 'TODO'
+			'Authorization': 'Basic ' + endcodedCredentials
 		});
 
       	let options = new RequestOptions({ 

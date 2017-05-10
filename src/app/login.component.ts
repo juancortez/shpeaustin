@@ -11,6 +11,8 @@ import { AuthService } from './services/auth.service';
 
 export class LoginComponent implements OnInit{
 	constructor(public authService: AuthService, public router: Router) {}
+	formUsername: string = "";
+	formPassword: string = "";
 
 	ngOnInit(){
 		let credentialsCookie = this.getCookie('credentials');
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit{
 		}
 	}
 
-	login() {
+	login(): void {
 		this._regularLogin().then((response) => {
 			this._checkLoggedIn();
 			this.setCookie('credentials', response['uuid'], 31, '/login');
@@ -37,9 +39,21 @@ export class LoginComponent implements OnInit{
 		this.authService.logout();
 	}
 
-  	private _regularLogin(){
+	isValidUsername(){
+		return /.{2}/.test(this.formUsername);
+	}
+
+	isValidPassword(){
+		return /.{2}/.test(this.formPassword);
+	}
+
+	allValid(){
+		return this.isValidUsername() && this.isValidPassword();
+	}
+
+  	private _regularLogin(): Promise<any>{
   		return new Promise((resolve, reject) => {
-		    this.authService.login().subscribe((result) => {		
+		    this.authService.login({ 'username': this.formUsername, 'password': this.formPassword}).subscribe((result) => {		
 		    	resolve(result);
 		    }, err =>{
 		    	reject(err);
@@ -47,7 +61,7 @@ export class LoginComponent implements OnInit{
   		});
   	}
 
-  	private _cookieLogIn(credentialsCookie: string): Promise<boolean>{
+  	private _cookieLogIn(credentialsCookie: string): Promise<any>{
   		return new Promise((resolve, reject) => {
 	    	this.authService.checkAuthCookie(credentialsCookie).subscribe((response) => {
 	    		return resolve(response);
