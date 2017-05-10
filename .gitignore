@@ -50,6 +50,8 @@ Thumbs.db
 /src/app/*.js
 /src/app/services/*.js
 /src/app/services/*.map
+/src/app/guards/*.js
+/src/app/guards/*.map
 
 
 # Typings

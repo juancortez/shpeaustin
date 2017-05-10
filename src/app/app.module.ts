@@ -14,6 +14,7 @@ import { CalendarService }                  from './services/calendar.service';
 import { JobService }                       from './services/jobs.service';
 import { AnnouncementsService }             from './services/announcements.service';
 import { NewsletterService }                from './services/newsletter.service';
+import { AuthService }                      from './services/auth.service';
 
 /* App Component */
 import { AppComponent }                     from './app.component';
@@ -25,6 +26,8 @@ import { OfficersComponent }                from './officers.component';
 import { MembershipComponent }              from './membership.component'
 import { ContactComponent }                 from './contact.component';
 import { NotFoundComponent }                from './not-found.component';
+import { AdminComponent }                   from './admin.component';
+import { LoginComponent }                   from './login.component';
 
 /* Navigation Components */
 import { NavigationComponent }              from './navigation.component';
@@ -42,6 +45,9 @@ import { WelcomeComponent }                 from './welcome.component';
 import { AnnouncementsComponent }           from './announcements.component';
 import { CardContainerComponent }           from './card-container.component';
 import { OnlyNumber }                       from './only-number.component';
+
+/* Guards */
+import { AuthGuard }                        from './guards/auth-guard.service';
 
 
 @NgModule({
@@ -72,14 +78,18 @@ import { OnlyNumber }                       from './only-number.component';
     NotFoundComponent,
     CardContainerComponent,
     SafePipe,
-    OnlyNumber
+    OnlyNumber,
+    AdminComponent,
+    LoginComponent
   ],
   providers: [ 
     OfficersService,
     CalendarService,
     JobService,
     AnnouncementsService,
-    NewsletterService
+    NewsletterService,
+    AuthGuard,
+    AuthService
   ],
   bootstrap: [ AppComponent ]
 })

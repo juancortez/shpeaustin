@@ -16,7 +16,7 @@ export class HamburgerNavigationComponent{
 		'39': 1, 
 		'40': 1
 	};
-	router;
+	router: any;
 
 	constructor(private _router: Router){ this.router = _router; }
 
@@ -26,7 +26,7 @@ export class HamburgerNavigationComponent{
 		else this.enableScroll();
 	}
 
-	getCurrentPath(route): boolean{
+	getCurrentPath(route: any): boolean{
 		let currentUrl = this.router.url;
 		return route.match(currentUrl);
 	}
