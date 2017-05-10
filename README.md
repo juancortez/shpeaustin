@@ -193,4 +193,4 @@ Pre-requisite: Since it is a private image, you must be given access by the crea
 [Linking godaddy domain to my bluemix web Application]: http://myutilite.com/utility/75/linking-godaddy-domain-to-my-bluemix-web-application/utility.htm/
 [minutes to hours]: http://stackoverflow.com/questions/5696937/godaddy-set-name-server-long-time-to-take-effect
 [My Domain]: https://dcc.godaddy.com/manage/
-test
+test2
