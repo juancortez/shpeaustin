@@ -1,0 +1,35 @@
+.cards{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    .job, .announcement{
+    	label{
+    		float: left;
+    	}	
+    }
+    
+    input.valid {
+      border-left: 5px solid #42A948;
+    }
+
+    input:not(.valid) {
+      border-left: 5px solid #a94442;
+    }
+
+    .option-form{
+	    display: flex;
+	    justify-content: flex-start;
+	    margin-left: 25px;
+	    align-items: flex-start;
+	    padding: 5px;
+	    label{
+	    	font-weight: normal;
+	    }
+    }
+}

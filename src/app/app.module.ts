@@ -15,6 +15,7 @@ import { JobService }                       from './services/jobs.service';
 import { AnnouncementsService }             from './services/announcements.service';
 import { NewsletterService }                from './services/newsletter.service';
 import { AuthService }                      from './services/auth.service';
+import { DatabaseService }                  from './services/database.service';
 
 /* App Component */
 import { AppComponent }                     from './app.component';
@@ -45,6 +46,7 @@ import { WelcomeComponent }                 from './welcome.component';
 import { AnnouncementsComponent }           from './announcements.component';
 import { CardContainerComponent }           from './card-container.component';
 import { OnlyNumber }                       from './only-number.component';
+import { AdminCardComponent }               from './admin-card.component';
 
 /* Guards */
 import { AuthGuard }                        from './guards/auth-guard.service';
@@ -80,7 +82,8 @@ import { AuthGuard }                        from './guards/auth-guard.service';
     SafePipe,
     OnlyNumber,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    AdminCardComponent
   ],
   providers: [ 
     OfficersService,
@@ -89,7 +92,8 @@ import { AuthGuard }                        from './guards/auth-guard.service';
     AnnouncementsService,
     NewsletterService,
     AuthGuard,
-    AuthService
+    AuthService,
+    DatabaseService
   ],
   bootstrap: [ AppComponent ]
 })

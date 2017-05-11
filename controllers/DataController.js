@@ -30,6 +30,16 @@ app.get('/officerlogin', (req, res) => {
     });
 });
 
+app.get('/all/keys', (req, res) => {
+    database.getKeys((err, keys) => {
+        if (err) {
+            console.error(`Error: ${err.reason}`);
+            return res.status(400).send(err.reason);
+        }
+        return res.status(200).send(keys);
+    });
+});
+
 app.get('/:key', (req, res) => {
     let key = req && req.params && req.params.key || "";
 
