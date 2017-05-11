@@ -1,35 +1,87 @@
-.cards{
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-
-    .job, .announcement{
-    	label{
-    		float: left;
-    	}	
-    }
-    
-    input.valid {
-      border-left: 5px solid #42A948;
-    }
-
-    input:not(.valid) {
-      border-left: 5px solid #a94442;
-    }
-
-    .option-form{
-	    display: flex;
-	    justify-content: flex-start;
-	    margin-left: 25px;
-	    align-items: flex-start;
-	    padding: 5px;
-	    label{
-	    	font-weight: normal;
+:host{
+	.admin-container{
+		padding: 15px;
+	    @media(max-width: 530px){
+	        padding: 10px;
 	    }
-    }
+	}
+	.cards{
+	    display: -ms-flexbox;
+	    display: flex;
+	    -ms-flex-align: center;
+	    align-items: center;
+	    -ms-flex-pack: center;
+	    justify-content: center;
+	    -ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+
+	    .job, .announcement{
+	    	label{
+	    		float: left;
+	    	}	
+	    }
+	    
+	    input.valid, textarea.valid {
+	      border-left: 5px solid #42A948;
+	    }
+
+	    input:not(.valid), textarea:not(.valid)  {
+	      border-left: 5px solid #a94442;
+	    }
+
+	    .option-form{
+		    display: flex;
+		    justify-content: flex-start;
+		    margin-left: 25px;
+		    align-items: flex-start;
+		    padding: 5px;
+		    label{
+		    	font-weight: normal;
+		    }
+	    }
+	}
+	.json-container{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		#hidden-output{
+		  display: none;
+		}
+
+		.copy-status{
+		  display: none;
+		  position: absolute;
+		  left: 43%;
+		  color: green;
+		  background: white;
+		  border: 1px solid black;
+		  padding: 10px;
+		  border-radius: 30px;
+		  top: 10px;
+		}
+		.output-container{
+		  display: none;
+		  padding: 30px;
+		  position: relative;
+		  max-height: 750px;
+		  overflow-y: auto;
+		  max-width: 75%;
+		  margin: 25px 0px 50px 0px;
+		  min-width: 325px;
+		  i{
+		    display: none;
+		    cursor: pointer;
+		    position: absolute;
+		    font-size: 20px;
+		    right: 15px;
+		    top: 15px;
+		    background: white;
+		    padding: 5px;
+		    border: 1px solid black;
+		    border-radius: 5px
+		  }
+		} 
+	}
 }
+

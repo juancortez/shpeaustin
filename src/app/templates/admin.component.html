@@ -1,112 +1,154 @@
-<h1 class = "dark-shpe-blue center-text">Admin Panel </h1>
-<h4 class = "center-text">This page is intended for administrators only.</h4>
+<div class="admin-container">
 
-<div class="cards">
-    <admin-card class="admin-cards job" title="New Job Posting" description="Please input the required information in the following text-boxes. Result will appear in the membership page.">
-        <div form-body>
-            <div class="form-group">
-                <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
-            </div>
-            <div class="form-group">
-                <label for="name">Position: <span style="color:red;">*</span></label>
-                <input type="text" class="form-control" id="position" placeholder="Position"
-                required
-                [(ngModel)]="jobPosition" name="position"
-                #position="ngModel"
-                [class.valid]="isValid('jobPosition')">
-            </div>
-            <div class="form-group">
-                <label for="company">Company: <span style="color:red;">*</span></label>
-                <input type="text" class="form-control" id="company" placeholder="Company"
-                required
-                [(ngModel)]="jobCompany" name="company"
-                #company="ngModel"
-                [class.valid]="isValid('jobCompany')">
-            </div>
-            <div class="form-group">
-                <label for="description">Description: <span style="color:red;">*</span></label>
-                <input type="text" class="form-control" id="description" placeholder="Job Description"
-                required
-                [(ngModel)]="jobDescription" name="description"
-                #description="ngModel"
-                [class.valid]="isValid('jobDescription')">
-            </div>
-            <div class="form-group">
-                <label for="link">Link: <span style="color:red;">*</span></label>
-                <input type="text" class="form-control" id="link" placeholder="Job Link"
-                required
-                [(ngModel)]="jobLink" name="link"
-                #link="ngModel"
-                [class.valid]="isValid('jobLink')">
-            </div>
-            <div class="form-group">
-                <label for="poster">Poster: <span style="color:red;">*</span></label>
-                <input type="text" class="form-control" id="poster" placeholder="Your name"
-                required
-                [(ngModel)]="jobPoster" name="poster"
-                #description="ngModel"
-                [class.valid]="isValid('jobPoster')">
-            </div>
-            <div class="button-container">
-                <button (click)="newJob()" [disabled]="!allJobEntriesValid()" type="submit" class="btn btn-primary newJob">Submit</button>
-            </div>
-        </div>
-    </admin-card>
+	<h1 class = "dark-shpe-blue center-text">Admin Panel </h1>
+	<h4 class = "center-text">This page is intended for administrators only.</h4>
 
-    <admin-card class="admin-cards announcement" title="New Announcement" description="Please select your name first, then input your new announcement. Result will appear in the home page.">
-        <div form-body>
-          	<div class="form-group">
-	            <label for="officer">Officer: <span style="color:red;">*</span></label>
-	            <select (change)="onOfficerChange($event.target.value)" class="form-control" id="officer" required>
-	            	<option *ngFor="let officer of officers" [value]="officer.name">{{officer.name}}</option>
-	            </select>
-	      	</div>
-  	      	<div class="form-group">
-	            <label for="announcement">Message: <span style="color:red;">*</span></label>
-	            <textarea [(ngModel)]="formAnnouncement" [class.valid]="isValid('formAnnouncement')" name="message"
-	            #announcement="ngModel" class="form-control" id="message" rows="7" name="announcement" placeholder="Place announcement here..." required>
-	            </textarea>
-	      	</div>
-            <div class="button-container">
-                <button (click)="newAnnouncement()" [disabled]="!allAnnouncementEntriesValid()" type="submit" class="btn btn-primary newAnnouncement">Submit</button>
-            </div>
-        </div>
-    </admin-card>
-</div>
-
-<hr>
-
-<h1 class = "dark-shpe-blue center-text">Database Operations</h1>
-<h4 class = "center-text">Please only use this if you know what you're doing!</h4>
-<div class="cards">
-  	<div class="cards">
-	    <admin-card class="admin-cards" title="Deleting Data" description="Select the keys that you would like to delete in the Redis database.">
+	<div class="cards">
+	    <admin-card class="admin-cards job" title="New Job Posting" description="Please input the required information in the following text-boxes. Result will appear in the membership page.">
 	        <div form-body>
-                  <fieldset class="form-group">
-                    <div *ngFor="let key of databaseKeys" class="form-check option-form">
-                        <label class="form-check-label">
-   	                  		<input class="form-check-input" type="checkbox" [(ngModel)]="key.selected" (ngModelChange)="deleteCheckboxChange(key)"/>
-                     	{{ key.name }}
-                     	</label>
-                    </div>
-                  </fieldset>
+	            <div class="form-group">
+	                <span class="text-muted" style="float:right;"><em><span style="color:red;">*</span> Indicates required field</em></span>
+	            </div>
+	            <div class="form-group">
+	                <label for="name">Position: <span style="color:red;">*</span></label>
+	                <input type="text" class="form-control" id="position" placeholder="Position"
+	                required
+	                [(ngModel)]="jobPosition" name="position"
+	                #position="ngModel"
+	                [class.valid]="isValid('jobPosition')">
+	            </div>
+	            <div class="form-group">
+	                <label for="company">Company: <span style="color:red;">*</span></label>
+	                <input type="text" class="form-control" id="company" placeholder="Company"
+	                required
+	                [(ngModel)]="jobCompany" name="company"
+	                #company="ngModel"
+	                [class.valid]="isValid('jobCompany')">
+	            </div>
+	            <div class="form-group">
+	                <label for="description">Description: <span style="color:red;">*</span></label>
+	                <input type="text" class="form-control" id="description" placeholder="Job Description"
+	                required
+	                [(ngModel)]="jobDescription" name="description"
+	                #description="ngModel"
+	                [class.valid]="isValid('jobDescription')">
+	            </div>
+	            <div class="form-group">
+	                <label for="link">Link: <span style="color:red;">*</span></label>
+	                <input type="text" class="form-control" id="link" placeholder="Job Link"
+	                required
+	                [(ngModel)]="jobLink" name="link"
+	                #link="ngModel"
+	                [class.valid]="isValid('jobLink')">
+	            </div>
+	            <div class="form-group">
+	                <label for="poster">Poster: <span style="color:red;">*</span></label>
+	                <input type="text" class="form-control" id="poster" placeholder="Your name"
+	                required
+	                [(ngModel)]="jobPoster" name="poster"
+	                #description="ngModel"
+	                [class.valid]="isValid('jobPoster')">
+	            </div>
 	            <div class="button-container">
-	                <button (click)="deleteKeys()" type="submit" class="btn btn-primary">Submit</button>
+	                <button (click)="newJob()" [disabled]="!allJobEntriesValid()" type="submit" class="btn btn-primary newJob">Submit</button>
 	            </div>
 	        </div>
 	    </admin-card>
 
-	    <admin-card class="admin-cards" title="Viewing Data" description="Select the keys that you would like to view in the Redis database.">
+	    <admin-card class="admin-cards announcement" title="New Announcement" description="Please select your name first, then input your new announcement. Result will appear in the home page.">
 	        <div form-body>
-              	<div *ngFor="let key of databaseKeys" class="form-group option-form">
-                    <label class="form-check-label">
-                 		{{ key.name }}
-                 	</label>
+	          	<div class="form-group">
+		            <label for="officer">Officer: <span style="color:red;">*</span></label>
+		            <select (change)="onOfficerChange($event.target.value)" class="form-control" id="officer" required>
+		            	<option *ngFor="let officer of officers" [value]="officer.name">{{officer.name}}</option>
+		            </select>
+		      	</div>
+	  	      	<div class="form-group">
+		            <label for="announcement">Message: <span style="color:red;">*</span></label>
+		            <textarea [(ngModel)]="formAnnouncement" [class.valid]="isValid('formAnnouncement')" name="message"
+		            #announcement="ngModel" class="form-control" id="message" rows="7" name="announcement" placeholder="Place announcement here..." required>
+		            </textarea>
 		      	</div>
 	            <div class="button-container">
-	                <button (click)="viewKey()" type="submit" class="btn btn-primary">Submit</button>
+	                <button (click)="newAnnouncement()" [disabled]="!allAnnouncementEntriesValid()" type="submit" class="btn btn-primary newAnnouncement">Submit</button>
 	            </div>
 	        </div>
 	    </admin-card>
+	</div>
+
+	<hr>
+
+	<h1 class = "dark-shpe-blue center-text">Database Operations</h1>
+	<h4 class = "center-text">Please only use this if you know what you're doing!</h4>
+	<div class="cards">
+	  	<div class="cards">
+		    <admin-card class="admin-cards" title="Deleting Data" description="Select the keys that you would like to delete in the Redis database.">
+		        <div form-body>
+	                  <fieldset class="form-group">
+	                    <div *ngFor="let key of databaseKeys" class="form-check option-form">
+	                        <label class="form-check-label">
+	   	                  		<input class="form-check-input" type="checkbox" [(ngModel)]="key.selected" (ngModelChange)="deleteCheckboxChange(key)"/>
+	                     	{{ key.name }}
+	                     	</label>
+	                    </div>
+	                  </fieldset>
+		            <div class="button-container">
+		                <button (click)="deleteKeys()" type="submit" class="btn btn-primary">Submit</button>
+		            </div>
+		        </div>
+		    </admin-card>
+
+		    <admin-card class="admin-cards" title="Viewing Data" description="Select the keys that you would like to view in the Redis database.">
+		        <div form-body>
+	              	<div *ngFor="let key of databaseKeys; let idx = index" class="radio option-form">
+	                    <label>
+	                 		<input type="radio" name="radiogroup" 
+	            				[checked]="idx === 0" 
+	            				[value]="key.name" 
+	            				(change)="onViewKeyChange(key)">
+	            			{{ key.name }}
+	                 	</label>
+			      	</div>
+		            <div class="button-container">
+		                <button (click)="viewKey()" type="submit" class="btn btn-primary viewKey">Submit</button>
+		            </div>
+		        </div>
+		    </admin-card>
+
+		    <admin-card class="admin-cards" title="Updating Data" description="Select the keys that you would like to update in the Redis database.">
+		        <div form-body>
+	              	<div *ngFor="let key of databaseKeys; let idx = index" class="radio option-form">
+	                    <label>
+	                 		<input type="radio" name="radiogroup" 
+	            				[checked]="idx === 0" 
+	            				[value]="key.name" 
+	            				(change)="onUpdateKeyChange(key)">
+	            			{{ key.name }}
+	                 	</label>
+			      	</div>
+		  	      	<div class="form-group">
+			            <label for="updateData">New Data (JSON format) <span style="color:red;">*</span></label>
+			            <textarea [(ngModel)]="updatedData" [class.valid]="isValidJSON('updatedData')" name="message"
+			            #updateData="ngModel" class="form-control" id="message" rows="7" name="updateData" placeholder="Data for the database key" required>
+			            </textarea>
+			      	</div>
+		            <div class="button-container">
+		                <button [disabled]="!isValidJSON()" (click)="updateKey()" type="submit" class="btn btn-primary updateKey">Submit</button>
+		            </div>
+		        </div>
+		    </admin-card>
+		</div>
+	</div>
+
+	<div class ="json-container">
+	 <div class="output-container">
+	    <p class="copy-status"></p>
+	    <i (click)="copy()" class="fa fa-files-o" id="copy-text" title="Copy JSON" aria-hidden="true"></i>
+	    <pre>
+	    <code class="output">
+	    </code>
+	  </pre>
+	 </div>
+	 <div id="hidden-output"></div>
 	</div>
 </div>

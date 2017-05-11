@@ -31,6 +31,11 @@ export class AdminComponent implements OnInit {
 	databaseKeys: any = [];
 	activateDeleteButton: boolean = false;
 
+	viewDataKey: string;
+	updateDataKey: string;
+
+	updatedData: any;
+
 	constructor( private officersService: OfficersService,
 		private announcementsService: AnnouncementsService,
 		private jobService: JobService,
@@ -62,7 +67,38 @@ export class AdminComponent implements OnInit {
 	}
 
 	viewKey(){
-		// TODO
+		let className: string = 'viewKey';
+
+		this.addLoader(className);
+
+		this.databaseService.getKey(this.viewDataKey).subscribe(
+			data => {
+				this.showData(data);
+				this.removeLoader(className, true);
+			}, 
+			err => {
+				console.error(err);
+				this.removeLoader(className, false);
+			}
+		);
+	}
+
+	updateKey(){
+		let className: string = 'updateKey';
+
+		this.addLoader(className);
+		console.log(this.viewDataKey);
+		console.log(this.updatedData);
+
+		this.databaseService.updateKey(this.viewDataKey, this.updatedData).subscribe(
+			data => {
+				this.removeLoader(className, true);
+			}, 
+			err => {
+				console.error(err);
+				this.removeLoader(className, false);
+			}
+		);
 	}
 
 	newJob(): void{
@@ -119,6 +155,15 @@ export class AdminComponent implements OnInit {
 		return /.{1,}/.test(this[name]);
 	}
 
+	isValidJSON(data: any): boolean {
+		try{
+			JSON.parse(this.updatedData);
+			return true;
+		} catch(e){
+			return false;
+		}
+	}
+
 	allJobEntriesValid(): boolean{
 		return ['jobPosition', 'jobCompany', 'jobDescription', 'jobLink', 'jobPoster'].every((element) => {
 			return this.isValid(element);
@@ -131,7 +176,6 @@ export class AdminComponent implements OnInit {
 		});
 	}
 
-
 	onOfficerChange(evt: string): void{
 		this.announcementOfficer = evt;
 	}
@@ -139,7 +183,76 @@ export class AdminComponent implements OnInit {
 	deleteCheckboxChange(evt: any): void{}
 
 	onViewKeyChange(evt: any): void{
-		console.log(evt);
+		this.viewDataKey = evt.name;
+	}
+
+	onUpdateKeyChange(evt: any): void{
+		this.updateDataKey = evt.name;
+	}
+
+	copy(): void{
+        var success = this.copyToClipboard(document.getElementById("hidden-output"));
+        $('html, body').animate({
+            scrollTop: $(".json-container").offset().top - 90
+        }, 1);
+        var text = success ? "Successfully copied!" : "Copy unsuccessful!";
+        var copyStatus = $(".copy-status");
+        if (success) {
+            copyStatus.css({
+                color: "green"
+            });
+        } else {
+            copyStatus.css({
+                color: "red"
+            });
+        }
+        $(".copy-status").text(text).show();
+        setTimeout(function() {
+            copyStatus.hide();
+        }, 2000);
+	}
+
+	private copyToClipboard(elem: any) {
+        // create hidden text element, if it doesn't already exist
+        var targetId = "_hiddenCopyText_",
+            origSelectionStart, origSelectionEnd;
+        var target = document.createElement("textarea");
+        target.style.position = "absolute";
+        target.style.left = "-9999px";
+        target.style.top = "1200px";
+        target.id = targetId;
+        document.body.appendChild(target);
+
+        target.textContent = elem.textContent;
+        // select the content
+        var currentFocus = document.activeElement;
+        target.focus();
+        target.setSelectionRange(0, target.value.length);
+
+        // copy the selection
+        var succeed;
+        try {
+            succeed = document.execCommand("copy");
+        } catch (e) {
+            succeed = false;
+        }
+        // restore original focus
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+
+        target.textContent = "";
+        return succeed;
+    }
+
+	private showData(data: any){
+		$(".json-container .output-container").show();
+        $(".json-container .output-container i").show();
+        $("#hidden-output").text(JSON.stringify(data));
+        $(".output").text(JSON.stringify(data, null, 4));
+        $('html, body').animate({
+            scrollTop: $(".json-container").offset().top - 90
+        }, 1000);
 	}
 
     private getOfficers() {
@@ -164,6 +277,9 @@ export class AdminComponent implements OnInit {
     				keyObject['selected'] = false;
     				this.databaseKeys.push(keyObject);
     			});
+    			let firstKeyName = this.databaseKeys && this.databaseKeys.length > 0 ? this.databaseKeys[0].name : "";
+    			this.viewDataKey = firstKeyName;
+    			this.updateDataKey = firstKeyName;
     		}, 
     		err => {
     			console.error(err);
