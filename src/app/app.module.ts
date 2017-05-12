@@ -16,6 +16,7 @@ import { AnnouncementsService }             from './services/announcements.servi
 import { NewsletterService }                from './services/newsletter.service';
 import { AuthService }                      from './services/auth.service';
 import { DatabaseService }                  from './services/database.service';
+import { CookieService }                    from './services/cookie.service';
 
 /* App Component */
 import { AppComponent }                     from './app.component';
@@ -93,7 +94,8 @@ import { AuthGuard }                        from './guards/auth-guard.service';
     NewsletterService,
     AuthGuard,
     AuthService,
-    DatabaseService
+    DatabaseService,
+    CookieService
   ],
   bootstrap: [ AppComponent ]
 })

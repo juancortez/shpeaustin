@@ -15,7 +15,7 @@ const express = require('express'),
 let revision = config.revision;
 
 // posts an announcement to the redis database
-app.post('/announcements', (req, res) => {
+app.post('/announcements', authorization.cookieAuth, (req, res) => {
     let key = "announcements";
     database.getCachedData(key, (err, data) => {
         if (!!err) {
@@ -70,7 +70,7 @@ app.post('/announcements', (req, res) => {
 });
 
 // posts a new job to the redis database
-app.post('/jobs', (req, res) => {
+app.post('/jobs', authorization.cookieAuth, (req, res) => {
     let key = "jobs";
     database.getCachedData(key, (err, data) => {
         if (!!err) {
@@ -196,26 +196,6 @@ function _cleanText(str) {
     return str.trim().replace(/(\r\n|\n|\r)/gm, " ");
 }
 
-// opens up the views/newsletters/newsletter.html page and sends it to the /newsletterload endpoint
-app.get('/admin', authorization.auth, (req, res) => {
-    database.getKeys((err, keys) => {
-        if (err) {
-            console.error(`Error: ${err.reason}`);
-            return res.status(400).send(err.reason);
-        }
-
-        database.getCachedData("revisionNumber", (err, data) => {
-            if (!!err) {
-                console.error(err.reason);
-            }
-            revision = (!(!!err)) ? data.revision : revision;
-            res.render('admin.html', {
-                revision,
-                keys
-            });
-        });
-    });
-});
 
 app.post('/cache', (req, res) => {
     var key = req && req.body && req.body.key || "";

@@ -14,23 +14,11 @@ const express = require('express'),
     privateCredentials = require('../lib/credentialsBuilder.js').init();
 
 // determines whether or not someone has logged in to the website
-app.get('/officerlogin', (req, res) => { 
-    let credentials = req.query.credentials;
-
-    database.getCachedData('id', (err, data) => {
-        if(!!err){
-            console.error(err.reason);
-            return res.status(400).send(err.reason); // doesn't exist
-        }
-        if(data.uuid.indexOf(credentials) >= 0){
-            return res.sendStatus(200);
-        } else{
-            return res.sendStatus(401); // HTTP Code: Unauthorized
-        }
-    });
+app.get('/officerlogin', authorization.cookieAuth, (req, res) => { 
+    return res.sendStatus(200);
 });
 
-app.get('/all/keys', (req, res) => {
+app.get('/all/keys', authorization.cookieAuth, (req, res) => {
     database.getKeys((err, keys) => {
         if (err) {
             console.error(`Error: ${err.reason}`);
@@ -42,6 +30,10 @@ app.get('/all/keys', (req, res) => {
 
 app.get('/:key', (req, res) => {
     let key = req && req.params && req.params.key || "";
+    
+    if(key === "id"){
+        return res.status(400).send(`Unauthorized access to this information.`);
+    }
 
     if(!!key){
         database.getCachedData(key, (err, data) => {
@@ -58,7 +50,7 @@ app.get('/:key', (req, res) => {
     }
 });
 
-app.delete('/:key', authorization.auth, (req, res) => {
+app.delete('/:key', authorization.cookieAuth, (req, res) => {
     let key = req && req.params && req.params.key || "";
 
     if(!!key){
@@ -77,7 +69,7 @@ app.delete('/:key', authorization.auth, (req, res) => {
 });
 
 
-app.put('/:key', authorization.auth, (req, res) => {
+app.put('/:key', authorization.cookieAuth, (req, res) => {
     let key = req && req.params && req.params.key || "",
         data = req && req.body || null;
 
