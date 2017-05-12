@@ -1,95 +1,90 @@
-{  
-   "executive":[  
-      {  
-         "name":"Rogelio Zavala",
-         "position":"President",
-         "email":"r.zavala74@gmail.com",
-         "phone":8179057686,
-         "hometown":"Fort Worth, TX",
-         "company":"Austin Energy",
-         "executive": true,
-         "image_url": "../assets/officer_pictures/rogelio.jpg",
-         "linkedin": "https://www.linkedin.com/in/rogelio-zavala-p-e-473b3557?authType=NAME_SEARCH&authToken=N_eb&locale=en_US&srchid=952112491455769736443&srchindex=1&srchtotal=40&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A952112491455769736443%2CVSRPtargetId%3A202869591%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"
-      },
-      {  
-         "name":"Hugo Landaverde",
-         "position":"Vice President",
-         "email":"h.landaverde@utexas.edu",
-         "phone":5127365066,
-         "hometown":"Austin, TX",
-         "company":"Accenture",
-         "executive": true,
-         "image_url": "../assets/officer_pictures/hugo.jpg",
-         "linkedin": "https://www.linkedin.com/in/rogelio-zavala-p-e-473b3557?authType=NAME_SEARCH&authToken=N_eb&locale=en_US&srchid=952112491455769736443&srchindex=1&srchtotal=40&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A952112491455769736443%2CVSRPtargetId%3A202869591%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"
-      },
-      {  
-         "name":"Stephanie Castillo",
-         "position":"Secretary",
-         "email":"stephaniecastillo@utexas.edu",
-         "phone":5127774546,
-         "hometown":"Austin, TX",
-         "company":"Halff Associates",
-         "executive": true,
-         "image_url": "../assets/officer_pictures/stephanie.jpg",
-         "linkedin": "https://www.linkedin.com/in/stephanie-castillo-a30723a8"
-      },
-      {  
-         "name":"Manuel Espinosa",
-         "position":"Treasurer",
-         "email":"manuel.espinosa4@gmail.com",
-         "phone":5129610573,
-         "hometown":"N/A",
-         "company":"Microchip Technology",
-         "executive": true,
-         "image_url": "../assets/officer_pictures/default_1.jpg",
-         "linkedin": "https://www.linkedin.com/in/manuel-espinosa-66897358?authType=NAME_SEARCH&authToken=VrnQ&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A205437680%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769891261%2Ctas%3AManuel%20Es"  
-      }
-   ],
-   "chairs":[  
-      {
-         "name":"Karen Siles",
-         "position":"Fundraising Director",
-         "email":"Ksiles1@gmail.com",
-         "phone":5713328902,
-         "hometown":"N/A",
-         "company":"IBM",
-         "executive": false,
-         "image_url": "../assets/officer_pictures/default.jpg",
-         "linkedin": "https://www.linkedin.com/in/karenmsiles?authType=NAME_SEARCH&authToken=UTev&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A13939101%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769861717%2Ctas%3AKaren%20Siles"  
-      },
-      {  
-         "name":"Stephanie Amrite",
-         "position":"Scholarship Director",
-         "email":"stephanie.amrite@gmail.com",
-         "phone":2106432425,
-         "hometown":"N/A",
-         "company":"Scholarship Director",
-         "executive": false,
-         "image_url": "../assets/officer_pictures/steph.jpg",
-         "linkedin": "https://www.linkedin.com/in/stephanieamrite?authType=NAME_SEARCH&authToken=a6JX&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A289349272%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1455769839379%2Ctas%3AStephan"
-      },
-      {
-        "name":"Rodrigo Estrada",
-         "position":"SHPE Jr. Director",
-         "email":"eerodrigoestrada@utexas.edu",
-         "phone":9366971962,
-         "hometown":"N/A",
-         "company":"IBM",
-         "executive": false,
-         "image_url": "../assets/officer_pictures/rodrigo.jpg",
-         "linkedin": "https://www.linkedin.com/in/rodrigo-estrada-0863721a?authType=NAME_SEARCH&authToken=Xckp&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A66586854%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769852320%2Ctas%3ARodrigo%20E"
-      },
-      {  
-         "name":"Juan Cortez",
-         "position":"Webmaster",
-         "email":"Juan_Cortez@utexas.edu",
-         "phone":9152276803,
-         "hometown":"El Paso, TX",
-         "company":"IBM",
-         "executive": false,
-         "image_url": "../assets/officer_pictures/juan.jpg",
-         "linkedin": "https://www.linkedin.com/in/juancortezjr"
-      }
-      
-   ]
-}
+[
+  {
+    "name": "Rogelio Zavala",
+    "position": "President",
+    "email": "r.zavala74@gmail.com",
+    "phone": 8179057686,
+    "hometown": "Fort Worth, TX",
+    "company": "Austin Energy",
+    "executive": true,
+    "image_url": "../assets/officer_pictures/rogelio.jpg",
+    "linkedin": "https://www.linkedin.com/in/rogelio-zavala-p-e-473b3557?authType=NAME_SEARCH&authToken=N_eb&locale=en_US&srchid=952112491455769736443&srchindex=1&srchtotal=40&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A952112491455769736443%2CVSRPtargetId%3A202869591%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"
+  },
+  {
+    "name": "Hugo Landaverde",
+    "position": "Vice President",
+    "email": "h.landaverde@utexas.edu",
+    "phone": 5127365066,
+    "hometown": "Austin, TX",
+    "company": "Accenture",
+    "executive": true,
+    "image_url": "../assets/officer_pictures/hugo.jpg",
+    "linkedin": "https://www.linkedin.com/in/rogelio-zavala-p-e-473b3557?authType=NAME_SEARCH&authToken=N_eb&locale=en_US&srchid=952112491455769736443&srchindex=1&srchtotal=40&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A952112491455769736443%2CVSRPtargetId%3A202869591%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH"
+  },
+  {
+    "name": "Stephanie Castillo",
+    "position": "Secretary",
+    "email": "stephaniecastillo@utexas.edu",
+    "phone": 5127774546,
+    "hometown": "Austin, TX",
+    "company": "Halff Associates",
+    "executive": true,
+    "image_url": "../assets/officer_pictures/stephanie.jpg",
+    "linkedin": "https://www.linkedin.com/in/stephanie-castillo-a30723a8"
+  },
+  {
+    "name": "Manuel Espinosa",
+    "position": "Treasurer",
+    "email": "manuel.espinosa4@gmail.com",
+    "phone": 5129610573,
+    "hometown": "N/A",
+    "company": "Microchip Technology",
+    "executive": true,
+    "image_url": "../assets/officer_pictures/default_1.jpg",
+    "linkedin": "https://www.linkedin.com/in/manuel-espinosa-66897358?authType=NAME_SEARCH&authToken=VrnQ&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A205437680%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769891261%2Ctas%3AManuel%20Es"
+  },
+  {
+    "name": "Karen Siles",
+    "position": "Fundraising Director",
+    "email": "Ksiles1@gmail.com",
+    "phone": 5713328902,
+    "hometown": "N/A",
+    "company": "IBM",
+    "executive": false,
+    "image_url": "../assets/officer_pictures/default.jpg",
+    "linkedin": "https://www.linkedin.com/in/karenmsiles?authType=NAME_SEARCH&authToken=UTev&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A13939101%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769861717%2Ctas%3AKaren%20Siles"
+  },
+  {
+    "name": "Stephanie Amrite",
+    "position": "Scholarship Director",
+    "email": "stephanie.amrite@gmail.com",
+    "phone": 2106432425,
+    "hometown": "N/A",
+    "company": "Scholarship Director",
+    "executive": false,
+    "image_url": "../assets/officer_pictures/steph.jpg",
+    "linkedin": "https://www.linkedin.com/in/stephanieamrite?authType=NAME_SEARCH&authToken=a6JX&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A289349272%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1455769839379%2Ctas%3AStephan"
+  },
+  {
+    "name": "Rodrigo Estrada",
+    "position": "SHPE Jr. Director",
+    "email": "eerodrigoestrada@utexas.edu",
+    "phone": 9366971962,
+    "hometown": "N/A",
+    "company": "IBM",
+    "executive": false,
+    "image_url": "../assets/officer_pictures/rodrigo.jpg",
+    "linkedin": "https://www.linkedin.com/in/rodrigo-estrada-0863721a?authType=NAME_SEARCH&authToken=Xckp&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A66586854%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455769852320%2Ctas%3ARodrigo%20E"
+  },
+  {
+    "name": "Juan Cortez",
+    "position": "Webmaster",
+    "email": "Juan_Cortez@utexas.edu",
+    "phone": 9152276803,
+    "hometown": "El Paso, TX",
+    "company": "IBM",
+    "executive": false,
+    "image_url": "../assets/officer_pictures/juan.jpg",
+    "linkedin": "https://www.linkedin.com/in/juancortezjr"
+  }
+]

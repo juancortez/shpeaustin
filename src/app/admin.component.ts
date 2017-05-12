@@ -48,6 +48,9 @@ export class AdminComponent implements OnInit {
 	}
 
 	deleteKeys(){
+		let className: string = 'deleteKeys';
+		this.addLoader(className);
+
 		let keysToDelete = this.databaseKeys.filter((key: any) => {
 			return key.selected;
 		}).map((key: any) => {
@@ -58,9 +61,11 @@ export class AdminComponent implements OnInit {
 			this.databaseService.deleteKey(key).subscribe(
 				res => {
 					if(res.status === 200) console.log(`${key} was successfully cleared!`);
+					this.removeLoader(className, true);
 				}, 
 				err => {
 					console.error(`${key} was unsuccessfully cleared.`);
+					this.removeLoader(className, false);
 				}
 			);
 		});

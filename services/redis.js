@@ -19,29 +19,25 @@ function onRedisConnection(client) {
 
     //cache metadata files into redis
     client.get("officerList", (err, reply) => {
+        let fileName = "officers.json";
+        let officerData;
         if (err) {
             console.error(`Error: ${err}`);
         } else {
             if (reply == null) {
                 try {
-                    var util = require('../utils/utils.js');
-                } catch (e) {
-                    console.error("Did not find utils.js, exiting.");
+                    officerData = require(`../metadata/${fileName}`);
+                } catch (ignore) {
+                    console.error(`Failed to load data from ${fileName}, exiting`);
                     return;
                 }
 
-                util.parseOfficerJSON(null, (err, data) => {
-                    if (!!err) {
-                        console.error(err.reason);
+                database.setData("officerList", JSON.stringify(officerData), (err) => {
+                    if (err) {
+                        console.error(`Error: ${err.reason}`);
                         return;
                     }
-                    database.setData("officerList", JSON.stringify(data), (err) => {
-                        if (err) {
-                            console.error(`Error: ${err}`);
-                            return;
-                        }
-                        console.log("Successully saved and cached officerList to Redis!");
-                    });
+                    console.log("Successully saved and cached officerList to Redis!");
                 });
 
             } else {

@@ -107,22 +107,6 @@ app.put('/:key', authorization.auth, (req, res) => {
           } 
           return res.sendStatus(200);
         });
-    } else if(key === "officerList"){
-        const util = require('../utils/utils.js');
-        util.parseOfficerJSON(data, (err, data) => {
-            if(err){
-                console.error(err.reason);
-                return res.status(400).send(err.reason);
-            }
-            database.setData(key, JSON.stringify(data), (err) => {
-                if(err){
-                    console.error(`Error: ${err.reason}`);
-                    res.status(400).send(err.reason);
-                }
-                console.log(`Successully saved and cached ${key} to Redis!`);
-                return res.sendStatus(200);
-            });
-        });
     } else{
         database.setData(key, JSON.stringify(data), (err) => {
             if(err){
