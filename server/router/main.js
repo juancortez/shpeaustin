@@ -8,13 +8,6 @@ module.exports = function(app, client, express) {
     let revision = config.revision; // default if database isn't working
  
     /*************************************************************************/
-    // WebConferenceController.js
-    //
-    // The following endpoints enable WebRTC connection capabilities with appear.in
-    /*************************************************************************/
-    app.use('/meeting',  require('../controllers/WebConferenceController.js'));
-
-    /*************************************************************************/
     // AuthenticationController.js
     //
     // Authenticates officers if they want to post to the page
@@ -43,11 +36,17 @@ module.exports = function(app, client, express) {
     app.use('/communication',  require('../controllers/CommunicationController.js'));
 
     /*************************************************************************/
-    // Catch all other routes and return them to the index file for Angular2 to
-    // handle them
+    // Angular2
     /*************************************************************************/
-    // app.get('*', (req, res) => {
-    //     res.sendFile(path.join(__dirname, '../src', 'index.html'));
-    // });
+    app.use(function (req, res, next) {
+        if (path.extname(req.path).length > 0) {
+            // normal static file request
+            next();
+        }
+        else {
+            // redirect all html requests to `index.html`
+            res.sendFile(path.resolve(__dirname + './../../dist/index.html'));
+        }
+    });
 
 } // end of module exports

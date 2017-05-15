@@ -33,6 +33,7 @@ const express = require('express'),
     mcapi = require('mailchimp-api'),
     path = require('path');
 
+const root = path.join(__dirname + '/../');
 const staticRoot = path.join(__dirname + '/../public/');
 
 if(appEnv.isLocal){
@@ -99,21 +100,10 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 }));
 app.use(favicon(staticRoot + '/assets/shpe_austin_icon.png'));
 
-app.use('/', express.static(__dirname + '/../dist'));
-app.use('/scripts', express.static(__dirname + './../node_modules'));
+app.use('/', express.static(root + '/dist'));
+app.use('/scripts', express.static(root + '/node_modules'));
 
 require('./router/main')(app, client, express); // adds the main.js file to send response to browser
-
-app.use(function (req, res, next) {
-    if (path.extname(req.path).length > 0) {
-        // normal static file request
-        next();
-    }
-    else {
-        // redirect all html requests to `index.html`
-        res.sendFile(path.resolve(__dirname + './../dist/index.html'));
-    }
-});
 
 // start server on the specified port and binding host
 const server = app.listen(appEnv.port, () => {
