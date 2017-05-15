@@ -1,0 +1,27 @@
+<div class="newsletter-signup">
+	<form class="shpe-form" (ngSubmit)="onSubmit()" #shpeForm="ngForm">
+      <div>
+          <h3 class='sign-up'>Sign Up for Our Newsletter</h3>
+          <input type="email" placeholder="E-mail Address" required
+          [(ngModel)]="formEmail" name="email"
+          #email="ngModel"
+          [class.valid]="isValidEmail()">
+          <button type="submit" class="btn btn-success subscribe" [disabled]="!isValidEmail()">Submit</button>
+      </div>
+    </form>
+</div>
+<div class="sponsors">
+	<p> Special Thanks to our Sponsors</p>
+	<div class="sponsor-images">
+		<div class="sponsor">
+			<a href="{{farmCredit.url}}">
+				<img alt="{{farmCredit.name}}" src="{{farmCredit.photo}}"/>
+			</a>
+		</div>
+<!-- 		<div class="sponsor">
+			<a href="{{sponsorTwo.url}}">
+				<img alt="{{sponsorTwo.name}}" src="{{sponsorTwo.photo}}"/>
+			</a>
+		</div> -->
+	</div>
+</div>

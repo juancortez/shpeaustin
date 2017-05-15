@@ -17,6 +17,7 @@ import { NewsletterService }                from './services/newsletter.service'
 import { AuthService }                      from './services/auth.service';
 import { DatabaseService }                  from './services/database.service';
 import { CookieService }                    from './services/cookie.service';
+import { SubscribeService }                 from './services/subscribe.service';
 
 /* App Component */
 import { AppComponent }                     from './app.component';
@@ -48,6 +49,9 @@ import { AnnouncementsComponent }           from './announcements.component';
 import { CardContainerComponent }           from './card-container.component';
 import { OnlyNumber }                       from './only-number.component';
 import { AdminCardComponent }               from './admin-card.component';
+
+/* Footer */
+import { FooterComponent }                  from './footer.component';
 
 /* Guards */
 import { AuthGuard }                        from './guards/auth-guard.service';
@@ -84,7 +88,8 @@ import { AuthGuard }                        from './guards/auth-guard.service';
     OnlyNumber,
     AdminComponent,
     LoginComponent,
-    AdminCardComponent
+    AdminCardComponent,
+    FooterComponent
   ],
   providers: [ 
     OfficersService,
@@ -95,7 +100,8 @@ import { AuthGuard }                        from './guards/auth-guard.service';
     AuthGuard,
     AuthService,
     DatabaseService,
-    CookieService
+    CookieService,
+    SubscribeService
   ],
   bootstrap: [ AppComponent ]
 })

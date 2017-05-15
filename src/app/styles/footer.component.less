@@ -1,0 +1,98 @@
+:host{
+	background: #026;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+	border-top: 1px solid #ededed;
+	height: 92px;
+	@media(max-width:768px){
+		flex-direction: column;
+		height: 250px;
+	}
+	.newsletter-signup{
+		flex: 1;
+		border-right: 1px solid #ddd;
+		max-width: 355px;
+		@media(max-width:768px){
+			border-right: none;
+			border-bottom: 1px solid #ededed;
+			margin-top: 10px;
+		}
+
+		div{
+		    position: relative;
+    		padding: 10px;		
+
+			.sign-up{
+				color: white;
+				font-weight: bold;
+				text-align: center;
+				font-size: 18px;
+				margin: 0px 0px 10px 0px;
+
+				@media(max-width:768px){
+					font-size: 20px;
+				}
+			}
+
+		    input{
+		    	position: relative;
+			    width: 254px;
+			    height: 35px;
+			    border: 1px solid black;
+			    border-radius: 5px;
+			    margin-left: 35px;
+		        padding: 10px;
+    			font-size: 12px;
+
+				@media(max-width:768px){
+					margin-left: 0px;
+					width: 250px;
+					height: 32px;
+				}
+		    }
+		    button{
+		    	position: absolute;
+			    bottom: 11px;
+			    right: 55px;
+			    height: 33px;
+		    	@media(max-width:768px){
+					right: 17px;
+					height: 31px;
+				}
+		    }
+		}
+		
+	}
+	.sponsors{
+	    flex: 1;
+	    padding: 5px 5px 5px 15px;
+	    height: 100%;
+	    p{
+	    	color:white;
+	    	font-weight: bold;
+	    	font-size: 18px;
+    	    padding-top: 10px;
+    		margin: 0px;
+    		@media(max-width: 768px){
+    			text-align: center;
+    			font-size: 20px;
+    		}
+	    }
+	    .sponsor-images{
+    	    display: flex;
+		    justify-content: flex-start;
+		    align-items: center;		    
+		    flex-direction: row;
+		    margin-left: 20px;
+		    .sponsor{
+		    	margin-right: 10px;
+			    img{
+			    	max-height: 65px;
+			    	max-width: 250px;
+			    }
+		    }
+	    }
+	}
+}
