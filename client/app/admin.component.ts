@@ -242,9 +242,9 @@ export class AdminComponent implements OnInit {
             succeed = false;
         }
         // restore original focus
-        if (currentFocus && typeof currentFocus.focus === "function") {
-            currentFocus.focus();
-        }
+        // if (currentFocus && typeof currentFocus.focus === "function") {
+            // currentFocus.focus();
+        // }
 
         target.textContent = "";
         return succeed;
