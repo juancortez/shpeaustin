@@ -1,0 +1,235 @@
+:host{
+	.main-page-container{
+		width: 100%;
+
+		.main-cards{
+			padding: 0px 25px 0px 25px;
+			margin-right: auto;
+			margin-left: auto;
+			width: 85%;
+			margin-top :15px;
+
+
+			@media only screen and (max-width: 1137px){
+			    width: 750px;  
+			}
+
+			@media only screen and (max-width: 768px){
+			    width: 90%;
+			}
+		    .thumbnail-title{
+		    	font-weight: bold;
+		      	text-align:center;
+		      	.newsletter-frame{
+		        	max-height: 473px;
+		      	}
+		    }
+		    .row{
+		    	img{
+		        	max-height: 199px;
+		        	min-height: 199px;
+		      	}
+		      	.social-media{
+			        width: 100%;
+			        display: flex;
+			        justify-content: center;
+
+			        @media only screen and (max-width: 768px){
+			        	display: block;
+			        }
+			    }
+
+	            .thumbnail{
+			        min-height: 473px;
+			        max-height: 473px;
+	                @media only screen and (max-width: 768px){
+			          max-height: 433px;
+			          min-height: 433px;
+			        }
+
+			        @media only screen and (max-width: 514px){
+			          max-height: 486px;
+			          min-height: 486px;
+			        }
+	                &.facebook-thumbnail{
+			        	width: 100%;
+			          	overflow-y: hidden;
+			          	.facebook-iframe{
+				            border: none;
+				            overflow: hidden;
+				            display: block;
+				            margin: 0 auto;
+			          	}
+			        }
+
+	                &.twitter-thumbnail{
+						width: 100%;
+						height: 450px;
+						overflow-y: hidden;
+						display: flex;
+						justify-content: center;
+			        }
+			        .paypal{
+			        	text-align: center;
+			        }
+
+			        .fa-archive, .fa-envelope{
+			        	position: absolute;
+			        	bottom: 30px;
+			        	right: 26px;
+			        	cursor: pointer;
+			            @media only screen and (max-width: 768px){
+			            	bottom: 10px;
+			            } 
+			        }
+
+			        .fa-envelope{
+			          right: 48px;
+			        }
+
+			        .membership-header{
+			        	margin-top: 0px;
+			        }
+
+					#fpc_box {
+						width: 100%;/*any relative or absolute*/
+						position: relative;
+						top: -5px;
+						right: -5px;
+						&:hover{
+						  #fpc_corner-button{
+						    width: 75px;
+						    height: 79px;
+						  }
+						}
+				        &:hover #fpc_corner-box { /* edit corner size (First animation, when the whole page is rollovered) */
+				        	height: 50px;
+				        	width: 50px;
+				        }
+
+
+				        #fpc_corner-button {
+				        	position: absolute;
+				          	top: -6px;
+				          	right: -11px;
+				          	background-color: white;
+				          	width: 54px;
+				          	height: 58px;
+				        }
+
+				        #fpc_corner-box {
+					        height: 35px;
+					        width: 35px;
+					        right: 0;
+					        top: 0;
+					        position: absolute;
+					        overflow: visible;
+			                &:hover #fpc_corner-button{
+					            position: absolute;
+					            top: -6px;
+					            right: -11px;
+					            background-color: white;
+					            width: 79px;
+					            height: 80px;
+				          	}
+	          	          	#fpc_page-tip {
+					            cursor: pointer;
+					            position: absolute;
+					            top: 0;
+					            right: 0;
+					            content: "";
+					            background: -webkit-linear-gradient(45deg, #ddd 17%, #dfdfdf 18%, #f5f5f5 30%, #f8f8f8 34%, #eee 39%, rgba(200,200,200,0) 41%);
+					            display: block;
+					            width: 100%;
+					            height: 100%;
+		                        &:before, &:after {
+					              	background-color: #FFF;
+					              	position: absolute;
+					              	display: block;
+					              	z-index: 2;
+					              	border-top-right-radius: 60%;
+					              	width: 50%;
+					              	height: 50%;
+					              	content: "";
+					            }
+
+					            &:before {
+					              	right: 100%;
+					              	top: 0%;
+					              	background: -webkit-radial-gradient(-180% 200%, circle, rgba(255,255,255,0) 80%, rgba(0,0,0,.2) 100%);
+					            }
+
+					            &:after {
+					              	top: 100%;
+					              	right: 0%;
+					              	background: -webkit-radial-gradient(-250% 320%, circle, rgba(255,255,255,0) 80%, rgba(0,0,0,.2) 100%);
+					            }
+					        } // #fpc_page-tip
+				        } // #fpc_corner-box
+
+		                .fa-calendar:hover #fpc_corner-button {
+				          	position: absolute;
+				          	top: -6px;
+				          	right: -11px;
+				          	background-color: white;
+				          	width: 79px;
+				          	height: 80px;
+				        }
+
+				        #calendar{
+				          	font-size: 11em;
+				          	text-align: center;    
+				          	margin: 0 auto;
+				          	width: 100%;
+				          padding: 15px;
+				        }
+
+				        .calendar-data-container{
+				            display: flex;
+				            flex-direction: column;
+				            justify-content: center;
+				            position: relative;
+
+				            .calendar-information{
+				              min-height: 215px;
+				              max-height: 215px;
+				              overflow-y: scroll;
+				              @media only screen and (max-width: 768px){
+				                min-height: 165px;
+				                max-height: 165px;
+				              }
+				              h4{
+				                text-align:center;
+				              }  
+				            } // .calendar-information
+				        } // .calendar-data-container
+				        #calendar-loader{
+				          position: absolute;
+				          align-self: center;
+				        }
+					} // #fpc_box
+
+				    .calendar-controls{
+				      	text-align: center;
+				      	margin-top: 5px;
+				      	@media only screen and (max-width: 515px){
+				      	  margin-top: 60px;
+				      	}
+
+				      	i{
+				      	  color: #337ab7;
+				      	  cursor: pointer;
+				      	}
+				      	
+				      	.fa-angle-double-right{
+				      	  margin-left: 10px;
+				      	}
+				      	.fa-angle-double-left{
+				      	  margin-right: 10px; 
+				      	}
+				    } // .calendar-controls
+			    } // .thumbnail
+		    } // .row
+		}
+	}
+}

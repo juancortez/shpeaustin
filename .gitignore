@@ -1,4 +1,4 @@
-/private_credentials
+server/private_credentials
 
 # compiled output
 /dist
@@ -7,7 +7,6 @@
 
 # dependencies
 /node_modules
-src/node_modules/
 
 # IDEs and editors
 /.idea
@@ -42,15 +41,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-
-# Map and JavaScript files
-/src/*.map
-/src/*.js
-/src/app/*.map
-/src/app/*.js
-/src/app/*/*.js
-/src/app/*/*.map
-
-
 # Typings
-src/typings/
+typings/
