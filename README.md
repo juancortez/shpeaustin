@@ -1,6 +1,6 @@
 # SHPE Austin Node.js Application
 
-The following Node.js application (v6.2.1) contains both the server and client side code for the [austinshpe.org][] website. The application runs on IBM's Bluemix platform, so creating an [IBM Bluemix account][] is necessary. Since this application only requires 512MB of memory and only one instance, the hosting is **free**. In order to forward the [austinshpe.org][] domain to the BlueMix application, you will need to have domain access to the austinshpe.org domain on [GoDaddy][]. The credentials for the GoDaddy account are located in the private_credentials/*.json file. Once the GoDaddy account is accessible, follow the directions in the 'Setting up Bluemix and GoDaddy' section at the end of the README file. This application also has access to the Google Calendar API, SendGrid, Slack, and Redis Cloud services so additional steps are required. Please start in the 'Getting Started' section and further instructions will be provided to set everything up. Any questions can be forwarded to the webmaster at Juan_Cortez@utexas.edu
+The following Node.js application (v6.2.1) contains both the server and client side code for the [austinshpe.org][] website. The website runs Angular2 on the front end, Node.js on the backend, and uses Redis as the database. (To view the basic architecture of the application, check out the architecture.pdf file in the architecture/ directory.) The application runs on IBM's Bluemix platform and only requires 512MB of memory and one instance, so the hosting is **free.**  In order to forward the [austinshpe.org][] domain to the BlueMix application, you will need to have domain access to the austinshpe.org domain on [GoDaddy][]. The credentials for the GoDaddy account are located in the server/private_credentials/*.json file. Once the GoDaddy account is accessible, follow the directions in the 'Setting up Bluemix and GoDaddy' section at the end of the README file. This application also has access to the Google Calendar API, SendGrid, Slack, and Redis Cloud services so additional steps are required. Please start in the 'Getting Started' section and further instructions will be provided to set everything up. Any questions can be forwarded to the webmaster at Juan_Cortez@utexas.edu
 
 *IMPORTANT* The .gitignore file includes the private_credentials folder. Please ask the current SHPE webmaster for these credentials
 so that all of the services work properly.
@@ -8,64 +8,64 @@ so that all of the services work properly.
 ## Project Layout
 ```
 shpeaustin/
-	config/
-		default.json 			File that holds data for the application
-	controllers/
-		*.js 					Controllers that serve all endpoints {GET, POST, DELETE, PUT} to the SHPE Austin Application
-	lib/
-		authorization.js 		A module that determines if a user is authorized to perform actions on the website
-		console.js 				Enhancements to the logging on the terminal
-		database.js 			A wrapper for the Redis database that includes retrieval, setting, and updating of data
-	metadata/
-		backup/*.json			Files that are automatically generated after database is deleted
-		announcements.json 		Contains the announcements data that populates the index.html file
-		calendar_data.json 		Contains the calendar data that populates the index.html
-		id.json 				Contains the unique ID's of all users that have logged into the website
-		newsletter_data.json 	Contains the newsletter data that populates the index.html
-		officers.json 			Contains the officer data that populates the officers.ejs file.	 
-	models/
-		officers.js 			Contains the class that constructs an object for each officer
-	node_modules/
-		*/						Dependencies used in the Node.js application
-	private_credentials/
-		*.json					Credentials used to connect to services (not on github)
-	public/
-		assets/
-			newsletter/ 		Contains all newsletter pictures that populate the index.html file
-			officer_pictures/	The pictures rendered on the /officers endpoint
-			*.jpg,*.png			Includes all .jpg and .png files used in Node.js application
-		dist/
-			*.min.js 			The production files used on the website for faster loading times
-			main.css 			The production file used on the website after it is compiled from LESS
-		javascripts/
-			utils/ 				
-				ajaxUtils.js 	Module that contains all the AJAX requests made from the index.html file
-				calendar.js  	Module used to create a calendar on the membership page
-				modal.js  		Module used to create a modal on the home and membership page
-			libs/				jQuery library
-			*.js 				JavaScript files used on the website, as specified by the title name
-		stylesheets/
-			/less
-				*.less			The CSS pre-processor file that gets convert to .css with gulp				
-			/libs 				Bootstrap, FontAwesome, and OwlCarousel
-			*.css 				Styling pages used for all views
-	router/
-		main.js 				Contains all the routes for the SHPE Austin website
-	services/
-		google_calendar.js 		This script sends an API request to the SHPE Austin Google Calendar and outputs it to metadata/calendar_data.json
-		redis.js 				File that creates a connection to the Redis database and caches data locally using the lib/database.js file
-		slack.js 				Holds a method that listens to requests made by the Slackbot on the SHPE Austin slack channel
-		socket.js 				Contains all web socket code for the SHPE Austin website
-	utils/
-		util.js 				Helper functions used throughout the node.js application
-	views/
-		newsletters/ 			These are the newsletters written by the Secretary every month
-		*.html 					The HTML pages for all the routes defined in router/main.js
-		*.ejs 					Template that is used to populate the officers page
-	app.js 						Starts and runs the Node.js application
-	manifest.yml 				Contains information used when deploying to Bluemix
-	package.json 				Dependencies used in Node.js app
-	gulpfile.js 				Gulp file used for development
+	architecture/	
+		***							PDF that shows a high level overview of the SHPE Austin application.
+	client/
+		app/						Holds all of the Angular2 components
+			guards/					Contains a login guard for the login page
+			services/				All the services used to connect to the node.js backend
+			static/					Has some of the text used throughout the SHPE Austin website
+			styles/					Contains .less files that are parsed by each of the applications
+			templates/				The .html files for each of the components
+		app.module.ts 				The primary module that describes how the application parts fit together
+		index.html 					File that is served on the front end
+		main.ts 					Bootstraps the main application
+		polyfills.ts 				Polyfills for the Angular2 application
+	config/	
+		default.json 				File that holds data for the application
+	dist/	
+		***							All the files that are served when the SHPE Austin website is in production
+	public/	
+		assets/	
+			officer_pictures/		The pictures rendered on the /officers endpoint
+			*.jpg,*.png				Includes all .jpg and .png files used in Node.js application
+		javascripts/	
+			utils/ 					
+				ajaxUtils.js 		Module that contains all the AJAX requests made from the index.html file
+				calendar.js  		Module used to create a calendar on the membership page
+				modal.js  			Module used to create a modal on the home and membership page
+			libs/					jQuery library
+			*.js 					JavaScript files used on the website, as specified by the title name
+		stylesheets/	
+			/libs 					OwlCarousel
+			styles.css 				Primary styling page used in Angular2 application
+	server/	
+		controllers/	
+			*.js 					Controllers that serve all endpoints {GET, POST, DELETE, PUT} to the SHPE Austin Application
+		lib/	
+			authorization.js 		A module that determines if a user is authorized to perform actions on the website
+			console.js 				Enhancements to the logging on the terminal
+			database.js 			A wrapper for the Redis database that includes retrieval, setting, and updating of data
+			credentialsBuilder.js 	File that holds all of the credentials used to authenticate certain portions of the application
+			exporter.js 			This file exports data and saves it to the local disk.
+		metadata/
+			backup/*.json			Files that are automatically generated after database is deleted
+			*.json 					Contains the data used to pre-populate the Redis database
+		private_credentials/	
+			*.json					Credentials used to connect to services (not on github)
+		router/	
+			main.js 				Contains all the routes for the SHPE Austin website
+		services/	
+			google_calendar.js 		This script sends an API request to the SHPE Austin Google Calendar	
+			redis.js 				File that creates a connection to the Redis database and caches data locally using the lib/database.js file
+			slack.js 				Holds a method that listens to requests made by the Slackbot on the SHPE Austin slack channel
+			socket.js 				Contains all web socket code for the SHPE Austin website
+		app.js 						Starts and runs the Node.js application
+	node_modules/	
+		*/							Dependencies used in the Node.js application
+	manifest.yml 					Contains information used when deploying to Bluemix
+	package.json 					Dependencies used in Node.js, and Angular2 app
+	gulpfile.js 					Gulp file used for development
 ```
 
 ## Getting Started
@@ -77,13 +77,13 @@ shpeaustin/
 6. Follow the directions in the 'Creating and Binding SendGrid' section below to connect to the SendGrid application.
 7. Follow the directions in the 'Redis Database Binding' section below to connect to the Redis service.
 8. Setup the Google Calendar API by following the directions in the 'Setting up the Google Calendar API' section.
-9. Once all of these steps are done, run `$node app.js`. If the SendGrid and Redis applications were binded correctly, the app should run with no problems.
+9. Once all of these steps are done, run `$npm start`. If the SendGrid and Redis applications were binded correctly, the app should run with no problems.
 10. Access the running app in a browser at http://localhost:6001
 11. When developing locally, please keep in mind there are tools available to make development easier. Please read the 'Developing Locally' section for further instructions.
 12. Follow the directions in the 'Setting up Bluemix and GoDaddy' section to route the bluemix application to the austinshpe.org domain.
 
 ## Developing Locally
-There are various tools that are included in this project that makes development easier and automated. All automated tasks are located in the gulpfile.js. Some of the more important features are minifying and concatinating *.js files, and compiling *.less files. When developing, run the app locally with `node app.js` and open up another terminal to run the gulp file by typing, `gulp`. The gulpfile will watch all the changes and will run the tasks automatically. 
+There are various tools that are included in this project that makes development easier and automated. The front end uses Angular2, so running `$npm start` will run a linter on all of the typescript files, as well as converting *.less files in all of the components. To run locally, run `$npm start` and the node.js server will start. Check the logs to determine what port was opened up for development, as well as any errors that were caught by the linter.
 
 ## SendGrid Application
 The sole purpose of the SendGrid application is to serve as a mailing client for the Bluemix application. The SendGrid API is connected to the
