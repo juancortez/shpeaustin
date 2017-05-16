@@ -3,5 +3,5 @@
 <social-media *ngIf="!responsiveActivated"></social-media>	
 
 
-<hamburger-navigation *ngIf="responsiveActivated"></hamburger-navigation>
+<hamburger-navigation [style.height]='height' (notify)='hamburgerSelect($event)' *ngIf="responsiveActivated"></hamburger-navigation>
 

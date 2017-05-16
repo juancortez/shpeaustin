@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 
 export class HamburgerNavigationComponent{
 	showNavigation: boolean = false;
+	@Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
+
 	/* left: 37, up: 38, right: 39, down: 40, spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36 */
 	keys:any = {
 		'37': 1, 
@@ -22,8 +24,12 @@ export class HamburgerNavigationComponent{
 
 	toggleNavigation(){
 		this.showNavigation = !this.showNavigation;
-		if(this.showNavigation) this.disableScroll();
-		else this.enableScroll();
+		this.notify.emit(this.showNavigation); 
+		if(this.showNavigation){
+			this.disableScroll();
+		} else{
+			this.enableScroll();	
+		} 
 	}
 
 	getCurrentPath(route: any): boolean{

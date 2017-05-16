@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+
+declare var $: any;
 
 @Component({
   selector: 'shpe-navigation',
@@ -9,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
   }
 })
 export class NavigationComponent implements OnInit{
+	constructor(private _elementRef: ElementRef){}
 	responsiveActivated: boolean = false;
+	height: number;
+	mobile: boolean = false;
 
 	responsiveEvent(event: any): void{
+		if(this.mobile) return;
 		let windowWidth = event.target.innerWidth;
 		if(windowWidth >= 995) this.responsiveActivated = false;
 		else this.responsiveActivated = true;
@@ -23,4 +29,9 @@ export class NavigationComponent implements OnInit{
 		else this.responsiveActivated = true;
 	}
 
+	hamburgerSelect(message:boolean):void {
+		this.mobile = message;
+		this.height = $(window).height();
+		$(this._elementRef.nativeElement).height($(window).height());
+	}
 }
