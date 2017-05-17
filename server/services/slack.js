@@ -1,6 +1,11 @@
-const request = require("request");
+const request = require("request"),
+    config = require('config')
+    privateCredentials = require('../lib/credentialsBuilder.js').init(),
+    cfenv = require('cfenv'),
+    appEnv = cfenv.getAppEnv(),
+    baseUrl = appEnv.isLocal ? config.get('app.local') : config.get('app.deployed');
 
-module.exports = (controller, client, database, privateCredentials, bot) => {
+module.exports = ({controller, database, bot}) => {
 
     controller.hears('hello', ['direct_message', 'direct_mention', 'mention'], (bot, message) => {
         bot.reply(message, 'Hello, how are you?');
@@ -38,6 +43,7 @@ module.exports = (controller, client, database, privateCredentials, bot) => {
                     });
 
                     if(officer.length === 0) return convo.repeat();
+                    else officer = officer[0];
                     convo.ask(_buildShpeMessage({
                         text: `Thanks, ${officer}. What would you like to post?`
                     }), (response, convo) => {
@@ -48,40 +54,35 @@ module.exports = (controller, client, database, privateCredentials, bot) => {
                             let answer = response['text'];
                             answer = answer.toLocaleLowerCase();
                             if(answer === "yes"){
-                                database.getCachedData('id', (err, data) => {
-                                    let cookie = data.uuid.shift();
-
-                                    const options = { 
-                                        'method': 'POST',
-                                        'url': 'http://us.austinshpe.org/update/announcements',
-                                        'qs': { 
-                                            'credentials': cookie
-                                        },
-                                        'headers': {
-                                         'cache-control': 'no-cache',
-                                         'content-type': 'application/json' 
-                                        },
-                                        'body': { 
-                                            officer,
-                                            announcement,
-                                            timestamp: new Date().getTime() 
+                                const authorization = _createAuthorization();
+                                const options = { 
+                                    'method': 'POST',
+                                    'url': `${baseUrl}/update/announcements`,
+                                    'headers': {
+                                        authorization,
+                                        'cache-control': 'no-cache',
+                                        'content-type': 'application/json' 
                                     },
-                                        json: true 
-                                    };
+                                    'body': { 
+                                        officer,
+                                        announcement,
+                                        timestamp: new Date().getTime() 
+                                },
+                                    json: true 
+                                };
 
-                                    request(options, function (error, response, body) {
-                                        if (error){
-                                            bot.reply(message, _buildShpeMessage({
-                                                text: `Sorry, there was an error in making the announcement`
-                                            }));
-                                            console.error(error);
-                                            return convo.stop();
-                                        }
+                                request(options, function (error, response, body) {
+                                    if (error){
                                         bot.reply(message, _buildShpeMessage({
-                                            text: `Great, ${officer}, creating an announcement now.`
+                                            text: `Sorry, there was an error in making the announcement`
                                         }));
+                                        console.error(error);
                                         return convo.stop();
-                                    });
+                                    }
+                                    bot.reply(message, _buildShpeMessage({
+                                        text: `Great, ${officer}, creating an announcement now.`
+                                    }));
+                                    return convo.stop();
                                 });
                             } else{
                                 bot.reply(message, _buildShpeMessage({
@@ -101,7 +102,9 @@ module.exports = (controller, client, database, privateCredentials, bot) => {
 
     controller.hears(['shutdown'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.startConversation(message, function(err, convo) {
-            convo.ask('Are you sure you want me to shutdown?', [
+            convo.ask(_buildShpeMessage({
+                text: 'Are you sure you want me to shutdown?'
+            }),[
                 {
                     pattern: bot.utterances.yes,
                     callback: function(response, convo) {
@@ -109,8 +112,8 @@ module.exports = (controller, client, database, privateCredentials, bot) => {
                             text: "What is the password?"
                         }), (response, convo) => {
                             let answer = response['text'];
-                            const credentials = privateCredentials.websiteLogin;
-                            if(answer === credentials.password){
+                            const creds = privateCredentials.websiteLogin;
+                            if(answer === creds.password){
                                 bot.reply(message, _buildShpeMessage({
                                     text: `Shutting down server.`
                                 }));
@@ -139,16 +142,21 @@ module.exports = (controller, client, database, privateCredentials, bot) => {
         });
     });
 
-    _invokeCalendarUpdate = (cb) => {
+    _createAuthorization = () => {
+        this.authorization = this.authorization || null;
+        if(this.authorization) return this.authorization;
+
         const credentials = privateCredentials.websiteLogin,
             authorizationToken = credentials.username + ":" + credentials.password;
-
-        const request = require('request');
         const authorization = "Basic " + new Buffer(authorizationToken).toString('base64');
+        return this.authorization = authorization;
+    }
 
+    _invokeCalendarUpdate = (cb) => {
+        const authorization = _createAuthorization();
         const options = { 
             method: 'POST',
-            url: 'http://us.austinshpe.org/update/calendar',
+            url: `${baseUrl}/update/calendar`,
             headers: { 
                 authorization: authorization
             }

@@ -14,11 +14,11 @@ const express = require('express'),
     privateCredentials = require('../lib/credentialsBuilder.js').init();
 
 // determines whether or not someone has logged in to the website
-app.get('/officerlogin', authorization.cookieAuth, (req, res) => { 
+app.get('/officerlogin', authorization.mixedAuth, (req, res) => { 
     return res.sendStatus(200);
 });
 
-app.get('/all/keys', authorization.cookieAuth, (req, res) => {
+app.get('/all/keys', authorization.mixedAuth, (req, res) => {
     database.getKeys((err, keys) => {
         if (err) {
             console.error(`Error: ${err.reason}`);
@@ -50,7 +50,7 @@ app.get('/:key', (req, res) => {
     }
 });
 
-app.delete('/:key', authorization.cookieAuth, (req, res) => {
+app.delete('/:key', authorization.mixedAuth, (req, res) => {
     let key = req && req.params && req.params.key || "";
 
     if(!!key){
@@ -69,7 +69,7 @@ app.delete('/:key', authorization.cookieAuth, (req, res) => {
 });
 
 
-app.put('/:key', authorization.cookieAuth, (req, res) => {
+app.put('/:key', authorization.mixedAuth, (req, res) => {
     let key = req && req.params && req.params.key || "",
         data = req && req.body || null;
 

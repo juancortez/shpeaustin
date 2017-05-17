@@ -143,7 +143,7 @@ const mc = new mcapi.Mailchimp(privateCredentials.mailchimp.api_key);
 app.set('mc', mc);
 
 databaseInstantiated.then(function(){
-    require('./services/slack.js')(controller, client, database, privateCredentials, bot); // Listen to different requests
+    require('./services/slack.js')({controller, database, bot}); // Listen to different requests
 }).catch(function(err){
     console.error(err);
 });

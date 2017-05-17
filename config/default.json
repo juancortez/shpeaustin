@@ -2,7 +2,7 @@
 	"app":{
 		"name": "SHPE Austin Website",
 		"local": "http://localhost:6006",
-		"deployed": "http://shpeaustin.mybluemix.net"
+		"deployed": "http://us.austinshpe.org"
 	},
 	"sendGrid": {
 		"sendGridEmail": "cortezjuanjr@gmail.com"

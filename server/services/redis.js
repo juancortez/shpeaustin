@@ -147,14 +147,21 @@ function onRedisConnection(client) {
 
     client.get("id", (err, reply) => {
         let fileName = "id.json";
+        let idFile;
         if (err) {
             console.error(`Error: ${err}`);
         } else {
             if (reply == null) {
-                // no id's provided
+                idFile = require(`../metadata/${fileName}`);
+                database.setData("id", JSON.stringify(idFile), (err) => {
+                    if (err) {
+                        console.error(`Error: ${err.reason}`);
+                        return;
+                    }
+                    console.log("Successully saved and cached id to Redis!");
+                });
             } else {
                 _cacheData("id", reply);
-                _updateMetadata(`${fileName}`, reply);
             }
         }
     });

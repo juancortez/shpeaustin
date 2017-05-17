@@ -15,7 +15,7 @@ const express = require('express'),
 let revision = config.revision;
 
 // posts an announcement to the redis database
-app.post('/announcements', authorization.cookieAuth, (req, res) => {
+app.post('/announcements', authorization.mixedAuth, (req, res) => {
     let key = "announcements";
     database.getCachedData(key, (err, data) => {
         if (!!err) {
@@ -70,7 +70,7 @@ app.post('/announcements', authorization.cookieAuth, (req, res) => {
 });
 
 // posts a new job to the redis database
-app.post('/jobs', authorization.cookieAuth, (req, res) => {
+app.post('/jobs', authorization.mixedAuth, (req, res) => {
     let key = "jobs";
     database.getCachedData(key, (err, data) => {
         if (!!err) {

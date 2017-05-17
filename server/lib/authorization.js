@@ -10,12 +10,12 @@
 
 const credentialsBuilder = require('./credentialsBuilder.js'),
     websiteLogin = credentialsBuilder.init().websiteLogin,
-    database = require('./database.js');
+    database = require('./database.js'),
+    basicAuth = require('basic-auth');
 
 const authorization = (function(){
     // uses basicAuth with custom alert UI to log in
     const auth = function (req, res, next) {
-        const basicAuth = require('basic-auth');
         let user = basicAuth(req);
 
         if (!user || !user.name || !user.pass) {
@@ -29,26 +29,39 @@ const authorization = (function(){
         }
     };
 
-    const cookieAuth = function (req, res, next) {
-        let credentials = req.query.credentials;
+    const mixedAuth = function (req, res, next) {
+        let queryCredentials = req.query.credentials;
 
         let url = req.originalUrl;
         let method = req.method;
-        
-        database.getCachedData('id', (err, data) => {
-            if(!!err){
-                console.log(`Cookie unauthorized for ${method} method at url "${url}"`);
-                console.error(err.reason);
-                return _unauthorized(res, false);
-            }
-            if(data.uuid.indexOf(credentials) >= 0){
-                console.log(`Cookie authorized for ${method} method at url "${url}"`);
+        let user = basicAuth(req);
+
+        if(queryCredentials){
+            database.getCachedData('id', (err, data) => {
+                if(!!err){
+                    console.log(`Cookie unauthorized for ${method} method at url "${url}"`);
+                    console.error(err.reason);
+                    return _unauthorized(res, false);
+                }
+                if(data.uuid.indexOf(queryCredentials) >= 0){
+                    console.log(`Cookie authorized for ${method} method at url "${url}"`);
+                    return next();
+                } else{
+                    console.log(`Cookie unauthorized for ${method} method at url "${url}"`);
+                    return _unauthorized(res, false);
+                }
+            });
+        } else if(user){
+            if (user.name === websiteLogin.username && user.pass === websiteLogin.password) {
+                console.log(`Authorized for ${method} method at url "${url}"`);
                 return next();
-            } else{
-                console.log(`Cookie unauthorized for ${method} method at url "${url}"`);
-                return _unauthorized(res, false);
+            } else {
+                console.log(`Unauthorized for ${method} method at url "${url}"`);
+                return _unauthorized(res, true);
             }
-        });
+        } else{
+            return _unauthorized(res, false);
+        }
     };
 
     // logs in with POST method and doesnt use basic-auth
@@ -94,7 +107,7 @@ const authorization = (function(){
     return{
         auth,
         webAuth,
-        cookieAuth
+        mixedAuth
     }
 })();
 
