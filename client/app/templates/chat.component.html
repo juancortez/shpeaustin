@@ -1,0 +1,14 @@
+<div id="chat-container">
+   <div id="chat-header">
+      Online Chat
+      <i class="fa fa-angle-double-down" (click)="toggleChat($event)"></i>
+   </div>
+   <div class="content-container">
+      <div id="chat-content">
+         <p id="name-prompt"> Please enter your name to start chatting. </p>
+      </div>
+      <form id="chat" (ngSubmit)="sendCommand()">
+         <input id="chat-message" autocomplete="off" placeholder="Enter a message" /><button id="send-chat">Send</button>
+      </form>
+   </div>
+</div> <!-- #chat-container -->

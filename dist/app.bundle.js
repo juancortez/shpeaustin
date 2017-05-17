@@ -35388,8 +35388,9 @@
 	var card_container_component_1 = __webpack_require__(399);
 	var only_number_component_1 = __webpack_require__(402);
 	var admin_card_component_1 = __webpack_require__(403);
+	var chat_component_1 = __webpack_require__(406);
 	/* Footer */
-	var footer_component_1 = __webpack_require__(406);
+	var footer_component_1 = __webpack_require__(409);
 	/* Guards */
 	var auth_guard_service_1 = __webpack_require__(364);
 	var core_2 = __webpack_require__(3);
@@ -35432,7 +35433,8 @@
 	            admin_component_1.AdminComponent,
 	            login_component_1.LoginComponent,
 	            admin_card_component_1.AdminCardComponent,
-	            footer_component_1.FooterComponent
+	            footer_component_1.FooterComponent,
+	            chat_component_1.ChatComponent
 	        ],
 	        providers: [
 	            officers_service_1.OfficersService,
@@ -65367,7 +65369,7 @@
 /* 352 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div class=\"toggle\">\n   <button (click)=\"toggle()\" [class.active]=\"!physicalAddress\" [class.inactive]=\"physicalAddress\" id=\"email-toggle\">E-Mail</button>\n   <button (click)=\"toggle()\" [class.active]=\"physicalAddress\" [class.inactive]=\"!physicalAddress\" id=\"physical-toggle\">Physical Mail</button>\n</div>\n\n<div *ngIf=\"physicalAddress\" class=\"envelope-container\">\n   <div class=\"huge-envelope\">\n      <span class=\"stamp\"></span>\n      <div class=\"sendFrom\">\n         <ul class=\"sendInformation\">\n            <li>John Doe</li>\n            <li>110 Inner Campus Drive</li>\n            <li>PO Box 8312</li>\n            <li>Austin, TX 78729</li>\n         </ul>   \n      </div>\n      <div class=\"sendTo\">\n         <ul class=\"sendInformation\">\n            <li>Attn: SHPE Austin</li>\n            <li>PO Box 80765</li>\n            <li>Austin, TX 78708</li>\n         </ul>\n      </div>\n   </div>\n</div>\n\n<div [hidden]=\"submitted\" *ngIf=\"!physicalAddress\" class=\"container\">\n    <form class=\"shpe-form\" (ngSubmit)=\"onSubmit()\" #shpeForm=\"ngForm\">\n      <div class=\"form-group\">\n        <span class=\"text-muted\" style=\"float:right;\"><em><span style=\"color:red;\">*</span> Indicates required field</em></span>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Name: <span style=\"color:red;\">*</span></label>\n          <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"SHPE Austin\"\n          required\n          [(ngModel)]=\"formName\" name=\"name\"\n          #name=\"ngModel\"\n          [class.valid]=\"isValidName()\">\n          <div [hidden]=\"name.valid || name.pristine\"\n              class=\"alert alert-danger\">\n              Name is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Email: <span style=\"color:red;\">*</span></label>\n          <input type=\"email\" class=\"form-control\" placeholder=\"shpe.austin@gmail.com\" [class.valid]=\"isValidEmail()\" id=\"email\"\n          required\n          [(ngModel)]=\"formEmail\" name=\"email\"\n          #email=\"ngModel\">\n          <div [hidden]=\"email.valid || email.pristine\"\n              class=\"alert alert-danger\">\n              E-mail Address is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Phone Number: <span style=\"color:red;\">*</span></label>\n          <input OnlyNumber=\"true\" type=\"tel\" class=\"form-control\" placeholder=\"(512)123-4567\" [class.valid]=\"isValidPhoneNumber()\" id=\"phone\"\n          required\n          [(ngModel)]=\"formPhone\" name=\"phone\"\n          #phone=\"ngModel\">\n          <div [hidden]=\"phone.valid || phone.pristine\"\n              class=\"alert alert-danger\">\n              Phone Number is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"category\">Category: <span style=\"color:red;\">*</span></label>\n          <select (change)=\"onCategoryChange($event.target.value)\" class=\"form-control\" id=\"category\" required>\n          <option *ngFor=\"let category of categories\" [value]=\"category\">{{category}}</option>\n          </select>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Message: <span style=\"color:red;\">*</span></label>\n          <textarea [(ngModel)]=\"formMessage\" [class.valid]=\"isValidMessage()\" name=\"message\"\n          #message=\"ngModel\" class=\"form-control\" id=\"message\" rows=\"7\" name=\"message\" placeholder=\"How can we help?\" required></textarea>\n          <div [hidden]=\"message.valid || message.pristine\"\n              class=\"alert alert-danger\">\n              Message is required\n          </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-success custom-button\" [disabled]=\"!allValid()\">Submit</button>\n    </form>\n</div>\n\n<div class=\"submitted-email\" *ngIf=\"submitted && !physicalAddress\">\n  <div *ngIf=\"success\" class=\"email-container\">\n      <div class=\"panel panel-primary\">\n        <div class=\"panel-heading\">Email Successfully Sent!</div>\n        <div class=\"panel-body\">\n          <p>\n            Thank you for your inquiry, we will get back with you shortly!\n          </p>\n          <a href=\"/home\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i></a>\n          <span class=\"signature\">-SHPE Austin Officers</span>\n      </div>\n    </div>\n  </div>\n  <div *ngIf=\"!success\" class=\"email-container\">\n      <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">Oh no! Your e-mail didn't send...</div>\n        <div class=\"panel-body\">\n          <p>\n            Sorry, how embarassing...please try sending an e-mail at a later time.\n          </p>\n          <a href=\"/home\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i></a>\n          <span class=\"signature\">-SHPE Austin Officers</span>\n      </div>\n    </div>\n  </div>\n</div>"
+	module.exports = "<div class=\"toggle\">\n   <button (click)=\"toggle()\" [class.active]=\"!physicalAddress\" [class.inactive]=\"physicalAddress\" id=\"email-toggle\">E-Mail</button>\n   <button (click)=\"toggle()\" [class.active]=\"physicalAddress\" [class.inactive]=\"!physicalAddress\" id=\"physical-toggle\">Physical Mail</button>\n</div>\n\n<div *ngIf=\"physicalAddress\" class=\"envelope-container\">\n   <div class=\"huge-envelope\">\n      <span class=\"stamp\"></span>\n      <div class=\"sendFrom\">\n         <ul class=\"sendInformation\">\n            <li>John Doe</li>\n            <li>110 Inner Campus Drive</li>\n            <li>PO Box 8312</li>\n            <li>Austin, TX 78729</li>\n         </ul>   \n      </div>\n      <div class=\"sendTo\">\n         <ul class=\"sendInformation\">\n            <li>Attn: SHPE Austin</li>\n            <li>PO Box 80765</li>\n            <li>Austin, TX 78708</li>\n         </ul>\n      </div>\n   </div>\n</div>\n\n<div [hidden]=\"submitted\" *ngIf=\"!physicalAddress\" class=\"container\">\n    <form class=\"shpe-form\" (ngSubmit)=\"onSubmit()\" #shpeForm=\"ngForm\">\n      <div class=\"form-group\">\n        <span class=\"text-muted\" style=\"float:right;\"><em><span style=\"color:red;\">*</span> Indicates required field</em></span>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Name: <span style=\"color:red;\">*</span></label>\n          <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"SHPE Austin\"\n          required\n          [(ngModel)]=\"formName\" name=\"name\"\n          #name=\"ngModel\"\n          [class.valid]=\"isValidName()\">\n          <div [hidden]=\"name.valid || name.pristine\"\n              class=\"alert alert-danger\">\n              Name is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Email: <span style=\"color:red;\">*</span></label>\n          <input type=\"email\" class=\"form-control\" placeholder=\"shpe.austin@gmail.com\" [class.valid]=\"isValidEmail()\" id=\"email\"\n          required\n          [(ngModel)]=\"formEmail\" name=\"email\"\n          #email=\"ngModel\">\n          <div [hidden]=\"email.valid || email.pristine\"\n              class=\"alert alert-danger\">\n              E-mail Address is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Phone Number: <span style=\"color:red;\">*</span></label>\n          <input OnlyNumber=\"true\" type=\"tel\" class=\"form-control\" placeholder=\"(512)123-4567\" [class.valid]=\"isValidPhoneNumber()\" id=\"phone\"\n          required\n          [(ngModel)]=\"formPhone\" name=\"phone\"\n          #phone=\"ngModel\">\n          <div [hidden]=\"phone.valid || phone.pristine\"\n              class=\"alert alert-danger\">\n              Phone Number is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"category\">Category: <span style=\"color:red;\">*</span></label>\n          <select (change)=\"onCategoryChange($event.target.value)\" class=\"form-control\" id=\"category\" required>\n          <option *ngFor=\"let category of categories\" [value]=\"category\">{{category}}</option>\n          </select>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Message: <span style=\"color:red;\">*</span></label>\n          <textarea [(ngModel)]=\"formMessage\" [class.valid]=\"isValidMessage()\" name=\"message\"\n          #message=\"ngModel\" class=\"form-control\" id=\"message\" rows=\"7\" name=\"message\" placeholder=\"How can we help?\" required></textarea>\n          <div [hidden]=\"message.valid || message.pristine\"\n              class=\"alert alert-danger\">\n              Message is required\n          </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-success custom-button\" [disabled]=\"!allValid()\">Submit</button>\n    </form>\n</div>\n\n<chat-ui></chat-ui>\n\n<div class=\"submitted-email\" *ngIf=\"submitted && !physicalAddress\">\n  <div *ngIf=\"success\" class=\"email-container\">\n      <div class=\"panel panel-primary\">\n        <div class=\"panel-heading\">Email Successfully Sent!</div>\n        <div class=\"panel-body\">\n          <p>\n            Thank you for your inquiry, we will get back with you shortly!\n          </p>\n          <a href=\"/home\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i></a>\n          <span class=\"signature\">-SHPE Austin Officers</span>\n      </div>\n    </div>\n  </div>\n  <div *ngIf=\"!success\" class=\"email-container\">\n      <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">Oh no! Your e-mail didn't send...</div>\n        <div class=\"panel-body\">\n          <p>\n            Sorry, how embarassing...please try sending an e-mail at a later time.\n          </p>\n          <a href=\"/home\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i></a>\n          <span class=\"signature\">-SHPE Austin Officers</span>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 /* 353 */
@@ -66951,7 +66953,84 @@
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var core_1 = __webpack_require__(3);
-	var sponsors_template_1 = __webpack_require__(407);
+	var cookie_service_1 = __webpack_require__(335);
+	var ChatComponent = (function () {
+	    function ChatComponent(cookieService) {
+	        this.cookieService = cookieService;
+	        this.chat = Chat;
+	    }
+	    ChatComponent.prototype.ngOnInit = function () {
+	        this.chat.initialize();
+	        this.chatMessage = $("#chat-message");
+	        this.contentContainer = $(".content-container");
+	        var cookie = this.cookieService.getCookie('chat-minimized');
+	        if (cookie === "true" || this.isMobile())
+	            $("#chat-header i").click();
+	    };
+	    ChatComponent.prototype.sendCommand = function () {
+	        var message = this.chatMessage.val();
+	        this.chat.sendMessage(message);
+	        this.chatMessage.val('');
+	    };
+	    ChatComponent.prototype.toggleChat = function (event) {
+	        this.contentContainer.toggle();
+	        this.chatToggle = this.chatToggle ? this.chatToggle : event.target;
+	        if ($(this.chatToggle).hasClass('fa-angle-double-up')) {
+	            $("#chat-container").css({ 'height': '368px' });
+	            this.cookieService.setCookie('chat-minimized', 'false', 31, '/contact');
+	            $(this.chatToggle).removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
+	        }
+	        else {
+	            $("#chat-container").css({ 'height': '30px' });
+	            this.cookieService.setCookie('chat-minimized', 'true', 31, '/contact');
+	            $(this.chatToggle).removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
+	        }
+	    };
+	    ChatComponent.prototype.isMobile = function () {
+	        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+	    };
+	    return ChatComponent;
+	}());
+	ChatComponent = __decorate([
+	    core_1.Component({
+	        selector: "chat-ui",
+	        template: __webpack_require__(407),
+	        styles: [__webpack_require__(408)]
+	    }),
+	    __metadata("design:paramtypes", [cookie_service_1.CookieService])
+	], ChatComponent);
+	exports.ChatComponent = ChatComponent;
+
+
+/***/ }),
+/* 407 */
+/***/ (function(module, exports) {
+
+	module.exports = "<div id=\"chat-container\">\n   <div id=\"chat-header\">\n      Online Chat\n      <i class=\"fa fa-angle-double-down\" (click)=\"toggleChat($event)\"></i>\n   </div>\n   <div class=\"content-container\">\n      <div id=\"chat-content\">\n         <p id=\"name-prompt\"> Please enter your name to start chatting. </p>\n      </div>\n      <form id=\"chat\" (ngSubmit)=\"sendCommand()\">\n         <input id=\"chat-message\" autocomplete=\"off\" placeholder=\"Enter a message\" /><button id=\"send-chat\">Send</button>\n      </form>\n   </div>\n</div> <!-- #chat-container -->"
+
+/***/ }),
+/* 408 */
+/***/ (function(module, exports) {
+
+	module.exports = "#chat-container {\n  position: fixed;\n  bottom: 0;\n  right: 10%;\n  height: 368px;\n  background: white;\n  width: 250px;\n  z-index: 100;\n  border: 1px solid #ebebeb;\n  border-radius: 5px 5px 0px 0px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-flex-wrap: nowrap;\n  -ms-flex-wrap: nowrap;\n  flex-wrap: nowrap;\n  -webkit-box-pack: start;\n  -webkit-justify-content: flex-start;\n  -ms-flex-pack: start;\n  justify-content: flex-start;\n  -webkit-box-align: start;\n  -webkit-align-items: flex-start;\n  -ms-flex-align: start;\n  align-items: flex-start;\n}\n#chat-container div,\n#chat-container form {\n  width: 100%;\n}\n#chat-container input {\n  width: 80%;\n}\n#chat-container button {\n  width: 20%;\n}\n#chat-container .content-container {\n  display: block;\n  height: 85%;\n}\n#chat-container .content-container #chat-content {\n  overflow-y: auto;\n  overflow-x: hidden;\n  padding: 8px 5px 5px 5px;\n  height: 100%;\n}\n#chat-container .content-container #chat-content .error {\n  color: red;\n}\n#chat-container .content-container #chat-content #name-prompt {\n  position: relative;\n  text-align: center;\n  color: black;\n  top: 150px;\n  font-size: 12px;\n  font-style: italic;\n}\n#chat-container #chat-header {\n  border-bottom: 1px solid #E6E6E6;\n  padding: 5px;\n  height: 30px;\n}\n#chat-container #chat-header i {\n  float: right;\n  padding: 2px;\n  cursor: pointer;\n}\n#chat-container #chat {\n  margin: 0px;\n  padding: 0px;\n}\n#chat-container #chat #send-chat {\n  font-family: inherit;\n  font-size: 100%;\n  padding: 4px;\n  color: #444;\n  color: rgba(0, 0, 0, 0.8);\n  border: 1px solid #999;\n  border: 0 rgba(0, 0, 0, 0);\n  background-color: #E6E6E6;\n  text-decoration: none;\n  border-radius: 2px;\n}\n"
+
+/***/ }),
+/* 409 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var core_1 = __webpack_require__(3);
+	var sponsors_template_1 = __webpack_require__(410);
 	var subscribe_service_1 = __webpack_require__(366);
 	var FooterComponent = (function () {
 	    function FooterComponent(subscribeService) {
@@ -67005,8 +67084,8 @@
 	FooterComponent = __decorate([
 	    core_1.Component({
 	        selector: "footer",
-	        template: __webpack_require__(408),
-	        styles: [__webpack_require__(409)]
+	        template: __webpack_require__(411),
+	        styles: [__webpack_require__(412)]
 	    }),
 	    __metadata("design:paramtypes", [subscribe_service_1.SubscribeService])
 	], FooterComponent);
@@ -67014,7 +67093,7 @@
 
 
 /***/ }),
-/* 407 */
+/* 410 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -67032,13 +67111,13 @@
 
 
 /***/ }),
-/* 408 */
+/* 411 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"newsletter-signup\">\n\t<form class=\"shpe-form\" (ngSubmit)=\"onSubmit()\" #shpeForm=\"ngForm\">\n      <div>\n          <h3 class='sign-up'>Sign Up for Our Newsletter</h3>\n          <input type=\"email\" placeholder=\"E-mail Address\" required\n          [(ngModel)]=\"formEmail\" name=\"email\"\n          #email=\"ngModel\"\n          [class.valid]=\"isValidEmail()\">\n          <button type=\"submit\" class=\"btn btn-success subscribe\" [disabled]=\"!isValidEmail()\">Submit</button>\n      </div>\n    </form>\n</div>\n<div class=\"sponsors\">\n\t<p> Special Thanks to our Sponsors</p>\n\t<div class=\"sponsor-images\">\n\t\t<div class=\"sponsor\">\n\t\t\t<a href=\"{{farmCredit.url}}\">\n\t\t\t\t<img alt=\"{{farmCredit.name}}\" src=\"{{farmCredit.photo}}\"/>\n\t\t\t</a>\n\t\t</div>\n<!-- \t\t<div class=\"sponsor\">\n\t\t\t<a href=\"{{sponsorTwo.url}}\">\n\t\t\t\t<img alt=\"{{sponsorTwo.name}}\" src=\"{{sponsorTwo.photo}}\"/>\n\t\t\t</a>\n\t\t</div> -->\n\t</div>\n</div>\n"
 
 /***/ }),
-/* 409 */
+/* 412 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  background: #026;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: row;\n  border-top: 1px solid #ededed;\n  height: 100px;\n}\n@media (max-width: 768px) {\n  :host {\n    flex-direction: column;\n    height: 250px;\n  }\n}\n:host .newsletter-signup {\n  flex: 1;\n  border-right: 1px solid #ddd;\n  max-width: 355px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup {\n    border-right: none;\n    border-bottom: 1px solid #ededed;\n    margin-top: 10px;\n  }\n}\n:host .newsletter-signup div {\n  position: relative;\n  padding: 10px;\n}\n:host .newsletter-signup div .sign-up {\n  color: white;\n  font-weight: bold;\n  text-align: center;\n  font-size: 18px;\n  margin: 0px 0px 10px 0px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div .sign-up {\n    font-size: 20px;\n  }\n}\n:host .newsletter-signup div input {\n  position: relative;\n  width: 254px;\n  height: 35px;\n  border: 1px solid black;\n  border-radius: 5px;\n  margin-left: 35px;\n  padding: 10px;\n  font-size: 12px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div input {\n    margin-left: 0px;\n    width: 250px;\n    height: 32px;\n  }\n}\n:host .newsletter-signup div button {\n  position: absolute;\n  bottom: 11px;\n  right: 55px;\n  height: 33px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div button {\n    right: 17px;\n    height: 31px;\n  }\n}\n:host .sponsors {\n  flex: 1;\n  padding: 5px 5px 5px 15px;\n}\n:host .sponsors p {\n  color: white;\n  font-weight: bold;\n  font-size: 18px;\n  padding-top: 10px;\n  margin: 0px;\n}\n@media (max-width: 768px) {\n  :host .sponsors p {\n    text-align: center;\n    font-size: 20px;\n  }\n}\n:host .sponsors .sponsor-images {\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: row;\n  margin-left: 20px;\n}\n:host .sponsors .sponsor-images .sponsor {\n  margin-right: 10px;\n}\n:host .sponsors .sponsor-images .sponsor img {\n  max-height: 65px;\n  max-width: 250px;\n}\n"

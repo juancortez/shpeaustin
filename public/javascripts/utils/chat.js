@@ -1,26 +1,27 @@
-var Chat = (function(){
+const Chat = (function(){
 	var chat = {},
 		socket,
 		name,
 		usersOnline = 0;
 
 	chat.initialize = function(){
+		console.log("Chat initialized!");
 		socket = io();
 		this.activateSockets();
 	};
 
 	chat.activateSockets = function(){
-		socket.on('chat message', function(msg){
+		socket.on('chat message', (msg) => {
 	        $('#chat-content').append("<div class='msgln'> " + "<span class='bold'>" + msg.name + " (" + msg.time + "): </span>" + msg.message + "</div>");
 	        $('#chat-content').scrollTop($('#chat-content')[0].scrollHeight); // automatically scrolls textbox with chat
 	    });
 
-	    socket.on('usersOnline', function(users){
+	    socket.on('usersOnline', (users) => {
 	        usersOnline = users;
 	        console.log("There " + (usersOnline > 1 ? "are " + usersOnline + " users" : "is one user") + " online, including yourself.");
 	    });
 
-	    socket.on('new-user', function(userName){
+	    socket.on('new-user', (userName) => {
 	        if(userName == name || name === undefined){
 	            return;
 	        }

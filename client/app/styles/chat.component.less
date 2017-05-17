@@ -1,0 +1,91 @@
+@blueHover: #23527c;
+@silverBorder: #ebebeb;
+
+#chat-container{
+    position: fixed;
+    bottom: 0;
+    right: 10%;
+    height: 368px;
+    background: white;
+    width: 250px;
+    z-index: 100;
+    border: 1px solid @silverBorder;
+    border-radius: 5px 5px 0px 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    div, form{
+        width: 100%;
+    }
+    input{
+        width: 80%;
+    }
+    button{
+        width: 20%;
+    }
+    .content-container{
+        display: block;
+        height: 85%;
+        #chat-content{
+            padding: 8px 5px 5px 5px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 8px 5px 5px 5px;
+            height: 100%;
+            .error{
+              color: red;
+            }
+            #name-prompt{
+                position: relative;
+                text-align: center;
+                color: black;
+                top: 150px;
+                font-size: 12px;
+                font-style: italic;
+            }
+        }
+    } // .content-container
+    #chat-header{
+        border-bottom: 1px solid #E6E6E6;
+        padding: 5px;
+        height: 30px;
+        i{
+            float: right;
+            padding: 2px;
+            cursor: pointer;
+        }
+    } // #chat-header
+    #chat{
+        margin: 0px;
+        padding:0px;
+        #send-chat{
+            font-family: inherit;
+            font-size: 100%;
+            padding: 4px;
+            color: #444;
+            color: rgba(0,0,0,.8);
+            border: 1px solid #999;
+            border: 0 rgba(0,0,0,0);
+            background-color: #E6E6E6;
+            text-decoration: none;
+            border-radius: 2px;
+        }
+    } // #chat
+}
