@@ -1,0 +1,24 @@
+<div id="overlay" [ngClass]="{'in': visibleAnimate}" [ngStyle]="{'display': visible ? 'block' : 'none'}"></div>
+
+<div class="modal fade" tabindex="-1" role="dialog" 
+  [ngClass]="{'in': visibleAnimate}"
+  [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-stack-1x fa-invers" 
+            [ngClass]="icon"></i>
+        </span>
+        <h1>{{title}}</h1>
+      </div>
+      <div class="modal-body">
+        <p class="modal-text">{{message}}</p>
+        <div>
+          <button type="button" class="btn btn-default close-btn" (click)="hide()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

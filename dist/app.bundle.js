@@ -35350,49 +35350,50 @@
 	var http_1 = __webpack_require__(291);
 	var app_routing_module_1 = __webpack_require__(292);
 	/* Pipes */
-	var safe_pipe_component_1 = __webpack_require__(365);
+	var safe_pipe_component_1 = __webpack_require__(369);
 	/* API Services */
 	var officers_service_1 = __webpack_require__(330);
 	var calendar_service_1 = __webpack_require__(322);
 	var jobs_service_1 = __webpack_require__(334);
-	var announcements_service_1 = __webpack_require__(358);
+	var announcements_service_1 = __webpack_require__(362);
 	var newsletter_service_1 = __webpack_require__(321);
 	var auth_service_1 = __webpack_require__(336);
 	var database_service_1 = __webpack_require__(348);
 	var cookie_service_1 = __webpack_require__(335);
-	var subscribe_service_1 = __webpack_require__(366);
+	var subscribe_service_1 = __webpack_require__(370);
 	/* App Component */
-	var app_component_1 = __webpack_require__(367);
+	var app_component_1 = __webpack_require__(371);
 	/* Pages */
 	var home_component_1 = __webpack_require__(320);
 	var about_component_1 = __webpack_require__(325);
 	var officers_component_1 = __webpack_require__(329);
 	var membership_component_1 = __webpack_require__(333);
-	var contact_component_1 = __webpack_require__(351);
-	var not_found_component_1 = __webpack_require__(354);
-	var admin_component_1 = __webpack_require__(357);
-	var login_component_1 = __webpack_require__(361);
+	var contact_component_1 = __webpack_require__(355);
+	var not_found_component_1 = __webpack_require__(358);
+	var admin_component_1 = __webpack_require__(361);
+	var login_component_1 = __webpack_require__(365);
 	/* Navigation Components */
-	var navigation_component_1 = __webpack_require__(369);
-	var navigation_links_component_1 = __webpack_require__(372);
-	var social_media_component_1 = __webpack_require__(375);
-	var banner_component_1 = __webpack_require__(378);
-	var hamburger_navigation_component_1 = __webpack_require__(380);
+	var navigation_component_1 = __webpack_require__(373);
+	var navigation_links_component_1 = __webpack_require__(376);
+	var social_media_component_1 = __webpack_require__(379);
+	var banner_component_1 = __webpack_require__(382);
+	var hamburger_navigation_component_1 = __webpack_require__(384);
 	/* Helpers */
-	var card_component_1 = __webpack_require__(383);
-	var officer_component_1 = __webpack_require__(385);
-	var carousel_component_1 = __webpack_require__(388);
-	var job_component_1 = __webpack_require__(390);
-	var welcome_component_1 = __webpack_require__(393);
-	var announcements_component_1 = __webpack_require__(396);
-	var card_container_component_1 = __webpack_require__(399);
-	var only_number_component_1 = __webpack_require__(402);
-	var admin_card_component_1 = __webpack_require__(403);
-	var chat_component_1 = __webpack_require__(406);
+	var card_component_1 = __webpack_require__(387);
+	var officer_component_1 = __webpack_require__(389);
+	var carousel_component_1 = __webpack_require__(392);
+	var job_component_1 = __webpack_require__(394);
+	var welcome_component_1 = __webpack_require__(397);
+	var announcements_component_1 = __webpack_require__(400);
+	var card_container_component_1 = __webpack_require__(403);
+	var only_number_component_1 = __webpack_require__(406);
+	var admin_card_component_1 = __webpack_require__(407);
+	var chat_component_1 = __webpack_require__(410);
+	var modal_component_1 = __webpack_require__(349);
 	/* Footer */
-	var footer_component_1 = __webpack_require__(409);
+	var footer_component_1 = __webpack_require__(413);
 	/* Guards */
-	var auth_guard_service_1 = __webpack_require__(364);
+	var auth_guard_service_1 = __webpack_require__(368);
 	var core_2 = __webpack_require__(3);
 	core_2.enableProdMode();
 	var AppModule = (function () {
@@ -35434,7 +35435,8 @@
 	            login_component_1.LoginComponent,
 	            admin_card_component_1.AdminCardComponent,
 	            footer_component_1.FooterComponent,
-	            chat_component_1.ChatComponent
+	            chat_component_1.ChatComponent,
+	            modal_component_1.ModalComponent
 	        ],
 	        providers: [
 	            officers_service_1.OfficersService,
@@ -58057,11 +58059,11 @@
 	var about_component_1 = __webpack_require__(325);
 	var officers_component_1 = __webpack_require__(329);
 	var membership_component_1 = __webpack_require__(333);
-	var contact_component_1 = __webpack_require__(351);
-	var not_found_component_1 = __webpack_require__(354);
-	var admin_component_1 = __webpack_require__(357);
-	var login_component_1 = __webpack_require__(361);
-	var auth_guard_service_1 = __webpack_require__(364);
+	var contact_component_1 = __webpack_require__(355);
+	var not_found_component_1 = __webpack_require__(358);
+	var admin_component_1 = __webpack_require__(361);
+	var login_component_1 = __webpack_require__(365);
+	var auth_guard_service_1 = __webpack_require__(368);
 	var routes = [
 	    { path: '', redirectTo: '/home', pathMatch: 'full' },
 	    { path: 'home', component: home_component_1.HomeComponent },
@@ -64313,47 +64315,13 @@
 	var core_1 = __webpack_require__(3);
 	var calendar_service_1 = __webpack_require__(322);
 	var jobs_service_1 = __webpack_require__(334);
+	var modal_component_1 = __webpack_require__(349);
+	// declare var modal: any;
 	var MembershipComponent = (function () {
 	    function MembershipComponent(calendarService, jobService) {
 	        this.calendarService = calendarService;
 	        this.jobService = jobService;
-	        this.descriptions = {
-	            "mentoring": [
-	                "Our chapter has partnered with both The University of Texas at Austin Chapter and SHPE Jr. Chapters to create a mentorship program. Professionals in",
-	                " the SHPE Austin chapter are matched with college students with similar career choices and provide mentorship and career advice."
-	            ],
-	            "community_outreach": [
-	                "Our chapter prides itself with community outreach and hosts various activities with The University of Texas at Austin chapter.",
-	                "Some of the annual events that SHPE Austin hosts are Noche de Ciencias and Introduce a Girl to Engineering Day. Each month, our ",
-	                "Community Service Director hosts a community service event, ranging from mentoring children, cleaning parks, and participating in toy drives."
-	            ],
-	            "leadership_development": [
-	                "Throughout the year, officer positions become available and members are encouraged to apply for these positions. If you are interested in learning more about",
-	                " how the officer board functions or want to enhance your leadership skills as a professional, come around to our events so we can meet you!"
-	            ],
-	            "professional_development": [
-	                "As a professional, it is important to continue developing your skills so the SHPE Austin chapter provides members with workshops where members can ",
-	                "become better public speakers, find ways to enhance their brands, and teach how to mentor students."
-	            ],
-	            "chapter_development": [
-	                "When becoming a professional, it can be daunting to move to a new city. The SHPE Austin chapter makes the transition a little easier by ",
-	                " hosting socials and events around Austin. Check out our calendar and join us at some of our events to learn more about what Austin, TX has to offer."
-	            ],
-	            "sports": [
-	                "Austin, TX is well known for being an outdoors city and there are various leagues that SHPE Austin participates in. In past years, our chapter has been part of ",
-	                "many leagues, including soccer, volleyball, softball, and football."
-	            ],
-	            "national_conferences": [
-	                "The <a href='http://www.shpe.org/'>Society of Hispanic Professional Engineers National</a> Organization hosts a yearly natinal conference and brings together all ",
-	                "the chapters across the world, including SHPE Jr. Chapters, University Chapters, and Professional Chapters. The National Conference is usually held in November and ",
-	                "offers networking opportunities and professional workshops for all members of any age."
-	            ],
-	            "regional_conferences": [
-	                "Every year, one University chapter from each region is chosen to host a Regional conference. The Regional Conference offers many of the same benefits and opportunities ",
-	                "as the national conference, but at a smaller level. The Regional Conference is usually held during the month of March and includes activities and events available for all ",
-	                "levels, including SHPE Jr, University, and Professional."
-	            ]
-	        };
+	        this._cache = {};
 	    }
 	    MembershipComponent.prototype.ngOnInit = function () {
 	        var _this = this;
@@ -64390,7 +64358,17 @@
 	        });
 	    };
 	    MembershipComponent.prototype.moreInformation = function (event) {
-	        console.log("more information");
+	        var type = event.target.getAttribute('data');
+	        if (!this._cache[type]) {
+	            var classes = $(event.target).prev().attr('class').split(' ');
+	            var icon = [];
+	            icon = classes.filter(function (name) {
+	                return name !== "fa" && name !== "fa-5x";
+	            });
+	            icon = icon.length > 0 ? icon[0] : "";
+	            this._cache[type] = icon;
+	        }
+	        this.modal.show({ type: type, icon: this._cache[type] });
 	    };
 	    MembershipComponent.prototype._constructCalendar = function (entries) {
 	        var cal = Calendar();
@@ -64398,11 +64376,15 @@
 	    };
 	    return MembershipComponent;
 	}());
+	__decorate([
+	    core_1.ViewChild(modal_component_1.ModalComponent),
+	    __metadata("design:type", modal_component_1.ModalComponent)
+	], MembershipComponent.prototype, "modal", void 0);
 	MembershipComponent = __decorate([
 	    core_1.Component({
 	        selector: "membership",
-	        template: __webpack_require__(349),
-	        styles: [__webpack_require__(350)]
+	        template: __webpack_require__(353),
+	        styles: [__webpack_require__(354)]
 	    }),
 	    __metadata("design:paramtypes", [calendar_service_1.CalendarService, jobs_service_1.JobService])
 	], MembershipComponent);
@@ -65269,18 +65251,137 @@
 
 /***/ }),
 /* 349 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = "<div class=\"membership-container\">\n   <h1 class=\"dark-shpe-blue center-text main-title\">SHPE Membership</h1>\n   <div id=\"owl-example\" class=\"owl-carousel owl-theme\">\n      <div class=\"item dark-cyan\">\n         <carousel pillar=\"Mentoring\" pillarDescription=\"Our members mentor high school and college students through our mentorship program.\">\n            <i class=\"fa fa-users fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"Mentoring\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n\n      <div class=\"item forest-green\">\n         <carousel pillar=\"Community Outreach\" pillarDescription=\"We reach out to local communities and have at least one community service event a month.\">\n            <i class=\"fa fa-graduation-cap fa-5x\" carousel-body></i>\n            <i data=\"Community Outreach\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item orange\">\n         <carousel pillar=\"Leadership Development\" pillarDescription=\"We provide our members leadership opportunities throughout the year.\">\n            <i class=\"fa fa-university fa-5x\" carousel-body></i>\n            <i data=\"Leadership Development\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item yellow\">\n         <carousel pillar=\"Professional Development\" pillarDescription=\"We host a wide variety of workshops to enhance our members professional career.\">\n            <i class=\"fa fa-briefcase fa-5x\" carousel-body></i>\n            <i data=\"Professional Development\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item dodger-blue\">\n         <carousel pillar=\"Chapter Development\" pillarDescription=\"If you are new to Austin, we show you what Austin has to offer through fun activities.\">\n            <i class=\"fa fa-hand-rock-o fa-5x\" carousel-body></i>\n            <i data=\"Chapter Development\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item violet\">\n         <carousel pillar=\"Sports\" pillarDescription=\"Come play pick up games or join one of our sports leagues!\">\n            <i class=\"fa fa-futbol-o fa-5x\" carousel-body></i>\n            <i data=\"Sports\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item sky-blue\">\n         <carousel pillar=\"National Conferences\" pillarDescription=\"Every year, SHPE hosts a National Conference and we take members every year.\">\n            <i class=\"fa fa-plane fa-5x\" carousel-body></i>\n            <i data=\"National Conferences\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item zombie-green\">\n         <carousel pillar=\"Regional Conferences\" pillarDescription=\"If you can't afford the time to fly, join us in our regional conferences.\">\n            <i class=\"fa fa-plane fa-5x\" carousel-body></i>\n            <i data=\"Regional Conferences\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n   </div>\n\n   <div class=\"bottom-container\">\n      <div class =\"member-info\">\n         <div class =\"outer-cal\">\n            <div class=\"cal-title\">\n               <p>SHPE Calendar</p>\n            </div>\n            <div class = \"cal-container\">\n               <div id=\"cal\">\n                  <div id=\"cal-info\">\n                     <span class=\"glyphicon glyphicon-remove-sign\" aria-hidden=\"true\"></span>\n                     <p class=\"calendar-info\"><b>Event: </b><span id=\"event\"> </span></p>\n                     <p class=\"calendar-info\"><b>Date: </b><span id=\"date\"> </span></p>\n                     <p class=\"calendar-info locationWrapper\"><b>Location: </b><span id=\"location\"> </span></p>\n                     <p class=\"calendar-info\"><b>More Info: </b><span id=\"calLink\">Link</span></p>\n                  </div>\n                  <div class=\"header\"> \n                     <span class=\"left button\" id=\"prev\"> &lang; </span> \n                     <span class=\"left hook\"></span> \n                     <span class=\"month-year\" id=\"label\"> June 2002 </span> \n                     <span class=\"right hook\"></span> \n                     <span class=\"right button\" id=\"next\"> &rang; </span>\n                  </div>\n                  <table id=\"days\">\n                     <td>sun</td>\n                     <td>mon</td>\n                     <td>tue</td>\n                     <td>wed</td>\n                     <td>thu</td>\n                     <td>fri</td>\n                     <td>sat</td>\n                  </table>\n                  <div id=\"cal-frame\">\n                     <table class=\"curr\">\n                        <tbody>\n                           <tr>\n                              <td class=\"nil\"></td>\n                              <td class=\"nil\"></td>\n                              <td>1</td>\n                              <td>2</td>\n                              <td>3</td>\n                              <td>4</td>\n                              <td>5</td>\n                           </tr>\n                           <tr>\n                              <td>6</td>\n                              <td>7</td>\n                              <td>8</td>\n                              <td>9</td>\n                              <td>10</td>\n                              <td class=\"today\">11</td>\n                              <td>12</td>\n                           </tr>\n                           <tr>\n                              <td>13</td>\n                              <td>14</td>\n                              <td>15</td>\n                              <td>16</td>\n                              <td>17</td>\n                              <td>18</td>\n                              <td>19</td>\n                           </tr>\n                           <tr>\n                              <td>20</td>\n                              <td>21</td>\n                              <td>22</td>\n                              <td>23</td>\n                              <td>24</td>\n                              <td>25</td>\n                              <td>26</td>\n                           </tr>\n                           <tr>\n                              <td>27</td>\n                              <td>28</td>\n                              <td>29</td>\n                              <td>30</td>\n                              <td class=\"nil\"></td>\n                              <td class=\"nil\"></td>\n                              <td class=\"nil\"></td>\n                           </tr>\n                        </tbody>\n                     </table>\n                  </div>\n               </div>\n            </div> <!-- .cal-container -->\n         </div>\n         <div class = \"job-postings-container\">\n            <div class=\"jobs-title\">\n               <p>Job Postings</p>\n            </div>\n            <div class=\"job-tiles\">\n                  <job \n                     class=\"job-tile\"\n                     *ngFor=\"let job of jobs\"\n                     position=\"{{job.position}}\"\n                     company=\"{{job.company}}\"\n                     description=\"{{job.description}}\"\n                     poster=\"{{job.poster}}\"\n                     url=\"{{job.url}}\"\n                  >\n                  </job>\n            </div>\n         </div>\n      </div>\n      <div class=\"join-shpe-container\">\n         <div class=\"jumbotron\">\n            <h1 id=\"join-shpe-austin\">Join SHPE Austin</h1>\n            <p>If you have any further questions about SHPE Austin, please e-mail us in our Contact Page or e-mail any of the officers from our Officers page. If you would like to join our local chapter, please click on the Paypal button below!</p>\n            <div class=\"paypal\">\n               <form method=\"post\" action=\"https://www.paypal.com/cgi-bin/webscr\" target=\"_blank\">\n                  <input type=\"hidden\" value=\"_s-xclick\" name=\"cmd\">\n                  <input type=\"hidden\" value=\"44KD2JSH3CQX2\" name=\"hosted_button_id\">\n                  <input border=\"0\" type=\"image\" alt=\"PayPal - The safer, easier way to pay online!\" name=\"submit\" src=\"/assets/paypal.png\">\n               </form>\n            </div>\n         </div>\n      </div>\n   </div>\n</div>"
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var core_1 = __webpack_require__(3);
+	var membership_info_template_1 = __webpack_require__(350);
+	var ModalComponent = (function () {
+	    function ModalComponent(elementRef) {
+	        this.elementRef = elementRef;
+	        this.visible = false;
+	        this.visibleAnimate = false;
+	        this.message = "Message";
+	        this.title = "Title";
+	        this.icon = "";
+	    }
+	    ModalComponent.prototype.show = function (args) {
+	        var _this = this;
+	        var title = args.type;
+	        var option = title.replace(/ /g, "_").toLowerCase(); // replace spaces with an underscore
+	        this.title = title || this.title;
+	        this.message = membership_info_template_1.DESCRIPTIONS[option] || this.message;
+	        this.icon = args.icon;
+	        this.visible = true;
+	        setTimeout(function () { return _this.visibleAnimate = true; });
+	    };
+	    ModalComponent.prototype.hide = function () {
+	        this.visibleAnimate = false;
+	        this.visible = false;
+	    };
+	    ModalComponent.prototype.handleKeyboardEvents = function (event) {
+	        if (event.code === "Escape") {
+	            this.visible = false;
+	            this.visibleAnimate = false;
+	        }
+	    };
+	    return ModalComponent;
+	}());
+	ModalComponent = __decorate([
+	    core_1.Component({
+	        selector: "modal",
+	        template: __webpack_require__(351),
+	        styles: [__webpack_require__(352)],
+	        host: {
+	            '(document:keydown)': 'handleKeyboardEvents($event)'
+	        }
+	    }),
+	    __metadata("design:paramtypes", [core_1.ElementRef])
+	], ModalComponent);
+	exports.ModalComponent = ModalComponent;
+
 
 /***/ }),
 /* 350 */
 /***/ (function(module, exports) {
 
-	module.exports = ".membership-container {\n  margin-top: 15px;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 85%;\n  min-height: 100%;\n  position: relative;\n}\n@media only screen and (max-width: 768px) {\n  .membership-container {\n    width: 100%;\n  }\n}\n.membership-container .owl-carousel {\n  text-align: center;\n}\n.membership-container #owl-example .item {\n  cursor: pointer;\n  padding: 30px 0px;\n  margin: 10px;\n  color: #FFF;\n  -webkit-border-radius: 3px;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  text-align: center;\n  min-height: 294px;\n  max-height: 294px;\n}\n@media only screen and (max-width: 768px) {\n  .membership-container #owl-example .item {\n    min-height: 294px;\n    max-height: 294px;\n  }\n}\n.membership-container #owl-example .item h3.pillar {\n  font-size: 28px;\n  font-weight: 300;\n  margin: 25px 0 0;\n}\n.membership-container #owl-example .item h4.pillar-description {\n  margin: 5px 0 0;\n  font-size: 18px;\n  padding: 5px;\n}\n.membership-container #owl-example .item .fa-info-circle {\n  position: absolute;\n  cursor: pointer;\n  font-size: 2em !important;\n  margin: 5px;\n}\n.membership-container .bottom-container {\n  margin: 0 auto;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 100%;\n  margin-top: 15px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  flex-direction: row;\n  margin-bottom: 50px;\n}\n@media only screen and (max-width: 1094px) {\n  .membership-container .bottom-container {\n    width: 100%;\n  }\n}\n.membership-container .bottom-container .member-info {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: nowrap;\n  width: 100%;\n}\n@media only screen and (max-width: 980px) {\n  .membership-container .bottom-container .member-info {\n    flex-wrap: wrap;\n    margin-bottom: 30px;\n  }\n}\n.membership-container .bottom-container .member-info .outer-cal {\n  height: 370px;\n  overflow-y: scroll;\n  margin-right: 20px;\n  border: 1px solid #848383;\n  border-radius: 10px;\n  flex: 1;\n  min-width: 250px;\n  max-width: 250px;\n}\n@media only screen and (max-width: 650px) {\n  .membership-container .bottom-container .member-info .outer-cal {\n    flex: initial;\n  }\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-title {\n  padding: 5px;\n  border-bottom: 1px solid #848383;\n  background: #cd310d;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-title p {\n  margin: 0px;\n  text-align: center;\n  font-weight: bold;\n  color: white;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container {\n  width: 250px;\n  margin-top: 40px;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container h1 {\n  font-size: 24px;\n}\n@media only screen and (max-width: 825px) {\n  .membership-container .bottom-container .member-info .outer-cal .cal-container h1 {\n    font-size: 30px;\n  }\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal {\n  -moz-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);\n  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);\n  margin: 0 auto;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  display: table;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header {\n  cursor: default;\n  background: #cd310d;\n  background: -moz-linear-gradient(top, #b32b0c, #cd310d);\n  background: -webkit-gradient(linear, left top, left bottom, from(#b32b0c), to(#cd310d));\n  height: 34px;\n  position: relative;\n  color: #fff;\n  -webkit-border-top-left-radius: 5px;\n  -webkit-border-top-right-radius: 5px;\n  -moz-border-radius-topleft: 5px;\n  -moz-border-radius-topright: 5px;\n  border-top-left-radius: 5px;\n  border-top-right-radius: 5px;\n  font-weight: bold;\n  text-shadow: 0px -1px 0 #87260C;\n  text-transform: uppercase;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header span {\n  display: inline-block;\n  line-height: 34px;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .hook {\n  width: 9px;\n  height: 28px;\n  position: absolute;\n  bottom: 60%;\n  border-radius: 10px;\n  -moz-border-radius: 10px;\n  -webkit-border-radius: 10px;\n  background: #ececec;\n  background: -moz-linear-gradient(right top, #fff, #827e7d);\n  background: -webkit-gradient(linear, right top, right bottom, from(#fff), to(#827e7d));\n  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.65);\n  -moz-box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.65);\n  -webkit-box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.65);\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .right.hook {\n  right: 15%;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .left.hook {\n  left: 15%;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .button {\n  width: 24px;\n  text-align: center;\n  position: absolute;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .button:hover {\n  background: -moz-linear-gradient(top, #d94215, #bb330f);\n  background: -webkit-gradient(linear, left top, left bottom, from(#d94215), to(#bb330f));\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .left.button {\n  left: 0;\n  -webkit-border-top-left-radius: 5px;\n  -moz-border-radius-topleft: 5px;\n  border-top-left-radius: 5px;\n  border-right: 1px solid #ae2a0c;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .left.button:hover {\n  cursor: pointer;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .right.button {\n  right: 0;\n  top: 0;\n  border-left: 1px solid #ae2a0c;\n  -webkit-border-top-right-radius: 5px;\n  -moz-border-radius-topright: 5px;\n  border-top-right-radius: 5px;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .right.button:hover {\n  cursor: pointer;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .month-year {\n  letter-spacing: 1px;\n  width: 100%;\n  text-align: center;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal table {\n  background: #fff;\n  border-collapse: collapse;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal #cal-info {\n  display: none;\n  width: 223px;\n  height: 185px;\n  position: absolute;\n  margin: 34px 0px 0px 0px;\n  overflow: scroll;\n  z-index: 100;\n  border-radius: 2px;\n  background-color: white;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal #cal-info .glyphicon-remove-sign {\n  float: right;\n  padding: 5px;\n  cursor: pointer;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal #cal-info .calendar-info {\n  padding: 3px;\n  margin: 2px;\n}\n.membership-container .bottom-container .member-info .job-postings-container {\n  flex: 2;\n  height: 370px;\n  overflow-y: scroll;\n  border: 1px solid #848383;\n  border-radius: 10px;\n  max-width: 540px;\n}\n@media only screen and (max-width: 650px) {\n  .membership-container .bottom-container .member-info .job-postings-container {\n    margin-top: 25px;\n    flex-basis: 100%;\n  }\n}\n.membership-container .bottom-container .member-info .job-postings-container .jobs-title {\n  padding: 5px;\n  border-bottom: 1px solid #848383;\n  background: #388bd1;\n}\n.membership-container .bottom-container .member-info .job-postings-container .jobs-title p {\n  margin: 0px;\n  text-align: center;\n  font-weight: bold;\n  color: white;\n}\n.membership-container .bottom-container .member-info .job-postings-container .job-tiles {\n  height: 100%;\n  margin-top: 15px;\n  padding: 5px 0px 35px 5px;\n  display: flex;\n  justify-content: center;\n  flex-flow: row wrap;\n  position: relative;\n}\n.membership-container .bottom-container .member-info .job-postings-container .job-tiles .job-tile {\n  width: 240px;\n  height: 300px;\n  border: 1px solid #B1B1B1;\n  border-radius: 15px;\n  display: flex;\n  align-items: flex-start;\n  flex-direction: column;\n  padding: 10px;\n  margin-bottom: 10px;\n  position: relative;\n}\n.membership-container .bottom-container .member-info .job-postings-container .job-tiles .job-tile:nth-child(2n) {\n  margin-left: 10px;\n}\n.membership-container .bottom-container .join-shpe-container {\n  margin: 0;\n}\n@media only screen and (max-width: 1094px) {\n  .membership-container .bottom-container .join-shpe-container {\n    width: 100%;\n  }\n}\n.membership-container .bottom-container .join-shpe-container .jumbotron {\n  background-color: white;\n  width: 100%;\n  text-align: center;\n  margin: 0 auto;\n  padding: 0px;\n}\n.membership-container .bottom-container .join-shpe-container .jumbotron #join-shpe-austin {\n  color: #002266;\n}\n.membership-container .bottom-container .join-shpe-container .jumbotron .paypal {\n  margin: 0px 20px 0px 0px;\n  text-align: center;\n}\n.membership-container #overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  opacity: 0.5;\n  filter: alpha(opacity=50);\n}\n.membership-container #close {\n  position: absolute;\n  background: url(../assets/close.png) 0 0 no-repeat;\n  width: 24px;\n  height: 27px;\n  display: block;\n  text-indent: -9999px;\n  top: -7px;\n  right: -7px;\n}\n.membership-container #modal {\n  position: absolute;\n  background: rgba(0, 0, 0, 0.2);\n  border-radius: 14px;\n  padding: 8px;\n}\n.membership-container #modal #modal-content {\n  background-color: white;\n  overflow-y: scroll;\n}\n.membership-container #modal #modal-content .button-container {\n  margin-top: 10px;\n}\n.membership-container #modal #modal-content .modal-description {\n  padding: 5px;\n  margin: 5px;\n  text-align: center;\n}\n.membership-container #modal #modal-content .more-info {\n  margin-top: 25px;\n}\n.membership-container #modal #modal-content .modal-images {\n  height: 233px;\n  width: 415px;\n  border: 1px solid #CCC;\n  border-radius: 5px;\n}\n@media only screen and (max-width: 768px) {\n  .membership-container #modal #modal-content .modal-images {\n    height: 191px;\n    width: 340px;\n  }\n}\n@media only screen and (max-width: 440px) {\n  .membership-container #modal #modal-content .modal-images {\n    height: 191px;\n    width: 90%;\n  }\n}\n:host /deep/ .cal-container #cal-frame .curr a {\n  cursor: pointer;\n  text-decoration: none;\n}\n:host /deep/ .cal-container #cal-frame td.today {\n  background: #ededed;\n  color: #8c8c8c;\n  box-shadow: 1px 1px 0px #fff inset;\n  -moz-box-shadow: 1px 1px 0px #fff inset;\n  -webkit-box-shadow: 1px 1px 0px #fff inset;\n}\n:host /deep/ .cal-container #cal-frame td:not(.nil):hover {\n  color: #fff;\n  text-shadow: #6C1A07 0px -1px;\n  background: #CD310D;\n  background: -moz-linear-gradient(top, #b32b0c, #cd310d);\n  background: -webkit-gradient(linear, left top, left bottom, from(#b32b0c), to(#cd310d));\n  -moz-box-shadow: 0px 0px 0px;\n  -webkit-box-shadow: 0px 0px 0px;\n}\n:host /deep/ .cal-container #cal-frame td span {\n  font-size: 80%;\n  position: relative;\n}\n:host /deep/ .cal-container #cal-frame td span:first-child {\n  bottom: 5px;\n}\n:host /deep/ .cal-container #cal-frame td span:last-child {\n  top: 5px;\n}\n:host /deep/ .cal-container #cal-frame table.curr {\n  width: 100%;\n  float: left;\n}\n:host /deep/ .cal-container #cal-frame table.temp {\n  position: absolute;\n}\n:host /deep/ .cal-container #cal td {\n  color: #2b2b2b;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  text-align: center;\n  border: 1px solid #e6e6e6;\n  cursor: default;\n}\n:host /deep/ .cal-container #cal #days td {\n  height: 26px;\n  line-height: 26px;\n  text-transform: uppercase;\n  font-size: 90%;\n  color: #9e9e9e;\n}\n:host /deep/ .cal-container #cal #days td:not(:last-child) {\n  border-right: 1px solid #fff;\n}\n"
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.DESCRIPTIONS = {
+	    "mentoring": [
+	        "Our chapter has partnered with both The University of Texas at Austin Chapter and SHPE Jr. Chapters to create a mentorship program. Professionals in",
+	        " the SHPE Austin chapter are matched with college students with similar career choices and provide mentorship and career advice."
+	    ],
+	    "community_outreach": [
+	        "Our chapter prides itself with community outreach and hosts various activities with The University of Texas at Austin chapter.",
+	        "Some of the annual events that SHPE Austin hosts are Noche de Ciencias and Introduce a Girl to Engineering Day. Each month, our ",
+	        "Community Service Director hosts a community service event, ranging from mentoring children, cleaning parks, and participating in toy drives."
+	    ],
+	    "leadership_development": [
+	        "Throughout the year, officer positions become available and members are encouraged to apply for these positions. If you are interested in learning more about",
+	        " how the officer board functions or want to enhance your leadership skills as a professional, come around to our events so we can meet you!"
+	    ],
+	    "professional_development": [
+	        "As a professional, it is important to continue developing your skills so the SHPE Austin chapter provides members with workshops where members can ",
+	        "become better public speakers, find ways to enhance their brands, and teach how to mentor students."
+	    ],
+	    "chapter_development": [
+	        "When becoming a professional, it can be daunting to move to a new city. The SHPE Austin chapter makes the transition a little easier by ",
+	        " hosting socials and events around Austin. Check out our calendar and join us at some of our events to learn more about what Austin, TX has to offer."
+	    ],
+	    "sports": [
+	        "Austin, TX is well known for being an outdoors city and there are various leagues that SHPE Austin participates in. In past years, our chapter has been part of ",
+	        "many leagues, including soccer, volleyball, softball, and football."
+	    ],
+	    "national_conferences": [
+	        "The Society of Hispanic Professional Engineers National Organization hosts a yearly natinal conference and brings together all ",
+	        "the chapters across the world, including SHPE Jr. Chapters, University Chapters, and Professional Chapters. The National Conference is usually held in November and ",
+	        "offers networking opportunities and professional workshops for all members of any age."
+	    ],
+	    "regional_conferences": [
+	        "Every year, one University chapter from each region is chosen to host a Regional conference. The Regional Conference offers many of the same benefits and opportunities ",
+	        "as the national conference, but at a smaller level. The Regional Conference is usually held during the month of March and includes activities and events available for all ",
+	        "levels, including SHPE Jr, University, and Professional."
+	    ]
+	};
+
 
 /***/ }),
 /* 351 */
+/***/ (function(module, exports) {
+
+	module.exports = "<div id=\"overlay\" [ngClass]=\"{'in': visibleAnimate}\" [ngStyle]=\"{'display': visible ? 'block' : 'none'}\"></div>\n\n<div class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" \n  [ngClass]=\"{'in': visibleAnimate}\"\n  [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <span class=\"fa-stack fa-lg\">\n          <i class=\"fa fa-circle fa-stack-2x\"></i>\n          <i class=\"fa fa-stack-1x fa-invers\" \n            [ngClass]=\"icon\"></i>\n        </span>\n        <h1>{{title}}</h1>\n      </div>\n      <div class=\"modal-body\">\n        <p class=\"modal-text\">{{message}}</p>\n        <div>\n          <button type=\"button\" class=\"btn btn-default close-btn\" (click)=\"hide()\">Close</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+
+/***/ }),
+/* 352 */
+/***/ (function(module, exports) {
+
+	module.exports = ":host #overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  opacity: 0.5;\n}\n:host .modal {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n:host .modal .modal-header {\n  border-radius: 10px 10px 0px 0px;\n  height: 100px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n:host .modal .modal-header span i.fa-circle {\n  color: #1D3649;\n}\n:host .modal .modal-header span i.fa-invers {\n  color: white;\n}\n:host .modal .modal-header h1 {\n  margin: 10px 0px 0px 0px;\n  text-align: center;\n  font-size: 24px;\n  color: #1D3649;\n  font-weight: bold;\n}\n@media (max-width: 529px) {\n  :host .modal .modal-header h1 {\n    font-size: 18px;\n  }\n}\n:host .modal .modal-dialog {\n  width: 490px;\n  margin: 0 auto;\n  top: 150px;\n}\n@media (max-width: 600px) {\n  :host .modal .modal-dialog {\n    width: 75%;\n  }\n}\n:host .modal .modal-dialog .modal-content .modal-body {\n  background-color: #1D3649;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 10px;\n}\n:host .modal .modal-dialog .modal-content .modal-body .modal-text {\n  text-align: center;\n  color: white;\n  padding: 10px;\n}\n:host .modal .modal-dialog .modal-content .modal-body button.close-btn {\n  background: #374c59;\n  color: white;\n  text-align: center;\n  padding: 10px 0px 5px 0px;\n}\n:host .modal .modal-dialog .modal-content .modal-body button.btn-default {\n  padding: 8px;\n  width: 100px;\n  border: none;\n  border-radius: 5px;\n}\n:host .modal .modal-dialog .modal-content .modal-footer {\n  display: none;\n  text-align: center;\n}\n"
+
+/***/ }),
+/* 353 */
+/***/ (function(module, exports) {
+
+	module.exports = "<div class=\"membership-container\">\n   <h1 class=\"dark-shpe-blue center-text main-title\">SHPE Membership</h1>\n   <div id=\"owl-example\" class=\"owl-carousel owl-theme\">\n      <div class=\"item dark-cyan\">\n         <carousel pillar=\"Mentoring\" pillarDescription=\"Our members mentor high school and college students through our mentorship program.\">\n            <i class=\"fa fa-users fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"Mentoring\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n\n      <div class=\"item forest-green\">\n         <carousel pillar=\"Community Outreach\" pillarDescription=\"We reach out to local communities and have at least one community service event a month.\">\n            <i class=\"fa fa-graduation-cap fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"Community Outreach\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item orange\">\n         <carousel pillar=\"Leadership Development\" pillarDescription=\"We provide our members leadership opportunities throughout the year.\">\n            <i class=\"fa fa-university fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"Leadership Development\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item yellow\">\n         <carousel pillar=\"Professional Development\" pillarDescription=\"We host a wide variety of workshops to enhance our members professional career.\">\n            <i class=\"fa fa-briefcase fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"Professional Development\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item dodger-blue\">\n         <carousel pillar=\"Chapter Development\" pillarDescription=\"If you are new to Austin, we show you what Austin has to offer through fun activities.\">\n            <i class=\"fa fa-hand-rock-o fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"Chapter Development\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item violet\">\n         <carousel pillar=\"Sports\" pillarDescription=\"Come play pick up games or join one of our sports leagues!\">\n            <i class=\"fa fa-futbol-o fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"Sports\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item sky-blue\">\n         <carousel pillar=\"National Conferences\" pillarDescription=\"Every year, SHPE hosts a National Conference and we take members every year.\">\n            <i class=\"fa fa-plane fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"National Conferences\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n\n      <div class=\"item zombie-green\">\n         <carousel pillar=\"Regional Conferences\" pillarDescription=\"If you can't afford the time to fly, join us in our regional conferences.\">\n            <i class=\"fa fa-plane fa-5x\" carousel-body></i>\n            <i (click)=\"moreInformation($event)\" data=\"Regional Conferences\" class=\"fa fa-info-circle\" carousel-body></i>\n         </carousel>\n      </div>\n   </div>\n\n   <div class=\"bottom-container\">\n      <div class =\"member-info\">\n         <div class =\"outer-cal\">\n            <div class=\"cal-title\">\n               <p>SHPE Calendar</p>\n            </div>\n            <div class = \"cal-container\">\n               <div id=\"cal\">\n                  <div id=\"cal-info\">\n                     <span class=\"glyphicon glyphicon-remove-sign\" aria-hidden=\"true\"></span>\n                     <p class=\"calendar-info\"><b>Event: </b><span id=\"event\"> </span></p>\n                     <p class=\"calendar-info\"><b>Date: </b><span id=\"date\"> </span></p>\n                     <p class=\"calendar-info locationWrapper\"><b>Location: </b><span id=\"location\"> </span></p>\n                     <p class=\"calendar-info\"><b>More Info: </b><span id=\"calLink\">Link</span></p>\n                  </div>\n                  <div class=\"header\"> \n                     <span class=\"left button\" id=\"prev\"> &lang; </span> \n                     <span class=\"left hook\"></span> \n                     <span class=\"month-year\" id=\"label\"> June 2002 </span> \n                     <span class=\"right hook\"></span> \n                     <span class=\"right button\" id=\"next\"> &rang; </span>\n                  </div>\n                  <table id=\"days\">\n                     <td>sun</td>\n                     <td>mon</td>\n                     <td>tue</td>\n                     <td>wed</td>\n                     <td>thu</td>\n                     <td>fri</td>\n                     <td>sat</td>\n                  </table>\n                  <div id=\"cal-frame\">\n                     <table class=\"curr\">\n                        <tbody>\n                           <tr>\n                              <td class=\"nil\"></td>\n                              <td class=\"nil\"></td>\n                              <td>1</td>\n                              <td>2</td>\n                              <td>3</td>\n                              <td>4</td>\n                              <td>5</td>\n                           </tr>\n                           <tr>\n                              <td>6</td>\n                              <td>7</td>\n                              <td>8</td>\n                              <td>9</td>\n                              <td>10</td>\n                              <td class=\"today\">11</td>\n                              <td>12</td>\n                           </tr>\n                           <tr>\n                              <td>13</td>\n                              <td>14</td>\n                              <td>15</td>\n                              <td>16</td>\n                              <td>17</td>\n                              <td>18</td>\n                              <td>19</td>\n                           </tr>\n                           <tr>\n                              <td>20</td>\n                              <td>21</td>\n                              <td>22</td>\n                              <td>23</td>\n                              <td>24</td>\n                              <td>25</td>\n                              <td>26</td>\n                           </tr>\n                           <tr>\n                              <td>27</td>\n                              <td>28</td>\n                              <td>29</td>\n                              <td>30</td>\n                              <td class=\"nil\"></td>\n                              <td class=\"nil\"></td>\n                              <td class=\"nil\"></td>\n                           </tr>\n                        </tbody>\n                     </table>\n                  </div>\n               </div>\n            </div> <!-- .cal-container -->\n         </div>\n         <div class = \"job-postings-container\">\n            <div class=\"jobs-title\">\n               <p>Job Postings</p>\n            </div>\n            <div class=\"job-tiles\">\n                  <job \n                     class=\"job-tile\"\n                     *ngFor=\"let job of jobs\"\n                     position=\"{{job.position}}\"\n                     company=\"{{job.company}}\"\n                     description=\"{{job.description}}\"\n                     poster=\"{{job.poster}}\"\n                     url=\"{{job.url}}\"\n                  >\n                  </job>\n            </div>\n         </div>\n      </div>\n      <div class=\"join-shpe-container\">\n         <div class=\"jumbotron\">\n            <h1 id=\"join-shpe-austin\">Join SHPE Austin</h1>\n            <p>If you have any further questions about SHPE Austin, please e-mail us in our Contact Page or e-mail any of the officers from our Officers page. If you would like to join our local chapter, please click on the Paypal button below!</p>\n            <div class=\"paypal\">\n               <form method=\"post\" action=\"https://www.paypal.com/cgi-bin/webscr\" target=\"_blank\">\n                  <input type=\"hidden\" value=\"_s-xclick\" name=\"cmd\">\n                  <input type=\"hidden\" value=\"44KD2JSH3CQX2\" name=\"hosted_button_id\">\n                  <input border=\"0\" type=\"image\" alt=\"PayPal - The safer, easier way to pay online!\" name=\"submit\" src=\"/assets/paypal.png\">\n               </form>\n            </div>\n         </div>\n      </div>\n   </div>\n</div>\n<modal></modal>"
+
+/***/ }),
+/* 354 */
+/***/ (function(module, exports) {
+
+	module.exports = ".membership-container {\n  margin-top: 15px;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 85%;\n  min-height: 100%;\n  position: relative;\n}\n@media only screen and (max-width: 768px) {\n  .membership-container {\n    width: 100%;\n  }\n}\n.membership-container .owl-carousel {\n  text-align: center;\n}\n.membership-container #owl-example .item {\n  cursor: pointer;\n  padding: 30px 0px;\n  margin: 10px;\n  color: #FFF;\n  -webkit-border-radius: 3px;\n  -moz-border-radius: 3px;\n  border-radius: 3px;\n  text-align: center;\n  min-height: 294px;\n  max-height: 294px;\n}\n@media only screen and (max-width: 768px) {\n  .membership-container #owl-example .item {\n    min-height: 294px;\n    max-height: 294px;\n  }\n}\n.membership-container #owl-example .item h3.pillar {\n  font-size: 28px;\n  font-weight: 300;\n  margin: 25px 0 0;\n}\n.membership-container #owl-example .item h4.pillar-description {\n  margin: 5px 0 0;\n  font-size: 18px;\n  padding: 5px;\n}\n.membership-container #owl-example .item .fa-info-circle {\n  position: absolute;\n  cursor: pointer;\n  font-size: 2em !important;\n  margin: 5px;\n}\n.membership-container .bottom-container {\n  margin: 0 auto;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  width: 100%;\n  margin-top: 15px;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  flex-direction: row;\n  margin-bottom: 50px;\n}\n@media only screen and (max-width: 1094px) {\n  .membership-container .bottom-container {\n    width: 100%;\n  }\n}\n.membership-container .bottom-container .member-info {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: nowrap;\n  width: 100%;\n}\n@media only screen and (max-width: 980px) {\n  .membership-container .bottom-container .member-info {\n    flex-wrap: wrap;\n    margin-bottom: 30px;\n  }\n}\n.membership-container .bottom-container .member-info .outer-cal {\n  height: 370px;\n  overflow-y: scroll;\n  margin-right: 20px;\n  border: 1px solid #848383;\n  border-radius: 10px;\n  flex: 1;\n  min-width: 250px;\n  max-width: 250px;\n}\n@media only screen and (max-width: 650px) {\n  .membership-container .bottom-container .member-info .outer-cal {\n    flex: initial;\n  }\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-title {\n  padding: 5px;\n  border-bottom: 1px solid #848383;\n  background: #cd310d;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-title p {\n  margin: 0px;\n  text-align: center;\n  font-weight: bold;\n  color: white;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container {\n  width: 250px;\n  margin-top: 40px;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container h1 {\n  font-size: 24px;\n}\n@media only screen and (max-width: 825px) {\n  .membership-container .bottom-container .member-info .outer-cal .cal-container h1 {\n    font-size: 30px;\n  }\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal {\n  -moz-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);\n  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);\n  margin: 0 auto;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  display: table;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header {\n  cursor: default;\n  background: #cd310d;\n  background: -moz-linear-gradient(top, #b32b0c, #cd310d);\n  background: -webkit-gradient(linear, left top, left bottom, from(#b32b0c), to(#cd310d));\n  height: 34px;\n  position: relative;\n  color: #fff;\n  -webkit-border-top-left-radius: 5px;\n  -webkit-border-top-right-radius: 5px;\n  -moz-border-radius-topleft: 5px;\n  -moz-border-radius-topright: 5px;\n  border-top-left-radius: 5px;\n  border-top-right-radius: 5px;\n  font-weight: bold;\n  text-shadow: 0px -1px 0 #87260C;\n  text-transform: uppercase;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header span {\n  display: inline-block;\n  line-height: 34px;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .hook {\n  width: 9px;\n  height: 28px;\n  position: absolute;\n  bottom: 60%;\n  border-radius: 10px;\n  -moz-border-radius: 10px;\n  -webkit-border-radius: 10px;\n  background: #ececec;\n  background: -moz-linear-gradient(right top, #fff, #827e7d);\n  background: -webkit-gradient(linear, right top, right bottom, from(#fff), to(#827e7d));\n  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.65);\n  -moz-box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.65);\n  -webkit-box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.65);\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .right.hook {\n  right: 15%;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .left.hook {\n  left: 15%;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .button {\n  width: 24px;\n  text-align: center;\n  position: absolute;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .button:hover {\n  background: -moz-linear-gradient(top, #d94215, #bb330f);\n  background: -webkit-gradient(linear, left top, left bottom, from(#d94215), to(#bb330f));\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .left.button {\n  left: 0;\n  -webkit-border-top-left-radius: 5px;\n  -moz-border-radius-topleft: 5px;\n  border-top-left-radius: 5px;\n  border-right: 1px solid #ae2a0c;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .left.button:hover {\n  cursor: pointer;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .right.button {\n  right: 0;\n  top: 0;\n  border-left: 1px solid #ae2a0c;\n  -webkit-border-top-right-radius: 5px;\n  -moz-border-radius-topright: 5px;\n  border-top-right-radius: 5px;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .right.button:hover {\n  cursor: pointer;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal .header .month-year {\n  letter-spacing: 1px;\n  width: 100%;\n  text-align: center;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal table {\n  background: #fff;\n  border-collapse: collapse;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal #cal-info {\n  display: none;\n  width: 223px;\n  height: 185px;\n  position: absolute;\n  margin: 34px 0px 0px 0px;\n  overflow: scroll;\n  z-index: 100;\n  border-radius: 2px;\n  background-color: white;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal #cal-info .glyphicon-remove-sign {\n  float: right;\n  padding: 5px;\n  cursor: pointer;\n}\n.membership-container .bottom-container .member-info .outer-cal .cal-container #cal #cal-info .calendar-info {\n  padding: 3px;\n  margin: 2px;\n}\n.membership-container .bottom-container .member-info .job-postings-container {\n  flex: 2;\n  height: 370px;\n  overflow-y: scroll;\n  border: 1px solid #848383;\n  border-radius: 10px;\n  max-width: 540px;\n}\n@media only screen and (max-width: 650px) {\n  .membership-container .bottom-container .member-info .job-postings-container {\n    margin-top: 25px;\n    flex-basis: 100%;\n  }\n}\n.membership-container .bottom-container .member-info .job-postings-container .jobs-title {\n  padding: 5px;\n  border-bottom: 1px solid #848383;\n  background: #388bd1;\n}\n.membership-container .bottom-container .member-info .job-postings-container .jobs-title p {\n  margin: 0px;\n  text-align: center;\n  font-weight: bold;\n  color: white;\n}\n.membership-container .bottom-container .member-info .job-postings-container .job-tiles {\n  height: 100%;\n  margin-top: 15px;\n  padding: 5px 0px 35px 5px;\n  display: flex;\n  justify-content: center;\n  flex-flow: row wrap;\n  position: relative;\n}\n.membership-container .bottom-container .member-info .job-postings-container .job-tiles .job-tile {\n  width: 240px;\n  height: 300px;\n  border: 1px solid #B1B1B1;\n  border-radius: 15px;\n  display: flex;\n  align-items: flex-start;\n  flex-direction: column;\n  padding: 10px;\n  margin-bottom: 10px;\n  position: relative;\n}\n.membership-container .bottom-container .member-info .job-postings-container .job-tiles .job-tile:nth-child(2n) {\n  margin-left: 10px;\n}\n.membership-container .bottom-container .join-shpe-container {\n  margin: 0;\n}\n@media only screen and (max-width: 1094px) {\n  .membership-container .bottom-container .join-shpe-container {\n    width: 100%;\n  }\n}\n.membership-container .bottom-container .join-shpe-container .jumbotron {\n  background-color: white;\n  width: 100%;\n  text-align: center;\n  margin: 0 auto;\n  padding: 0px;\n}\n.membership-container .bottom-container .join-shpe-container .jumbotron #join-shpe-austin {\n  color: #002266;\n}\n.membership-container .bottom-container .join-shpe-container .jumbotron .paypal {\n  margin: 0px 20px 0px 0px;\n  text-align: center;\n}\n.membership-container #overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  opacity: 0.5;\n  filter: alpha(opacity=50);\n}\n.membership-container #close {\n  position: absolute;\n  background: url(../assets/close.png) 0 0 no-repeat;\n  width: 24px;\n  height: 27px;\n  display: block;\n  text-indent: -9999px;\n  top: -7px;\n  right: -7px;\n}\n.membership-container #modal {\n  position: absolute;\n  background: rgba(0, 0, 0, 0.2);\n  border-radius: 14px;\n  padding: 8px;\n}\n.membership-container #modal #modal-content {\n  background-color: white;\n  overflow-y: scroll;\n}\n.membership-container #modal #modal-content .button-container {\n  margin-top: 10px;\n}\n.membership-container #modal #modal-content .modal-description {\n  padding: 5px;\n  margin: 5px;\n  text-align: center;\n}\n.membership-container #modal #modal-content .more-info {\n  margin-top: 25px;\n}\n.membership-container #modal #modal-content .modal-images {\n  height: 233px;\n  width: 415px;\n  border: 1px solid #CCC;\n  border-radius: 5px;\n}\n@media only screen and (max-width: 768px) {\n  .membership-container #modal #modal-content .modal-images {\n    height: 191px;\n    width: 340px;\n  }\n}\n@media only screen and (max-width: 440px) {\n  .membership-container #modal #modal-content .modal-images {\n    height: 191px;\n    width: 90%;\n  }\n}\n:host /deep/ .cal-container #cal-frame .curr a {\n  cursor: pointer;\n  text-decoration: none;\n}\n:host /deep/ .cal-container #cal-frame td.today {\n  background: #ededed;\n  color: #8c8c8c;\n  box-shadow: 1px 1px 0px #fff inset;\n  -moz-box-shadow: 1px 1px 0px #fff inset;\n  -webkit-box-shadow: 1px 1px 0px #fff inset;\n}\n:host /deep/ .cal-container #cal-frame td:not(.nil):hover {\n  color: #fff;\n  text-shadow: #6C1A07 0px -1px;\n  background: #CD310D;\n  background: -moz-linear-gradient(top, #b32b0c, #cd310d);\n  background: -webkit-gradient(linear, left top, left bottom, from(#b32b0c), to(#cd310d));\n  -moz-box-shadow: 0px 0px 0px;\n  -webkit-box-shadow: 0px 0px 0px;\n}\n:host /deep/ .cal-container #cal-frame td span {\n  font-size: 80%;\n  position: relative;\n}\n:host /deep/ .cal-container #cal-frame td span:first-child {\n  bottom: 5px;\n}\n:host /deep/ .cal-container #cal-frame td span:last-child {\n  top: 5px;\n}\n:host /deep/ .cal-container #cal-frame table.curr {\n  width: 100%;\n  float: left;\n}\n:host /deep/ .cal-container #cal-frame table.temp {\n  position: absolute;\n}\n:host /deep/ .cal-container #cal td {\n  color: #2b2b2b;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  text-align: center;\n  border: 1px solid #e6e6e6;\n  cursor: default;\n}\n:host /deep/ .cal-container #cal #days td {\n  height: 26px;\n  line-height: 26px;\n  text-transform: uppercase;\n  font-size: 90%;\n  color: #9e9e9e;\n}\n:host /deep/ .cal-container #cal #days td:not(:last-child) {\n  border-right: 1px solid #fff;\n}\n"
+
+/***/ }),
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65376,8 +65477,8 @@
 	ContactComponent = __decorate([
 	    core_1.Component({
 	        selector: "contact",
-	        template: __webpack_require__(352),
-	        styles: [__webpack_require__(353)]
+	        template: __webpack_require__(356),
+	        styles: [__webpack_require__(357)]
 	    }),
 	    __metadata("design:paramtypes", [http_1.Http])
 	], ContactComponent);
@@ -65385,19 +65486,19 @@
 
 
 /***/ }),
-/* 352 */
+/* 356 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"toggle\">\n   <button (click)=\"toggle()\" [class.active]=\"!physicalAddress\" [class.inactive]=\"physicalAddress\" id=\"email-toggle\">E-Mail</button>\n   <button (click)=\"toggle()\" [class.active]=\"physicalAddress\" [class.inactive]=\"!physicalAddress\" id=\"physical-toggle\">Physical Mail</button>\n</div>\n\n<div *ngIf=\"physicalAddress\" class=\"envelope-container\">\n   <div class=\"huge-envelope\">\n      <span class=\"stamp\"></span>\n      <div class=\"sendFrom\">\n         <ul class=\"sendInformation\">\n            <li>John Doe</li>\n            <li>110 Inner Campus Drive</li>\n            <li>PO Box 8312</li>\n            <li>Austin, TX 78729</li>\n         </ul>   \n      </div>\n      <div class=\"sendTo\">\n         <ul class=\"sendInformation\">\n            <li>Attn: SHPE Austin</li>\n            <li>PO Box 80765</li>\n            <li>Austin, TX 78708</li>\n         </ul>\n      </div>\n   </div>\n</div>\n\n<div [hidden]=\"submitted\" *ngIf=\"!physicalAddress\" class=\"container\">\n    <form class=\"shpe-form\" (ngSubmit)=\"onSubmit()\" #shpeForm=\"ngForm\">\n      <div class=\"form-group\">\n        <span class=\"text-muted\" style=\"float:right;\"><em><span style=\"color:red;\">*</span> Indicates required field</em></span>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Name: <span style=\"color:red;\">*</span></label>\n          <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"SHPE Austin\"\n          required\n          [(ngModel)]=\"formName\" name=\"name\"\n          #name=\"ngModel\"\n          [class.valid]=\"isValidName()\">\n          <div [hidden]=\"name.valid || name.pristine\"\n              class=\"alert alert-danger\">\n              Name is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Email: <span style=\"color:red;\">*</span></label>\n          <input type=\"email\" class=\"form-control\" placeholder=\"shpe.austin@gmail.com\" [class.valid]=\"isValidEmail()\" id=\"email\"\n          required\n          [(ngModel)]=\"formEmail\" name=\"email\"\n          #email=\"ngModel\">\n          <div [hidden]=\"email.valid || email.pristine\"\n              class=\"alert alert-danger\">\n              E-mail Address is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Phone Number: <span style=\"color:red;\">*</span></label>\n          <input OnlyNumber=\"true\" type=\"tel\" class=\"form-control\" placeholder=\"(512)123-4567\" [class.valid]=\"isValidPhoneNumber()\" id=\"phone\"\n          required\n          [(ngModel)]=\"formPhone\" name=\"phone\"\n          #phone=\"ngModel\">\n          <div [hidden]=\"phone.valid || phone.pristine\"\n              class=\"alert alert-danger\">\n              Phone Number is required\n          </div>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"category\">Category: <span style=\"color:red;\">*</span></label>\n          <select (change)=\"onCategoryChange($event.target.value)\" class=\"form-control\" id=\"category\" required>\n          <option *ngFor=\"let category of categories\" [value]=\"category\">{{category}}</option>\n          </select>\n      </div>\n      <div class=\"form-group\">\n          <label for=\"name\">Message: <span style=\"color:red;\">*</span></label>\n          <textarea [(ngModel)]=\"formMessage\" [class.valid]=\"isValidMessage()\" name=\"message\"\n          #message=\"ngModel\" class=\"form-control\" id=\"message\" rows=\"7\" name=\"message\" placeholder=\"How can we help?\" required></textarea>\n          <div [hidden]=\"message.valid || message.pristine\"\n              class=\"alert alert-danger\">\n              Message is required\n          </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-success custom-button\" [disabled]=\"!allValid()\">Submit</button>\n    </form>\n</div>\n\n<chat-ui></chat-ui>\n\n<div class=\"submitted-email\" *ngIf=\"submitted && !physicalAddress\">\n  <div *ngIf=\"success\" class=\"email-container\">\n      <div class=\"panel panel-primary\">\n        <div class=\"panel-heading\">Email Successfully Sent!</div>\n        <div class=\"panel-body\">\n          <p>\n            Thank you for your inquiry, we will get back with you shortly!\n          </p>\n          <a href=\"/home\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i></a>\n          <span class=\"signature\">-SHPE Austin Officers</span>\n      </div>\n    </div>\n  </div>\n  <div *ngIf=\"!success\" class=\"email-container\">\n      <div class=\"panel panel-danger\">\n        <div class=\"panel-heading\">Oh no! Your e-mail didn't send...</div>\n        <div class=\"panel-body\">\n          <p>\n            Sorry, how embarassing...please try sending an e-mail at a later time.\n          </p>\n          <a href=\"/home\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i></a>\n          <span class=\"signature\">-SHPE Austin Officers</span>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
-/* 353 */
+/* 357 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host .shpe-form {\n  padding: 15px;\n}\n:host .shpe-form input.valid,\n:host .shpe-form textarea.valid {\n  border-left: 5px solid #42A948;\n}\n:host .shpe-form input:not(.valid),\n:host .shpe-form textarea:not(.valid) {\n  border-left: 5px solid #a94442;\n}\n:host .toggle {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-top: 15px;\n}\n:host .toggle button {\n  width: 120px;\n  height: 35px;\n  background: white;\n  border: 1px solid #ddd;\n}\n:host .toggle button#physical-toggle {\n  border-radius: 0px 5px 5px 0px;\n}\n:host .toggle button#email-toggle {\n  border-radius: 5px 0px 0px 5px;\n  border-right-width: 0px;\n}\n:host .toggle button.active {\n  background: #388bd1;\n  color: white;\n}\n:host .toggle button.inactive {\n  background: white;\n  color: black;\n}\n:host .envelope-container {\n  display: flex;\n  margin-top: 25px;\n  justify-content: center;\n  padding: 15px;\n  height: 100%;\n}\n:host .envelope-container .huge-envelope {\n  position: relative;\n  width: 800px;\n  height: 400px;\n  padding: 10px;\n  margin-top: 30px;\n  border-radius: 5px;\n  background-color: #d9edf7;\n  border: 5px solid #31708f;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media only screen and (max-width: 720px) {\n  :host .envelope-container .huge-envelope {\n    height: 350px;\n  }\n}\n@media only screen and (max-width: 560px) {\n  :host .envelope-container .huge-envelope {\n    height: 300px;\n  }\n}\n@media only screen and (max-width: 450px) {\n  :host .envelope-container .huge-envelope {\n    height: 250px;\n  }\n}\n:host .envelope-container .huge-envelope .stamp {\n  position: absolute;\n  top: 10px;\n  right: 15px;\n  padding: 15px;\n  font-size: 35px;\n  height: 100px;\n  width: 101px;\n  background: url(http://1.bp.blogspot.com/-Ur_T5E4eiGQ/UwJd8LzkIHI/AAAAAAAAPpU/JzPeoXiX1Ko/s1600/truestamp2014.png);\n  background-size: contain;\n}\n@media only screen and (max-width: 720px) {\n  :host .envelope-container .huge-envelope .stamp {\n    height: 75px;\n    width: 75px;\n  }\n}\n@media only screen and (max-width: 450px) {\n  :host .envelope-container .huge-envelope .stamp {\n    height: 50px;\n    width: 50px;\n  }\n}\n:host .envelope-container .huge-envelope .sendTo .sendInformation,\n:host .envelope-container .huge-envelope .sendFrom .sendInformation {\n  list-style-type: none;\n}\n:host .envelope-container .huge-envelope .sendTo .sendInformation li,\n:host .envelope-container .huge-envelope .sendFrom .sendInformation li {\n  color: #5e6fa0;\n  font-family: \"Brush Script MT\", cursive;\n  font-size: 30px;\n  font-style: normal;\n  font-variant: normal;\n  font-weight: 500;\n  line-height: 26.4px;\n  letter-spacing: 3px;\n  margin-bottom: 12px;\n}\n@media only screen and (max-width: 720px) {\n  :host .envelope-container .huge-envelope .sendTo .sendInformation li,\n  :host .envelope-container .huge-envelope .sendFrom .sendInformation li {\n    font-size: 28px;\n  }\n}\n@media only screen and (max-width: 520px) {\n  :host .envelope-container .huge-envelope .sendTo .sendInformation li,\n  :host .envelope-container .huge-envelope .sendFrom .sendInformation li {\n    font-size: 20px;\n    line-height: 12px;\n  }\n}\n:host .envelope-container .huge-envelope .sendFrom {\n  position: absolute;\n  top: 0px;\n  left: 10px;\n  padding: 15px;\n}\n:host .envelope-container .huge-envelope .sendFrom .sendInformation {\n  padding: 0px;\n}\n:host .envelope-container .huge-envelope .sendFrom .sendInformation li {\n  margin-bottom: 0px;\n  font-size: 16px;\n}\n@media only screen and (max-width: 720px) {\n  :host .envelope-container .huge-envelope .sendFrom .sendInformation li {\n    margin-bottom: 0px;\n    font-size: 12px;\n    line-height: 14px;\n    letter-spacing: 1px;\n  }\n}\n@media only screen and (max-width: 450px) {\n  :host .envelope-container .huge-envelope .sendFrom .sendInformation li {\n    font-size: 10px;\n    line-height: 10px;\n  }\n}\n:host .container {\n  margin-top: 15px;\n}\n:host .container .custom-button {\n  display: block;\n  border-radius: 0;\n  width: 10rem;\n  height: 10rem;\n  border-radius: 100%;\n  background: #002266;\n  font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;\n  font-weight: 700;\n  text-transform: uppercase;\n  color: #fff;\n  margin: 0 auto;\n  -webkit-transform: rotate(0);\n  -ms-transform: rotate(0);\n  transform: rotate(0);\n  -webkit-transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);\n  transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);\n  position: relative;\n  bottom: 64px;\n}\n:host .container .custom-button:hover {\n  -webkit-transform: rotate(60deg);\n  -moz-transform: rotate(60deg);\n  -o-transform: rotate(60deg);\n  transform: rotate(60deg);\n  background: #0137A2;\n}\n:host .container .custom-button:focus {\n  -webkit-transform: rotate(30deg);\n  -moz-transform: rotate(30deg);\n  -o-transform: rotate(30deg);\n  transform: rotate(30deg);\n}\n:host .submitted-email {\n  height: 100%;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  padding: 40px;\n}\n:host .submitted-email .email-container i {\n  float: left;\n  cursor: pointer;\n  font-size: 20px;\n  color: black;\n  margin-left: 10px;\n}\n:host .submitted-email .email-container i:hover {\n  color: #026;\n}\n:host .submitted-email .email-container span.signature {\n  font-weight: bold;\n  float: right;\n}\n"
 
 /***/ }),
-/* 354 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65446,27 +65547,27 @@
 	NotFoundComponent = __decorate([
 	    core_1.Component({
 	        selector: "not-found",
-	        template: __webpack_require__(355),
-	        styles: [__webpack_require__(356)]
+	        template: __webpack_require__(359),
+	        styles: [__webpack_require__(360)]
 	    })
 	], NotFoundComponent);
 	exports.NotFoundComponent = NotFoundComponent;
 
 
 /***/ }),
-/* 355 */
+/* 359 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div id=\"fullscreen\">\n\t<div id=\"bluescreen\">\n\t\t<h1 class=\"header\">404 Not Found</h1>\n\t\t<h3> Sorry, unable to find the page requested </h3>\n\t\t<p>A problem has been detected and Windows has been shut down to prevent damage</p>\n\t\t<p>DRIVER_IRQL_NOT_LES_OR_EQUAL</p>\n\t\t<p>If this is the first time you've seen this stop error screen, restart your computer, If this screen appears again, follow these steps:</p>\n\t\t<p>Check to make sure any new hardware or software is properly installed. If this is a new installation, ask your hardware or software manufacturer for any windows updates you might need.</p>\n\t\t<p>If problems continue, disable or remove any newly installed hardware or software. Disable BIOS memory options such as caching or shadowing. If you need to use Safe Mode to remove or disable components, restart your computer, press F8 to select Advanced Startup Options, and then select Safe Mode.</p>\n\t\t<p>Technical information:</p> >>\n\t\t<p>*** STOP: 0x000000D1 (0x0000000C,0x00000002,0x00000\n\t\t000,0xF86B5A89)</p>\n\t\t<p>*** gv3.sys - Address F86B5A89 base at F86B5000, DateStamp 3dd9919eb</p>\n\t\t<p>Beginning dump of physical memory</p>\n\t\t<p>Physical memory dump complete.</p> >>\n\t\t<p>Contact your system administrator or technical support group for further assistance.</p> >>\n\t</div>\n</div>"
 
 /***/ }),
-/* 356 */
+/* 360 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  font-family: 'Paytone One', sans-serif;\n}\n.header {\n  text-align: center;\n  font-weight: bold;\n  font-size: 3em;\n  margin-bottom: 25px;\n}\nh3 {\n  text-align: center;\n  margin-bottom: 25px;\n  color: #ededed;\n  font-size: 2em;\n}\n#fullscreen {\n  height: 100%;\n  width: 100%;\n  background: #010080;\n  display: flex;\n  justify-content: center;\n}\n#bluescreen {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif;\n  height: 100%;\n  width: 100%;\n  padding-top: 20px;\n  background: #010080;\n  color: white;\n  font-size: 15px;\n  padding: 25px 50px 25px 50px;\n  max-width: 700px;\n}\n#bluescreen p {\n  margin-bottom: 12px;\n  letter-spacing: 1px;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif;\n}\n/* These -prefix-full-screen must be seperated */\n:-webkit-full-screen {\n  display: block !important;\n}\n:-moz-full-screen {\n  display: block !important;\n}\n:full-screen {\n  display: block !important;\n}\n:-moz-full-screen #bluescreen {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  margin-left: -320px;\n}\n"
 
 /***/ }),
-/* 357 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65482,7 +65583,7 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var core_1 = __webpack_require__(3);
 	var officers_service_1 = __webpack_require__(330);
-	var announcements_service_1 = __webpack_require__(358);
+	var announcements_service_1 = __webpack_require__(362);
 	var jobs_service_1 = __webpack_require__(334);
 	var database_service_1 = __webpack_require__(348);
 	var AdminComponent = (function () {
@@ -65731,8 +65832,8 @@
 	AdminComponent = __decorate([
 	    core_1.Component({
 	        selector: "admin",
-	        template: __webpack_require__(359),
-	        styles: [__webpack_require__(360)]
+	        template: __webpack_require__(363),
+	        styles: [__webpack_require__(364)]
 	    }),
 	    __metadata("design:paramtypes", [officers_service_1.OfficersService,
 	        announcements_service_1.AnnouncementsService,
@@ -65743,7 +65844,7 @@
 
 
 /***/ }),
-/* 358 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65792,19 +65893,19 @@
 
 
 /***/ }),
-/* 359 */
+/* 363 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"admin-container\">\n\n\t<h1 class = \"dark-shpe-blue center-text\">Admin Panel </h1>\n\t<h4 class = \"center-text\">This page is intended for administrators only.</h4>\n\n\t<div class=\"cards\">\n\t    <admin-card class=\"admin-cards job\" title=\"New Job Posting\" description=\"Please input the required information in the following text-boxes. Result will appear in the membership page.\">\n\t        <div form-body>\n\t            <div class=\"form-group\">\n\t                <span class=\"text-muted\" style=\"float:right;\"><em><span style=\"color:red;\">*</span> Indicates required field</em></span>\n\t            </div>\n\t            <div class=\"form-group\">\n\t                <label for=\"name\">Position: <span style=\"color:red;\">*</span></label>\n\t                <input type=\"text\" class=\"form-control\" id=\"position\" placeholder=\"Position\"\n\t                required\n\t                [(ngModel)]=\"jobPosition\" name=\"position\"\n\t                #position=\"ngModel\"\n\t                [class.valid]=\"isValid('jobPosition')\">\n\t            </div>\n\t            <div class=\"form-group\">\n\t                <label for=\"company\">Company: <span style=\"color:red;\">*</span></label>\n\t                <input type=\"text\" class=\"form-control\" id=\"company\" placeholder=\"Company\"\n\t                required\n\t                [(ngModel)]=\"jobCompany\" name=\"company\"\n\t                #company=\"ngModel\"\n\t                [class.valid]=\"isValid('jobCompany')\">\n\t            </div>\n\t            <div class=\"form-group\">\n\t                <label for=\"description\">Description: <span style=\"color:red;\">*</span></label>\n\t                <input type=\"text\" class=\"form-control\" id=\"description\" placeholder=\"Job Description\"\n\t                required\n\t                [(ngModel)]=\"jobDescription\" name=\"description\"\n\t                #description=\"ngModel\"\n\t                [class.valid]=\"isValid('jobDescription')\">\n\t            </div>\n\t            <div class=\"form-group\">\n\t                <label for=\"link\">Link: <span style=\"color:red;\">*</span></label>\n\t                <input type=\"text\" class=\"form-control\" id=\"link\" placeholder=\"Job Link\"\n\t                required\n\t                [(ngModel)]=\"jobLink\" name=\"link\"\n\t                #link=\"ngModel\"\n\t                [class.valid]=\"isValid('jobLink')\">\n\t            </div>\n\t            <div class=\"form-group\">\n\t                <label for=\"poster\">Poster: <span style=\"color:red;\">*</span></label>\n\t                <input type=\"text\" class=\"form-control\" id=\"poster\" placeholder=\"Your name\"\n\t                required\n\t                [(ngModel)]=\"jobPoster\" name=\"poster\"\n\t                #description=\"ngModel\"\n\t                [class.valid]=\"isValid('jobPoster')\">\n\t            </div>\n\t            <div class=\"button-container\">\n\t                <button (click)=\"newJob()\" [disabled]=\"!allJobEntriesValid()\" type=\"submit\" class=\"btn btn-primary newJob\">Submit</button>\n\t            </div>\n\t        </div>\n\t    </admin-card>\n\n\t    <admin-card class=\"admin-cards announcement\" title=\"New Announcement\" description=\"Please select your name first, then input your new announcement. Result will appear in the home page.\">\n\t        <div form-body>\n\t          \t<div class=\"form-group\">\n\t\t            <label for=\"officer\">Officer: <span style=\"color:red;\">*</span></label>\n\t\t            <select (change)=\"onOfficerChange($event.target.value)\" class=\"form-control\" id=\"officer\" required>\n\t\t            \t<option *ngFor=\"let officer of officers\" [value]=\"officer.name\">{{officer.name}}</option>\n\t\t            </select>\n\t\t      \t</div>\n\t  \t      \t<div class=\"form-group\">\n\t\t            <label for=\"announcement\">Message: <span style=\"color:red;\">*</span></label>\n\t\t            <textarea [(ngModel)]=\"formAnnouncement\" [class.valid]=\"isValid('formAnnouncement')\" name=\"message\"\n\t\t            #announcement=\"ngModel\" class=\"form-control\" id=\"message\" rows=\"7\" name=\"announcement\" placeholder=\"Place announcement here...\" required>\n\t\t            </textarea>\n\t\t      \t</div>\n\t            <div class=\"button-container\">\n\t                <button (click)=\"newAnnouncement()\" [disabled]=\"!allAnnouncementEntriesValid()\" type=\"submit\" class=\"btn btn-primary newAnnouncement\">Submit</button>\n\t            </div>\n\t        </div>\n\t    </admin-card>\n\t</div>\n\n\t<hr>\n\n\t<h1 class = \"dark-shpe-blue center-text\">Database Operations</h1>\n\t<h4 class = \"center-text\">Please only use this if you know what you're doing!</h4>\n\t<div class=\"cards\">\n\t  \t<div class=\"cards\">\n\t\t    <admin-card class=\"admin-cards\" title=\"Deleting Data\" description=\"Select the keys that you would like to delete in the Redis database.\">\n\t\t        <div form-body>\n\t                  <fieldset class=\"form-group\">\n\t                    <div *ngFor=\"let key of databaseKeys\" class=\"form-check option-form\">\n\t                        <label class=\"form-check-label\">\n\t   \t                  \t\t<input class=\"form-check-input\" type=\"checkbox\" [(ngModel)]=\"key.selected\" (ngModelChange)=\"deleteCheckboxChange(key)\"/>\n\t                     \t{{ key.name }}\n\t                     \t</label>\n\t                    </div>\n\t                  </fieldset>\n\t\t            <div class=\"button-container\">\n\t\t                <button (click)=\"deleteKeys()\" type=\"submit\" class=\"btn btn-primary deleteKeys\">Submit</button>\n\t\t            </div>\n\t\t        </div>\n\t\t    </admin-card>\n\n\t\t    <admin-card class=\"admin-cards\" title=\"Viewing Data\" description=\"Select the keys that you would like to view in the Redis database.\">\n\t\t        <div form-body>\n\t              \t<div *ngFor=\"let key of databaseKeys; let idx = index\" class=\"radio option-form\">\n\t                    <label>\n\t                 \t\t<input type=\"radio\" name=\"radiogroup\" \n\t            \t\t\t\t[checked]=\"idx === 0\" \n\t            \t\t\t\t[value]=\"key.name\" \n\t            \t\t\t\t(change)=\"onViewKeyChange(key)\">\n\t            \t\t\t{{ key.name }}\n\t                 \t</label>\n\t\t\t      \t</div>\n\t\t            <div class=\"button-container\">\n\t\t                <button (click)=\"viewKey()\" type=\"submit\" class=\"btn btn-primary viewKey\">Submit</button>\n\t\t            </div>\n\t\t        </div>\n\t\t    </admin-card>\n\n\t\t    <admin-card class=\"admin-cards\" title=\"Updating Data\" description=\"Select the keys that you would like to update in the Redis database.\">\n\t\t        <div form-body>\n\t              \t<div *ngFor=\"let key of databaseKeys; let idx = index\" class=\"radio option-form\">\n\t                    <label>\n\t                 \t\t<input type=\"radio\" name=\"radiogroup\" \n\t            \t\t\t\t[checked]=\"idx === 0\" \n\t            \t\t\t\t[value]=\"key.name\" \n\t            \t\t\t\t(change)=\"onUpdateKeyChange(key)\">\n\t            \t\t\t{{ key.name }}\n\t                 \t</label>\n\t\t\t      \t</div>\n\t\t  \t      \t<div class=\"form-group\">\n\t\t\t            <label for=\"updateData\">New Data (JSON format) <span style=\"color:red;\">*</span></label>\n\t\t\t            <textarea [(ngModel)]=\"updatedData\" [class.valid]=\"isValidJSON('updatedData')\" name=\"message\"\n\t\t\t            #updateData=\"ngModel\" class=\"form-control\" id=\"message\" rows=\"7\" name=\"updateData\" placeholder=\"Data for the database key\" required>\n\t\t\t            </textarea>\n\t\t\t      \t</div>\n\t\t            <div class=\"button-container\">\n\t\t                <button [disabled]=\"!isValidJSON()\" (click)=\"updateKey()\" type=\"submit\" class=\"btn btn-primary updateKey\">Submit</button>\n\t\t            </div>\n\t\t        </div>\n\t\t    </admin-card>\n\t\t</div>\n\t</div>\n\n\t<div class =\"json-container\">\n\t <div class=\"output-container\">\n\t    <p class=\"copy-status\"></p>\n\t    <i (click)=\"copy()\" class=\"fa fa-files-o\" id=\"copy-text\" title=\"Copy JSON\" aria-hidden=\"true\"></i>\n\t    <pre>\n\t    <code class=\"output\">\n\t    </code>\n\t  </pre>\n\t </div>\n\t <div id=\"hidden-output\"></div>\n\t</div>\n</div>"
 
 /***/ }),
-/* 360 */
+/* 364 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host .admin-container {\n  padding: 15px;\n}\n@media (max-width: 530px) {\n  :host .admin-container {\n    padding: 10px;\n  }\n}\n:host .cards {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n  align-items: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n}\n:host .cards .job label,\n:host .cards .announcement label {\n  float: left;\n}\n:host .cards input.valid,\n:host .cards textarea.valid {\n  border-left: 5px solid #42A948;\n}\n:host .cards input:not(.valid),\n:host .cards textarea:not(.valid) {\n  border-left: 5px solid #a94442;\n}\n:host .cards .option-form {\n  display: flex;\n  justify-content: flex-start;\n  margin-left: 25px;\n  align-items: flex-start;\n  padding: 5px;\n}\n:host .cards .option-form label {\n  font-weight: normal;\n}\n:host .json-container {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n:host .json-container #hidden-output {\n  display: none;\n}\n:host .json-container .copy-status {\n  display: none;\n  position: absolute;\n  left: 43%;\n  color: green;\n  background: white;\n  border: 1px solid black;\n  padding: 10px;\n  border-radius: 30px;\n  top: 10px;\n}\n:host .json-container .output-container {\n  display: none;\n  padding: 30px;\n  position: relative;\n  max-height: 750px;\n  overflow-y: auto;\n  max-width: 75%;\n  margin: 25px 0px 50px 0px;\n  min-width: 325px;\n}\n:host .json-container .output-container i {\n  display: none;\n  cursor: pointer;\n  position: absolute;\n  font-size: 20px;\n  right: 15px;\n  top: 15px;\n  background: white;\n  padding: 5px;\n  border: 1px solid black;\n  border-radius: 5px;\n}\n"
 
 /***/ }),
-/* 361 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65891,8 +65992,8 @@
 	LoginComponent = __decorate([
 	    core_1.Component({
 	        selector: "login",
-	        template: __webpack_require__(362),
-	        styles: [__webpack_require__(363)]
+	        template: __webpack_require__(366),
+	        styles: [__webpack_require__(367)]
 	    }),
 	    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router, cookie_service_1.CookieService])
 	], LoginComponent);
@@ -65900,19 +66001,19 @@
 
 
 /***/ }),
-/* 362 */
+/* 366 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"login-box\">\n\t<div class=\"header\">\n\t\tOfficer Sign-In\n\t</div>\n\t<div class=\"login\">\n\t\t<form class=\"login-form\" (ngSubmit)=\"login($event)\">\n      \t\t<div class=\"form-group\">\n\t\t\t\t<span class=\"text-muted\" style=\"float:right;\"><em><span style=\"color:red;\">*</span> Indicates required field</em></span>\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label for=\"username\">Username: <span style=\"color:red;\">*</span></label>\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"Username\"\n\t\t\t\t  required\n\t\t\t\t  [(ngModel)]=\"formUsername\" name=\"username\"\n\t\t\t\t  #username=\"ngModel\"\n\t\t\t\t  [class.valid]=\"isValidUsername()\">\n\t\t\t\t<div [hidden]=\"username.valid || username.pristine\"\n\t\t\t\t      class=\"alert alert-danger\">\n\t\t\t\t      Username is required\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t  \t<label for=\"name\">Password: <span style=\"color:red;\">*</span></label>\n\t\t\t\t<input type=\"password\" class=\"form-control\" placeholder=\"Password\" [class.valid]=\"isValidPassword()\" id=\"password\"\n\t\t\t\t  required\n\t\t\t\t  [(ngModel)]=\"formPassword\" name=\"password\"\n\t\t\t\t  #password=\"ngModel\">\n\t\t\t\t<div [hidden]=\"password.valid || password.pristine\"\n\t\t\t\t      class=\"alert alert-danger\">\n\t\t\t\t      Password is required\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<button type=\"submit\" class=\"btn btn-success custom-button\" [disabled]=\"!allValid()\">Login</button>\n\t\t</form>\n\t</div>\n\t<div class=\"footer\">\n\t\tIf you accidentally got here, please close this window! HAK3RZ not allowed! \n\t</div>\n</div>"
 
 /***/ }),
-/* 363 */
+/* 367 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  height: 100%;\n  width: 100%;\n  background-color: #ededed;\n  padding: 25px;\n}\n:host .login-box {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  margin-top: 65px;\n  -webkit-box-shadow: 0px 0px 49px 14px rgba(188, 190, 194, 0.39);\n  -moz-box-shadow: 0px 0px 49px 14px rgba(188, 190, 194, 0.39);\n  box-shadow: 0px 0px 3px 1px rgba(188, 190, 194, 0.39);\n  border: 1px solid #e5e5e5;\n  border-radius: 10px;\n  background: white;\n}\n:host .login-box .header {\n  height: 50px;\n  padding: 15px;\n  font-weight: bold;\n  border-bottom: 1px solid #e5e5e5;\n}\n:host .login-box .login .login-form {\n  border-top: none;\n  border-bottom: none;\n  padding: 15px;\n}\n:host .login-box .login .login-form input.valid {\n  border-left: 5px solid #42A948;\n}\n:host .login-box .login .login-form input:not(.valid) {\n  border-left: 5px solid #a94442;\n}\n:host .login-box .login .login-form .custom-button {\n  display: block;\n  border-radius: 0;\n  width: 10rem;\n  height: 10rem;\n  border-radius: 100%;\n  background: #002266;\n  font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;\n  font-weight: 700;\n  text-transform: uppercase;\n  color: #fff;\n  margin: 0 auto;\n  -webkit-transform: rotate(0);\n  -ms-transform: rotate(0);\n  transform: rotate(0);\n  -webkit-transition: -webkit-transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);\n  transition: transform 400ms cubic-bezier(0.63, 0.64, 0.3, 1);\n  position: relative;\n  bottom: 0px;\n}\n:host .login-box .login .login-form .custom-button:hover {\n  -webkit-transform: rotate(60deg);\n  -moz-transform: rotate(60deg);\n  -o-transform: rotate(60deg);\n  transform: rotate(60deg);\n  background: #0137A2;\n}\n:host .login-box .login .login-form .custom-button:focus {\n  -webkit-transform: rotate(30deg);\n  -moz-transform: rotate(30deg);\n  -o-transform: rotate(30deg);\n  transform: rotate(30deg);\n}\n:host .login-box .footer {\n  border-top: 1px solid #e5e5e5;\n  height: 85px;\n  padding: 20px;\n}\n"
 
 /***/ }),
-/* 364 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65984,7 +66085,7 @@
 
 
 /***/ }),
-/* 365 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66017,7 +66118,7 @@
 
 
 /***/ }),
-/* 366 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66073,7 +66174,7 @@
 
 
 /***/ }),
-/* 367 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66094,20 +66195,20 @@
 	    core_1.Component({
 	        selector: 'my-app',
 	        template: "\n    <shpe-navigation></shpe-navigation>\n    <router-outlet></router-outlet>\n    <footer></footer>\n  ",
-	        styles: [__webpack_require__(368)]
+	        styles: [__webpack_require__(372)]
 	    })
 	], AppComponent);
 	exports.AppComponent = AppComponent;
 
 
 /***/ }),
-/* 368 */
+/* 372 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host h1 {\n  font-size: 1.2em;\n  color: #999;\n  margin-bottom: 0;\n}\n:host h2 {\n  font-size: 2em;\n  margin-top: 0;\n  padding-top: 0;\n}\n:host nav a {\n  padding: 5px 10px;\n  text-decoration: none;\n  margin-top: 10px;\n  display: inline-block;\n  background-color: #eee;\n  border-radius: 4px;\n}\n:host nav a:visited {\n  color: #607D8B;\n}\n:host nav a:hover {\n  color: #039be5;\n  background-color: #CFD8DC;\n}\n:host nav a.active {\n  color: #039be5;\n}\n:host a:link {\n  color: #607D8B;\n}\n"
 
 /***/ }),
-/* 369 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66154,8 +66255,8 @@
 	NavigationComponent = __decorate([
 	    core_1.Component({
 	        selector: 'shpe-navigation',
-	        template: __webpack_require__(370),
-	        styles: [__webpack_require__(371)],
+	        template: __webpack_require__(374),
+	        styles: [__webpack_require__(375)],
 	        host: {
 	            '(window:resize)': 'responsiveEvent($event)'
 	        }
@@ -66166,19 +66267,19 @@
 
 
 /***/ }),
-/* 370 */
+/* 374 */
 /***/ (function(module, exports) {
 
 	module.exports = "<banner *ngIf=\"!responsiveActivated\"></banner>\n<navigation-links *ngIf=\"!responsiveActivated\"></navigation-links>\n<social-media *ngIf=\"!responsiveActivated\"></social-media>\t\n\n\n<hamburger-navigation [style.height]='height' (notify)='hamburgerSelect($event)' *ngIf=\"responsiveActivated\"></hamburger-navigation>\n\n"
 
 /***/ }),
-/* 371 */
+/* 375 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  width: 100%;\n  height: 67px;\n  background: #fff;\n  border-bottom: 1px solid #ebebeb;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-top: 1px solid #ededed;\n  border-bottom: 1px solid #ededed;\n}\n:host .navigator-container {\n  z-index: 999;\n}\n:host .navigator-container .navcontent {\n  width: 100%;\n  background: #fff;\n  position: relative;\n  min-height: 64px;\n  border-bottom: 1px solid #ebebeb;\n  position: fixed;\n  left: 0;\n  top: 0;\n  z-index: 999;\n}\n:host .navigator-container .navcontent #shpenav {\n  width: 22%;\n}\n:host .navigator-container .navcontent .navleft {\n  padding: 0;\n  margin: 0;\n  position: absolute;\n  left: 0;\n  top: 0;\n  border-right: 1px solid #ebebeb;\n  min-height: 64px;\n}\n:host .navigator-container .navcontent .navleft a {\n  letter-spacing: 5px;\n  margin-top: 10px;\n  padding: 0;\n  display: block;\n  text-transform: uppercase;\n  font-weight: 700;\n  font-size: 17px;\n  line-height: 17px;\n  transition: all .5s ease 0s;\n  -ms-transition: all .5s ease 0s;\n  -moz-transition: all .5s ease 0s;\n  -webkit-transition: all .5s ease 0s;\n  text-align: center;\n  text-decoration: none;\n}\n:host .navigator-container .navcontent .navleft span.small {\n  font-size: 10px;\n  font-weight: 400;\n  line-height: 13px;\n}\n:host .navigator-container .navcontent .main-nav {\n  padding: 18px 0 0 0;\n  text-align: center;\n  margin: 0 auto;\n}\n:host .navigator-container .navcontent .main-nav #menu-header_menu {\n  margin-left: 50px;\n}\n:host .navigator-container .navcontent .main-nav .menu {\n  margin: 0;\n  display: inline-block;\n}\n:host .navigator-container .navcontent .main-nav .menu .dot:after {\n  content: \" • \";\n  color: #039;\n  position: absolute;\n  right: -9px;\n}\n:host .navigator-container .navcontent .main-nav .menu .nav-link {\n  padding: 8px;\n  margin: 0;\n  text-transform: uppercase;\n  display: inline-block;\n  line-height: 14px;\n  color: #001a4d;\n  transition: all .5s ease 0s;\n  -ms-transition: all .5s ease 0s;\n  -moz-transition: all .5s ease 0s;\n  -webkit-transition: all .5s ease 0s;\n}\n:host .navigator-container .navcontent .main-nav .menu .menu-item {\n  padding: 0 25px;\n  display: inline-block;\n  position: relative;\n  font-size: 20px;\n}\n:host .navigator-container .navcontent .share {\n  display: inline-block;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 9%;\n}\n:host .navigator-container .navcontent .share ul.ul-share-size {\n  margin: 0;\n  padding: 0;\n  display: inline-block;\n  float: left;\n  width: 100%;\n}\n:host .navigator-container .navcontent .share ul.ul-share-size li.share_icon {\n  margin: 0;\n  padding: 0;\n  display: inline-block;\n  text-align: center;\n  float: left;\n  border-left: 1px solid #ebebeb;\n  min-height: 64px;\n  width: 50%;\n}\n:host .navigator-container .navcontent .share ul.ul-share-size li.share_icon a {\n  margin: 0;\n  padding: 17px 0 18px 0;\n  text-align: center;\n  display: block;\n  font-size: 28px;\n  line-height: 28px;\n  transition: all .5s ease 0s;\n  -ms-transition: all .5s ease 0s;\n  -moz-transition: all .5s ease 0s;\n  -webkit-transition: all .5s ease 0s;\n}\n:host .navigator-container .mobile-nav .expand {\n  display: block !important;\n}\n:host .navigator-container .mobile-nav .responsive-menu {\n  display: none;\n}\n:host .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #f1f1f1;\n  position: relative;\n  top: 63px;\n  position: absolute;\n  z-index: 1001;\n  text-align: center;\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n}\n:host .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .mobile-icon-container {\n  width: 100%;\n  flex: 1;\n}\n:host .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .mobile-icon-container .mobile-facebook {\n  margin: 0 15px 0 15px;\n  display: inline-block;\n}\n:host .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .mobile-icon-container .mobile-twitter {\n  margin: 0 15px 0 15px;\n  display: inline-block;\n}\n:host .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav {\n  flex: 1;\n}\n:host .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav a {\n  display: block;\n  color: #000;\n  padding: 25px 0 25px 0;\n  text-decoration: none;\n  letter-spacing: 1px;\n  text-transform: uppercase;\n  font-weight: 700;\n  font-size: 29px;\n  height: 12%;\n}\n:host .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav a:hover {\n  background-color: #DDDADA;\n  color: #fff;\n  cursor: pointer;\n  height: 100%;\n}\n:host .navigator-container .mobile-nav .responsive-menu .ul-hamburger-nav .li-hamburger-nav .active {\n  background-color: #026;\n  color: #fff;\n  height: 100%;\n}\n:host .navigator-container .shpe-austin {\n  display: none;\n}\n:host .navigator-container .shpe-austin i.fa-bars {\n  cursor: pointer;\n  display: none;\n}\n:host .navigator-container .shpe-austin i.fa-bars:hover {\n  color: #23527c;\n}\n:host .navigator-container .space {\n  width: 100%;\n  height: 64px;\n}\n@media only screen and (max-width: 980px) {\n  :host .navigator-container .navcontent {\n    position: absolute;\n    background: 0 0;\n  }\n  :host .navigator-container .navcontent .navleft {\n    display: none;\n  }\n  :host .navigator-container .navcontent .main-nav {\n    display: none;\n  }\n  :host .navigator-container .navcontent .share {\n    width: 17%;\n  }\n  :host .navigator-container .shpe-austin {\n    display: inline-block;\n    width: 100%;\n    height: 64px;\n    background-color: #fff;\n    position: absolute;\n    top: 0;\n  }\n  :host .navigator-container .shpe-austin i.fa-bars {\n    display: inline-block;\n    position: relative;\n    bottom: 38px;\n    padding: 6px;\n    cursor: pointer;\n    z-index: 1000;\n  }\n  :host .navigator-container .shpe-austin .mobile-shpe {\n    letter-spacing: 7px;\n    margin: 10px;\n    padding: 24px 0 0 0;\n    display: block;\n    text-transform: uppercase;\n    font-weight: 700;\n    font-size: 57px;\n    line-height: 0;\n    transition: all .5s ease 0s;\n    -ms-transition: all .5s ease 0s;\n    -moz-transition: all .5s ease 0s;\n    -webkit-transition: all .5s ease 0s;\n    text-align: center;\n  }\n}\n@media only screen and (max-width: 1386px) {\n  :host .navigator-container .navcontent #shpenav {\n    font-size: 32px;\n  }\n  :host .navigator-container .navcontent .navleft a {\n    font-size: 23px;\n    margin-top: 23px;\n  }\n  :host .navigator-container .navcontent .navleft span.small {\n    display: none;\n  }\n  :host .navigator-container .navcontent .main-nav #menu-header_menu {\n    margin-left: 75px;\n  }\n  :host .navigator-container .navcontent .main-nav .menu .nav-link {\n    font-size: 16px;\n  }\n}\n@media only screen and (max-width: 729px) {\n  :host .navigator-container .navcontent .share {\n    width: 13%;\n  }\n  :host .navigator-container .shpe-austin .mobile-shpe {\n    font-size: 50px;\n    margin-left: 16px;\n  }\n}\n@media only screen and (max-width: 526px) {\n  :host .navigator-container .navcontent .share ul.ul-share-size li.share_icon a i {\n    font-size: 20px;\n  }\n}\n@media only screen and (max-width: 430px) {\n  :host .navigator-container .shpe-austin i.fa-bars {\n    font-size: 2.25em;\n    bottom: 31px;\n  }\n}\n@media only screen and (max-width: 385px) {\n  :host .navigator-container .shpe-austin i.fa-bars {\n    font-size: 2em;\n    bottom: 29px;\n  }\n  :host .navigator-container .shpe-austin .mobile-shpe {\n    font-size: 26px;\n  }\n}\n@media only screen and (max-width: 569px) {\n  :host .navigator-container .shpe-austin .mobile-shpe {\n    font-size: 36px;\n    margin-left: 0;\n  }\n}\n@media only screen and (max-width: 515px) {\n  :host .navigator-container .shpe-austin .mobile-shpe {\n    font-size: 36px;\n  }\n}\n@media only screen and (max-width: 474px) {\n  :host .navigator-container .shpe-austin .mobile-shpe {\n    font-size: 32px;\n  }\n}\n@media only screen and (max-width: 420px) {\n  :host .navigator-container .shpe-austin .mobile-shpe {\n    font-size: 32px;\n  }\n}\n@media only screen and (max-width: 320px) {\n  :host .navigator-container .shpe-austin .mobile-shpe {\n    font-size: 22px;\n  }\n}\n"
 
 /***/ }),
-/* 372 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66198,27 +66299,27 @@
 	NavigationLinksComponent = __decorate([
 	    core_1.Component({
 	        selector: 'navigation-links',
-	        template: __webpack_require__(373),
-	        styles: [__webpack_require__(374)]
+	        template: __webpack_require__(377),
+	        styles: [__webpack_require__(378)]
 	    })
 	], NavigationLinksComponent);
 	exports.NavigationLinksComponent = NavigationLinksComponent;
 
 
 /***/ }),
-/* 373 */
+/* 377 */
 /***/ (function(module, exports) {
 
 	module.exports = "<nav class=\"main-nav\">\n     <ul id=\"menu-header_menu\" class=\"menu\">\n        <li class=\"menu-item dot\"><a class = \"nav-link\" href=\"/\">Home</a></li>\n        <li class=\"menu-item dot\"><a class = \"nav-link\" href=\"/about\">About</a></li>\n        <li class=\"menu-item dot\"><a class = \"nav-link\" href=\"/officers\">Officers</a></li>\n        <li class=\"menu-item dot\"><a class = \"nav-link\" href=\"/membership\">Membership</a></li>\n        <li class=\"menu-item\"><a class=\"nav-link\" href=\"/contact\">Contact</a></li>\n     </ul>\n</nav>"
 
 /***/ }),
-/* 374 */
+/* 378 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  flex: 5;\n  border-right: 1px solid #ededed;\n  height: 64px;\n}\n:host .main-nav {\n  padding: 18px 0 0 0;\n  text-align: center;\n  margin: 0 auto;\n}\n:host .main-nav .menu {\n  margin: 0;\n  padding: 0px;\n  display: flex;\n}\n:host .main-nav .menu .dot:after {\n  content: \" • \";\n  color: #039;\n  position: absolute;\n  right: -9px;\n}\n:host .main-nav .menu .nav-link {\n  padding: 8px;\n  margin: 0;\n  text-transform: uppercase;\n  display: inline-block;\n  line-height: 14px;\n  color: #001a4d;\n  transition: all 0.5s ease 0s;\n  -ms-transition: all 0.5s ease 0s;\n  -moz-transition: all 0.5s ease 0s;\n  -webkit-transition: all 0.5s ease 0s;\n}\n@media only screen and (max-width: 1386px) {\n  :host .main-nav .menu .nav-link {\n    font-size: 16px;\n  }\n}\n:host .main-nav .menu .menu-item {\n  flex: 1;\n  padding: 0 25px;\n  display: inline-block;\n  position: relative;\n  font-size: 20px;\n}\n"
 
 /***/ }),
-/* 375 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66238,27 +66339,27 @@
 	SocialMediaComponent = __decorate([
 	    core_1.Component({
 	        selector: 'social-media',
-	        template: __webpack_require__(376),
-	        styles: [__webpack_require__(377)],
+	        template: __webpack_require__(380),
+	        styles: [__webpack_require__(381)],
 	    })
 	], SocialMediaComponent);
 	exports.SocialMediaComponent = SocialMediaComponent;
 
 
 /***/ }),
-/* 376 */
+/* 380 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"social-media\">\n   <a class = \"dark-shpe-blue\" href=\"https://twitter.com/SHPEAustin/\" target=\"_blank\">\n      <i class=\"fa fa-twitter\" aria-hidden=\"true\"></i>\n   </a>\n</div>\n<div class=\"social-media\">\n   <a class = \"dark-shpe-blue\" href=\"https://www.facebook.com/SHPEAustin/?fref=ts\" target=\"_blank\">\n      <i class=\"fa fa-facebook-f\" aria-hidden=\"true\"></i>\n   </a>\n</div>"
 
 /***/ }),
-/* 377 */
+/* 381 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n  flex: 1;\n}\n:host .social-media {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex: 1;\n  text-align: center;\n  font-size: 22px;\n  height: 100%;\n  align-self: center;\n  border-right: 1px solid #ededed;\n}\n@media (max-width: 610px) {\n  :host .social-media i {\n    font-size: 20px;\n  }\n}\n"
 
 /***/ }),
-/* 378 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66279,20 +66380,20 @@
 	    core_1.Component({
 	        selector: 'banner',
 	        template: "\n    <div class = \"shpe-austin\">\n       <a class=\"dark-shpe-blue\" href=\"/home\">SHPE Austin<br>\n         <span class=\"small\">Society of Hispanic <br> Professional Engineers</span>\n        </a>\n    </div>\n  ",
-	        styles: [__webpack_require__(379)]
+	        styles: [__webpack_require__(383)]
 	    })
 	], BannerComponent);
 	exports.BannerComponent = BannerComponent;
 
 
 /***/ }),
-/* 379 */
+/* 383 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  flex: 1;\n  min-width: 250px;\n}\n:host .shpe-austin {\n  border-right: 1px solid #ebebeb;\n}\n:host .shpe-austin a {\n  letter-spacing: 5px;\n  padding: 5px;\n  height: 64px;\n  display: block;\n  text-transform: uppercase;\n  font-weight: 700;\n  font-size: 20px;\n  line-height: 17px;\n  transition: all .5s ease 0s;\n  -ms-transition: all .5s ease 0s;\n  -moz-transition: all .5s ease 0s;\n  -webkit-transition: all .5s ease 0s;\n  text-align: center;\n  text-decoration: none;\n}\n:host .shpe-austin span.small {\n  font-size: 8px;\n  font-weight: 400;\n  line-height: 18px;\n}\n"
 
 /***/ }),
-/* 380 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66373,8 +66474,8 @@
 	HamburgerNavigationComponent = __decorate([
 	    core_1.Component({
 	        selector: 'hamburger-navigation',
-	        template: __webpack_require__(381),
-	        styles: [__webpack_require__(382)]
+	        template: __webpack_require__(385),
+	        styles: [__webpack_require__(386)]
 	    }),
 	    __metadata("design:paramtypes", [router_1.Router])
 	], HamburgerNavigationComponent);
@@ -66382,19 +66483,19 @@
 
 
 /***/ }),
-/* 381 */
+/* 385 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div *ngIf=\"!showNavigation\" class=\"components\">\n\t<div (click)=\"toggleNavigation()\" class = \"hamburger-navigation\">\n\t\t<i class=\"fa fa-bars fa-3x dark-shpe-blue responsive-menu\"></i>\n\t</div>\n\t<div class = \"shpe-header\">\n\t\t<h1 class=\"dark-shpe-blue\">\t\n\t\t\tSHPE Austin\n\t\t</h1>\n\t</div>\n\t<social-media></social-media>\n</div>\t\n\n<div *ngIf=\"showNavigation\" class=\"link-navigation\">\n\t<ul class=\"link-list\">\n\t\t<a class=\"links\" [class.active]=\"getCurrentPath('/home')\" href=\"/\">Home</a>\n\t\t<a class=\"links\" [class.active]=\"getCurrentPath('/about')\" href=\"/about\">About</a>\n\t\t<a class=\"links\" [class.active]=\"getCurrentPath('/officers')\" href=\"/officers\">Officers</a>\n\t\t<a class=\"links\" [class.active]=\"getCurrentPath('/membership')\" href=\"/membership\">Membership</a>\n\t\t<a class=\"links\" [class.active]=\"getCurrentPath('/contact')\" href=\"/contact\">Contact</a>\n\t\t<div class=\"media-links\">\n\t\t\t<div class=\"social-media\">\n\t\t\t   <a class = \"dark-shpe-blue\" href=\"https://twitter.com/SHPEAustin/\" target=\"_blank\">\n\t\t\t      <i class=\"fa fa-twitter fa-4x dark-shpe-blue mobile-twitter\" aria-hidden=\"true\"></i>\n\t\t\t   </a>\n\t\t\t</div>\n\t\t\t<div class=\"social-media\">\n\t\t\t   <a class = \"dark-shpe-blue\" href=\"https://www.facebook.com/SHPEAustin/?fref=ts\" target=\"_blank\">\n\t\t\t      <i class=\"fa fa-facebook-f fa-4x dark-shpe-blue mobile-facebook\" aria-hidden=\"true\"></i>\n\t\t\t   </a>\n\t\t\t</div>\n\t\t</div>\n\t</ul>\n</div>"
 
 /***/ }),
-/* 382 */
+/* 386 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  border-top: 1px solid #ededed;\n}\n:host .components {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}\n:host .components .hamburger-navigation {\n  flex: 1;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n}\n@media (max-width: 610px) {\n  :host .components .hamburger-navigation i {\n    font-size: 32px;\n  }\n}\n:host .components .hamburger-navigation i:hover {\n  color: #23527c;\n}\n:host .components .shpe-header {\n  flex: 7;\n  text-align: center;\n  font-weight: bold;\n  text-transform: uppercase;\n  border-right: 1px solid #ededed;\n  border-left: 1px solid #ededed;\n}\n:host .components .shpe-header h1 {\n  margin: 0px;\n  font-size: 4em;\n}\n@media (max-width: 610px) {\n  :host .components .shpe-header h1 {\n    margin: 10px;\n    font-size: 3em;\n  }\n}\n@media (max-width: 432px) {\n  :host .components .shpe-header h1 {\n    font-size: 2em;\n    margin-top: 20px;\n  }\n}\n.link-navigation {\n  background: gray;\n  height: 100%;\n  width: 100%;\n  z-index: 999;\n}\n.link-navigation .link-list {\n  width: 100%;\n  height: 100%;\n  margin: 0px;\n  padding: 0px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n.link-navigation .link-list .links {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  background-color: #f1f1f1;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  flex: 1;\n  line-height: 0px;\n  transition: all 0.5s ease 0s;\n  -ms-transition: all 0.5s ease 0s;\n  -moz-transition: all 0.5s ease 0s;\n  -webkit-transition: all 0.5s ease 0s;\n  text-align: center;\n  text-decoration: none;\n  letter-spacing: 1px;\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 29px;\n  color: black;\n}\n.link-navigation .link-list .links:hover {\n  background-color: #DDDADA;\n  cursor: pointer;\n  color: white;\n}\n.link-navigation .link-list .links.active {\n  background-color: #002266;\n  color: white;\n  height: 100%;\n}\n.link-navigation .link-list .media-links {\n  background: #f1f1f1;\n  width: 100%;\n  flex: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.link-navigation .link-list .media-links .mobile-facebook,\n.link-navigation .link-list .media-links .mobile-twitter {\n  padding: 0px 15px 0px 15px;\n}\n.link-navigation .link-list .media-links .mobile-facebook:hover,\n.link-navigation .link-list .media-links .mobile-twitter:hover {\n  color: #23527c;\n}\n"
 
 /***/ }),
-/* 383 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66422,7 +66523,7 @@
 	SmallCardComponent = __decorate([
 	    core_1.Component({
 	        selector: 'small-card',
-	        template: __webpack_require__(384),
+	        template: __webpack_require__(388),
 	        styleUrls: [],
 	    })
 	], SmallCardComponent);
@@ -66430,13 +66531,13 @@
 
 
 /***/ }),
-/* 384 */
+/* 388 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"panel-heading\">\n\t<h3 class=\"panel-title\">\t\n\t\t{{ header }} \n\t</h3>\n</div>\n\n\n<ng-content class=\"panel-body\" select=\"[small-card-body]\"></ng-content>"
 
 /***/ }),
-/* 385 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66502,27 +66603,27 @@
 	OfficerComponent = __decorate([
 	    core_1.Component({
 	        selector: 'officer',
-	        template: __webpack_require__(386),
-	        styles: [__webpack_require__(387)]
+	        template: __webpack_require__(390),
+	        styles: [__webpack_require__(391)]
 	    })
 	], OfficerComponent);
 	exports.OfficerComponent = OfficerComponent;
 
 
 /***/ }),
-/* 386 */
+/* 390 */
 /***/ (function(module, exports) {
 
 	module.exports = "<ul class =\"officer-list\">\n\t<section class=\"container\">\n\t\t<div (click)=\"toggleCard($event)\" class=\"card\">\n\t\t\t<figure class=\"front\">\n\t\t\t\t<img class = \"officers\" src={{officer.image_url}} />\n\t\t\t\t<div class =\"front-officer-info\">\n\t\t\t    \t<p class = \"center-text name bold\"> {{officer.name}}</p>\n\t\t\t    \t<p class = \"center-text position italic\">{{officer.position}}</p>\n\t\t\t    </div>\n\t\t\t</figure>\n\t\t\t<figure class=\"back\">\n\t\t\t\t<div class = \"information\">\n\t\t\t\t\t<div>\n\t\t\t\t    \t<p class = \"center-text\"><span class=\"bold\">Name:</span> {{ officer.name }}</p>\n\t\t\t\t    \t<p class = \"center-text\"><span class=\"bold\">Position:</span> {{ officer.position }}</p>\n\t\t\t\t    \t<p class = \"center-text\"><span class=\"bold\">E-mail:</span> <a href=\"mailto:{{officer.email}}?subject=Contact SHPE Austin\">{{ officer.email }}</a></p>\n\t\t\t\t    \t<p class = \"center-text\"><span class=\"bold\">Phone:</span> <a href=\"tel:+{{officer.phone}}\">{{officer.phone}}</a></p>\n\t\t\t\t    \t<p class = \"center-text\"><span class=\"bold\">Hometown:</span> {{ officer.hometown }}</p>\n\t\t\t\t    \t<p class = \"center-text\"><span class=\"bold\">Company:</span> {{ officer.company }}</p>\n\t\t\t\t    \t<a href={{officer.linkedin}}>\n\t\t\t\t    \t\t<i id=\"officer-linkedin\" class=\"center-text fa fa-linkedin fa-2x\"></i>\n\t\t\t\t    \t</a>\n\t\t\t\t    </div>\n\t\t\t    </div>\n\t\t\t</figure>\n\t\t</div>\n\t</section>\n</ul>\n"
 
 /***/ }),
-/* 387 */
+/* 391 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host .officer-list {\n  padding: 0px;\n  margin: 0 auto;\n  text-align: center;\n}\n:host .officer-list .container {\n  width: 320px;\n  height: 400px;\n  position: relative;\n  -webkit-perspective: 800px;\n  -moz-perspective: 800px;\n  -o-perspective: 800px;\n  perspective: 800px;\n  display: inline-block;\n  margin: 0px 20px 20px 10px;\n}\n:host .officer-list .container .card {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  -webkit-transform-style: preserve-3d;\n  -moz-transform-style: preserve-3d;\n  -o-transform-style: preserve-3d;\n  transform-style: preserve-3d;\n  -webkit-transition: transform 1s;\n  -moz-transition: transform 1s;\n  -o-transition: transform 1s;\n  transition: transform 1s;\n  border: 1px solid #002266;\n  border-radius: 13px;\n}\n:host .officer-list .container .card:hover {\n  -webkit-transform: rotateY(180deg);\n  -moz-transform: rotateY(180deg);\n  -o-transform: rotateY(180deg);\n  transform: rotateY(180deg);\n}\n:host .officer-list .container .card figure {\n  margin: 0;\n  display: block;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  -webkit-backface-visibility: hidden;\n  -moz-backface-visibility: hidden;\n  -o-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n:host .officer-list .container .card .front .officers {\n  width: 300px;\n  height: 300px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  padding-top: 20px;\n}\n:host .officer-list .container .card .front .name {\n  margin-top: 14px;\n  font-size: 20px;\n  color: #06063e;\n}\n:host .officer-list .container .card .front .position {\n  color: #06063e;\n}\n:host .officer-list .container .card .back {\n  -webkit-transform: rotateY(180deg);\n  -moz-transform: rotateY(180deg);\n  -o-transform: rotateY(180deg);\n  transform: rotateY(180deg);\n}\n:host .officer-list .container .card .back .information {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 300px;\n  height: 400px;\n}\n:host .officer-list .container .card .back .information p {\n  color: #06063e;\n}\n:host .officer-list .container .card .back .information #officer-linkedin {\n  margin-top: 20px;\n}\n:host .officer-list .container .card .back .information #hidden-video {\n  margin-left: 10px;\n}\n:host .officer-list .container .flipped {\n  -webkit-transform: rotateY(180deg);\n  -moz-transform: rotateY(180deg);\n  -o-transform: rotateY(180deg);\n  transform: rotateY(180deg);\n}\n:host .officer-list .container .flipped-60 {\n  -webkit-transform: rotateY(60deg);\n  -moz-transform: rotateY(60deg);\n  -o-transform: rotateY(60deg);\n  transform: rotateY(60deg);\n}\n:host .officer-list .container .flipped-0 {\n  -webkit-transform: rotateY(0deg);\n  -moz-transform: rotateY(0deg);\n  -o-transform: rotateY(0deg);\n  transform: rotateY(0deg);\n}\n"
 
 /***/ }),
-/* 388 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66555,7 +66656,7 @@
 	CarouselComponent = __decorate([
 	    core_1.Component({
 	        selector: 'carousel',
-	        template: __webpack_require__(389),
+	        template: __webpack_require__(393),
 	        styleUrls: [],
 	    })
 	], CarouselComponent);
@@ -66563,13 +66664,13 @@
 
 
 /***/ }),
-/* 389 */
+/* 393 */
 /***/ (function(module, exports) {
 
 	module.exports = "<ng-content class=\"panel-body\" select=\"[carousel-body]\"></ng-content>\n<h3 class=\"pillar\">{{ pillar }}</h3>\n<h4 class=\"pillar-description\">{{ pillarDescription }}</h4>"
 
 /***/ }),
-/* 390 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66617,27 +66718,27 @@
 	JobComponent = __decorate([
 	    core_1.Component({
 	        selector: "job",
-	        template: __webpack_require__(391),
-	        styles: [__webpack_require__(392)]
+	        template: __webpack_require__(395),
+	        styles: [__webpack_require__(396)]
 	    })
 	], JobComponent);
 	exports.JobComponent = JobComponent;
 
 
 /***/ }),
-/* 391 */
+/* 395 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"job-info\">\n   <p class=\"job-position-label\">Position:<span class=\"job-position\">{{ position }}</span></p>\n   <p class=\"job-company-label\">Company:<span class=\"job-company\">{{ company }}</span></p>\n   <p class=\"job-company-description\">Description:<span class=\"job-description\">{{ description }}</span></p>\n   <p class=\"job-company-poster\">Posted by:<span class=\"job-poster\">{{ poster }}</span></p>\n</div>\n<button type=\"button\" class=\"btn btn-default job-button\"><a class=\"job-link\" href=\"{{ url }}\">More Info</a></button>\n\n               "
 
 /***/ }),
-/* 392 */
+/* 396 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host .job-info {\n  height: 235px;\n  overflow-y: scroll;\n}\n:host .job-info .job-position-label,\n:host .job-info .job-company-label,\n:host .job-info .job-company-description,\n:host .job-info .job-company-poster {\n  font-weight: bold;\n}\n:host .job-button {\n  align-self: center;\n  margin-top: 10px;\n}\n:host span {\n  margin-left: 5px;\n  font-weight: normal;\n}\n"
 
 /***/ }),
-/* 393 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66657,27 +66758,27 @@
 	WelcomeComponent = __decorate([
 	    core_1.Component({
 	        selector: "welcome",
-	        template: __webpack_require__(394),
-	        styles: [__webpack_require__(395)]
+	        template: __webpack_require__(398),
+	        styles: [__webpack_require__(399)]
 	    })
 	], WelcomeComponent);
 	exports.WelcomeComponent = WelcomeComponent;
 
 
 /***/ }),
-/* 394 */
+/* 398 */
 /***/ (function(module, exports) {
 
 	module.exports = "<main class=\"outer-container\" role=\"main\" tabindex=\"-1\">\n   <div class=\"image-container\">\n      <span class=\"shpe-icon shpe-icon-lg shpe-icon-outline\">\n      \t<img id = \"skyline\" src=\"/assets/austin_skyline_burned_copy.png\">Welcome to SHPE Austin\n      </span>\n      <p class=\"lead\">Society of Hispanic Professional Engineers\n         <br> Austin Professional Chapter\n      </p>\n      <p class=\"version\">Austin, TX</p>\n    </div>\n</main>\n"
 
 /***/ }),
-/* 395 */
+/* 399 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  line-height: 0;\n}\n@media (max-width: 479px) {\n  :host {\n    height: 50%;\n  }\n}\n@media (max-height: 375px) {\n  :host {\n    height: 55%;\n  }\n}\n@media (max-height: 320px) {\n  :host {\n    height: 55%;\n  }\n}\n:host .outer-container {\n  position: relative;\n  padding: 30px 0;\n  color: #cdbfe3;\n  text-align: center;\n  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);\n  background-color: #6f5499;\n  background: #1954ab;\n  background: -moz-linear-gradient(45deg, #1954ab 0%, #002266 100%);\n  background: -webkit-gradient(left bottom, right top, color-stop(0%, #1954ab), color-stop(100%, #002266));\n  background: -webkit-linear-gradient(45deg, #1954ab 0%, #002266 100%);\n  background: -o-linear-gradient(45deg, #1954ab 0%, #002266 100%);\n  background: -ms-linear-gradient(45deg, #1954ab 0%, #002266 100%);\n  background: linear-gradient(45deg, #1954ab 0%, #002266 100%);\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1954ab', endColorstr='#002266', GradientType=1);\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1277ba', endColorstr='#155484', GradientType=1);\n  background-repeat: repeat-x;\n  height: 100%;\n  width: 100%;\n  max-height: 375px;\n}\n@media (min-width: 768px) {\n  :host .outer-container {\n    padding: 50px 0;\n  }\n}\n@media (max-width: 625px) {\n  :host .outer-container {\n    padding: 40px 0;\n    max-height: 325px;\n  }\n}\n@media (max-width: 480px) {\n  :host .outer-container {\n    padding: 26px 0;\n  }\n}\n@media (max-height: 320px) {\n  :host .outer-container {\n    padding: 12px 0;\n  }\n}\n:host .outer-container .image-container {\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n}\n@media (min-width: 768px) {\n  :host .outer-container .image-container {\n    width: 750px;\n  }\n}\n:host .outer-container .image-container img#skyline {\n  height: auto;\n  position: absolute;\n  display: block;\n  padding: 0;\n  opacity: 0.1;\n  margin-left: -23px;\n  top: 6px;\n}\n@media (min-width: 768px) {\n  :host .outer-container .image-container img#skyline {\n    top: 0px;\n  }\n}\n@media (max-width: 768px) {\n  :host .outer-container .image-container img#skyline {\n    margin-left: -10px;\n    width: 80%;\n  }\n}\n@media (max-width: 479px) {\n  :host .outer-container .image-container img#skyline {\n    margin-top: 27px;\n  }\n}\n@media (max-width: 353px) {\n  :host .outer-container .image-container img#skyline {\n    margin-top: 31px;\n  }\n}\n@media (max-width: 340px) {\n  :host .outer-container .image-container img#skyline {\n    margin-left: -4px;\n    margin-top: 13%;\n  }\n}\n@media (max-height: 375px) {\n  :host .outer-container .image-container img#skyline {\n    margin-top: 0px;\n  }\n}\n:host .outer-container .image-container .shpe-icon {\n  margin: 0 auto 30px;\n  display: block;\n  font-weight: 500;\n  color: #fff;\n  text-align: center;\n  cursor: default;\n  border-radius: 10px;\n}\n:host .outer-container .image-container .shpe-icon-outline {\n  background-color: transparent;\n  border: 1px solid white;\n}\n:host .outer-container .image-container .shpe-icon-lg {\n  width: 82%;\n  height: 144px;\n  font-size: 43px;\n  line-height: 140px;\n}\n@media (max-width: 646px) {\n  :host .outer-container .image-container .shpe-icon-lg {\n    font-size: 30px;\n  }\n}\n@media (max-width: 479px) {\n  :host .outer-container .image-container .shpe-icon-lg {\n    font-size: 22px;\n  }\n}\n@media (max-width: 353px) {\n  :host .outer-container .image-container .shpe-icon-lg {\n    font-size: 22px;\n  }\n}\n@media (max-width: 345px) {\n  :host .outer-container .image-container .shpe-icon-lg {\n    font-size: 18px;\n  }\n}\n:host .outer-container .image-container .lead {\n  margin: 0 auto 30px;\n  font-size: 20px;\n  color: #fff;\n}\n@media (max-width: 625px) {\n  :host .outer-container .image-container .lead {\n    font-size: 15px;\n  }\n}\n@media (max-height: 480px) {\n  :host .outer-container .image-container .lead {\n    visibility: hidden;\n  }\n}\n@media (max-width: 479px) {\n  :host .outer-container .image-container .lead {\n    font-size: 12px;\n  }\n}\n@media (max-width: 353px) {\n  :host .outer-container .image-container .lead {\n    font-size: 12px;\n  }\n}\n:host .outer-container .image-container .version {\n  margin-top: -15px;\n  margin-bottom: 30px;\n  color: #779BF4;\n}\n@media (max-height: 480px) {\n  :host .outer-container .image-container .version {\n    visibility: hidden;\n  }\n}\n"
 
 /***/ }),
-/* 396 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66692,7 +66793,7 @@
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var core_1 = __webpack_require__(3);
-	var announcements_service_1 = __webpack_require__(358);
+	var announcements_service_1 = __webpack_require__(362);
 	var AnnouncementsComponent = (function () {
 	    function AnnouncementsComponent(announcementsService) {
 	        this.announcementsService = announcementsService;
@@ -66761,8 +66862,8 @@
 	AnnouncementsComponent = __decorate([
 	    core_1.Component({
 	        selector: "announcements",
-	        template: __webpack_require__(397),
-	        styles: [__webpack_require__(398)]
+	        template: __webpack_require__(401),
+	        styles: [__webpack_require__(402)]
 	    }),
 	    __metadata("design:paramtypes", [announcements_service_1.AnnouncementsService])
 	], AnnouncementsComponent);
@@ -66770,19 +66871,19 @@
 
 
 /***/ }),
-/* 397 */
+/* 401 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"announcements\">\n   <h2 class=\"thumbnail-title dark-shpe-blue\" id=\"announcement-header\"> Announcements </h2>\n   <div class=\"announcement-container\">\n      <div class = \"announcement-icon-container\">\n         <h3 class=\" dark-shpe-blue\" id=\"announcement-title\">Announcements</h3>\n         <span class=\"glyphicon glyphicon-bullhorn dark-shpe-blue\" aria-hidden=\"true\"></span>\n      </div> <!-- .announcement-icon-container -->\n      <div class=\"announcement-content-container\">\n         <i class=\"fa fa-spinner fa-spin dark-shpe-blue fa-3x\"></i>\n      </div> <!-- .announcement-content-container -->\n   </div> <!-- .announcement-container -->\n</div>\n"
 
 /***/ }),
-/* 398 */
+/* 402 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host .announcements {\n  padding: 10px 120px 10px 120px;\n  margin: 25px 0px 25px 0px;\n}\n@media (max-width: 777px) {\n  :host .announcements {\n    padding: 0px 15px 0px 15px;\n    height: 240px;\n  }\n}\n@media (min-width: 768px) {\n  :host .announcements {\n    padding: 0px;\n  }\n}\n:host .announcements #announcement-header {\n  display: none;\n}\n@media (max-width: 623px) {\n  :host .announcements #announcement-header {\n    display: block;\n  }\n}\n:host .announcements .announcement-container {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-flex-wrap: wrap;\n  -ms-flex-wrap: wrap;\n  flex-wrap: wrap;\n  -webkit-box-pack: start;\n  -webkit-justify-content: flex-start;\n  -ms-flex-pack: start;\n  justify-content: flex-start;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n  -ms-flex-align: stretch;\n  align-items: stretch;\n  -webkit-align-content: flex-start;\n  -ms-flex-line-pack: start;\n  align-content: flex-start;\n  height: 200px;\n  /*height: 315px;*/\n  width: 80%;\n  margin: 0 auto;\n}\n@media (max-width: 1023px) {\n  :host .announcements .announcement-container {\n    width: 700px;\n  }\n}\n@media (max-width: 777px) {\n  :host .announcements .announcement-container {\n    width: 95%;\n  }\n}\n:host .announcements .announcement-container .announcement-icon-container {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  padding: 0px;\n  margin: 0px;\n  text-align: center;\n  border: 1px solid #ddd;\n  border-radius: 25px 0px 0px 25px;\n  height: 227px;\n  border-right: none;\n}\n@media (max-width: 623px) {\n  :host .announcements .announcement-container .announcement-icon-container {\n    display: none;\n    -webkit-box-flex: 0;\n    -webkit-flex: 0;\n    -ms-flex: 0;\n    flex: 0;\n  }\n}\n:host .announcements .announcement-container .announcement-icon-container .glyphicon-bullhorn {\n  font-size: 50px;\n  left: 5px;\n  margin-top: 10px;\n}\n:host .announcements .announcement-container .announcement-icon-container #announcement-title {\n  margin-top: 50px;\n  font-weight: bold;\n  padding: 0px 5px 0px 5px;\n}\n:host .announcements .announcement-container .announcement-content-container {\n  -webkit-box-flex: 3;\n  -webkit-flex: 3;\n  -ms-flex: 3;\n  flex: 3;\n  border: 1px solid #ddd;\n  border-radius: 0px 25px 25px 0px;\n  padding: 10px 5px 5px 10px;\n  overflow-y: auto;\n  overflow-x: hidden;\n  height: 227px;\n  text-align: center;\n}\n@media (max-width: 623px) {\n  :host .announcements .announcement-container .announcement-content-container {\n    -webkit-box-flex: 1;\n    -webkit-flex: 1;\n    -ms-flex: 1;\n    flex: 1;\n    border-radius: 25px;\n  }\n}\n:host .announcements .announcement-container .announcement-content-container .fa-spinner {\n  margin-top: 80px;\n}\n:host .announcements .announcement-container .announcement-content-container .post-info {\n  font-weight: bold;\n}\n:host /deep/ .post-info {\n  font-weight: bold;\n}\n"
 
 /***/ }),
-/* 399 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66810,27 +66911,27 @@
 	CardContainerComponent = __decorate([
 	    core_1.Component({
 	        selector: "card-container",
-	        template: __webpack_require__(400),
-	        styles: [__webpack_require__(401)]
+	        template: __webpack_require__(404),
+	        styles: [__webpack_require__(405)]
 	    })
 	], CardContainerComponent);
 	exports.CardContainerComponent = CardContainerComponent;
 
 
 /***/ }),
-/* 400 */
+/* 404 */
 /***/ (function(module, exports) {
 
 	module.exports = "<h2 class=\"thumbnail-title dark-shpe-blue\"> {{ title }} </h2>\n<ng-content select=\"[card-container-body]\"></ng-content>"
 
 /***/ }),
-/* 401 */
+/* 405 */
 /***/ (function(module, exports) {
 
 	module.exports = "@media (max-width: 1200px) {\n  :host {\n    width: 50%;\n  }\n}\n@media only screen and (max-width: 768px) {\n  :host {\n    padding: 0px;\n  }\n}\n"
 
 /***/ }),
-/* 402 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66904,7 +67005,7 @@
 
 
 /***/ }),
-/* 403 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66937,27 +67038,27 @@
 	AdminCardComponent = __decorate([
 	    core_1.Component({
 	        selector: "admin-card",
-	        template: __webpack_require__(404),
-	        styles: [__webpack_require__(405)]
+	        template: __webpack_require__(408),
+	        styles: [__webpack_require__(409)]
 	    })
 	], AdminCardComponent);
 	exports.AdminCardComponent = AdminCardComponent;
 
 
 /***/ }),
-/* 404 */
+/* 408 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"card\">\n\t<h3 class=\"admin-card-title\">{{ title }}</h3>\n\t<p class=\"admin-card-desc\">{{ description }} </p>\n\t<form class=\"admin-form\">\n\t\t<ng-content select=\"[form-body]\"></ng-content>\n\t</form>\n</div>"
 
 /***/ }),
-/* 405 */
+/* 409 */
 /***/ (function(module, exports) {
 
 	module.exports = ":host {\n  display: -ms-flexbox;\n  display: flex;\n  justify-content: flex-start;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  margin: 20px;\n  min-width: 480px;\n  max-width: 480px;\n  border: 1px solid #ededed;\n  border-radius: 5px;\n  text-align: center;\n  border: 1px solid #ddd;\n  padding: 25px;\n  border-radius: 15px;\n  min-height: 570px;\n}\n@media (max-width: 530px) {\n  :host {\n    min-width: 80%;\n    max-width: 80%;\n  }\n}\n"
 
 /***/ }),
-/* 406 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67013,8 +67114,8 @@
 	ChatComponent = __decorate([
 	    core_1.Component({
 	        selector: "chat-ui",
-	        template: __webpack_require__(407),
-	        styles: [__webpack_require__(408)]
+	        template: __webpack_require__(411),
+	        styles: [__webpack_require__(412)]
 	    }),
 	    __metadata("design:paramtypes", [cookie_service_1.CookieService])
 	], ChatComponent);
@@ -67022,19 +67123,19 @@
 
 
 /***/ }),
-/* 407 */
+/* 411 */
 /***/ (function(module, exports) {
 
 	module.exports = "<div id=\"chat-container\">\n   <div id=\"chat-header\">\n      Online Chat\n      <i class=\"fa fa-angle-double-down\" (click)=\"toggleChat($event)\"></i>\n   </div>\n   <div class=\"content-container\">\n      <div id=\"chat-content\">\n         <p id=\"name-prompt\"> Please enter your name to start chatting. </p>\n      </div>\n      <form id=\"chat\" (ngSubmit)=\"sendCommand()\">\n         <input id=\"chat-message\" autocomplete=\"off\" placeholder=\"Enter a message\" /><button id=\"send-chat\">Send</button>\n      </form>\n   </div>\n</div> <!-- #chat-container -->"
 
 /***/ }),
-/* 408 */
+/* 412 */
 /***/ (function(module, exports) {
 
 	module.exports = "#chat-container {\n  position: fixed;\n  bottom: 0;\n  right: 10%;\n  height: 368px;\n  background: white;\n  width: 250px;\n  z-index: 100;\n  border: 1px solid #ebebeb;\n  border-radius: 5px 5px 0px 0px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n  -ms-flex-direction: column;\n  flex-direction: column;\n  -webkit-flex-wrap: nowrap;\n  -ms-flex-wrap: nowrap;\n  flex-wrap: nowrap;\n  -webkit-box-pack: start;\n  -webkit-justify-content: flex-start;\n  -ms-flex-pack: start;\n  justify-content: flex-start;\n  -webkit-box-align: start;\n  -webkit-align-items: flex-start;\n  -ms-flex-align: start;\n  align-items: flex-start;\n}\n#chat-container div,\n#chat-container form {\n  width: 100%;\n}\n#chat-container input {\n  width: 80%;\n}\n#chat-container button {\n  width: 20%;\n}\n#chat-container .content-container {\n  display: block;\n  height: 85%;\n}\n#chat-container .content-container #chat-content {\n  overflow-y: auto;\n  overflow-x: hidden;\n  padding: 8px 5px 5px 5px;\n  height: 100%;\n}\n#chat-container .content-container #chat-content .error {\n  color: red;\n}\n#chat-container .content-container #chat-content #name-prompt {\n  position: relative;\n  text-align: center;\n  color: black;\n  top: 150px;\n  font-size: 12px;\n  font-style: italic;\n}\n#chat-container #chat-header {\n  border-bottom: 1px solid #E6E6E6;\n  padding: 5px;\n  height: 30px;\n}\n#chat-container #chat-header i {\n  float: right;\n  padding: 2px;\n  cursor: pointer;\n}\n#chat-container #chat {\n  margin: 0px;\n  padding: 0px;\n}\n#chat-container #chat #send-chat {\n  font-family: inherit;\n  font-size: 100%;\n  padding: 4px;\n  color: #444;\n  color: rgba(0, 0, 0, 0.8);\n  border: 1px solid #999;\n  border: 0 rgba(0, 0, 0, 0);\n  background-color: #E6E6E6;\n  text-decoration: none;\n  border-radius: 2px;\n}\n"
 
 /***/ }),
-/* 409 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67049,13 +67150,15 @@
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var core_1 = __webpack_require__(3);
-	var sponsors_template_1 = __webpack_require__(410);
-	var subscribe_service_1 = __webpack_require__(366);
+	var sponsors_template_1 = __webpack_require__(414);
+	var subscribe_service_1 = __webpack_require__(370);
 	var FooterComponent = (function () {
 	    function FooterComponent(subscribeService) {
 	        this.subscribeService = subscribeService;
 	        this.farmCredit = sponsors_template_1.FARM_CREDIT;
 	        this.sponsorTwo = sponsors_template_1.SPONSOR_TWO;
+	        this.visible = false;
+	        this.newsletterStatus = "Thank you, please check your e-mail!";
 	    }
 	    FooterComponent.prototype.isValidEmail = function () {
 	        return /@.*\..{2,}/.test(this.formEmail);
@@ -67077,6 +67180,7 @@
 	        $("." + className).html('<i style="font-size: 20px;" class="fa fa-cog fa-spin fa-2x fa-fw"></i>');
 	    };
 	    FooterComponent.prototype.removeLoader = function (className, success) {
+	        var _this = this;
 	        if (className === void 0) { className = "subscribe"; }
 	        $("." + className).html('Submit');
 	        if (!success) {
@@ -67084,27 +67188,26 @@
 	                'background': "#D8000C",
 	                'border-color': 'red'
 	            });
+	            this.newsletterStatus = "Sorry, please try again later.";
 	        }
 	        else {
 	            $("." + className).text("Success!").css({
 	                'background': "green",
 	                'border-color': 'green'
 	            });
+	            this.newsletterStatus = "Thank you, please check your e-mail!";
 	        }
 	        setTimeout(function () {
-	            $("." + className).text("Submit").css({
-	                'background': "#0137A2",
-	                'border-color': '#2e6da4'
-	            });
-	        }, 4000);
+	            _this.visible = true;
+	        }, 2000);
 	    };
 	    return FooterComponent;
 	}());
 	FooterComponent = __decorate([
 	    core_1.Component({
 	        selector: "footer",
-	        template: __webpack_require__(411),
-	        styles: [__webpack_require__(412)]
+	        template: __webpack_require__(415),
+	        styles: [__webpack_require__(416)]
 	    }),
 	    __metadata("design:paramtypes", [subscribe_service_1.SubscribeService])
 	], FooterComponent);
@@ -67112,7 +67215,7 @@
 
 
 /***/ }),
-/* 410 */
+/* 414 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -67130,16 +67233,16 @@
 
 
 /***/ }),
-/* 411 */
+/* 415 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div class=\"newsletter-signup\">\n\t<form class=\"shpe-form\" (ngSubmit)=\"onSubmit()\" #shpeForm=\"ngForm\">\n      <div>\n          <h3 class='sign-up'>Sign Up for Our Newsletter</h3>\n          <input type=\"email\" placeholder=\"E-mail Address\" required\n          [(ngModel)]=\"formEmail\" name=\"email\"\n          #email=\"ngModel\"\n          [class.valid]=\"isValidEmail()\">\n          <button type=\"submit\" class=\"btn btn-success subscribe\" [disabled]=\"!isValidEmail()\">Submit</button>\n      </div>\n    </form>\n</div>\n<div class=\"sponsors\">\n\t<p> Special Thanks to our Sponsors</p>\n\t<div class=\"sponsor-images\">\n\t\t<div class=\"sponsor\">\n\t\t\t<a href=\"{{farmCredit.url}}\">\n\t\t\t\t<img alt=\"{{farmCredit.name}}\" src=\"{{farmCredit.photo}}\"/>\n\t\t\t</a>\n\t\t</div>\n<!-- \t\t<div class=\"sponsor\">\n\t\t\t<a href=\"{{sponsorTwo.url}}\">\n\t\t\t\t<img alt=\"{{sponsorTwo.name}}\" src=\"{{sponsorTwo.photo}}\"/>\n\t\t\t</a>\n\t\t</div> -->\n\t</div>\n</div>\n"
+	module.exports = "<div class=\"newsletter-signup\">\n\t<form class=\"shpe-form\" (ngSubmit)=\"onSubmit()\" #shpeForm=\"ngForm\">\n      <div>\n          <h3 class='sign-up'>Sign Up for Our Newsletter</h3>\n          <input type=\"email\" placeholder=\"E-mail Address\" required\n          [(ngModel)]=\"formEmail\" name=\"email\"\n          #email=\"ngModel\"\n          [class.valid]=\"isValidEmail()\" [ngStyle]=\"{'display': !visible ? 'block' : 'none'}\">\n          <button type=\"submit\" class=\"btn btn-success subscribe\" [disabled]=\"!isValidEmail()\" [ngStyle]=\"{'display': !visible ? 'block' : 'none'}\">Submit</button>\n          <p class=\"newsletter-status\" [ngStyle]=\"{'display': visible ? 'block' : 'none'}\">{{newsletterStatus}}</p>\n          <p></p>\n      </div>\n    </form>\n</div>\n<div class=\"sponsors\">\n\t<p> Special Thanks to our Sponsors</p>\n\t<div class=\"sponsor-images\">\n\t\t<div class=\"sponsor\">\n\t\t\t<a href=\"{{farmCredit.url}}\">\n\t\t\t\t<img alt=\"{{farmCredit.name}}\" src=\"{{farmCredit.photo}}\"/>\n\t\t\t</a>\n\t\t</div>\n\t</div>\n</div>\n"
 
 /***/ }),
-/* 412 */
+/* 416 */
 /***/ (function(module, exports) {
 
-	module.exports = ":host {\n  background: #026;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: row;\n  border-top: 1px solid #ededed;\n  height: 100px;\n}\n@media (max-width: 768px) {\n  :host {\n    flex-direction: column;\n    height: 250px;\n  }\n}\n:host .newsletter-signup {\n  flex: 1;\n  border-right: 1px solid #ddd;\n  max-width: 355px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup {\n    border-right: none;\n    border-bottom: 1px solid #ededed;\n    margin-top: 10px;\n  }\n}\n:host .newsletter-signup div {\n  position: relative;\n  padding: 10px;\n}\n:host .newsletter-signup div .sign-up {\n  color: white;\n  font-weight: bold;\n  text-align: center;\n  font-size: 18px;\n  margin: 0px 0px 10px 0px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div .sign-up {\n    font-size: 20px;\n  }\n}\n:host .newsletter-signup div input {\n  position: relative;\n  width: 254px;\n  height: 35px;\n  border: 1px solid black;\n  border-radius: 5px;\n  margin-left: 35px;\n  padding: 10px;\n  font-size: 12px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div input {\n    margin-left: 0px;\n    width: 250px;\n    height: 32px;\n  }\n}\n:host .newsletter-signup div button {\n  position: absolute;\n  bottom: 11px;\n  right: 55px;\n  height: 33px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div button {\n    right: 17px;\n    height: 31px;\n  }\n}\n:host .sponsors {\n  flex: 1;\n  padding: 5px 5px 5px 15px;\n}\n:host .sponsors p {\n  color: white;\n  font-weight: bold;\n  font-size: 18px;\n  padding-top: 10px;\n  margin: 0px;\n}\n@media (max-width: 768px) {\n  :host .sponsors p {\n    text-align: center;\n    font-size: 20px;\n  }\n}\n:host .sponsors .sponsor-images {\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: row;\n  margin-left: 20px;\n}\n:host .sponsors .sponsor-images .sponsor {\n  margin-right: 10px;\n}\n:host .sponsors .sponsor-images .sponsor img {\n  max-height: 65px;\n  max-width: 250px;\n}\n"
+	module.exports = ":host {\n  background: #026;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: row;\n  border-top: 1px solid #ededed;\n  height: 100px;\n}\n@media (max-width: 768px) {\n  :host {\n    flex-direction: column;\n    height: 250px;\n  }\n}\n:host .newsletter-signup {\n  flex: 1;\n  border-right: 1px solid #ddd;\n  max-width: 355px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup {\n    border-right: none;\n    border-bottom: 1px solid #ededed;\n    margin-top: 10px;\n  }\n}\n:host .newsletter-signup div {\n  position: relative;\n  padding: 10px;\n}\n:host .newsletter-signup div .sign-up {\n  color: white;\n  font-weight: bold;\n  text-align: center;\n  font-size: 18px;\n  margin: 0px 0px 10px 0px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div .sign-up {\n    font-size: 20px;\n  }\n}\n:host .newsletter-signup div .newsletter-status {\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  margin: 15px 0px 0px 0px;\n}\n:host .newsletter-signup div input {\n  position: relative;\n  width: 254px;\n  height: 35px;\n  border: 1px solid black;\n  border-radius: 5px;\n  margin-left: 35px;\n  padding: 10px;\n  font-size: 12px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div input {\n    margin-left: 0px;\n    width: 250px;\n    height: 32px;\n  }\n}\n:host .newsletter-signup div button {\n  position: absolute;\n  bottom: 20px;\n  right: 55px;\n  height: 34px;\n}\n@media (max-width: 768px) {\n  :host .newsletter-signup div button {\n    right: 17px;\n    height: 31px;\n  }\n}\n:host .sponsors {\n  flex: 1;\n  padding: 5px 5px 5px 15px;\n}\n:host .sponsors p {\n  color: white;\n  font-weight: bold;\n  font-size: 18px;\n  padding-top: 10px;\n  margin: 0px;\n}\n@media (max-width: 768px) {\n  :host .sponsors p {\n    text-align: center;\n    font-size: 20px;\n  }\n}\n:host .sponsors .sponsor-images {\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: row;\n  margin-left: 20px;\n}\n:host .sponsors .sponsor-images .sponsor {\n  margin-right: 10px;\n}\n:host .sponsors .sponsor-images .sponsor img {\n  max-height: 65px;\n  max-width: 250px;\n}\n"
 
 /***/ })
 /******/ ]);

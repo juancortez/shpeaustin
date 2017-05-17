@@ -52,6 +52,7 @@ import { CardContainerComponent }           from './app/card-container.component
 import { OnlyNumber }                       from './app/only-number.component';
 import { AdminCardComponent }               from './app/admin-card.component';
 import { ChatComponent }                    from './app/chat.component';
+import { ModalComponent }                   from './app/modal.component';
 
 /* Footer */
 import { FooterComponent }                  from './app/footer.component';
@@ -96,7 +97,8 @@ enableProdMode();
     LoginComponent,
     AdminCardComponent,
     FooterComponent,
-    ChatComponent
+    ChatComponent,
+    ModalComponent
   ],
   providers: [ 
     OfficersService,

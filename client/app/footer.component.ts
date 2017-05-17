@@ -17,6 +17,8 @@ export class FooterComponent {
 	farmCredit: Object = FARM_CREDIT;
 	sponsorTwo: Object = SPONSOR_TWO;
 	formEmail: string;
+	visible: boolean = false;
+	newsletterStatus: string = "Thank you, please check your e-mail!";
 
 	constructor(private subscribeService: SubscribeService){}
 
@@ -43,24 +45,23 @@ export class FooterComponent {
 
 	private removeLoader(className: string = "subscribe", success: boolean){
 		$(`.${className}`).html('Submit');
-
 		if(!success){
 			$(`.${className}`).text("Failure").css({
                 'background': "#D8000C",
                 'border-color': 'red'
             });
+            this.newsletterStatus = "Sorry, please try again later."
 		} else{
             $(`.${className}`).text("Success!").css({
                 'background': "green",
                 'border-color': 'green'
             });
+            this.newsletterStatus = "Thank you, please check your e-mail!";
 		}
 
-        setTimeout(function() {
-            $(`.${className}`).text("Submit").css({
-                'background': "#0137A2",
-                'border-color': '#2e6da4'
-            });
-        }, 4000);
+		setTimeout(() => {
+			this.visible = true;
+		}, 2000);
+		
 	}
 }

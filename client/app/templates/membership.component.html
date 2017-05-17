@@ -12,49 +12,49 @@
       <div class="item forest-green">
          <carousel pillar="Community Outreach" pillarDescription="We reach out to local communities and have at least one community service event a month.">
             <i class="fa fa-graduation-cap fa-5x" carousel-body></i>
-            <i data="Community Outreach" class="fa fa-info-circle" carousel-body></i>
+            <i (click)="moreInformation($event)" data="Community Outreach" class="fa fa-info-circle" carousel-body></i>
          </carousel>
       </div>
 
       <div class="item orange">
          <carousel pillar="Leadership Development" pillarDescription="We provide our members leadership opportunities throughout the year.">
             <i class="fa fa-university fa-5x" carousel-body></i>
-            <i data="Leadership Development" class="fa fa-info-circle" carousel-body></i>
+            <i (click)="moreInformation($event)" data="Leadership Development" class="fa fa-info-circle" carousel-body></i>
          </carousel>
       </div>
 
       <div class="item yellow">
          <carousel pillar="Professional Development" pillarDescription="We host a wide variety of workshops to enhance our members professional career.">
             <i class="fa fa-briefcase fa-5x" carousel-body></i>
-            <i data="Professional Development" class="fa fa-info-circle" carousel-body></i>
+            <i (click)="moreInformation($event)" data="Professional Development" class="fa fa-info-circle" carousel-body></i>
          </carousel>
       </div>
 
       <div class="item dodger-blue">
          <carousel pillar="Chapter Development" pillarDescription="If you are new to Austin, we show you what Austin has to offer through fun activities.">
             <i class="fa fa-hand-rock-o fa-5x" carousel-body></i>
-            <i data="Chapter Development" class="fa fa-info-circle" carousel-body></i>
+            <i (click)="moreInformation($event)" data="Chapter Development" class="fa fa-info-circle" carousel-body></i>
          </carousel>
       </div>
 
       <div class="item violet">
          <carousel pillar="Sports" pillarDescription="Come play pick up games or join one of our sports leagues!">
             <i class="fa fa-futbol-o fa-5x" carousel-body></i>
-            <i data="Sports" class="fa fa-info-circle" carousel-body></i>
+            <i (click)="moreInformation($event)" data="Sports" class="fa fa-info-circle" carousel-body></i>
          </carousel>
       </div>
 
       <div class="item sky-blue">
          <carousel pillar="National Conferences" pillarDescription="Every year, SHPE hosts a National Conference and we take members every year.">
             <i class="fa fa-plane fa-5x" carousel-body></i>
-            <i data="National Conferences" class="fa fa-info-circle" carousel-body></i>
+            <i (click)="moreInformation($event)" data="National Conferences" class="fa fa-info-circle" carousel-body></i>
          </carousel>
       </div>
 
       <div class="item zombie-green">
          <carousel pillar="Regional Conferences" pillarDescription="If you can't afford the time to fly, join us in our regional conferences.">
             <i class="fa fa-plane fa-5x" carousel-body></i>
-            <i data="Regional Conferences" class="fa fa-info-circle" carousel-body></i>
+            <i (click)="moreInformation($event)" data="Regional Conferences" class="fa fa-info-circle" carousel-body></i>
          </carousel>
       </div>
    </div>
@@ -177,3 +177,4 @@
       </div>
    </div>
 </div>
+<modal></modal>

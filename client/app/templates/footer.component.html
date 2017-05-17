@@ -5,8 +5,10 @@
           <input type="email" placeholder="E-mail Address" required
           [(ngModel)]="formEmail" name="email"
           #email="ngModel"
-          [class.valid]="isValidEmail()">
-          <button type="submit" class="btn btn-success subscribe" [disabled]="!isValidEmail()">Submit</button>
+          [class.valid]="isValidEmail()" [ngStyle]="{'display': !visible ? 'block' : 'none'}">
+          <button type="submit" class="btn btn-success subscribe" [disabled]="!isValidEmail()" [ngStyle]="{'display': !visible ? 'block' : 'none'}">Submit</button>
+          <p class="newsletter-status" [ngStyle]="{'display': visible ? 'block' : 'none'}">{{newsletterStatus}}</p>
+          <p></p>
       </div>
     </form>
 </div>
@@ -18,10 +20,5 @@
 				<img alt="{{farmCredit.name}}" src="{{farmCredit.photo}}"/>
 			</a>
 		</div>
-<!-- 		<div class="sponsor">
-			<a href="{{sponsorTwo.url}}">
-				<img alt="{{sponsorTwo.name}}" src="{{sponsorTwo.photo}}"/>
-			</a>
-		</div> -->
 	</div>
 </div>
