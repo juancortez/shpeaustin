@@ -49,7 +49,7 @@ module.exports = (controller, client, database, privateCredentials, bot) => {
                             answer = answer.toLocaleLowerCase();
                             if(answer === "yes"){
                                 database.getCachedData('id', (err, data) => {
-                                    let cookie = data.uuid.pop();
+                                    let cookie = data.uuid.shift();
 
                                     const options = { 
                                         'method': 'POST',
