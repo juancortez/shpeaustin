@@ -3,21 +3,11 @@ const gulp = require('gulp');
 // Include Our Plugins
 const plugins = require('gulp-load-plugins')();
 
-const all_javascripts = "public/javascripts/*.js",
-    javascript_src = "public/javascripts/",
-    javascript_dest = "public/dist";
+const javascript_files = "public/javascripts/*";
+const javascript_dest = "public/dist";
 
-const all_utils_src = "public/javascripts/utils/*";
 
-const all_stylesheets = "public/stylesheets/*.css",
-    less_stylesheets = "public/stylesheets/less/*.less",
-    stylesheet_src = "public/stylesheets/",
-    stylesheet_dest = "public/dist";
-
-const all_html = "views/*.html";
-const all_ejs = "views/*.ejs";
-
-const all_json = "metadata/*.json";
+const all_json = "server/metadata/*.json";
 
 `
     Lint Task
@@ -25,7 +15,7 @@ const all_json = "metadata/*.json";
         
 `
 gulp.task('lint', () => {
-    return gulp.src(all_javascripts)
+    return gulp.src(javascript_files)
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter('default'));
 });
@@ -37,87 +27,15 @@ gulp.task('lint', () => {
     file, minifies it, renames it and saves it to the dist/ directory alongside 
     the concatenated file.
 `
-gulp.task('index_script', () => {
-    return gulp.src([javascript_src + "index.js", all_utils_src + "ajaxUtils.js", all_utils_src + "modal.js"])
+gulp.task('javascript_files', () => {
+    return gulp.src([javascript_files + "calendar.js", javascript_files + "chat.js"])
         .pipe(plugins.babel({
             presets: ['es2015']
         }))
-        .pipe(plugins.concat('index.js'))
-        .pipe(plugins.rename('index.min.js'))
+        .pipe(plugins.concat('utils.js'))
+        .pipe(plugins.rename('utils.min.js'))
         .pipe(plugins.uglify())
         .pipe(gulp.dest(javascript_dest));
-});
-
-gulp.task('membership_script', () => {
-    return gulp.src([javascript_src + "membership.js", all_utils_src + "modal.js", all_utils_src + "calendar.js"])
-        .pipe(plugins.babel({
-            presets: ['es2015']
-        }))
-        .pipe(plugins.concat('membership.js'))
-        .pipe(plugins.rename('membership.min.js'))
-        .pipe(plugins.uglify())
-        .pipe(gulp.dest(javascript_dest));
-});
-
-gulp.task('contact_script', () => {
-    return gulp.src([javascript_src + "contact.js", all_utils_src + "chat.js", all_utils_src + "modal.js"])
-        .pipe(plugins.babel({
-            presets: ['es2015']
-        }))
-        .pipe(plugins.concat('contact.js'))
-        .pipe(plugins.rename('contact.min.js'))
-        .pipe(plugins.uglify())
-        .pipe(gulp.dest(javascript_dest));
-});
-
-gulp.task('admin_script', () => {
-    return gulp.src(javascript_src + "admin.js")
-        .pipe(plugins.babel({
-            presets: ['es2015']
-        }))
-        .pipe(plugins.concat('admin.js'))
-        .pipe(plugins.rename('admin.min.js'))
-        .pipe(plugins.uglify())
-        .pipe(gulp.dest(javascript_dest));
-});
-`
-    PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. 
-    It is recommended by Google and used in Twitter, and Taobao.
-`
-gulp.task('autoprefixer', () => {
-    const postcss = require('gulp-postcss'),
-        sourcemaps = require('gulp-sourcemaps'),
-        autoprefixer = require('autoprefixer');
-
-    return gulp.src(all_stylesheets)
-        .pipe(sourcemaps.init())
-        .pipe(postcss([autoprefixer({
-            browsers: ['last 2 versions']
-        })]))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(stylesheet_dest));
-});
-
-`
-    a LESS plugin for node.js
-`
-gulp.task('less', () => {
-    const path = require('path');
-    return gulp.src(less_stylesheets)
-        .pipe(plugins.less({
-            paths: [path.join(__dirname, 'less', 'includes')]
-        }))
-        .pipe(gulp.dest(stylesheet_src));
-});
-
-`
-    shows errors on HTML 
-    NOTE: doesn't work very well with EJS <% %> tags
-`
-gulp.task('check_html', () => {
-    return gulp.src(all_html)
-        .pipe(plugins.htmlhint())
-        .pipe(plugins.htmlhint.reporter())
 });
 
 `
@@ -138,16 +56,15 @@ gulp.task('json_lint', () => {
     for changes and automatically run our tasks again so we don't have to 
     continuously jump back to our command-line and run the gulp command each time.
 `
-let javaScriptWatch = ['lint', 'index_script', 'membership_script', 'contact_script', 'admin_script'],
-    cssWatch = ['less', 'autoprefixer'];
+let javaScriptWatch = ['lint', 'javascript_files'],
+    // cssWatch = ['less', 'autoprefixer'];
     jsonWatch = ['json_lint'],
     watch = ['watch']; // so that it can continue calling the watch task
-    allWatch = javaScriptWatch.concat(cssWatch).concat(jsonWatch).concat(watch);
+    allWatch = javaScriptWatch.concat(jsonWatch).concat(watch);
 
 
 gulp.task('watch', () => {
-    gulp.watch([all_javascripts, all_utils_src], javaScriptWatch);
-    gulp.watch(less_stylesheets, cssWatch);
+    gulp.watch(javascript_files, javaScriptWatch);
     gulp.watch(all_json, jsonWatch);
 });
 

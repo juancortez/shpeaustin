@@ -29,15 +29,13 @@ shpeaustin/
 		assets/	
 			officer_pictures/		The pictures rendered on the /officers endpoint
 			*.jpg,*.png				Includes all .jpg and .png files used in Node.js application
-		javascripts/	
-			utils/ 					
-				ajaxUtils.js 		Module that contains all the AJAX requests made from the index.html file
-				calendar.js  		Module used to create a calendar on the membership page
-				modal.js  			Module used to create a modal on the home and membership page
-			libs/					jQuery library
-			*.js 					JavaScript files used on the website, as specified by the title name
+		dist/
+			*.js 					Minified file used to load over the server
+		javascripts/		
+			ajaxUtils.js 			Module that contains all the AJAX requests made from the index.html file
+			calendar.js  			Module used to create a calendar on the membership page
+			modal.js  				Module used to create a modal on the home and membership page
 		stylesheets/	
-			/libs 					OwlCarousel
 			styles.css 				Primary styling page used in Angular2 application
 	server/	
 		controllers/	
