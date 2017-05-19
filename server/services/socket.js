@@ -37,16 +37,6 @@ function initiateSocket(io,client){
 	    	io.emit('usersOnline', usersOnline);
 	        // disconnection logic
 	    });
-
-	    socket.on('revision', (msg) => {
-	        database.getCachedData("revisionNumber", (err, data) => {
-	            if(!!err){
-	                console.error(err.reason);
-	            }
-	            revision = (!(!!err)) ? data.revision : revision;
-	            io.emit('revision', revision);
-	        });
-	    });
 	});
 }
 

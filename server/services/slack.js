@@ -3,7 +3,8 @@ const request = require("request"),
     privateCredentials = require('../lib/credentialsBuilder.js').init(),
     cfenv = require('cfenv'),
     appEnv = cfenv.getAppEnv(),
-    baseUrl = appEnv.isLocal ? config.get('app.local') : config.get('app.deployed');
+    port = appEnv.port,
+    baseUrl = appEnv.isLocal ? config.get('app.local') + port : config.get('app.deployed');
 
 module.exports = ({controller, database, bot}) => {
 

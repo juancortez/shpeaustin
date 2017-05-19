@@ -9,248 +9,69 @@
 const config = require('config'),
     database = require("../lib/database.js"),
     revision = config.revision,
+    redisKeys = config.redisKeys,
     cfenv = require('cfenv'),
     request = require('request'),
     exporter = require('../lib/exporter.js'),
-    appEnv = cfenv.getAppEnv();
+    appEnv = cfenv.getAppEnv(),
+    port = appEnv.port,
+    baseUrl = appEnv.isLocal ? config.get('app.local') + port : config.get('app.deployed');
 
 function onRedisConnection(client) {
     console.log('Connected to Redis');
 
-    //cache metadata files into redis
-    client.get("officerList", (err, reply) => {
-        let fileName = "officers.json";
-        let officerData;
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                try {
-                    officerData = require(`../metadata/${fileName}`);
-                } catch (ignore) {
-                    console.error(`Failed to load data from ${fileName}, exiting`);
-                    return;
-                }
+    redisKeys.forEach((key) => {
+        let{
+            name, 
+            fileName
+        } = key;
 
-                database.setData("officerList", JSON.stringify(officerData), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log("Successully saved and cached officerList to Redis!");
-                });
-
-            } else {
-                _cacheData("officerList", reply);
-            }
-        }
-    });
-
-    client.get("calendar", (err, reply) => {
-        let fileName = "calendar_data.json";
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                try {
-                    calendarData = require(`../metadata/${fileName}`);
-                } catch (ignore) {
-                    console.error(`Failed to load data from ${fileName}, exiting`);
-                    return;
-                }
-                database.setData("calendar", JSON.stringify(calendarData), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log("Successully saved and cached calendar to Redis!");
-                });
-            } else {
-                _cacheData("calendar", reply);
-                _updateMetadata(`${fileName}`, reply);
-            }
-        }
-    });
-
-    client.get("jobs", (err, reply) => {
-        let fileName = "jobs.json";
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                try {
-                    jobData = require(`../metadata/${fileName}`);
-                } catch (ignore) {
-                    console.error(`Failed to load data from ${fileName}, exiting`);
-                    return;
-                }
-                database.setData("jobs", JSON.stringify(jobData), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log("Successully saved and cached jobs to Redis!");
-                });
-            } else {
-                _cacheData("jobs", reply);
-                _updateMetadata(`${fileName}`, reply);
-            }
-        }
-    });
-
-    client.get("revisionNumber", (err, reply) => {
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                // set the version number on the Redis database
-                database.setData("revisionNumber", JSON.stringify({
-                    revision: revision
-                }), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log("Successully saved and cached revisionNumber to Redis!");
-                });
-            } else {
-                _cacheData("revisionNumber", reply);
-            }
-
-        }
-    });
-
-    client.get("announcements", (err, reply) => {
-        let fileName = "announcements.json";
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                try {
-                    announcements = require(`../metadata/${fileName}`);
-                } catch (ignore) {
-                    console.error(`Failed to load data from ${fileName}`);
-                }
-                database.setData("announcements", JSON.stringify(announcements), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log("Successully saved and cached announcements to Redis!");
-                });
-            } else {
-                _cacheData("announcements", reply);
-                _updateMetadata(`${fileName}`, reply);
-            }
-        }
-    });
-
-    client.get("id", (err, reply) => {
-        let fileName = "id.json";
-        let idFile;
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                idFile = require(`../metadata/${fileName}`);
-                database.setData("id", JSON.stringify(idFile), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log("Successully saved and cached id to Redis!");
-                });
-            } else {
-                _cacheData("id", reply);
-            }
-        }
-    });
-
-
-    client.get("mailchimp", (err, reply) => {
-        let fileName = "mailchimp.json",
-            key = "mailchimp";
-
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                const baseUrl = appEnv.isLocal ? config.get('app.local') : config.get('app.deployed');
-                request({
-                    method: "GET",
-                    url: `${baseUrl}/communication/mailchimp/lists`
-                    }, (error, response, body) => {
-                    if (error) return console.error(error);
-
-                    database.setData(key, body, (err) => {
-                        if (err) {
-                            console.error(`Error: ${err.reason}`);
-                            return;
-                        }
-                        console.log(`Successully saved and cached ${key} to Redis!`);
+        let data;
+        client.get(name, (err, reply) => {
+            if(err) return console.error(`Erro: ${err}`);
+            if(reply === null){
+                try{
+                    if(name === "mailchimp") _getMailChimpData((err, result) => {
+                        if(err) return console.error(err);
+                        return _setData({
+                            name, 
+                            data: result
+                        });
                     });
-                });
-            } else {
-                _cacheData(key, reply);
-                _updateMetadata(`${fileName}`, reply);
-            }
-        }
-    });
-
-    client.get("googleForm", (err, reply) => {
-        let fileName = "google_form.json",
-            key = "googleForm";
-        var googleForm;
-
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                try {
-                    googleForm = require(`../metadata/${fileName}`);
+                    else data = require(`../metadata/${fileName}`);
                 } catch (ignore) {
-                    return console.error(`Failed to load data from ${fileName}`);
+                    return console.error(`Failed to load data from ${fileName}, exiting`);
                 }
-                database.setData(`${key}`, JSON.stringify(googleForm), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log(`Successully saved and cached ${key} to Redis!`);
+                return _setData({
+                    name, 
+                    data
                 });
-            } else {
-                _cacheData(key, reply);
-                _updateMetadata(`${fileName}`, reply);
+            } else{
+                _cacheData(name, reply);
+                if(/calendar|jobs|announcements|newsletter|googleForm|mailchimp/.test(name)){
+                    _updateMetadata(`${fileName}`, reply);
+                }  
             }
-        }
+        });
     });
+}
 
-    client.get("newsletter", (err, reply) => {
-        let fileName = "newsletter.json",
-            key = "newsletter";
-        var newsletter;
+// make a request to mailchimp to get data
+function _getMailChimpData(cb){
+    request({
+        method: "GET",
+        url: `${baseUrl}/communication/mailchimp/lists`
+        }, (error, response, body) => {
+            if(error) return cb(error);  
+            else cb(false, body); 
+    }); 
+}
 
-        if (err) {
-            console.error(`Error: ${err}`);
-        } else {
-            if (reply == null) {
-                try {
-                    newsletter = require(`../metadata/${fileName}`);
-                } catch (ignore) {
-                    return console.error(`Failed to load data from ${fileName}`);
-                }
-                database.setData(`${key}`, JSON.stringify(newsletter), (err) => {
-                    if (err) {
-                        console.error(`Error: ${err.reason}`);
-                        return;
-                    }
-                    console.log(`Successully saved and cached ${key} to Redis!`);
-                });
-            } else {
-                _cacheData(key, reply);
-                _updateMetadata(`${fileName}`, reply);
-            }
-        }
+// set the data to the database
+function _setData({name, data}){
+    database.setData(name, JSON.stringify(data), (err) => {
+        if(err) return console.error(`Error: ${err.reason}`);
+        console.log(`Successfully saved and cached ${name} data!`);
     });
 }
 

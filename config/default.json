@@ -1,7 +1,7 @@
 {
 	"app":{
 		"name": "SHPE Austin Website",
-		"local": "http://localhost:6006",
+		"local": "http://localhost:",
 		"deployed": "http://us.austinshpe.org"
 	},
 	"sendGrid": {
@@ -10,5 +10,30 @@
 	"cloudant": {
 
 	},
-	"revision": 35 // revision number of the SHPE Page, Revision 35 as of August 28, 2016 @ 21:32
+	"revision": 35,
+	"redisKeys": [{
+        "fileName" : "officers.json",
+        "name" : "officerList"
+    }, {
+        "fileName": "calendar_data.json",
+        "name": "calendar"
+    }, {
+        "fileName": "jobs.json",
+        "name": "jobs"
+    }, {
+        "fileName": "announcements.json",
+        "name": "announcements"
+    }, {
+        "fileName": "id.json",
+        "name": "id"
+    }, {
+        "fileName": "newsletter.json",
+        "name": "newsletter"
+    }, {
+        "fileName": "google_form.json",
+        "name": "googleForm"
+    }, {
+        "fileName": "mailchimp.json",
+        "name": "mailchimp"
+    }]
 }
