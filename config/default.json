@@ -7,8 +7,18 @@
 	"sendGrid": {
 		"sendGridEmail": "cortezjuanjr@gmail.com"
 	},
-	"cloudant": {
-
+    "docker":{
+        "run": true
+    },
+	"redis": {
+        "local": {
+            "port": 6379,
+            "hostname": "localhost"
+        },
+        "deployed": {
+            "port": "14845",
+            "hostname": "pub-redis-14845.dal-05.1.sl.garantiadata.com"
+        }
 	},
 	"revision": 35,
 	"redisKeys": [{

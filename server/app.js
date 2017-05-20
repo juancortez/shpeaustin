@@ -3,8 +3,11 @@
 
     This node.js application serves both the client and server side of the SHPE Austin Website (austinshpe.org).
 
-    When running locally:
+    When running locally without Docker, run the following:
         $npm start
+    When running locally with Docker, run the following:
+        In one tab: $chmod 777 docker/redis_start.sh && ./docker/redis_start.sh
+        In another tab: $npm start
     Deploying application to Bluemix:
         $cf push
 
@@ -14,6 +17,7 @@ const express = require('express'),
     app = express(),
     cfenv = require('cfenv'),
     appEnv = cfenv.getAppEnv(),
+    isLocal = appEnv.isLocal,
     bodyParser = require('body-parser'),
     fs = require('fs'),
     request = require('request'),
@@ -28,17 +32,28 @@ const express = require('express'),
     socket_connect = require("./services/socket.js"),
     socket = require('socket.io'),
     config = require('config'),
+    runDocker = config.docker.run,
     database = require("./lib/database.js"),
     cloudant = require("./lib/cloudant.js"),
     mcapi = require('mailchimp-api'),
     path = require('path');
 
-const root = path.join(__dirname + '/../');
-const staticRoot = path.join(__dirname + '/../public/');
+const root = path.join(__dirname + '/../'),
+    staticRoot = path.join(__dirname + '/../public/');
 
-if(appEnv.isLocal){
+/************************************************************************************************************
+*                           Configuration Updates for Local vs Non-Local
+************************************************************************************************************/
+if(isLocal){
     const _console = require("./lib/console.js");
-}   
+    if(runDocker){
+        redisCredentials.port = config.redis.local.port;
+        redisCredentials.hostname = config.redis.local.hostname;
+    }
+} else{
+    redisCredentials.port = config.redis.deployed.port;
+    redisCredentials.hostname = config.redis.deployed.hostname;
+}  
 
 /************************************************************************************************************
 *                                   Redis Database Connection
@@ -47,6 +62,12 @@ const client = redis.createClient(redisCredentials.port, redisCredentials.hostna
 client.auth(redisCredentials.password, (err) => {
     if (err){
         console.error(err);
+        if(isLocal && runDocker){
+            let command = "'$chmod 777 docker/redis_start.sh && ./docker/redis_start.sh'";
+            let info = `Make sure to run ${command} in a seperate tab in a terminal to activate Redis database.`
+            console.error(`\n\n****************************\n${info}\n***************************`);
+            process.exit(1);     
+        }
     }
 });
 
@@ -67,27 +88,6 @@ const databaseInstantiated = new Promise((resolve, reject) =>{
        err && console.error(err);;
     });
 });
-/************************************************************************************************************
-*                                   Cloudant Database Creation
-************************************************************************************************************/
-// cloudant.init(privateCredentials.cloudant, (err) =>{
-//     if(err) return console.error(err);
-//     // race condition bug fix
-//     setTimeout(() => { console.log("Cloudant successfully initialized!"); testCloudant(); }, 2000);
-// });
-
-// function testCloudant(){
-//     cloudant.execute({
-//         "method" : "GET",
-//         "document" : "businesscard",
-//         "data" : null,
-//         "callback" : function(err, data){
-//             if(err) return console.error(err.reason);
-//             data && console.log(data);
-//         }
-//     });
-// }
-
 
 /***********************************************************************************************************
 *                                  Express App Configuration

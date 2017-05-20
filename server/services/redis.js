@@ -35,13 +35,14 @@ function onRedisConnection(client) {
                         if(err) return console.error(err);
                         return _setData({
                             name, 
-                            data: result
+                            data: JSON.stringify(result)
                         });
                     });
                     else data = require(`../metadata/${fileName}`);
                 } catch (ignore) {
                     return console.error(`Failed to load data from ${fileName}, exiting`);
                 }
+                if(name === "mailchimp") return;
                 return _setData({
                     name, 
                     data
@@ -63,7 +64,7 @@ function _getMailChimpData(cb){
         url: `${baseUrl}/communication/mailchimp/lists`
         }, (error, response, body) => {
             if(error) return cb(error);  
-            else cb(false, body); 
+            else cb(false, JSON.parse(body)); 
     }); 
 }
 

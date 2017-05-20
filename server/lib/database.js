@@ -19,6 +19,11 @@
    getKeys             :   Return the keys stored inside the Redis database
    updateCache         :   Used to update cachedData after a change in the Database
 `
+
+const cfenv = require('cfenv'),
+    appEnv = cfenv.getAppEnv(),
+    isLocal = appEnv.isLocal;
+
 const Database = (() => {
     const uuid = require('node-uuid'),
         exporter = require('../lib/exporter.js');
@@ -49,13 +54,15 @@ const Database = (() => {
 
         	if(data && typeof data === "string"){
         		// Redis stores JSON as a String, so we need to stringify it
-        		//console.log("Converting " + key + " data to an object");
+        		console.log("Converting " + key + " data to an object");
                 try{
                     data = JSON.parse(data);
                 } catch(e){
                     return callback({reason: "Passed in JSON was not stringified JSON"});
                 }
         	} 
+
+            if(typeof data === "string") data = JSON.parse(data); // last check. not sure why not working in previous step
 
             if(typeof data === "object"){
                 cachedData[key] = data;
@@ -198,6 +205,7 @@ const Database = (() => {
 
         // if any changes are made locally, make update available to Bluemix, since data is cached
         function _sendWebsiteRequest(key = null, callback){
+            if(isLocal) return callback(false);
             const request = require("request");
 
             console.log("Sending update to Bluemix website");
