@@ -148,6 +148,9 @@
             <div class="jobs-title">
                <p>Job Postings</p>
             </div>
+            <div *ngIf="jobsLoading" class="job-loader">
+               <i class="fa fa-cog fa-spin fa-4x fa-fw"></i>
+            </div>
             <div class="job-tiles">
                   <job 
                      class="job-tile"

@@ -8,7 +8,7 @@
 		"sendGridEmail": "cortezjuanjr@gmail.com"
 	},
     "docker":{
-        "run": true
+        "run": false
     },
 	"redis": {
         "local": {

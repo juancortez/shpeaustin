@@ -1,17 +1,24 @@
-<h2 class = "center-text officer-header"> Executive Officers </h2>
-<div class="officers-container">
-	<officer 
-		*ngFor="let officer of executiveOfficers, 
-				let i = index" 
-				[index]="i" 
-				[officer]="officer">
-	</officer>
+<div *ngIf="officers?.length > 0">
+	<h2 class = "center-text officer-header"> Executive Officers </h2>
+	<div class="officers-container">
+		<officer 
+			*ngFor="let officer of executiveOfficers, 
+					let i = index" 
+					[index]="i" 
+					[officer]="officer">
+		</officer>
+	</div>
+
+	<h2 class = "center-text officer-header"> Chairs</h2>
+	<div class="officers-container">
+		<officer 
+			*ngFor="let officer of officers" 
+			[officer]="officer">
+		</officer>
+	</div>
 </div>
 
-<h2 class = "center-text officer-header"> Chairs</h2>
-<div class="officers-container">
-	<officer 
-		*ngFor="let officer of officers" 
-		[officer]="officer">
-	</officer>
+<div class="no-officers-found" *ngIf="officers?.length === 0">
+	<i *ngIf="!err" class="fa fa-spinner fa-spin fa-5x fa-fw"></i>
+	<h3 *ngIf="err">Officers not found.</h3>
 </div>

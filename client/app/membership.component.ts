@@ -22,6 +22,7 @@ export class MembershipComponent implements OnInit{
 	constructor(private calendarService: CalendarService, private jobService: JobService){}
 	entries: any;
 	jobs: any;
+  jobsLoading: boolean = true;
 
 	ngOnInit(){
 		$("#owl-example").owlCarousel({
@@ -55,10 +56,11 @@ export class MembershipComponent implements OnInit{
 
 		this.jobService.getJobs().subscribe(data => {
 			this.jobs = data.jobs;
+      this.jobsLoading = false;
 		}, err => {
 			console.error(err);
+      this.jobsLoading = false;
 		});
-
 	}
 
 	moreInformation(event: any){
