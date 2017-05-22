@@ -36,7 +36,9 @@ const express = require('express'),
     database = require("./lib/database.js"),
     cloudant = require("./lib/cloudant.js"),
     mcapi = require('mailchimp-api'),
-    path = require('path');
+    path = require('path'),
+    Botkit = require('botkit'),
+    BotKitHelper = require('./services/botkit');
 
 const root = path.join(__dirname + '/../'),
     staticRoot = path.join(__dirname + '/../public/');
@@ -119,8 +121,6 @@ socket_connect.initiateSocket(io, client);
 *                                  BotKit Configuration
 * SHPE-Austin Slack Integrations: https://shpeaustin.slack.com/apps/manage/custom-integrations
 ************************************************************************************************************/
-const Botkit = require('botkit');
-
 const controller = Botkit.slackbot({
     interactive_replies: true,
     debug: false
@@ -133,7 +133,9 @@ const bot = controller.spawn({
     url: slackCredentials.subscribeRequestWebHook
   }
 }).startRTM();
-app.set('bot', bot);             
+app.set('bot', bot);   
+
+const botKitHelper = new BotKitHelper(bot);
 
 /************************************************************************************************************
 *                                  MailChimp Configuration
@@ -142,6 +144,10 @@ app.set('bot', bot);
 const mc = new mcapi.Mailchimp(privateCredentials.mailchimp.api_key);
 app.set('mc', mc);
 
+/************************************************************************************************************
+*                                  SlackBot Setup
+* After the database, and Botkit elements have instantiated, pass them into the SHPE Slack Bot
+************************************************************************************************************/
 databaseInstantiated.then(function(){
     require('./services/slack.js')({controller, database, bot}); // Listen to different requests
 }).catch(function(err){

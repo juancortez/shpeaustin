@@ -11,8 +11,9 @@ const express = require('express'),
     privateCredentials = require('../lib/credentialsBuilder.js').init(),
     authorization = require('../lib/authorization.js').authorization,
     database = require('../lib/database.js'),
-    exporter = require('../lib/exporter.js');
-let revision = config.revision;
+    exporter = require('../lib/exporter.js'),
+    BotKitHelper = require('../services/botkit'),
+    revision = config.revision;
 
 // posts an announcement to the redis database
 app.post('/announcements', authorization.mixedAuth, (req, res) => {
@@ -40,6 +41,9 @@ app.post('/announcements', authorization.mixedAuth, (req, res) => {
             announcements = [];
         }
         announcements[length] = newAnnouncement;
+
+        _sendToSlack(newAnnouncement); // Send announcement to SHPE Austin Slack Channel
+
         database.setData(key, JSON.stringify({
             announcements: announcements
         }), (err) => {
@@ -190,13 +194,6 @@ app.post('/calendar', authorization.auth, (req, res) => {
     });
 });
 
-
-// removes spaces before and after string, as well as any line breaks (\n)
-function _cleanText(str) {
-    return str.trim().replace(/(\r\n|\n|\r)/gm, " ");
-}
-
-
 app.post('/cache', (req, res) => {
     var key = req && req.body && req.body.key || "";
     if (!!key) {
@@ -212,5 +209,28 @@ app.post('/cache', (req, res) => {
         res.status(400).send("Did not provide a key");
     }
 });
+
+// removes spaces before and after string, as well as any line breaks (\n)
+function _cleanText(str) {
+    return str.trim().replace(/(\r\n|\n|\r)/gm, " ");
+}
+
+function _sendToSlack({officer,timestamp, announcement}){
+    const botKitHelper = new BotKitHelper();
+
+    botKitHelper.sendMessage({
+        'message': "New Announcement",
+        'channelName': "shpe-austin",
+        'attachment': {
+            'type': "announcement",
+            'author': officer,
+            'announcement': announcement
+        },
+        cb: (err) => {
+            if(err) return console.error(err);
+            console.log("Successully posted announcement on Slack!");
+        }
+    });
+}
 
 module.exports = app;
