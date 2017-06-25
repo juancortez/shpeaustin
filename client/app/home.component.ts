@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit{
 	calendar: any;
 	numEntries: number;
 	calendarItem: number;
+    entriesExist: boolean = false;
 
 	constructor(private newsletterService: NewsletterService, private calendarService: CalendarService){}
 
@@ -29,9 +30,10 @@ export class HomeComponent implements OnInit{
 
 		this.calendarService.getCalendarEntries().subscribe(entries => {
 			this.calendar = entries.calendar;
-			this._createCalendarEntries();
 			this.numEntries = this.calendar.length;
 			this.calendarItem = 0;
+            this._createCalendarEntries();
+            this.numEntries === 0 ? false : true;
 		}, err => {
 			console.error(err);
 		});
