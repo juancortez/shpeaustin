@@ -1,3 +1,32 @@
 {
-    "calendar": []
+    "calendar": [
+        {
+            "event": "LBJ Robotics Team Meeting at LBJ High School with Dr. Bell",
+            "time": "2017-12-12T16:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=MTQ1Y2gxZTE0MzlqaGU4a25kYm1qZzE5a3ZfMjAxNzEyMTJUMjIwMDAwWiBwbWhkNmZiNm8wMzBkdGtpNzBmanVtMjBoa0Bn",
+            "location": "LBJ High School with Dr. Bell"
+        },
+        {
+            "event": "Officer Meeting",
+            "time": "2017-12-13T19:00:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=NThlZnRqZzJhb2ZnMGNhbWYwOW04MjJoZG4gaXQzdGkwYnJncmV0N2RmZzZxZnMxbHNoMXNAZw",
+            "location": "Windsor Park Branch, Austin Public Library, 5833 Westminster Dr, Austin, TX 78723, USA"
+        },
+        {
+            "event": "Holiday Fundraiser",
+            "time": "2017-12-15T18:30:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=NmRmazMxa2JnNDhkN3Ewb2x0OGpuaXM3bWEgc2hwZS5hdXN0aW5AbQ",
+            "location": "Mexican American Cultural Center, 600 River St, Austin, TX 78701, USA"
+        },
+        {
+            "event": "SHPE Austin Holiday Fundraiser - 2017",
+            "time": "2017-12-15T18:30:00-06:00",
+            "link": "https://www.google.com/calendar/event?eid=XzZ0bG5hcXJsZTVwNmNwYjRkaG1qNHBocGVob20yc2JhNjlxbjBzcGhkb3BqYXFobDcxZ24wYzNrY2RuNmNwM2pjNWptYXAzMjY4b21jZGJmZWNwbmNwcGg2NG82Z3NyZmR0am5jcXI0ZWhrbWUgc2hwZS5hdXN0aW5AbQ",
+            "location": "ESB-Mexican American Cultural Center (MACC), 600 River Street, Austin, TX, US, 78701"
+        },
+        {
+            "time": "2018-08-03T08:00:00-05:00",
+            "link": "https://www.google.com/calendar/event?eid=Nm9xbTRjMW42OWk2Y2JiMzZsaTM0YjlrNmtwajZiYjI2dGlqMGJiM2NncWoyZDltNnRoMzBjaGs2ayBwMzFpYW5jOTVkdG1idnVoZmtmdmoxMjg0c0Bn"
+        }
+    ]
 }

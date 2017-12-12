@@ -36,6 +36,8 @@ export class AdminComponent implements OnInit {
 
 	updatedData: any;
 
+	showTextArea: boolean = true;
+
 	constructor( private officersService: OfficersService,
 		private announcementsService: AnnouncementsService,
 		private jobService: JobService,
@@ -45,6 +47,7 @@ export class AdminComponent implements OnInit {
 	ngOnInit(){
 		this.getOfficers();
 		this.getDatabaseKeys();
+		this.showTextArea = true;
 	}
 
 	deleteKeys(){
@@ -92,10 +95,8 @@ export class AdminComponent implements OnInit {
 		let className: string = 'updateKey';
 
 		this.addLoader(className);
-		console.log(this.viewDataKey);
-		console.log(this.updatedData);
 
-		this.databaseService.updateKey(this.viewDataKey, this.updatedData).subscribe(
+		this.databaseService.updateKey(this.updateDataKey, this.updatedData).subscribe(
 			data => {
 				this.removeLoader(className, true);
 			}, 
@@ -161,6 +162,10 @@ export class AdminComponent implements OnInit {
 	}
 
 	isValidJSON(data: any): boolean {
+		if (this.updateDataKey === "calendar") {
+			return true; // we don't need to validate calendar data
+		}
+
 		try{
 			JSON.parse(this.updatedData);
 			return true;
@@ -193,6 +198,8 @@ export class AdminComponent implements OnInit {
 
 	onUpdateKeyChange(evt: any): void{
 		this.updateDataKey = evt.name;
+
+		this.showTextArea = this.updateDataKey === "calendar" ? false : true;
 	}
 
 	copy(): void{

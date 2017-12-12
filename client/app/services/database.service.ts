@@ -42,6 +42,3 @@ export class DatabaseService {
       	return this.http.put(`/data/${key}?credentials=${credentialsCookie}`, payload, options);
 	}
 }
-
-
-    

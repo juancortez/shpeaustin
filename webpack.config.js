@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
 
@@ -33,7 +34,8 @@ module.exports = {
       app: {
         environment: JSON.stringify(process.env.APP_ENVIRONMENT || 'development')
       }
-    })
+    }),
+    new UglifyJsPlugin()
   ]
 
 };
