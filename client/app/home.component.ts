@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit{
 		this.calendarService.getCalendarEntries().subscribe(entries => {
 			this.calendar = entries.calendar;
 			this.numEntries = this.calendar.length;
-			this.calendarItem = 0;
+            this.entriesExist = (this.numEntries === 0) ? false : true;
+            this.calendarItem = 0;
             this._createCalendarEntries();
-            this.numEntries === 0 ? false : true;
 		}, err => {
 			console.error(err);
 		});
@@ -53,9 +53,10 @@ export class HomeComponent implements OnInit{
 		}
         $('.fa-calendar').toggleClass('dark-shpe-blue mid-blue');
         let calendarHtml:any = this.calendar[this.calendarItem];
+        const { eventTitle = "No event title" } = calendarHtml;
 
-        $("#event-title").html("<b>Event: </b>" + calendarHtml.event);
-        $("span.title").text(calendarHtml.event);
+        $("#event-title").html("<b>Event: </b>" + eventTitle);
+        $("span.title").text(eventTitle);
         let time:any = this._parseCalendarTime(calendarHtml.time);
         let dateFormat;
          if(time.startTime){
@@ -95,31 +96,34 @@ export class HomeComponent implements OnInit{
     	});
 
         let dateFormat;
-        this.calendar.forEach((calendar: any) => {
-        	$("#event-title").html("<b>Event: </b>" + calendar.event);
-        	$("span.title").text(calendar.event);
-        	var time = this._parseCalendarTime(calendar.time);
-            if(time['startTime']){
-                $("#event-date").html("<b>Date: </b>" + time['month'] + " " + time['day'] + ", " + time['year'] + " at " +  time['startTime']);
-                dateFormat = this._convertToDateFormat(time['month'], time['day'], time['year'], time['startTime']);
-                $("span.start").text(dateFormat);
-                $("span.end").text(dateFormat); //TODO: add ending time support
-            } else{
-                $("#event-date").html("<b>Date: </b>" + time['month'] + " " + time['day'] + ", " + time['year']);
-                dateFormat = this._convertToDateFormat(time['month'], time['day'], time['year'], "");
-                $("span.start").text(dateFormat);
-                $("span.end").text(dateFormat); //TODO: add ending time support
-            }
-            if(calendar.location){
-                $("#event-location").html("<b>Location: </b>" + calendar.location);
-                $("span.location").text(calendar.location);
-            } else{
-                $("span.location").text("");
-            }
-            $("#event-link").attr('href', calendar.link);
-            $("span.description").text(calendar.link);
-        });
-        $("#calendar-loader").hide();
+        setTimeout(() => {
+            this.calendar.forEach((calendar: any) => {
+                const { event = "No event title" } = calendar;
+            	$("#event-title").html("<b>Event: </b>" + event);
+            	$("span.title").text(event);
+            	var time = this._parseCalendarTime(calendar.time);
+                if(time['startTime']){
+                    $("#event-date").html("<b>Date: </b>" + time['month'] + " " + time['day'] + ", " + time['year'] + " at " +  time['startTime']);
+                    dateFormat = this._convertToDateFormat(time['month'], time['day'], time['year'], time['startTime']);
+                    $("span.start").text(dateFormat);
+                    $("span.end").text(dateFormat); //TODO: add ending time support
+                } else{
+                    $("#event-date").html("<b>Date: </b>" + time['month'] + " " + time['day'] + ", " + time['year']);
+                    dateFormat = this._convertToDateFormat(time['month'], time['day'], time['year'], "");
+                    $("span.start").text(dateFormat);
+                    $("span.end").text(dateFormat); //TODO: add ending time support
+                }
+                if(calendar.location){
+                    $("#event-location").html("<b>Location: </b>" + calendar.location);
+                    $("span.location").text(calendar.location);
+                } else{
+                    $("span.location").text("");
+                }
+                $("#event-link").attr('href', calendar.link);
+                $("span.description").text(calendar.link);
+            });
+            $("#calendar-loader").hide();
+        }, 500);
 	}
 
 	// convert to MM/DD/YYYY HH:SS format

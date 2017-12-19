@@ -13,5 +13,3 @@ export class CalendarService {
 			.map(res => res.json());
 	}
 }
-
-    
