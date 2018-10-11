@@ -4,7 +4,6 @@
 
 	@inputs:
 			io 			: 	 the object created from the socket.io module
-			client 		: 	 client has a handle to the Redis database
 
 
 	The websocket is listening to the following events:
@@ -16,7 +15,7 @@ const database = require('../lib/database.js'),
 	config = require('config');
 let revision = config.revision;
 
-function initiateSocket(io,client){
+function initiateSocket(io){
 	let usersOnline = 0;
 	io.on('connection', (socket) =>{
 		usersOnline++;

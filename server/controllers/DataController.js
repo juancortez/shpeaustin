@@ -30,6 +30,8 @@ app.get('/all/keys', authorization.mixedAuth, (req, res) => {
 
 app.get('/:key', (req, res) => {
     let key = req && req.params && req.params.key || "";
+
+    console.error(`Attempting to retrieve, ${key} from database.`);
     
     if(key === "id"){
         return res.status(400).send(`Unauthorized access to this information.`);

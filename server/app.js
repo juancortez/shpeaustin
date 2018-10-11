@@ -22,72 +22,38 @@ const express = require('express'),
     fs = require('fs'),
     request = require('request'),
     favicon = require('serve-favicon'),
-    redis = require('redis'),
     router = express.Router(),
     compression = require('compression'),
     privateCredentials = require('./lib/credentialsBuilder.js').init(),
-    redisCredentials = privateCredentials.redis.credentials,
+    cloudantCredentials = privateCredentials.shpeaustincloudant,
     slackCredentials = privateCredentials.slack,
-    redis_connect = require("./services/redis.js"),
     socket_connect = require("./services/socket.js"),
     socket = require('socket.io'),
     config = require('config'),
     runDocker = config.docker.run,
     database = require("./lib/database.js"),
-    cloudant = require("./lib/cloudant.js"),
+    Cloudant = require("./lib/cloudant.js"),
     mcapi = require('mailchimp-api'),
-    path = require('path'),
-    Botkit = require('botkit'),
-    BotKitHelper = require('./services/botkit');
+    path = require('path');
 
 const root = path.join(__dirname + '/../'),
     staticRoot = path.join(__dirname + '/../public/');
 
 /************************************************************************************************************
-*                           Configuration Updates for Local vs Non-Local
+*                                   Cloudant Database Connection
 ************************************************************************************************************/
-if(isLocal){
-    const _console = require("./lib/console.js");
-    if(runDocker){
-        redisCredentials.port = config.redis.local.port;
-        redisCredentials.hostname = config.redis.local.hostname;
+Cloudant.init(cloudantCredentials, (err, cloudantDb) => {
+    if (err) {
+        return console.error(err);
     }
-} else{
-    redisCredentials.port = config.redis.deployed.port;
-    redisCredentials.hostname = config.redis.deployed.hostname;
-}  
-
-/************************************************************************************************************
-*                                   Redis Database Connection
-************************************************************************************************************/
-const client = redis.createClient(redisCredentials.port, redisCredentials.hostname, {no_ready_check: true});
-client.auth(redisCredentials.password, (err) => {
-    if (err){
-        console.error(err);
-        if(isLocal && runDocker){
-            let command = "'$chmod 777 docker/redis_start.sh && ./docker/redis_start.sh'";
-            let info = `Make sure to run ${command} in a seperate tab in a terminal to activate Redis database.`
-            console.error(`\n\n****************************\n${info}\n***************************`);
-            process.exit(1);     
+    
+    database.create(cloudantDb, (err, dbInstance) => {
+        if(err) {
+            return console.error(err);
         }
-    }
-});
+        console.log("Database Singleton successfully created!");
 
-const databaseInstantiated = new Promise((resolve, reject) =>{
-    client.on('connect', function() {
-        database.create(client, function(err){
-            if(err){
-                console.error(err.reason);
-                return reject(err.reason);
-            }
-            console.log("Database Singleton successfully created!");
-            redis_connect.onRedisConnection(client);
-            return resolve(true);
-        });
-    });
-
-    client.on('error', function(err){
-       err && console.error(err);;
+        Cloudant.prefetchData();
     });
 });
 
@@ -105,7 +71,7 @@ app.use(favicon(staticRoot + '/assets/shpe_austin_icon.png'));
 app.use('/', express.static(root + '/dist'));
 app.use('/scripts', express.static(root + '/node_modules'));
 
-require('./router/main')(app, client, express); // adds the main.js file to send response to browser
+require('./router/main')(app, express); // adds the main.js file to send response to browser
 
 // start server on the specified port and binding host
 const server = app.listen(appEnv.port, () => {
@@ -116,26 +82,7 @@ const server = app.listen(appEnv.port, () => {
 *                                  Web Socket Configuration
 ************************************************************************************************************/
 const io = socket.listen(server);
-socket_connect.initiateSocket(io, client);
-/************************************************************************************************************
-*                                  BotKit Configuration
-* SHPE-Austin Slack Integrations: https://shpeaustin.slack.com/apps/manage/custom-integrations
-************************************************************************************************************/
-const controller = Botkit.slackbot({
-    interactive_replies: true,
-    debug: false
-});
-
-//connect the bot to a stream of messages
-const bot = controller.spawn({
-  token: slackCredentials.botToken,
-  incoming_webhook:{
-    url: slackCredentials.subscribeRequestWebHook
-  }
-}).startRTM();
-app.set('bot', bot);   
-
-const botKitHelper = new BotKitHelper(bot);
+socket_connect.initiateSocket(io);
 
 /************************************************************************************************************
 *                                  MailChimp Configuration
@@ -143,15 +90,3 @@ const botKitHelper = new BotKitHelper(bot);
 ************************************************************************************************************/
 const mc = new mcapi.Mailchimp(privateCredentials.mailchimp.api_key);
 app.set('mc', mc);
-
-/************************************************************************************************************
-*                                  SlackBot Setup
-* After the database, and Botkit elements have instantiated, pass them into the SHPE Slack Bot
-************************************************************************************************************/
-databaseInstantiated.then(function(){
-    require('./services/slack.js')({controller, database, bot}); // Listen to different requests
-}).catch(function(err){
-    console.error(err);
-});
-
-

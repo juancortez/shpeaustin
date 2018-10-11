@@ -23,13 +23,13 @@ export class HomeComponent implements OnInit{
 
 	ngOnInit(){
 		this.newsletterService.getNewsletterLink().subscribe(data => {
-			this.newsletter = data.newsletter.link;
+			this.newsletter = data.link;
 		}, err => {
 			console.error(err);
 		});
 
 		this.calendarService.getCalendarEntries().subscribe(entries => {
-			this.calendar = entries.calendar;
+			this.calendar = entries;
 			this.numEntries = this.calendar.length;
             this.entriesExist = (this.numEntries === 0) ? false : true;
             this.calendarItem = 0;

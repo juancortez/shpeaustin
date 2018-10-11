@@ -17,7 +17,7 @@ export class AnnouncementsComponent implements OnInit{
 
 	ngOnInit(){
 		this.announcementsService.getAnnouncements().subscribe(data => {
-			this.announcements = data.announcements;
+			this.announcements = data;
 			this._buildAnnouncementUI();
 		}, err =>{
 			console.error(err);
@@ -25,7 +25,7 @@ export class AnnouncementsComponent implements OnInit{
 	}
 
 	private _buildAnnouncementUI(){
-        let announcement:any = this.announcements;
+        let announcement:any = this.announcements || [];
         let numAnnouncements:number = this.announcements.length;
 
         for(let i = numAnnouncements-1; i > -1; i--){ 

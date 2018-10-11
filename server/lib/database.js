@@ -4,19 +4,19 @@
  Created by: Juan Cortez
  Date Created: August 22, 2016
 
- This file serves as a wrapper for the Redis database client. The Database object
+ This file serves as a wrapper for any database client. The Database object
  is a Singleton that performs operations on the database through the following exposed
  functions. These functions all update the private cachedData variable so that unnecessary
- calls to the Redis client are prevented.
+ calls to the database client are prevented.
 
-   create              :   Creates a Singleton Database Object with the Redis client
+   create              :   Creates a Singleton Database Object with any generic database client
    getUUID             :   Gets a unique UUID of the Singleton Object
    cacheData           :   Caches data, as specified by a key, in a private cachedData variable inside the Database Object.
-   setData             :   Sets data, as specified by a key, into the Redis client and in the cachedData private variable
-   getAllCachedData    :   Returns all data stored inside Redis database
+   setData             :   Sets data, as specified by a key, into the database client and in the cachedData private variable
+   getAllCachedData    :   Returns all data stored inside the database
    getCachedData       :   Gets data, as specified by a key, from the cachedData private variable
-   deleteData          :   Deletes data from the Redis client, as well as the cachedData private variable
-   getKeys             :   Return the keys stored inside the Redis database
+   deleteData          :   Deletes data from the dabase client, as well as the cachedData private variable
+   getKeys             :   Return the keys stored inside the database
    updateCache         :   Used to update cachedData after a change in the Database
 `
 
@@ -30,10 +30,10 @@ const Database = (() => {
     let instance; // Instance stores a reference to the Singleton
 
     // Singleton
-    function init(redis) {
-        const client = redis,
+    function init(db) {
+        const client = db,
             uniqueID = uuid.v4(); // give the Singleton a unique ID
-        let cachedData = {}; 
+        let cachedData = {};
 
         function _getKeys(callback){
             callback(false, Object.keys(cachedData));
@@ -53,7 +53,6 @@ const Database = (() => {
             }
 
         	if(data && typeof data === "string"){
-        		// Redis stores JSON as a String, so we need to stringify it
         		console.log("Converting " + key + " data to an object");
                 try{
                     data = JSON.parse(data);
@@ -67,7 +66,7 @@ const Database = (() => {
             if(typeof data === "object"){
                 cachedData[key] = data;
                 if(!!sendWebsiteRequest){
-                    return _sendWebsiteRequest(key, callback);    
+                    return _sendWebsiteRequest(key, callback);
                 } 
                 return callback(false);
             } else{
@@ -289,7 +288,7 @@ const Database = (() => {
             },
             updateCache(key, callback){
                 if(!(!!client)){
-                    console.error({reason: "Client not defined! Not able fetch from Redis database!"});
+                    console.error({reason: "Client not defined! Not able fetch from database!"});
                     return;
                 }
                 _updateCache(key, callback);
@@ -300,9 +299,9 @@ const Database = (() => {
     return {
         // Get the Singleton instance if one exists
         // or create one if it doesn't
-        getInstance: (redis) => {
+        getInstance: (db) => {
             if (!instance) {
-                instance = init(redis);
+                instance = init(db);
             }
             return instance;
         }
@@ -310,24 +309,23 @@ const Database = (() => {
 })();
 
 `
-    Creates a Singleton Database Object with the Redis client
+    Creates a Singleton Database Object
 
-    @params redis{Object}           The redis object, created by instantiating the Redis client. Gives access to the Redis database.
+    @params database{Object}       The database object, created by instantiating the Database client.
 
     @output callback{Function}      Signature for callback is function(err, data). 
                                     If err is truthy, it contains the property, err.reason, describing the error.
 
 `
-function create(redis = null, cb) {
+function create(db = null, cb) {
     _checkNumArguments(arguments, 2);
     // create a Singleton
-    if (!(!!redis)) {
-        cb({reason: "Invalid Singleton parameters, must supply Redis client!"});
+    if (!(!!db)) {
+        cb({reason: "Invalid Singleton parameters, must supply Database client!"});
         return;
     }
-    var database = Database.getInstance(redis);
-    //console.log("Retrieved database with instance ID: " + database.getUUID());
-    return cb(false);
+    const dbInstance = Database.getInstance(db);
+    return cb(false, dbInstance);
 }
 
 `
@@ -380,6 +378,9 @@ function cacheData(key = null, data = "", callback) {
         return callback({reason: "Key and/or data not provided"});
     }    
     var database = Database.getInstance();
+    if (!database) {
+        return console.error("AN ERRORRRR");
+    }
     database.cacheData(key, data, callback);
 }
 

@@ -9,7 +9,7 @@
 const config = require('config'),
     database = require("../lib/database.js"),
     revision = config.revision,
-    redisKeys = config.redisKeys,
+    redisKeys = config.dbKeys,
     cfenv = require('cfenv'),
     request = require('request'),
     exporter = require('../lib/exporter.js'),

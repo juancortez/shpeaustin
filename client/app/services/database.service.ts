@@ -20,7 +20,9 @@ export class DatabaseService {
 
 	getKey(key: string) : Observable<any> {
 		return this.http.get(`/data/${key}`)
-			.map(res => res.json());
+			.map(res => {
+				return res.json()
+			});
 	}
 
 	deleteKey(key: string): Observable<any>{

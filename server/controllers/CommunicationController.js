@@ -28,7 +28,8 @@ app.post('/contact', (req, res) => {
 
     //sendgrid documentation and attaching to bluemix: https://github.com/sendgrid/reseller-docs/tree/master/IBM
     const sendgrid = require('sendgrid')(credentials.username, credentials.password),
-        sendGridEmail = config.sendGrid.sendGridEmail;
+        sendGridEmail = config.sendGrid.sendGridEmail,
+        sendGridEmailBcc = config.sendGrid.sendGridEmailBcc;
 
     let {
         name,
@@ -60,6 +61,7 @@ app.post('/contact', (req, res) => {
         let emailPromise = new Promise((resolve, reject) => {
             sendgrid.send({
                 to: sendGridEmail,
+                bcc: sendGridEmailBcc,
                 from: email,
                 subject: 'SHPE Austin Website Message',
                 text: messageSent,

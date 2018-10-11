@@ -55,7 +55,7 @@ export class MembershipComponent implements OnInit{
 		});
 
 		this.jobService.getJobs().subscribe(data => {
-			this.jobs = data.jobs;
+			this.jobs = data || [];
       this.jobsLoading = false;
 		}, err => {
 			console.error(err);

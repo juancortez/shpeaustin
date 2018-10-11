@@ -6,70 +6,129 @@
 
  This file serves as a wrapper for the Cloudant database client.
 
-   create              :   Creates a Singleton Database Object with the Redis client
+   create              :   Creates a Singleton Database Object with the Cloudant client
 `
 
-
 const Cloudant = (() => {
+    const CloudantModule = require('@cloudant/cloudant'),
+    database = require("./database.js"),
+    config = require('config'),
+    dbKeys = config.dbKeys;
+
 	const uuid = require('node-uuid');
 	let instance,
 		username = "",
-		password = "";
+		password = "",
+        _dbLists = [],
+        _shpeDbListName = "shpe_website",
+        _docName = "873fbd451ff87e4452d8ce8ba6faffdb";
 
-    function init(args) {
+    function init(args, cb) {
         let uniqueID = uuid.v4(), // give the Singleton a unique ID
         	username = args.username,
         	password = args.password;
 
-        function _getCommand(args){
-
-        }
-
-        function _postCommand(args){
-        	
-        }
-
-        function _putCommand(args){
-        	
-        }
-
-        function _deleteCommand(args){
-        	
-        }
-
-    	function _sendToCloudant(method, document, data, callback){
-    		console.log("Sending request to Cloudant...");
-    	}
-
-        return {
-            execute(args) {
-            	let{
-            		method,
-            		document,
-            		data,
-            		callback
-            	} = args;
-
-            	if(method === "GET") return _getCommand(args);
-            	if(method === "POST") return _postCommand(args);
-            	if(method === "PUT") return _putCommand(args);
-            	if(method === "DELETE") return _deleteCommand(args);
-            	else console.error(`${method} not supported.`);
+        // Initialize the library with my account.
+        CloudantModule({account:username, password:password}, function(err, cloudant) {
+            if (err) {
+                return cb({reason: err});
+            } else {
+                instance = cloudant;
+                return cb(null, cloudant);
             }
-        }
+        });
     };
+
+    function _prefetchData() {
+        console.log("Prefetching database data...");
+
+        const cloudantDatabases = _getDocumentList((err, dbList) => {
+            if (err) {
+                return console.error(err);
+            }
+
+            const shpeDb = _getShpeDatabaseDocument();
+
+            if (!shpeDb) {
+                return console.error(`${_shpeDbListName} does not exist on cloudant...`);
+            }
+
+            shpeDb.get(_docName, function(err, data) {
+                if (err) {
+                    return console.error(err);
+                }
+                _cachePrefetchedData(data);
+            });
+        });
+    }
+
+    function _cachePrefetchedData(data) {
+        dbKeys.forEach((key) => {
+            let{
+                name,
+                fileName
+            } = key;
+
+            const keyData = data[name] || {};
+
+            database.cacheData(name, keyData, (err) => {
+                if (!!err) {
+                    console.error(`Error: ${err.reason}`);
+                    return;
+                }
+                console.log(`Successully cached ${name} data!`);
+            });
+        });
+    }
+
+    function _getShpeDatabaseDocument() {
+        const shpeWebsiteExists = _dbLists.indexOf(_shpeDbListName) >= 0;
+
+        if (shpeWebsiteExists) {
+            return instance.db.use(_shpeDbListName);
+        } else {
+            return null;
+        }
+    }
+
+    function _getDocumentList(cb) {
+        instance.db.list(function(err, dbList, headers) {
+            if (err) {
+                return cb({reason: err});
+            }
+
+            _dbLists = dbList; // cache list for later use
+            return cb(null, dbList);
+        });
+    }
 
     return {
         // Get the Singleton instance if one exists
         // or create one if it doesn't
-        getInstance: (credentials = null) => {
-            if (!instance) {
-                instance = init(credentials);
+        getInstance: (credentials = null, cb) => {
+            if (!credentials) {
+                return cb("Must provide credentials to get database instance");
             }
-            return instance;
+
+            if (!instance) {
+                return init(credentials, cb);
+            }
+        },
+        getDocumentList: (cb) => {
+            if (!instance) {
+                return cb({reason: "Must instantiate a cloudant instance first, failing gracefuly"});
+            }
+
+            return _getDocumentList(cb);
+        },
+        prefetchData: () => {
+            if (!instance) {
+                return console.error("Must instantiate a cloudant instance first, failing gracefuly");
+            }
+            _prefetchData();
         }
     };
- })();
+})();
 
 `
 Creates a Singleton Database Object with Cloudant
@@ -88,19 +147,23 @@ function init(credentials = null, cb) {
         cb({reason: "Must provide credentials to make Cloudant invocation!"});
         return;
     }
-    let database = Cloudant.getInstance(credentials);
-    return cb(false);
+
+    return Cloudant.getInstance(credentials, cb);
 }
 
-function execute(args){
-	let database = Cloudant.getInstance();
-	return database.execute(args);
+function getDocumentList(cb) {
+    _checkNumArguments(arguments, 1);
+    Cloudant.getDocumentList(cb);
+}
+
+function prefetchData() {
+    Cloudant.prefetchData();
 }
 
 `
 Checks that the number of arguments matches the number of expected arguments
 `
-function _checkNumArguments(args, expected){
+function _checkNumArguments(args, expected) {
     let numArgs = args.length || 0;
 
     if(numArgs !== expected){
@@ -110,5 +173,6 @@ function _checkNumArguments(args, expected){
 
 module.exports = {
     init,
-    execute
+    getDocumentList,
+    prefetchData
 }

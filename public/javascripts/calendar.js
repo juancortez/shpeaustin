@@ -52,9 +52,9 @@ var Calendar = function() {
     }
 
     function populateCalendar() {
-        var numCalendarItems = globalCalendarData.calendar.length;
+        var numCalendarItems = globalCalendarData.length || 0;
         for (var i = 0; i < numCalendarItems; i++) {
-            var calendarHtml = globalCalendarData.calendar[i];
+            var calendarHtml = globalCalendarData[i];
             var time = parseCalendarTime(calendarHtml.time);
             if (getMonthString(currentMonth + 1) == time.month) {
                 var day = time.day; // new day

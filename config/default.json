@@ -5,7 +5,8 @@
 		"deployed": "http://us.austinshpe.org"
 	},
 	"sendGrid": {
-		"sendGridEmail": "cortezjuanjr@gmail.com"
+		"sendGridEmail": "shpeaustin@gmail.com",
+        "sendGridEmailBcc": "cortezjuanjr@gmail.com"
 	},
     "docker":{
         "run": false
@@ -21,7 +22,7 @@
         }
 	},
 	"revision": 35,
-	"redisKeys": [{
+	"dbKeys": [{
         "fileName" : "officers.json",
         "name" : "officerList"
     }, {

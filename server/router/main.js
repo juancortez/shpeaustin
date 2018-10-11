@@ -1,6 +1,6 @@
 // module.exports exposes functions that we want to use in a different file
 //module.exports = function(app, con){
-module.exports = function(app, client, express) {
+module.exports = function(app, express) {
     const config = require('config'),
         path = require('path'),
         database = require("../lib/database.js"),

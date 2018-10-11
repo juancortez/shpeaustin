@@ -60,10 +60,6 @@ import { FooterComponent }                  from './app/footer.component';
 /* Guards */
 import { AuthGuard }                        from './app/guards/auth-guard.service';
 
-import {enableProdMode} from '@angular/core';
-enableProdMode();
-
-
 @NgModule({
   imports: [
     BrowserModule,
