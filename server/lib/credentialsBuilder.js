@@ -64,6 +64,7 @@ const Credentials = (() => {
 		        privateCredentialsBuilder.googleAuth.token_type = process.env.googleTokenType;
 		        privateCredentialsBuilder.googleAuth.refresh_token = process.env.googleRefreshToken;
 		        privateCredentialsBuilder.googleAuth.expiry_date = process.env.googleExpiryDate;
+                privateCredentialsBuilder.shpeaustincloudant = {};
                 privateCredentialsBuilder.shpeaustincloudant.username = process.env.cloudantKey;
                 privateCredentialsBuilder.shpeaustincloudant.password = process.env.cloudantPassword;
 

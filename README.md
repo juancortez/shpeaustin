@@ -136,6 +136,13 @@ In order to set up BlueMix and GoDaddy, there are a couple of steps we need to d
 ## Steps to Completely Update Website
 I have created an admin page that has made it easier to update the SHPEAustin application. Navigate to the following URL http://me.austinshpe.org/update/admin and login with the credentials in the private_credentials.json file. In this UI, you are able to View, Delete, and Update data to the Redis database. Please contact the webmaster for instructions on how to appropriately update the data on the application.
 
+## Bluemix Deployment
+1. Download the Bluemix Command Line Interface [Bluemix Command Line Interface][].
+2. `$bluemix login`
+3. `$ibmcloud target -o cortezjuanjr@gmail.com -s dev`
+4. `$bluemix app push shpeaustin`
+5. To view logs, type `$ibmcloud cf logs shpeaustin --recent`
+
 ## BlueMix Auto Deployment with Travis CI
 Everytime that GitHub receives a new commit, it will utilize Travis CI to automatically deploy to Bluemix. Follow the instructions below to get it set up. You can view all results and profile settings here: https://travis-ci.org/juancortez-ut/shpeaustin/settings.
 
@@ -152,6 +159,7 @@ Everytime that GitHub receives a new commit, it will utilize Travis CI to automa
 Pre-requisite: Download Docker at the [Docker Install][] page.
 The SHPE Austin application is configured to use Docker for the Redis database. To use Docker while running locally, go to config/default.json and change the docker.run flag from false to true. In one tab run `$chmod 777 docker/redis_start.sh && ./docker/redis_start.sh` and in another tab run `$npm start`. The node application will be connected to the Docker Redis Docker container.
 
+[Bluemix Command Line Interface]: https://console.bluemix.net/docs/starters/upload_app.html
 [Docker Install]: https://docs.docker.com/docker-for-mac/
 [austinshpe.org]: http://austinshpe.org
 [shpeaustin.mybluemix.net]: http://shpeaustin.mybluemix.net
