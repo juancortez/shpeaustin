@@ -118,14 +118,14 @@ const Database = (() => {
                 } catch(e){
                     return callback({reason: "Passed in JSON was not stringified JSON"});
                 }
+
+
                 client.set(key, data, (err, response) => {
                     if(err){
                         return callback({reason: `Was not able to store  ${key} in Redis database.`});
                     }
-                    _cacheData(key, data, callback, {
-                        deleteKey: false, 
-                        sendWebsiteRequest: true
-                    });
+                    console.log(`Successfully set database key, ${key}`);
+                    return callback(null);
                 }); 
             } else{
                 return callback({reason: "Passed in JSON was not stringified JSON"});
@@ -176,7 +176,7 @@ const Database = (() => {
                     }
                 });
 
-            }            
+            }
         };
 
         function _updateCache(key = null, callback){
@@ -204,31 +204,32 @@ const Database = (() => {
 
         // if any changes are made locally, make update available to Bluemix, since data is cached
         function _sendWebsiteRequest(key = null, callback){
-            if(isLocal) return callback(false);
-            const request = require("request");
+            return;
+            // if(isLocal) return callback(false);
+            // const request = require("request");
 
-            console.log("Sending update to Bluemix website");
+            // console.log("Sending update to Bluemix website");
 
-            let options = { 
-                method: 'POST',
-                url: 'http://shpeaustin.mybluemix.net/update/cache',
-                headers: { 
-                    'cache-control': 'no-cache',
-                    'content-type': 'application/json'
-                },
-                body: { 
-                    key: key 
-                },
-                json: true 
-            };
+            // let options = { 
+            //     method: 'POST',
+            //     url: 'http://shpeaustin.mybluemix.net/update/cache',
+            //     headers: { 
+            //         'cache-control': 'no-cache',
+            //         'content-type': 'application/json'
+            //     },
+            //     body: { 
+            //         key: key 
+            //     },
+            //     json: true 
+            // };
 
-            request(options, (error, response, body) => {
-                if (error){
-                    return callback({reason: error});
-                }
-                console.log(`Successfully updated ${key} on Bluemix!`);
-                return callback(false);
-            });
+            // request(options, (error, response, body) => {
+            //     if (error){
+            //         return callback({reason: error});
+            //     }
+            //     console.log(`Successfully updated ${key} on Bluemix!`);
+            //     return callback(false);
+            // });
         }
 
         return {

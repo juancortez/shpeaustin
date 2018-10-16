@@ -1,17 +1,17 @@
 {
-	"app":{
-		"name": "SHPE Austin Website",
-		"local": "http://localhost:",
-		"deployed": "http://us.austinshpe.org"
-	},
-	"sendGrid": {
-		"sendGridEmail": "shpeaustin@gmail.com",
+    "app":{
+        "name": "SHPE Austin Website",
+        "local": "http://localhost:",
+        "deployed": "http://us.austinshpe.org"
+    },
+    "sendGrid": {
+        "sendGridEmail": "shpeaustin@gmail.com",
         "sendGridEmailBcc": "cortezjuanjr@gmail.com"
-	},
+    },
     "docker":{
         "run": false
     },
-	"redis": {
+    "redis": {
         "local": {
             "port": 6379,
             "hostname": "localhost"
@@ -20,31 +20,39 @@
             "port": "14845",
             "hostname": "pub-redis-14845.dal-05.1.sl.garantiadata.com"
         }
-	},
-	"revision": 35,
-	"dbKeys": [{
+    },
+    "revision": 35,
+    "dbKeys": [{
         "fileName" : "officers.json",
+        "cloudantId": "50a0d775d1513d51f663629cf3e6364f",
         "name" : "officerList"
     }, {
         "fileName": "calendar_data.json",
+        "cloudantId": "4908c1e08dc99e5a1e5a221f7d7bc698",
         "name": "calendar"
     }, {
         "fileName": "jobs.json",
+        "cloudantId": "647f439379f58d7a5ce66fd955319bf5",
         "name": "jobs"
     }, {
         "fileName": "announcements.json",
+        "cloudantId": "06c6e5b46a71b79259306c9e9ab1730d",
         "name": "announcements"
     }, {
         "fileName": "id.json",
+        "cloudantId": "647f439379f58d7a5ce66fd955318533",
         "name": "id"
     }, {
         "fileName": "newsletter.json",
+        "cloudantId": "06c6e5b46a71b79259306c9e9ab21ab9",
         "name": "newsletter"
     }, {
-        "fileName": "google_form.json",
+        "fileName": "googleForm.json",
+        "cloudantId": "17c69732624d74cb2186baa2b069b2a9",
         "name": "googleForm"
     }, {
         "fileName": "mailchimp.json",
+        "cloudantId": "1515a97034345d8a215eb760e461a00d",
         "name": "mailchimp"
     }]
 }

@@ -35,7 +35,7 @@ export class AuthService {
 	}
 
 	checkAuthCookie(credentialsCookie: string): Observable<any>{
-		let headers = new Headers({ 
+		let headers = new Headers({
 			'Content-Type': 'application/json'
 		});
 

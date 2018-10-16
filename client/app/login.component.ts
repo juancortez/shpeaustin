@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit{
 		this._regularLogin().then((response) => {
 			this._checkLoggedIn();
 			// not sure why i have to place cookie in both paths?
-			this.cookieService.setCookie('credentials', response['uuid'], 31, '/');
-			this.cookieService.setCookie('credentials', response['uuid'], 31, '/admin');
+			this.cookieService.setCookie('credentials', response['id'], 31, '/');
+			this.cookieService.setCookie('credentials', response['id'], 31, '/admin');
 		}).catch((err) =>{
 			console.error(err);
 		});

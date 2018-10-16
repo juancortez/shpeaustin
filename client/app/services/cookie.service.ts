@@ -21,6 +21,10 @@ export class CookieService {
 	}
 
 	setCookie(name: string, value: string, expireDays: number, path: string = '/') {
+    if (!name || !value) {
+      return;
+    }
+
 		let d:Date = new Date();
 		d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
 		let expires:string = `expires=${d.toUTCString()}`;
@@ -44,5 +48,3 @@ export class CookieService {
   }
 
 }
-
-    

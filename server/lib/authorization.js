@@ -43,7 +43,8 @@ const authorization = (function(){
                     console.error(err.reason);
                     return _unauthorized(res, false);
                 }
-                if(data.uuid.indexOf(queryCredentials) >= 0){
+
+                if(data.indexOf(queryCredentials) >= 0){
                     console.log(`Cookie authorized for ${method} method at url "${url}"`);
                     return next();
                 } else{

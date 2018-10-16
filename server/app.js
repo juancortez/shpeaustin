@@ -32,7 +32,7 @@ const express = require('express'),
     config = require('config'),
     runDocker = config.docker.run,
     database = require("./lib/database.js"),
-    Cloudant = require("./lib/cloudant.js"),
+    Cloudant = require("./services/cloudant.js"),
     mcapi = require('mailchimp-api'),
     path = require('path');
 
@@ -47,7 +47,7 @@ Cloudant.init(cloudantCredentials, (err, cloudantDb) => {
         return console.error(err);
     }
     
-    database.create(cloudantDb, (err, dbInstance) => {
+    database.create(Cloudant, (err, dbInstance) => {
         if(err) {
             return console.error(err);
         }
