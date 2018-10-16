@@ -22,7 +22,7 @@ const Cloudant = (() => {
         _shpeDbListName = "shpe_website",
         _shpeDb,
         _shpeDbInstancePromise,
-        _cachedRevId;
+        _cachedRevId = {};
 
     function init(args, cb) {
         let uniqueID = uuid.v4(), // give the Singleton a unique ID
@@ -122,10 +122,9 @@ const Cloudant = (() => {
     }
 
     function _cacheRevId(id, revId) {
-        _cachedRevId = {
-            ..._cachedRevId,
+        Object.assign(_cachedRevId, {
             [id]: revId
-        }
+        });
     }
 
     function _findCloundantId(key) {
