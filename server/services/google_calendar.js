@@ -36,7 +36,7 @@ function authorize(credentials, callback) {
     const auth = new googleAuth();
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
-    if(appEnv.isLocal){
+    if(appEnv.isLocal) {
         // Check if we have previously stored a token.
         fs.readFile(TOKEN_PATH, function(err, token) {
             if (err) {
@@ -119,7 +119,7 @@ function listEvents(auth, callback) {
         auth: auth
     },function(err, response){
         if(!!err){
-            return callback({reason: "Error in calendarList request..."});
+            return callback({reason: `Error in calendarList request. ${err}`});
         }
         var length = response && response.items && response.items.length || 0;
         if(!!length){

@@ -19,34 +19,22 @@ const express = require('express'),
 app.post('/announcements', authorization.mixedAuth, (req, res) => {
     let key = "announcements";
     database.getCachedData(key, (err, data) => {
-        if (!!err) {
-            console.warn(`${key} key doesn't exist, so creating announcements.`);
-            data = null;
-        }
-        let announcements = data && data.announcements || null,
-            newAnnouncement = req.body || null,
-            {
-                officer,
-                timestamp,
-                announcement
-            } = newAnnouncement;
+        const newAnnouncement = req.body;
+        const {
+            officer,
+            timestamp,
+            announcement
+        } = newAnnouncement;
 
         if (!(!!officer) || !(!!timestamp) || !(!!announcement)) {
             console.error("Did not send appropriate inputs for a new announcement.");
             return res.status(400).send("Did not send appropriate inputs for a new announcement.");
         }
 
-        let length = announcements && announcements.length || 0;
-        if (!(!!length)) {
-            announcements = [];
-        }
-        announcements[length] = newAnnouncement;
+        const announcements = data || [];
+        announcements.push(newAnnouncement);
 
-        _sendToSlack(newAnnouncement); // Send announcement to SHPE Austin Slack Channel
-
-        database.setData(key, JSON.stringify({
-            announcements: announcements
-        }), (err) => {
+        database.setData(key, JSON.stringify(announcements), (err) => {
             if (err) {
                 console.error(`Error: ${err.reason}`);
                 return res.status(400).send(`Error: ${err.reason}`);
@@ -77,20 +65,17 @@ app.post('/announcements', authorization.mixedAuth, (req, res) => {
 app.post('/jobs', authorization.mixedAuth, (req, res) => {
     let key = "jobs";
     database.getCachedData(key, (err, data) => {
-        if (!!err) {
-            console.warn(`${key} key doesn't exist, so creating jobs.`);
-            data = null;
-        }
-        let jobs = data && data.jobs || null,
-            newJob = req.body || null,
-            {
-                position,
-                company,
-                description,
-                url,
-                ts,
-                poster
-            } = newJob;
+        const jobs = data || [];
+
+        const newJob = req.body || {};
+        const {
+            position,
+            company,
+            description,
+            url,
+            ts,
+            poster
+        } = newJob;
 
         if (!(!!position) || !(!!company) || !(!!description) || !(!!url) || !(!!ts) || !(!!poster)) {
             console.error("Did not send appropriate inputs for a new job posting.");
@@ -99,19 +84,13 @@ app.post('/jobs', authorization.mixedAuth, (req, res) => {
 
         newJob.ts = +newJob.ts;
 
-        let length = jobs && jobs.length || 0;
-        if (!(!!length)) {
-            jobs = [];
-        }
-        jobs[length] = newJob;
+        jobs.push(newJob);
 
         jobs.sort((a, b) => {
             return b.ts - a.ts; // sort based on timestamp
         });
 
-        database.setData(key, JSON.stringify({
-            jobs: jobs
-        }), (err) => {
+        database.setData(key, JSON.stringify(jobs), (err) => {
             if (err) {
                 console.error(`Error: ${err.reason}`);
                 return res.status(400).send(`Error: ${err.reason}`);
