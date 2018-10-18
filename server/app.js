@@ -39,7 +39,6 @@ const express = require('express'),
 const root = path.join(__dirname + '/../'),
     staticRoot = path.join(__dirname + '/../public/');
 
-app.use(favicon(__dirname + '/public/assets/shpe_austin_icon.png'));
 
 /************************************************************************************************************
 *                                   Cloudant Database Connection
