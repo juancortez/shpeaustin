@@ -26,16 +26,28 @@ function authorize(credentials, callback) {
     const auth = new googleAuth();
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
-  // Check if we have previously stored a token.
-    fs.readFile(TOKEN_PATH, (err, token) => {
-      if (err) {
-        return getAccessToken(oauth2Client, callback);
-      }
 
-      oauth2Client.credentials = JSON.parse(token);
-      GOOGLE_AUTH = oauth2Client;
-      return callback(null, oauth2Client);
-    });
+    if(appEnv.isLocal) {
+    // Check if we have previously stored a token.
+      fs.readFile(TOKEN_PATH, (err, token) => {
+        if (err) {
+          return getAccessToken(oauth2Client, callback);
+        }
+
+        oauth2Client.credentials = JSON.parse(token);
+        GOOGLE_AUTH = oauth2Client;
+        return callback(null, oauth2Client);
+      });
+    } else {
+        try{
+            oauth2Client.credentials = require('../lib/credentialsBuilder.js').init().googleDriveCredentials;
+            GOOGLE_AUTH = oauth2Client;
+            return callback(null);
+        } catch(e){
+            console.error("Unable to access credentials");
+            return callback(e);
+        }
+    }
 }
 
 /**

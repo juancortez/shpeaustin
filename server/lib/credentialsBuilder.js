@@ -59,6 +59,12 @@ const Credentials = (() => {
 		        privateCredentialsBuilder.google_oauth.installed.client_id = process.env.googleClientId;
 		        privateCredentialsBuilder.google_oauth.installed.redirect_uris = [];
 		        privateCredentialsBuilder.google_oauth.installed.redirect_uris.push(process.env.googleRedirectUris);
+		        privateCredentialsBuilder.googleDriveCredentials = {};
+		        privateCredentialsBuilder.googleDriveCredentials.access_token = process.env.googleDriveAccessToken;
+		        privateCredentialsBuilder.googleDriveCredentials.token_type = process.env.googleDriveTokenType;
+		        privateCredentialsBuilder.googleDriveCredentials.refresh_token = process.env.googleDriveRefreshToken;
+		        privateCredentialsBuilder.googleDriveCredentials.scope = process.env.googleDriveScopes;
+		        privateCredentialsBuilder.googleDriveCredentials.expiry_date = process.env.googleDriveExpiryDate;
 		        privateCredentialsBuilder.sendGrid = {};
 		        privateCredentialsBuilder.sendGrid.credentials = {};
 		        privateCredentialsBuilder.sendGrid.credentials.username = process.env.sendGridUser;
