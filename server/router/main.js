@@ -36,6 +36,13 @@ module.exports = function(app, express) {
     app.use('/communication',  require('../controllers/CommunicationController.js'));
 
     /*************************************************************************/
+    // HackathonController.js
+    //
+    // The /hackathon endpoint is used for hackathon related material
+    /*************************************************************************/
+    app.use('/hackathon',  require('../controllers/HackathonController.js'));
+
+    /*************************************************************************/
     // Angular2
     /*************************************************************************/
     app.use(function (req, res, next) {

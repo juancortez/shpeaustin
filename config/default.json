@@ -54,5 +54,10 @@
         "fileName": "mailchimp.json",
         "cloudantId": "1515a97034345d8a215eb760e461a00d",
         "name": "mailchimp"
-    }]
+    }],
+    "googleDrive": {
+        "officeOnlineUrl": "https://view.officeapps.live.com/op/view.aspx?src=",
+        "localFileLocation": "/assets/drive_files"
+    }
+
 }

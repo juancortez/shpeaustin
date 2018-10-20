@@ -47,6 +47,12 @@ const Credentials = (() => {
 		        privateCredentialsBuilder.websiteLogin = {};
 		        privateCredentialsBuilder.websiteLogin.username = process.env.webUser;
 		        privateCredentialsBuilder.websiteLogin.password = process.env.webPass;
+		        privateCredentialsBuilder.google_onedrive_oath = {};
+		        privateCredentialsBuilder.google_onedrive_oath.installed = {};
+		        privateCredentialsBuilder.google_onedrive_oath.installed.client_secret = process.env.googleDriveClientSecret;
+		        privateCredentialsBuilder.google_onedrive_oath.installed.client_id = process.env.googleDriveClientId;
+		        privateCredentialsBuilder.google_onedrive_oath.installed.redirect_uris = [];
+		        privateCredentialsBuilder.google_onedrive_oath.installed.redirect_uris.push(process.env.googleDriveRedirectUri);
 		        privateCredentialsBuilder.google_oauth = {};
 		        privateCredentialsBuilder.google_oauth.installed = {};
 		        privateCredentialsBuilder.google_oauth.installed.client_secret = process.env.googleClientSecret;
@@ -59,6 +65,7 @@ const Credentials = (() => {
 		        privateCredentialsBuilder.sendGrid.credentials.password = process.env.sendGridPass;
 		        privateCredentialsBuilder.mailchimp = {};
 		        privateCredentialsBuilder.mailchimp.api_key = process.env.mailchimp;
+		        privateCredentialsBuilder.googleDriveAuth = {};
 		        privateCredentialsBuilder.googleAuth = {};
 		        privateCredentialsBuilder.googleAuth.access_token = process.env.googleAccessToken;
 		        privateCredentialsBuilder.googleAuth.token_type = process.env.googleTokenType;

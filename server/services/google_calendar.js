@@ -7,7 +7,7 @@
  * Created credentials with: shpe.austin@gmail.com
  */
 
-const fs = require('fs');
+const fs = require('fs'),
     readline = require('readline'),
     google = require('googleapis'),
     googleAuth = require('google-auth-library'),
