@@ -21,7 +21,9 @@ const middleware = require('./../middleware/HackathonMiddleware');
 app.get('/office/online', middleware.fileExists, middleware.googleDriveAuth, middleware.getFile, middleware.downloadFile, (req, res) => {
     const { officeOnlineUrl, localFileLocation } = googleDrive;
     const { id, fileExtension } = res.locals.fileInfo;
-    return res.redirect(officeOnlineUrl + localFileLocation + `/${id}.${fileExtension}`);
+    const lowerCaseId = id.toLocaleLowerCase(); // BUG on how bluemix exposes file names, must be lowercase
+    const lowerCaseFileExt = fileExtension.toLocaleLowerCase();
+    return res.redirect(officeOnlineUrl + localFileLocation + `/${lowerCaseId}.${lowerCaseFileExt}`);
 });
 
 app.get('/office/authorize', (req, res) => {
