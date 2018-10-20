@@ -47,6 +47,12 @@ const Credentials = (() => {
 		        privateCredentialsBuilder.websiteLogin = {};
 		        privateCredentialsBuilder.websiteLogin.username = process.env.webUser;
 		        privateCredentialsBuilder.websiteLogin.password = process.env.webPass;
+		        privateCredentialsBuilder.google_onedrive_oath = {};
+		        privateCredentialsBuilder.google_onedrive_oath.installed = {};
+		        privateCredentialsBuilder.google_onedrive_oath.installed.client_secret = process.env.googleDriveClientSecret;
+		        privateCredentialsBuilder.google_onedrive_oath.installed.client_id = process.env.googleDriveClientId;
+		        privateCredentialsBuilder.google_onedrive_oath.installed.redirect_uris = [];
+		        privateCredentialsBuilder.google_onedrive_oath.installed.redirect_uris.push(process.env.googleDriveRedirectUri);
 		        privateCredentialsBuilder.google_oauth = {};
 		        privateCredentialsBuilder.google_oauth.installed = {};
 		        privateCredentialsBuilder.google_oauth.installed.client_secret = process.env.googleClientSecret;

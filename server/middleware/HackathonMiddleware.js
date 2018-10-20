@@ -1,7 +1,8 @@
 const googleDrive = require('./../services/google_drive');
 const cfenv = require('cfenv'),
     appEnv = cfenv.getAppEnv(),
-    request = require('request');
+    request = require('request'),
+    config = require('config');
 
 module.exports = {
     fileExists: (req, res, next) => {
@@ -14,9 +15,9 @@ module.exports = {
         return next();
     },
     googleDriveAuth: (req, res, next) => {
-        const requestHost = appEnv.isLocal ? "localhost:6001" : "us.austinshpe.org";
+        const requestHost = appEnv.isLocal ? "http://localhost:6001" : "http://us.austinshpe.org";
 
-        request(`http://${requestHost}/hackathon/office/authorize`, function(err, response, body) {
+        request(`${requestHost}/hackathon/office/authorize`, function(err, response, body) {
             if (err) {
                 return res.status(500).send("Unable to get authorization token for google drive api, " + err);
             }
@@ -39,13 +40,13 @@ module.exports = {
     downloadFile: (req, res, next) => {
         const {
             id,
-            webContentLink,
             fileExtension
         } = res.locals.fileInfo;
+        const { localFileLocation } = googleDrive;
 
-        const fileDestination = `./public/assets/${id}.${fileExtension}`;
+        const fileDestination = `${localFileLocation}/${id}.${fileExtension}`;
 
-        googleDrive.downloadFile(fileId, fileDestination, (err, response) => {
+        googleDrive.downloadFile(id, fileDestination, (err, response) => {
             if (err) {
                 return res.status(400).send(`Unable to download ${fileId} file.`);
             }

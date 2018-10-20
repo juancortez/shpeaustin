@@ -28,10 +28,13 @@ function authorize(credentials, callback) {
 
   // Check if we have previously stored a token.
     fs.readFile(TOKEN_PATH, (err, token) => {
-      if (err) return getAccessToken(oauth2Client, callback);
-      oauth2Client.setCredentials(JSON.parse(token));
+      if (err) {
+        return getAccessToken(oauth2Client, callback);
+      }
+
+      oauth2Client.credentials = JSON.parse(token);
       GOOGLE_AUTH = oauth2Client;
-      callback(oauth2Client);
+      return callback(null, oauth2Client);
     });
 }
 
@@ -46,16 +49,21 @@ function getAccessToken(oAuth2Client, callback) {
     access_type: 'offline',
     scope: SCOPES,
   });
+
   console.log('Authorize this app by visiting this url:', authUrl);
   const code = readlineSync.question('Enter the code from that page here: ');
 
   oAuth2Client.getToken(code, (err, token) => {
-    if (err) return console.error('Error retrieving access token', err);
+    if (err) {
+      const errMessage = 'Error retrieving access token' + err;
+      return callback(errMessage);
+    }
+
     oAuth2Client.credentials = token;
 
-    storeToken(token);
+    storeToken(token, callback);
     GOOGLE_AUTH = oAuth2Client;
-    callback(oAuth2Client);
+    return callback(null, oAuth2Client);
   });
 }
 
@@ -69,34 +77,13 @@ function storeToken(token) {
         fs.mkdirSync(TOKEN_DIR);
     } catch (err) {
         if (err.code != 'EEXIST') {
-            throw err;
+            console.error("Error in storing token");
+            console.error(err);
         }
     }
+
     fs.writeFile(TOKEN_PATH, JSON.stringify(token));
     console.log('Token stored to ' + TOKEN_PATH);
-}
-
-/**
- * Lists the names and IDs of up to 10 files.
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
-function listFiles() {
-  const drive = google.drive({version: 'v3', GOOGLE_AUTH});
-  drive.files.list({
-    pageSize: 10,
-    fields: 'nextPageToken, files(id, name)',
-  }, (err, res) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const files = res.files;
-    if (files.length) {
-      console.log('Files:');
-      files.map((file) => {
-        console.log(`${file.name} (${file.id})`);
-      });
-    } else {
-      console.log('No files found.');
-    }
-  });
 }
 
 function getFile(fileId, cb) {
@@ -134,7 +121,6 @@ function downloadFile(id, location, cb) {
 
 module.exports = {
     authorize: authorize,
-    listFiles: listFiles,
     getFile: getFile,
     downloadFile: downloadFile
 };
