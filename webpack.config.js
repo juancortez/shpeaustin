@@ -31,6 +31,7 @@ module.exports = {
       template: './client/index.html'
     }),
     new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify("production"),
       app: {
         environment: JSON.stringify(process.env.APP_ENVIRONMENT || 'development')
       }

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const readlineSync = require('readline-sync'),
+const readline = require('readline'),
     google = require('googleapis'),
     googleAuth = require('google-auth-library');
 
@@ -63,19 +63,26 @@ function getAccessToken(oAuth2Client, callback) {
   });
 
   console.log('Authorize this app by visiting this url:', authUrl);
-  const code = readlineSync.question('Enter the code from that page here: ');
+  var rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+  });
 
-  oAuth2Client.getToken(code, (err, token) => {
-    if (err) {
-      const errMessage = 'Error retrieving access token' + err;
-      return callback(errMessage);
-    }
+  rl.question('Enter the code from that page here: ', function(code) {
+      rl.close();
 
-    oAuth2Client.credentials = token;
+      oAuth2Client.getToken(code, (err, token) => {
+        if (err) {
+          const errMessage = 'Error retrieving access token' + err;
+          return callback(errMessage);
+        }
 
-    storeToken(token, callback);
-    GOOGLE_AUTH = oAuth2Client;
-    return callback(null, oAuth2Client);
+        oAuth2Client.credentials = token;
+
+        storeToken(token, callback);
+        GOOGLE_AUTH = oAuth2Client;
+        return callback(null, oAuth2Client);
+      });
   });
 }
 
