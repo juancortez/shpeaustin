@@ -59,6 +59,7 @@ const Credentials = (() => {
 		        privateCredentialsBuilder.sendGrid.credentials.password = process.env.sendGridPass;
 		        privateCredentialsBuilder.mailchimp = {};
 		        privateCredentialsBuilder.mailchimp.api_key = process.env.mailchimp;
+		        privateCredentialsBuilder.googleDriveAuth = {};
 		        privateCredentialsBuilder.googleAuth = {};
 		        privateCredentialsBuilder.googleAuth.access_token = process.env.googleAccessToken;
 		        privateCredentialsBuilder.googleAuth.token_type = process.env.googleTokenType;
