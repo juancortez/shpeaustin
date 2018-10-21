@@ -3,6 +3,8 @@ const readline = require('readline'),
     google = require('googleapis'),
     googleAuth = require('google-auth-library');
 
+const privateCredentials = require('../lib/credentialsBuilder.js').init();
+
 const cfenv = require('cfenv'),
     appEnv = cfenv.getAppEnv();
 
@@ -11,7 +13,7 @@ const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly', "http
     TOKEN_DIR = path.join(__dirname, '../private_credentials/');
     TOKEN_PATH = TOKEN_DIR + 'google_drive.json';
 
-let GOOGLE_AUTH = null;
+let GOOGLE_DRIVE_CLIENT;
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -19,12 +21,16 @@ let GOOGLE_AUTH = null;
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
-function authorize(credentials, callback) {
-    const clientSecret = credentials.installed.client_secret,
-        clientId = credentials.installed.client_id,
-        redirectUrl = credentials.installed.redirect_uris[0];
+function authorize(callback) {
+    const clientSecret = privateCredentials.google_onedrive_oath.installed.client_secret,
+        clientId = privateCredentials.google_onedrive_oath.installed.client_id,
+        redirectUrl = privateCredentials.google_onedrive_oath.installed.redirect_uris[0];
     const auth = new googleAuth();
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
+
+    function _setOauthClient() {
+      GOOGLE_DRIVE_CLIENT = google.drive({version: 'v2', auth: oauth2Client});
+    }
 
 
     if(appEnv.isLocal) {
@@ -35,13 +41,13 @@ function authorize(credentials, callback) {
         }
 
         oauth2Client.credentials = JSON.parse(token);
-        GOOGLE_AUTH = oauth2Client;
+        _setOauthClient();
         return callback(null, oauth2Client);
       });
     } else {
         try{
-            oauth2Client.credentials = require('../lib/credentialsBuilder.js').init().googleDriveCredentials;
-            GOOGLE_AUTH = oauth2Client;
+            oauth2Client.credentials = privateCredentials.googleDriveCredentials;
+            _setOauthClient();
             return callback(null);
         } catch(e){
             console.error("Unable to access credentials");
@@ -106,8 +112,7 @@ function storeToken(token) {
 }
 
 function getFile(fileId, cb) {
-  const drive = google.drive({version: 'v2', GOOGLE_AUTH});
-  drive.files.get({
+  GOOGLE_DRIVE_CLIENT.files.get({
     fileId: fileId
   }, (err, res) => {
     if (err) {
@@ -120,15 +125,12 @@ function getFile(fileId, cb) {
 
 function downloadFile(id, location, cb) {
     const file = fs.createWriteStream(location);
-
     const params = {
         fileId: id,
         alt : 'media'
     };
 
-    const drive = google.drive({version: 'v2', GOOGLE_AUTH});
-
-    drive.files.get(params)
+    GOOGLE_DRIVE_CLIENT.files.get(params)
       .on('end', function () {
         return cb(null);
       })

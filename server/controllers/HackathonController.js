@@ -9,7 +9,6 @@ const express = require('express'),
     app = express(),
     config = require('config');
 
-const privateCredentials = require('../lib/credentialsBuilder.js').init();
 const googleDrive = require('./../services/google_drive');
 const middleware = require('./../middleware/HackathonMiddleware');
 
@@ -34,7 +33,7 @@ app.get('/office/online', middleware.fileExists, middleware.googleDriveAuth, mid
 });
 
 app.get('/office/authorize', (req, res) => {
-    googleDrive.authorize(privateCredentials.google_onedrive_oath, (err, googleDriveAuth) => {
+    googleDrive.authorize((err) => {
         if (err) {
             console.error("Unable to get google drive token");
             return res.status(400).send(err);

@@ -27,10 +27,11 @@ module.exports = {
     },
     getFile: (req, res, next) => {
         const fileId = req && req.query && req.query.fileId || "";
-
         googleDrive.getFile(fileId, (err, response) => {
             if (err || !response) {
-                return res.status(400).send(err);
+                const errMessage = `GoogleDriveAPI unable to retrieve ${fileId}`;
+                console.error(err);
+                return res.status(400).send(errMessage);
             }
 
             res.locals.fileInfo = response;
@@ -42,18 +43,18 @@ module.exports = {
             id,
             fileExtension
         } = res.locals.fileInfo;
-        const { localFileLocation } = config.googleDrive;
+        const { absoluteFileLocation } = config.googleDrive;
         const lowerCaseId = id.toLocaleLowerCase(); // BUG on how bluemix exposes file names, must be lowercase
         const lowerCaseFileExt = fileExtension.toLocaleLowerCase();
 
-        const fileDestination = `${localFileLocation}/${lowerCaseId}.${lowerCaseFileExt}`;
+        const fileDestination = `${absoluteFileLocation}/${lowerCaseId}.${lowerCaseFileExt}`;
 
         googleDrive.downloadFile(id, fileDestination, (err, response) => {
             if (err) {
-                return res.status(400).send(`Unable to download ${fileId} file.`);
+                return res.status(400).send(`Unable to download ${id} file.`);
             }
 
-            console.log(`Successfully saved ${fileId}`);
+            console.log(`Successfully saved ${id} document`);
             return next();
         });
     }

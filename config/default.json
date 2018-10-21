@@ -57,7 +57,8 @@
     }],
     "googleDrive": {
         "officeOnlineUrl": "https://view.officeapps.live.com/op/view.aspx?src=",
-        "localFileLocation": "/assets"
+        "localFileLocation": "/public/assets",
+        "absoluteFileLocation": "./public/assets"
     }
 
 }
