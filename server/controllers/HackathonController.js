@@ -19,11 +19,18 @@ const middleware = require('./../middleware/HackathonMiddleware');
         eg. /hackathon/office/online?id=1nx_WkZqVoTGgkMzg6joZUkcm6KHDSThl
 */
 app.get('/office/online', middleware.fileExists, middleware.googleDriveAuth, middleware.getFile, middleware.downloadFile, (req, res) => {
-    const { officeOnlineUrl, localFileLocation } = googleDrive;
+    const { officeOnlineUrl, localFileLocation } = config.googleDrive;
     const { id, fileExtension } = res.locals.fileInfo;
+
+    const requestHost = "http://us.austinshpe.org";
     const lowerCaseId = id.toLocaleLowerCase(); // BUG on how bluemix exposes file names, must be lowercase
     const lowerCaseFileExt = fileExtension.toLocaleLowerCase();
-    return res.redirect(officeOnlineUrl + localFileLocation + `/${lowerCaseId}.${lowerCaseFileExt}`);
+
+    // Example: https://view.officeapps.live.com/op/view.aspx?src=http://us.austinshpe.org/assets/document.docx
+    const redirectUrl = officeOnlineUrl + requestHost + localFileLocation + `/${lowerCaseId}.${lowerCaseFileExt}`;
+    console.log(`Redirecting to ${redirectUrl}`);
+
+    return res.redirect(redirectUrl);
 });
 
 app.get('/office/authorize', (req, res) => {
