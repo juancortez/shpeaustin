@@ -15,7 +15,7 @@ const middleware = require('./../middleware/HackathonMiddleware');
 
 /*
     Get a Google Drive document by an ID and display it in office online
-        eg. /hackathon/office/online?id=1nx_WkZqVoTGgkMzg6joZUkcm6KHDSThl
+        eg. /hackathon/office/online?fileId=1nx_WkZqVoTGgkMzg6joZUkcm6KHDSThl
 */
 app.get('/office/online', middleware.fileExists, middleware.googleDriveAuth, middleware.getFile, middleware.downloadFile, (req, res) => {
     const { officeOnlineUrl, localFileLocation } = config.googleDrive;
