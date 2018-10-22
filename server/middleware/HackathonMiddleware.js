@@ -5,7 +5,7 @@ const cfenv = require('cfenv'),
     config = require('config');
 
 module.exports = {
-    fileExists: (req, res, next) => {
+    fileIdExists: (req, res, next) => {
         const fileId = req && req.query && req.query.fileId || "";
 
         if (!fileId) {
@@ -34,7 +34,25 @@ module.exports = {
                 return res.status(400).send(errMessage);
             }
 
-            res.locals.fileInfo = response;
+            let { id, fileExtension } = response;
+
+            if (!id || !fileExtension) {
+                // TODO: can try fetching the file extension via parsing JSON object
+                return res.status(400).send(`
+                    GoogleDrive API did not return required information for id ${fileId}.
+                    Received id:${id} and fileExtension:${fileExtension}
+                `);
+            }
+
+             // BUG on how bluemix exposes file names, must be lowercase
+            id = id.toLocaleLowerCase();
+            fileExtension = fileExtension.toLocaleLowerCase();
+
+            res.locals.fileInfo = {
+                id,
+                fileExtension
+            };
+
             return next();
         });
     },
@@ -44,10 +62,8 @@ module.exports = {
             fileExtension
         } = res.locals.fileInfo;
         const { absoluteFileLocation } = config.googleDrive;
-        const lowerCaseId = id.toLocaleLowerCase(); // BUG on how bluemix exposes file names, must be lowercase
-        const lowerCaseFileExt = fileExtension.toLocaleLowerCase();
 
-        const fileDestination = `${absoluteFileLocation}/${lowerCaseId}.${lowerCaseFileExt}`;
+        const fileDestination = `${absoluteFileLocation}/${id}.${fileExtension}`;
 
         googleDrive.downloadFile(id, fileDestination, (err, response) => {
             if (err) {

@@ -13,7 +13,7 @@ const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly', "http
     TOKEN_DIR = path.join(__dirname, '../private_credentials/');
     TOKEN_PATH = TOKEN_DIR + 'google_drive.json';
 
-let GOOGLE_DRIVE_CLIENT;
+let GOOGLE_DRIVE_CLIENT_V2, GOOGLE_DRIVE_CLIENT_V3;
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -29,8 +29,12 @@ function authorize(callback) {
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
     function _setOauthClient() {
-      GOOGLE_DRIVE_CLIENT = google.drive({
+      GOOGLE_DRIVE_CLIENT_V2 = google.drive({
         version: 'v2',
+        auth: oauth2Client
+      });
+      GOOGLE_DRIVE_CLIENT_V3 = google.drive({
+        version: 'v3',
         auth: oauth2Client
       });
     }
@@ -114,8 +118,26 @@ function storeToken(token) {
     console.log('Token stored to ' + TOKEN_PATH);
 }
 
+function getFiles(cb) {
+    GOOGLE_DRIVE_CLIENT_V3.files.list({
+      fields: 'nextPageToken, files(id, name)',
+    }, (err, res) => {
+      if (err) {
+        return cb('The API returned an error: ' + err);
+      }
+
+      const files = res.files || [];
+
+      if (files.length) {
+        return cb(false, files);
+      } else {
+        return cb('No files found.');
+      }
+    });
+}
+
 function getFile(fileId, cb) {
-  GOOGLE_DRIVE_CLIENT.files.get({
+  GOOGLE_DRIVE_CLIENT_V2.files.get({
     fileId: fileId
   }, (err, res) => {
     if (err) {
@@ -133,7 +155,7 @@ function downloadFile(id, location, cb) {
         alt : 'media'
     };
 
-    GOOGLE_DRIVE_CLIENT.files.get(params)
+    GOOGLE_DRIVE_CLIENT_V2.files.get(params)
       .on('end', function () {
         return cb(null);
       })
@@ -145,6 +167,7 @@ function downloadFile(id, location, cb) {
 
 module.exports = {
     authorize: authorize,
+    getFiles: getFiles,
     getFile: getFile,
     downloadFile: downloadFile
 };
