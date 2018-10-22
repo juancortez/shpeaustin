@@ -29,7 +29,10 @@ function authorize(callback) {
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
     function _setOauthClient() {
-      GOOGLE_DRIVE_CLIENT = google.drive({version: 'v2', auth: oauth2Client});
+      GOOGLE_DRIVE_CLIENT = google.drive({
+        version: 'v2',
+        auth: oauth2Client
+      });
     }
 
 
