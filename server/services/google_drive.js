@@ -26,7 +26,7 @@ function authorize(callback) {
         clientId = privateCredentials.google_onedrive_oath.installed.client_id,
         redirectUrl = privateCredentials.google_onedrive_oath.installed.redirect_uris[0];
     const auth = new googleAuth();
-    const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
+    const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl); // test
 
     function _setOauthClient() {
       GOOGLE_DRIVE_CLIENT = google.drive({
