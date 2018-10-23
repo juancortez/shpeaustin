@@ -5,11 +5,29 @@ const cfenv = require('cfenv'),
     config = require('config');
 
 module.exports = {
+    /*
+        Sample from OneDrive:
+
+        /hackathon/office/online?user_id=109727762932844636603&state=%7B%22ids%22:%5B%220B47jM0sGy6hTamo0bHRPZjUyc3BFNGcxbHF3NFpkbjU4WC13%22%5D,%22action%22:%22open%22,%22userId%22:%2212345%22%7D
+    */
     fileIdExists: (req, res, next) => {
-        const fileId = req && req.query && req.query.fileId || "";
+        let state = req && req.query && req.query.state ? req.query.state : {};
+
+        if (typeof state === "string") {
+            try {
+                state = JSON.parse(state);
+            } catch(e) {
+                return res.statu(400).send("Invalid request, must include valid state object");
+            }
+        }
+        
+        const ids = state && state.ids ? state.ids : [];
+        const fileId = ids && ids.length > 0 ? ids[0] : "";
+
+        res.locals.fileId = fileId;
 
         if (!fileId) {
-            return res.status(400).send("Must sending Google Drive fileId, exiting gracefully.");
+            return res.status(400).send("Must send Google Drive fileId, exiting gracefully.");
         }
 
         return next();
@@ -26,7 +44,7 @@ module.exports = {
         });
     },
     getFile: (req, res, next) => {
-        const fileId = req && req.query && req.query.fileId || "";
+        const fileId = res.locals.fileId;
         googleDrive.getFile(fileId, (err, response) => {
             if (err || !response) {
                 const errMessage = `GoogleDriveAPI unable to retrieve ${fileId}`;
