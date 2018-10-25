@@ -24,7 +24,7 @@ app.get('/office/online', middleware.fileIdExists, middleware.googleDriveAuth, m
     const requestHost = "http://us.austinshpe.org";
 
     // Example: https://view.officeapps.live.com/op/view.aspx?src=http://us.austinshpe.org/assets/document.docx
-    const redirectUrl = officeOnlineUrl + requestHost + localFileLocation + `/${id}.${fileExtension}`;
+    const redirectUrl = officeOnlineUrl + requestHost + localFileLocation + `/${id.toLocaleLowerCase()}.${fileExtension}`;
     console.log(`Redirecting to ${redirectUrl}`);
 
     return res.redirect(redirectUrl);

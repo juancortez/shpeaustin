@@ -44,10 +44,6 @@ module.exports = {
                 `);
             }
 
-             // BUG on how bluemix exposes file names, must be lowercase
-            id = id.toLocaleLowerCase();
-            fileExtension = fileExtension.toLocaleLowerCase();
-
             res.locals.fileInfo = {
                 id,
                 fileExtension
@@ -63,7 +59,7 @@ module.exports = {
         } = res.locals.fileInfo;
         const { absoluteFileLocation } = config.googleDrive;
 
-        const fileDestination = `${absoluteFileLocation}/${id}.${fileExtension}`;
+        const fileDestination = `${absoluteFileLocation}/${id.toLocaleLowerCase()}.${fileExtension}`;
 
         googleDrive.downloadFile(id, fileDestination, (err, response) => {
             if (err) {
