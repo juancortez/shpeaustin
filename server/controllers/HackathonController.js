@@ -8,6 +8,7 @@
 const express = require('express'),
     app = express(),
     config = require('config');
+const viewsDirectory = './public/views/';
 
 const googleDrive = require('./../services/google_drive');
 const middleware = require('./../middleware/HackathonMiddleware');
@@ -50,6 +51,10 @@ app.get('/office/getFiles', middleware.googleDriveAuth, (req, res) => {
 
         return res.json(files);
     });
+});
+
+app.get('/office/privacy', (req, res) => {
+    return res.sendFile(viewsDirectory + 'hackathon_privacy.html', { root: "." });
 });
 
 module.exports = app;
