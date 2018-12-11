@@ -74,7 +74,7 @@ app.get('/blink/isArmed', async (req, res) => {
 app.get('/blink/setArm', async (req, res) => {
     const shouldArmQuery = req.query.arm || false;
     const shouldArm = shouldArmQuery == 'true';
-    const armModeStr = (shouldArm == 'true') ? "armed mode" : "unarmed mode";
+    const armModeStr = shouldArm ? "armed mode" : "unarmed mode";
 
     const blinkApi = getBlinkInstance();
 
