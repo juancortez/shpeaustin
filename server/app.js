@@ -33,6 +33,7 @@ const express = require('express'),
     runDocker = config.docker.run,
     database = require("./lib/database.js"),
     Cloudant = require("./services/cloudant.js"),
+    BlinkApi = require('./services/blink'),
     mcapi = require('mailchimp-api'),
     path = require('path');
 
@@ -91,3 +92,15 @@ socket_connect.initiateSocket(io);
 ************************************************************************************************************/
 const mc = new mcapi.Mailchimp(privateCredentials.mailchimp.api_key);
 app.set('mc', mc);
+
+/************************************************************************************************************
+*                                  Blink Api Configuration
+************************************************************************************************************/
+const blinkApi = BlinkApi.getInstance();
+blinkApi.initialize().then(async (_) => {
+    console.log("Blink API successfully initialized");
+    blinkApi.synData();
+}).catch(err => {
+    console.error("Blink API initialization failed");
+    console.error(err);
+});

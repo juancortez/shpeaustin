@@ -74,6 +74,7 @@
     "jshint": "2.9.4",
     "less": "2.7.1",
     "less-loader": "2.2.3",
+    "node-blink-security": "^2.0.2",
     "nodemon": "1.10.2",
     "raw-loader": "0.5.1",
     "readline-sync": "^1.4.9",

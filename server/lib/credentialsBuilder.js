@@ -79,7 +79,10 @@ const Credentials = (() => {
 		        privateCredentialsBuilder.googleAuth.expiry_date = process.env.googleExpiryDate;
                 privateCredentialsBuilder.shpeaustincloudant = {};
                 privateCredentialsBuilder.shpeaustincloudant.username = process.env.cloudantKey;
-                privateCredentialsBuilder.shpeaustincloudant.password = process.env.cloudantPassword;
+				privateCredentialsBuilder.shpeaustincloudant.password = process.env.cloudantPassword;
+                privateCredentialsBuilder.blink = {};
+                privateCredentialsBuilder.blink.username = process.env.blinkUserName;
+                privateCredentialsBuilder.blink.password = process.env.blinkPassword;
 
 		        return privateCredentialsBuilder;
 		    }

@@ -59,6 +59,6 @@
         "officeOnlineUrl": "https://view.officeapps.live.com/op/view.aspx?src=",
         "localFileLocation": "/assets",
         "absoluteFileLocation": "./public/assets"
-    }
-
+    },
+    "blinkSyncIntervalSeconds": 3600
 }
