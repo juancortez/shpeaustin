@@ -3,6 +3,7 @@ const cfenv = require('cfenv'),
     appEnv = cfenv.getAppEnv(),
     request = require('request'),
     config = require('config');
+const privateCredentials = require('./../lib/credentialsBuilder.js').init();
 
 module.exports = {
     fileIdExists: (req, res, next) => {
@@ -69,5 +70,14 @@ module.exports = {
             console.log(`Successfully saved ${id} document`);
             return next();
         });
+    },
+    blinkAuth: (req, res, next) => {
+        const authorizationHeader = req.get('Authorization') || "";
+
+        if (!authorizationHeader || authorizationHeader !== privateCredentials.blink.password) {
+            return res.status(403).send("Request forbidden");
+        }
+        
+        return next();
     }
 }

@@ -59,7 +59,7 @@ app.get('/office/privacy', (req, res) => {
     return res.sendFile(viewsDirectory + 'hackathon_privacy.html', { root: "." });
 });
 
-app.get('/blink/isArmed', async (req, res) => {
+app.get('/blink/isArmed', middleware.blinkAuth, async (req, res) => {
     const blinkApi = getBlinkInstance();
     const [err, result] = await to(blinkApi.isArmed());
 
@@ -71,7 +71,7 @@ app.get('/blink/isArmed', async (req, res) => {
     }
 });
 
-app.get('/blink/setArm', async (req, res) => {
+app.get('/blink/setArm', middleware.blinkAuth, async (req, res) => {
     const shouldArmQuery = req.query.arm || false;
     const shouldArm = shouldArmQuery == 'true';
     const armModeStr = shouldArm ? "armed mode" : "unarmed mode";
