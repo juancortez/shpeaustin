@@ -3,7 +3,7 @@
   Apple Shortcut: https://support.apple.com/guide/shortcuts/request-your-first-api-apd58d46713f/ios
 */
 const Blink = require('node-blink-security');
-const { to, getNestedProperty, isEmptyObject } = require('../lib/utils');
+const { to, getNestedProperty, isEmptyObject, withTimeout } = require('../lib/utils');
 const config = require('config');
 const privateCredentials = require('./../lib/credentialsBuilder.js').init();
 
@@ -35,7 +35,7 @@ class BlinkApi {
   }
 
   async initialize() {
-    const [err] = await to(_blink.setupSystem());
+    const [err] = await withTimeout(to(_blink.setupSystem()), 5000);
     if (err) {
       return Promise.reject(err);
     } else {
@@ -61,7 +61,7 @@ class BlinkApi {
   }
 
   async setArmed(arm = true) {
-    const [err, armed] = await to(_blink.setArmed(arm));
+    const [err, armed] = await withTimeout(to(_blink.setArmed(arm)), 3000);
 
     if (err) {
       return Promise.reject(err);
@@ -83,7 +83,7 @@ class BlinkApi {
   }
 
   async _getSummary() {
-    const [err, summary] = await to(_blink.getSummary());
+    const [err, summary] = await withTimeout(to(_blink.getSummary()), 2500);
 
     if (err) {
       return Promise.reject(err);

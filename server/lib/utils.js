@@ -12,5 +12,14 @@ module.exports = {
     },
     isEmptyObject(obj) {
       return Object.keys(obj).length === 0; 
+    },
+    withTimeout: function(promise, timeout = 1000) {
+      const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          return reject("Promise timed out, please try again.");
+        }, timeout);
+      });
+
+      return Promise.race([promise, timeoutPromise]);
     }
 }
