@@ -31,8 +31,8 @@ app.get('/coordinates', middleware.blinkAuth, (req, res) => {
     }
 
     try {
-        const latitudeResult = _calculateDegreesMinutesSeconds(longitudeQuery);
-        const longtitudeResult = _calculateDegreesMinutesSeconds(latitudeQuery);
+        const latitudeResult = _calculateDegreesMinutesSeconds(latitudeQuery);
+        const longtitudeResult = _calculateDegreesMinutesSeconds(longitudeQuery);
         const readableLatitude = _convertToReadable(latitudeResult);
         const readableLongtitude = _convertToReadable(longtitudeResult);
 
