@@ -43,6 +43,13 @@ module.exports = function(app, express) {
     app.use('/hackathon',  require('../controllers/HackathonController.js'));
 
     /*************************************************************************/
+    // ShortcutsController.js
+    //
+    // The /shortcuts endpoint is used Apple Shortcuts
+    /*************************************************************************/
+    app.use('/shortcuts',  require('../controllers/ShortcutsController.js'));
+
+    /*************************************************************************/
     // Angular2
     /*************************************************************************/
     app.use(function (req, res, next) {
