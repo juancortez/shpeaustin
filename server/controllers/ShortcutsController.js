@@ -53,7 +53,7 @@ app.get('/coordinates', middleware.blinkAuth, (req, res) => {
         {
             "decimal": 42,
             "minutes": 6,
-            "seconds": 30
+            "seconds": 30.7
         }
 */
 function _calculateDegreesMinutesSeconds(input) {
@@ -65,7 +65,7 @@ function _calculateDegreesMinutesSeconds(input) {
 
     const inputMinutesDecimal = _getDecimal(inputMinutes);
     const inputSeconds = inputMinutesDecimal * 60;
-    const inputSecondsWholeNum = _getWholeNumber(inputSeconds);
+    const inputSecondsWholeNum = inputSeconds.toFixed(1);
 
     return {
         "decimal": decimalWholeNum,
@@ -76,7 +76,7 @@ function _calculateDegreesMinutesSeconds(input) {
 
 /*
     Convert to an example such as:
-        42 degrees, 21 minutes, 36 seconds
+        42 degrees, 21 minutes, 36.6 seconds
 */
 function _convertToReadable(input) {
     const { decimal, minutes, seconds } = input;
