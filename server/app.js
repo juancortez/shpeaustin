@@ -35,6 +35,7 @@ const express = require('express'),
     Cloudant = require("./services/cloudant.js"),
     BlinkApi = require('./services/blink'),
     mcapi = require('mailchimp-api'),
+    AugustApi = require('./services/august'),
     path = require('path');
 
 const root = path.join(__dirname + '/../'),
@@ -103,4 +104,15 @@ blinkApi.initialize().then(async (_) => {
 }).catch(err => {
     console.error("Blink API initialization failed");
     console.error(err);
+});
+
+/************************************************************************************************************
+*                                  August Api Configuration
+************************************************************************************************************/
+const augustApi = AugustApi.getInstance();
+augustApi.initialize((err, result) => {
+    if (err) {
+        return console.error("Unable to initialize August API...", err);
+    }
+    console.log("Successfully initialized August API");
 });

@@ -82,7 +82,9 @@ const Credentials = (() => {
 				privateCredentialsBuilder.shpeaustincloudant.password = process.env.cloudantPassword;
                 privateCredentialsBuilder.blink = {};
                 privateCredentialsBuilder.blink.username = process.env.blinkUserName;
-                privateCredentialsBuilder.blink.password = process.env.blinkPassword;
+				privateCredentialsBuilder.blink.password = process.env.blinkPassword;
+				privateCredentialsBuilder.august = {};
+				privateCredentialsBuilder.august.token = process.env.augustToken;
 
 		        return privateCredentialsBuilder;
 		    }

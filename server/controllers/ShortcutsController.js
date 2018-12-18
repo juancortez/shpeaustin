@@ -1,5 +1,7 @@
 const express = require('express'),
-    app = express();
+    app = express(),
+    AugustApi = require('./../services/august'),
+    { to, withTimeout } = require('../lib/utils');
 
 // TODO: re-write middleware for shortcuts
 const middleware = require('./../middleware/HackathonMiddleware');
@@ -45,6 +47,30 @@ app.get('/coordinates', middleware.blinkAuth, (req, res) => {
         return res.status(500).send("Invalid latitude and longitude values");
     }
 });
+
+app.get('/august', middleware.blinkAuth, async (req, res) => {
+    const shouldArm = _shouldArm(req);
+    const armModeStr = shouldArm ? "locked" : "unlocked";
+
+    const augustApi = AugustApi.getInstance();
+
+    try {
+        const [ err ] = await to(augustApi.arm(shouldArm));
+
+        if (err) {
+            return res.status(400).send("Error in August API, please try again later.");
+        }
+    
+        return res.status(200).send(`August was successfully, ${armModeStr}`);
+    } catch (e) {
+        return res.status(400).send("Promise timeout");
+    }
+});
+
+function _shouldArm(req) {
+    const shouldArmQuery = req.query.arm || false;
+    return shouldArmQuery == 'true';
+}
 
 /*
     Will convert from decimal degrees to DMS
