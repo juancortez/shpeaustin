@@ -74,6 +74,16 @@ app.use(favicon(staticRoot + '/assets/shpe_austin_icon.png'));
 app.use('/', express.static(root + '/dist'));
 app.use('/scripts', express.static(root + '/node_modules'));
 
+if (isLocal) {
+    app.get('/playground/react', function(req, res) {
+        return res.sendFile(path.join(staticRoot + '/views/react.html'), {
+            headers: {
+                'Cache-Control': 'no-cache'
+            }
+        });
+    });
+}
+
 require('./router/main')(app, express); // adds the main.js file to send response to browser
 
 // start server on the specified port and binding host
