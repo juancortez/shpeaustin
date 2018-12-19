@@ -49,7 +49,7 @@ class BlinkApi {
       if (!_instance) {
         return reject("Not yet initialized");
       }
-  
+
       this._getDataByPath(["network", "armed"], (err, data) => {
         if (err) {
           return reject(err);
@@ -75,8 +75,15 @@ class BlinkApi {
       const [err, data] = await to(this._getSummary());
       if (!err) {
         const date = new Date().toISOString();
-        _cache = data;
-        this._log(`${date}: Data updated.`);
+        if (data && Array.isArray(data)) {
+          _cache = data.filter(v => !!v).reduce((acc, current) => {
+            return {
+              ...acc,
+              ...current
+            }
+          }, {});
+          this._log(`${date}: Data updated.`);
+        }
       }
       this._pollSyncData();
     }, immediate ? 0 : _blinkSyncIntervalSeconds);

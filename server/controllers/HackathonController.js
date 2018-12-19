@@ -13,9 +13,6 @@ const viewsDirectory = './public/views/';
 const googleDrive = require('./../services/google_drive');
 const middleware = require('./../middleware/HackathonMiddleware');
 
-const BlinkApi = require('./../services/blink');
-const { to } = require('../lib/utils');
-
 /*
     Get a Google Drive document by an ID and display it in office online
         eg. /hackathon/office/online?fileId=1nx_WkZqVoTGgkMzg6joZUkcm6KHDSThl
@@ -58,37 +55,5 @@ app.get('/office/getFiles', middleware.googleDriveAuth, (req, res) => {
 app.get('/office/privacy', (req, res) => {
     return res.sendFile(viewsDirectory + 'hackathon_privacy.html', { root: "." });
 });
-
-app.get('/blink/isArmed', middleware.blinkAuth, async (req, res) => {
-    const blinkApi = getBlinkInstance();
-    const [err, result] = await to(blinkApi.isArmed());
-
-    if (err) {
-        console.error(err);
-        return res.status(400).send("Unable to detect, please try again later.");
-    } else {
-        return res.status(200).send(`Blink is armed: ${result}`);
-    }
-});
-
-app.get('/blink/setArm', middleware.blinkAuth, async (req, res) => {
-    const shouldArmQuery = req.query.arm || false;
-    const shouldArm = shouldArmQuery == 'true';
-    const armModeStr = shouldArm ? "armed mode" : "unarmed mode";
-
-    const blinkApi = getBlinkInstance();
-
-    const [err] = await to(blinkApi.setArmed(shouldArm));
-
-    if (err) {
-        return res.status(400).send(`Unable to perform operation to arm the system to ${armModeStr}`);
-    } else {
-        return res.status(200).send(`Blink successful set to: ${armModeStr}`);
-    }
-});
-
-function getBlinkInstance() {
-    return BlinkApi.getInstance();
-}
 
 module.exports = app;

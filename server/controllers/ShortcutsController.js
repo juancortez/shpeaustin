@@ -3,8 +3,8 @@ const express = require('express'),
     AugustApi = require('./../services/august'),
     { to, withTimeout } = require('../lib/utils');
 
-// TODO: re-write middleware for shortcuts
-const middleware = require('./../middleware/HackathonMiddleware');
+const BlinkApi = require('./../services/blink');
+const middleware = require('./../middleware/ShortcutsMiddleware');
 
 /*
     Convert Decimal Degrees to Degrees Minutes Seconds (DMS)
@@ -17,7 +17,7 @@ const middleware = require('./../middleware/HackathonMiddleware');
             "longitude": "45 degrees, 38 minutes, 59 seconds"
         }    
 */
-app.get('/coordinates', middleware.blinkAuth, (req, res) => {
+app.get('/coordinates', middleware.shortcutsAuth, (req, res) => {
     const { longitude, latitude } = req.query;
 
     if (!longitude || !latitude) {
@@ -48,7 +48,7 @@ app.get('/coordinates', middleware.blinkAuth, (req, res) => {
     }
 });
 
-app.get('/august', middleware.blinkAuth, async (req, res) => {
+app.get('/august', middleware.shortcutsAuth, async (req, res) => {
     const shouldArm = _shouldArm(req);
     const armModeStr = shouldArm ? "locked" : "unlocked";
 
@@ -66,6 +66,39 @@ app.get('/august', middleware.blinkAuth, async (req, res) => {
         return res.status(400).send("Promise timeout");
     }
 });
+
+
+app.get('/blink/isArmed', middleware.shortcutsAuth, async (req, res) => {
+    const blinkApi = getBlinkInstance();
+    const [err, result] = await to(blinkApi.isArmed());
+
+    if (err) {
+        console.error(err);
+        return res.status(400).send("Unable to detect, please try again later.");
+    } else {
+        return res.status(200).send(`Blink is armed: ${result}`);
+    }
+});
+
+app.get('/blink/setArm', middleware.shortcutsAuth, async (req, res) => {
+    const shouldArmQuery = req.query.arm || false;
+    const shouldArm = shouldArmQuery == 'true';
+    const armModeStr = shouldArm ? "armed mode" : "unarmed mode";
+
+    const blinkApi = getBlinkInstance();
+
+    const [err] = await to(blinkApi.setArmed(shouldArm));
+
+    if (err) {
+        return res.status(400).send(`Unable to perform operation to arm the system to ${armModeStr}`);
+    } else {
+        return res.status(200).send(`Blink successful set to: ${armModeStr}`);
+    }
+});
+
+function getBlinkInstance() {
+    return BlinkApi.getInstance();
+}
 
 function _shouldArm(req) {
     const shouldArmQuery = req.query.arm || false;
