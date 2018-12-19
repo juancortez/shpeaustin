@@ -1,6 +1,6 @@
 (() => {
     ReactDOM.render(
-        <Components.Hooks />,
+        <Components.NotificationComponent />,
         document.getElementById('root')
     );
 })();
