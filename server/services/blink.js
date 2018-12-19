@@ -35,7 +35,7 @@ class BlinkApi {
   }
 
   async initialize() {
-    const [err] = await withTimeout(to(_blink.setupSystem()), 5000);
+    const [err] = await to(withTimeout(to(_blink.setupSystem()), 5000));
     if (err) {
       return Promise.reject(err);
     } else {
@@ -61,7 +61,7 @@ class BlinkApi {
   }
 
   async setArmed(arm = true) {
-    const [err, armed] = await withTimeout(to(_blink.setArmed(arm)), 3000);
+    const [err, armed] = await to(withTimeout(to(_blink.setArmed(arm)), 3000));
 
     if (err) {
       return Promise.reject(err);
@@ -83,7 +83,7 @@ class BlinkApi {
   }
 
   async _getSummary() {
-    const [err, summary] = await withTimeout(to(_blink.getSummary()), 2500);
+    const [err, summary] = await to(withTimeout(to(_blink.getSummary()), 2500));
 
     if (err) {
       return Promise.reject(err);

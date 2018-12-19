@@ -1,7 +1,7 @@
 /*
   API documentation: https://medium.com/@nolanbrown/august-lock-rest-apis-the-basics-7ec7f31e7874
 */
-const { to, getNestedProperty, isEmptyObject, withTimeout } = require('../lib/utils');
+const { isEmptyObject } = require('../lib/utils');
 const privateCredentials = require('./../lib/credentialsBuilder.js').init();
 const request = require('request');
 

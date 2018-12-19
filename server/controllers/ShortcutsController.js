@@ -55,7 +55,7 @@ app.get('/august', middleware.blinkAuth, async (req, res) => {
     const augustApi = AugustApi.getInstance();
 
     try {
-        const [ err ] = await to(augustApi.arm(shouldArm));
+        const [ err ] = await to(withTimeout(to(augustApi.arm(shouldArm)), 5000));
 
         if (err) {
             return res.status(400).send("Error in August API, please try again later.");
