@@ -52,19 +52,26 @@ app.get('/august', middleware.shortcutsAuth, async (req, res) => {
     const shouldArm = _shouldArm(req);
     const armModeStr = shouldArm ? "locked" : "unlocked";
 
-    const augustApi = AugustApi.getInstance();
-
-    try {
-        const [ err ] = await to(withTimeout(to(augustApi.arm(shouldArm)), 5000));
-
+    /* Extra feature: Disarm blink when august door gets unlocked */
+    const shouldDisarmBlink = !!req.query.disarmBlink;
+    if (!shouldArm && shouldDisarmBlink) {
+        const blinkApi = getBlinkInstance();
+        const [err] = await to(blinkApi.setArmed(shouldArm));
         if (err) {
-            return res.status(400).send("Error in August API, please try again later.");
+            console.error(`Unable to unarm blink ${err}`);
+        } else {
+            console.log(`Successfully disarmed blink`);
         }
-    
-        return res.status(200).send(`August was successfully, ${armModeStr}`);
-    } catch (e) {
-        return res.status(400).send("Promise timeout");
     }
+
+    const augustApi = AugustApi.getInstance();
+    const [ err ] = await to(withTimeout(to(augustApi.arm(shouldArm)), 5000));
+
+    if (err) {
+        return res.status(400).send("Error in August API, please try again later.");
+    }
+
+    return res.status(200).send(`August was successfully, ${armModeStr}`);
 });
 
 
@@ -81,8 +88,7 @@ app.get('/blink/isArmed', middleware.shortcutsAuth, async (req, res) => {
 });
 
 app.get('/blink/setArm', middleware.shortcutsAuth, async (req, res) => {
-    const shouldArmQuery = req.query.arm || false;
-    const shouldArm = shouldArmQuery == 'true';
+    const shouldArm = _shouldArm(req);
     const armModeStr = shouldArm ? "armed mode" : "unarmed mode";
 
     const blinkApi = getBlinkInstance();
