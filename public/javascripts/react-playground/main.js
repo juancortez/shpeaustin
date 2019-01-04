@@ -1,6 +1,6 @@
 (() => {
     ReactDOM.render(
-        <Components.NotificationComponent />,
+        <Components.BasicUseEffectComponent />,
         document.getElementById('root')
     );
 })();

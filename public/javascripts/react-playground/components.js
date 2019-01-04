@@ -1,5 +1,7 @@
 const { useEffect, useState, useReducer, Fragment } = React;
 
+const _timerObservable = new Observable();
+
 const Components = (() => {
     const _initialCounterState = {
         count: 0
@@ -15,6 +17,33 @@ const Components = (() => {
                 Notification API Example
             </div>
         );
+    }
+
+    function BasicUseEffectComponent() {
+        const [isSubscriptionEnabled, disableSubscription] = useState(true);
+
+        useEffect(() => {
+            _timerObservable.subscribe(Logger);
+
+            const fireInterval = 500;
+            setInterval(() => {
+                _timerObservable.fire("Test");
+            }, fireInterval);
+
+            if (!isSubscriptionEnabled) {
+                _timerObservable.unsubscribe(Logger);
+            }
+        });
+
+        return (
+            <div>
+                <h1>Click to disable subscription:</h1>
+                <button onClick={() => disableSubscription(false)}>
+                    Disable
+                </button>
+            </div>
+
+        )
     }
 
     function BasicHook() {
@@ -137,6 +166,7 @@ const Components = (() => {
         BasicHook,
         ReducerHook,
         RenderPropExample,
-        NotificationComponent
+        NotificationComponent,
+        BasicUseEffectComponent
     };
 })();

@@ -49,26 +49,21 @@ app.get('/coordinates', middleware.shortcutsAuth, (req, res) => {
 });
 
 app.get('/august', middleware.shortcutsAuth, async (req, res) => {
-    const shouldArm = _shouldArm(req);
-    const armModeStr = shouldArm ? "locked" : "unlocked";
+    const shouldArmAugustLock = _shouldArm(req);
+    const armModeStr = shouldArmAugustLock ? "locked" : "unlocked";
 
     /* Extra feature: Disarm blink when august door gets unlocked */
-    const shouldDisarmBlink = !!req.query.disarmBlink;
-    if (!shouldArm && shouldDisarmBlink) {
-        const blinkApi = getBlinkInstance();
-        const [err] = await to(blinkApi.setArmed(shouldArm));
-        if (err) {
-            console.error(`Unable to unarm blink ${err}`);
-        } else {
-            console.log(`Successfully disarmed blink`);
-        }
+    const shouldDisarmBlink = req.query.disarmBlink == 'true';
+    if(!shouldArmAugustLock && shouldDisarmBlink) {
+        await to(_disarmBlink());
     }
 
     const augustApi = AugustApi.getInstance();
-    const [ err ] = await to(withTimeout(to(augustApi.arm(shouldArm)), 5000));
+    const [ err ] = await to(augustApi.arm(shouldArmAugustLock));
 
     if (err) {
-        return res.status(400).send("Error in August API, please try again later.");
+        console.error(err);
+        return res.status(400).send("Error in August API, please try again later." + err);
     }
 
     return res.status(200).send(`August was successfully, ${armModeStr}`);
@@ -76,7 +71,7 @@ app.get('/august', middleware.shortcutsAuth, async (req, res) => {
 
 
 app.get('/blink/isArmed', middleware.shortcutsAuth, async (req, res) => {
-    const blinkApi = getBlinkInstance();
+    const blinkApi = _getBlinkInstance();
     const [err, result] = await to(blinkApi.isArmed());
 
     if (err) {
@@ -91,7 +86,7 @@ app.get('/blink/setArm', middleware.shortcutsAuth, async (req, res) => {
     const shouldArm = _shouldArm(req);
     const armModeStr = shouldArm ? "armed mode" : "unarmed mode";
 
-    const blinkApi = getBlinkInstance();
+    const blinkApi = _getBlinkInstance();
 
     const [err] = await to(blinkApi.setArmed(shouldArm));
 
@@ -102,7 +97,18 @@ app.get('/blink/setArm', middleware.shortcutsAuth, async (req, res) => {
     }
 });
 
-function getBlinkInstance() {
+async function _disarmBlink() {
+    console.log("Attempt to disarm Blink...");
+    const blinkApi = _getBlinkInstance();
+    const [err] = await to(blinkApi.setArmed(false));
+    if (err) {
+        console.error(`Unable to unarm blink ${err}`);
+    } else {
+        console.log(`Successfully disarmed blink`);
+    }
+}
+
+function _getBlinkInstance() {
     return BlinkApi.getInstance();
 }
 
