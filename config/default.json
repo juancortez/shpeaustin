@@ -60,5 +60,9 @@
         "localFileLocation": "/assets",
         "absoluteFileLocation": "./public/assets"
     },
-    "blinkSyncIntervalSeconds": 3600
+    "blinkSyncIntervalSeconds": 3600,
+    "southWest": {
+        "checkIntervalMs": 3600000,
+        "lowestFarePrice": 400
+    }
 }

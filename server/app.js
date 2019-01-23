@@ -36,7 +36,9 @@ const express = require('express'),
     BlinkApi = require('./services/blink'),
     mcapi = require('mailchimp-api'),
     AugustApi = require('./services/august'),
-    path = require('path');
+    Southwest = require('./services/southwest').Southwest,
+    path = require('path'),
+    TwilioApi = require('./services/twilio');
 
 const root = path.join(__dirname + '/../'),
     staticRoot = path.join(__dirname + '/../public/');
@@ -126,3 +128,6 @@ augustApi.initialize((err, result) => {
     }
     console.log("Successfully initialized August API");
 });
+
+TwilioApi.initialize();
+Southwest.checkFares();

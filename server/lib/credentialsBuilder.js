@@ -85,6 +85,11 @@ const Credentials = (() => {
 				privateCredentialsBuilder.blink.password = process.env.blinkPassword;
 				privateCredentialsBuilder.august = {};
 				privateCredentialsBuilder.august.token = process.env.augustToken;
+				privateCredentialsBuilder.twilio = {};
+				privateCredentialsBuilder.twilio.account = process.env.twilioAccount;
+				privateCredentialsBuilder.twilio.authToken = process.env.twilioToken;
+				privateCredentialsBuilder.twilio.twilioNumber = process.env.twilioNumber;
+				privateCredentialsBuilder.twilio.personalNumber = process.env.twilioPersonalNumber;
 
 		        return privateCredentialsBuilder;
 		    }
