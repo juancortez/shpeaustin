@@ -38,7 +38,8 @@ const express = require('express'),
     AugustApi = require('./services/august'),
     Southwest = require('./services/southwest').Southwest,
     path = require('path'),
-    TwilioApi = require('./services/twilio');
+    TwilioApi = require('./services/twilio'),
+    SendGridApi = require('./services/sendGrid');
 
 const root = path.join(__dirname + '/../'),
     staticRoot = path.join(__dirname + '/../public/');
@@ -131,3 +132,4 @@ augustApi.initialize((err, result) => {
 
 TwilioApi.initialize();
 Southwest.checkFares();
+SendGridApi.initialize();

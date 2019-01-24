@@ -5,8 +5,8 @@
         "deployed": "http://us.austinshpe.org"
     },
     "sendGrid": {
-        "sendGridEmail": "shpeaustin@gmail.com",
-        "sendGridEmailBcc": "cortezjuanjr@gmail.com"
+        "sendGridEmail": "cortezjuanjr@gmail.com",
+        "sendGridEmailBcc": "footballjuan777@sbcglobal.net"
     },
     "docker":{
         "run": false

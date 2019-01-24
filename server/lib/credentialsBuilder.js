@@ -66,9 +66,7 @@ const Credentials = (() => {
 		        privateCredentialsBuilder.googleDriveCredentials.scope = process.env.googleDriveScopes;
 		        privateCredentialsBuilder.googleDriveCredentials.expiry_date = process.env.googleDriveExpiryDate;
 		        privateCredentialsBuilder.sendGrid = {};
-		        privateCredentialsBuilder.sendGrid.credentials = {};
-		        privateCredentialsBuilder.sendGrid.credentials.username = process.env.sendGridUser;
-		        privateCredentialsBuilder.sendGrid.credentials.password = process.env.sendGridPass;
+		        privateCredentialsBuilder.sendGrid.apiKey = process.env.sendGridPass;
 		        privateCredentialsBuilder.mailchimp = {};
 		        privateCredentialsBuilder.mailchimp.api_key = process.env.mailchimp;
 		        privateCredentialsBuilder.googleDriveAuth = {};

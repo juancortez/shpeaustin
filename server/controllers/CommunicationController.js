@@ -9,35 +9,26 @@ const express = require('express'),
     app = express(),
     config = require('config'),
     database = require('../lib/database.js'),
-    privateCredentials = require('../lib/credentialsBuilder.js').init();
+    privateCredentials = require('../lib/credentialsBuilder.js').init(),
+    SendGridApi = require('./../services/sendGrid');
+
+const sendGridEmail = config.sendGrid.sendGridEmail,
+    sendGridEmailBcc = config.sendGrid.sendGridEmailBcc;
 
 app.post('/contact', (req, res) => {
-    const bot = req.app.get('bot');
     let body = req.body || null;
 
-    if (!(!!body)) {
+    if (!body) {
         return res.status(400).send("Body is empty, invalid request");
     }
-
-    if (process.env.VCAP_SERVICES) {
-        var env = JSON.parse(process.env.VCAP_SERVICES);
-        var credentials = env['sendgrid'][0].credentials;
-    } else {
-        var credentials = privateCredentials.sendgrid.credentials;
-    }
-
-    //sendgrid documentation and attaching to bluemix: https://github.com/sendgrid/reseller-docs/tree/master/IBM
-    const sendgrid = require('sendgrid')(credentials.username, credentials.password),
-        sendGridEmail = config.sendGrid.sendGridEmail,
-        sendGridEmailBcc = config.sendGrid.sendGridEmailBcc;
 
     let {
         name = "SHPE-BOT",
         phone = "",
         email = sendGridEmail,
-        category = "Add To Newsletter",
+        subject = "SHPE Austin Website Message",
         message = "",
-        subscribe
+        subscribe = false
     } = body;
 
     let messageSent;
@@ -45,34 +36,23 @@ app.post('/contact', (req, res) => {
     if (subscribe) {
         messageSent = `Please add the following email address ${email} to the newsletter.`;
     } else {
-        messageSent = `Name:${name}, Phone Number: ${phone}, E-mail Address: ${email}, Subject: ${category}, Message: ${message}.`;;
+        messageSent = `Name:${name}, Phone Number: ${phone}, E-mail Address: ${email}, Subject: ${subject}, Message: ${message}.`;;
     }
 
     console.log(`Sending the following message to: ${sendGridEmail}: ${messageSent}`);
     
-    let emailPromise = new Promise((resolve, reject) => {
-        sendgrid.send({
-            to: sendGridEmail,
-            bcc: sendGridEmailBcc,
-            from: email,
-            subject: 'SHPE Austin Website Message',
-            text: messageSent,
-            html: `<b>Name:</b> ${name} <br> <b>Phone number:</b> ${phone} <br><b>E-mail address:</b>${email}<br><b> Category:</b>${category}<br><b>Message:</b>${message}`
-        }, (err, json) => {
-            if (err) {
-                console.error(err);
-                return reject(err);
-            }
-            let success = `E-mail sent successfully. ${JSON.stringify(json)} \nSent to: ${sendGridEmail}`;
-            return resolve(success);
-        });
-    });
-
-    emailPromise.then(values => { 
-        console.log(values);
-        return res.sendStatus(200);
-    }, reason => {
-        console.error(reason);
+    SendGridApi.sendMessage({
+        to: sendGridEmail,
+        bcc: sendGridEmailBcc,
+        from: email,
+        subject,
+        text: messageSent,
+        html: `<b>Name:</b> ${name} <br> <b>Phone number:</b> ${phone} <br><b>E-mail address:</b>${email}<br><b> Subject:</b>${subject}<br><b>Message:</b>${message}`
+    }).then( _ => {
+        let success = `E-mail sent successfully. \nSent to: ${sendGridEmail}`;
+        return res.status(200).send(success);
+    }).catch(err => {
+        console.error(err);
         return res.sendStatus(400);
     });
 });

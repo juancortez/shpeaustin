@@ -8,6 +8,7 @@ const southWestConfig = config.southWest || {};
 const { checkIntervalMs = 3600000, lowestFarePrice: LOWEST_FARE_PRICE = 300 } = southWestConfig;
 let checkFareInterval = null;
 const TwilioApi = require('./twilio');
+const SendGridApi = require('./sendGrid');
 
 /* If API Fails more than MAX_FAILURES times, stop invoking API */
 let NUM_FAILURES = 0;

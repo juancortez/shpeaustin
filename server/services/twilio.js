@@ -7,8 +7,11 @@ const Twilio = (() => {
 
     return {
         initialize: function() {
-            console.log("Initializing Twilio");
-            client = new twilio(account, authToken);
+            if (!client) {
+                console.log("Initializing Twilio");
+                client = new twilio(account, authToken);
+            }
+            return client;
         },
         sendMessage: function (message) {
             return new Promise((resolve, reject) => {
