@@ -42,30 +42,34 @@ const Cloudant = (() => {
     };
 
     function _get(key, cb) {
-        if (!_shpeDb) {
+        if (!_shpeDb && !_shpeDbInstancePromise) {
             return cb({reason: "Shpe database has not been initialized, unable to get from Cloudant"});
         }
 
-        const cloudantId = _findCloundantId(key);
+        _shpeDbInstancePromise.then(() => {
+            const cloudantId = _findCloundantId(key);
 
-        if (!cloudantId) {
-            return cb({reason: `Unable to find cloudantId for ${key} database key.`});
-        }
-
-        _shpeDb.get(cloudantId, function(err, data) {
-            if (err) {
-                return cb({reason: err});
+            if (!cloudantId) {
+                return cb({reason: `Unable to find cloudantId for ${key} database key.`});
             }
-
-            const keyData = data[key] || null;
-
-            if (!keyData) {
-                return cb({reason: `Data for ${key} not found.`})
-            }
-
-            _cacheRevId(key, data._rev);
-
-            return cb(null, keyData);
+    
+            _shpeDb.get(cloudantId, function(err, data) {
+                if (err) {
+                    return cb({reason: err});
+                }
+    
+                const keyData = data[key] || null;
+    
+                if (!keyData) {
+                    return cb({reason: `Data for ${key} not found.`})
+                }
+    
+                _cacheRevId(key, data._rev);
+    
+                return cb(null, keyData);
+            });
+        }).catch(err => {
+            return cb(err);
         });
     }
 

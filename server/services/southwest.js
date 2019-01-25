@@ -3,12 +3,11 @@
     specified LOWEST_FARE_PRICE, send an email to buy flight.
 */
 const request = require("request");
-const config = require('config');
-const southWestConfig = config.southWest || {};
-const { checkIntervalMs = 3600000, lowestFarePrice: LOWEST_FARE_PRICE = 300 } = southWestConfig;
-let checkFareInterval = null;
 const TwilioApi = require('./twilio');
-const SendGridApi = require('./sendGrid');
+const FeatureSettingsApi = require('./../lib/featureSettings');
+
+const FeatureSettings = FeatureSettingsApi.getInstance();
+let { intervalCheck: INTERVAL_CHECK = 3600000, lowestFarePrice: LOWEST_FARE_PRICE = 300 } = FeatureSettings.getSetting("southWest");
 
 /* If API Fails more than MAX_FAILURES times, stop invoking API */
 let NUM_FAILURES = 0;
@@ -51,6 +50,8 @@ function _performSouthwestRequest() {
         },
         json: true
     };
+
+    _checkFeatureSettingUpdates();
     
     request(options, function (error, response, body) {
       if (error) {
@@ -63,6 +64,15 @@ function _performSouthwestRequest() {
     });
 }
 
+function _checkFeatureSettingUpdates() {
+    const southWestSettings = FeatureSettings.getSetting("southWest") || null;
+
+    if (southWestSettings) {
+        INTERVAL_CHECK = southWestSettings.intervalCheck || INTERVAL_CHECK;
+        LOWEST_FARE_PRICE = southWestSettings.lowestFarePrice || LOWEST_FARE_PRICE;
+    }
+}
+
 function _findLowestPrice(result) {
     if (result && result.success) {
         const searchResults = result.data && result.data.searchResults ? result.data.searchResults : null;
@@ -70,7 +80,6 @@ function _findLowestPrice(result) {
         const currentLowestPrice = _getLowestPrice(fareSummary);
 
         if (currentLowestPrice <= LOWEST_FARE_PRICE) {
-            clearInterval(checkFareInterval);
             _sendNotification(currentLowestPrice);
             return;
         } else {
@@ -92,16 +101,17 @@ function _sendNotification(currentLowestPrice) {
     TwilioApi.sendMessage(msg);
 }
 
+function _pollSouthwest() {
+    if (NUM_FAILURES >= MAX_FAILURES) {
+        return;
+    }
+
+    _performSouthwestRequest();
+    setTimeout(_pollSouthwest, INTERVAL_CHECK);
+}
+
 module.exports.Southwest = {
     checkFares: function() {
-        _performSouthwestRequest();
-        checkFareInterval = setInterval(() => {
-            if (NUM_FAILURES >= MAX_FAILURES) {
-                clearInterval(checkFareInterval);
-                return;
-            }
-
-            _performSouthwestRequest();
-        }, checkIntervalMs);
+        _pollSouthwest();
     }
 }

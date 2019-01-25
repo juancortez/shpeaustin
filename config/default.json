@@ -54,6 +54,10 @@
         "fileName": "mailchimp.json",
         "cloudantId": "1515a97034345d8a215eb760e461a00d",
         "name": "mailchimp"
+    }, {
+        "fileName": "",
+        "cloudantId": "b0f1aac329b4bb6458e9fd9ba9d85bc9",
+        "name": "featureSettings"
     }],
     "googleDrive": {
         "officeOnlineUrl": "https://view.officeapps.live.com/op/view.aspx?src=",
@@ -61,8 +65,10 @@
         "absoluteFileLocation": "./public/assets"
     },
     "blinkSyncIntervalSeconds": 3600,
-    "southWest": {
-        "checkIntervalMs": 3600000,
-        "lowestFarePrice": 400
+    "defaultConfigSettings": {
+        "southWest": {
+            "intervalCheck": 3600000,
+            "lowestFarePrice": 400
+        }
     }
 }

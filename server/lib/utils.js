@@ -10,6 +10,9 @@ module.exports = {
         return (acc && acc[current]) ? acc[current] : null;
       }, obj);
     },
+    isObject(obj) {
+      return typeof obj === 'object' && obj !== null;
+    },
     isEmptyObject(obj) {
       return Object.keys(obj).length === 0; 
     },

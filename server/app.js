@@ -19,18 +19,12 @@ const express = require('express'),
     appEnv = cfenv.getAppEnv(),
     isLocal = appEnv.isLocal,
     bodyParser = require('body-parser'),
-    fs = require('fs'),
-    request = require('request'),
     favicon = require('serve-favicon'),
-    router = express.Router(),
     compression = require('compression'),
     privateCredentials = require('./lib/credentialsBuilder.js').init(),
     cloudantCredentials = privateCredentials.shpeaustincloudant,
-    slackCredentials = privateCredentials.slack,
     socket_connect = require("./services/socket.js"),
     socket = require('socket.io'),
-    config = require('config'),
-    runDocker = config.docker.run,
     database = require("./lib/database.js"),
     Cloudant = require("./services/cloudant.js"),
     BlinkApi = require('./services/blink'),
@@ -39,12 +33,13 @@ const express = require('express'),
     Southwest = require('./services/southwest').Southwest,
     path = require('path'),
     TwilioApi = require('./services/twilio'),
-    SendGridApi = require('./services/sendGrid');
+    SendGridApi = require('./services/sendGrid'),
+    FeatureSettingsApi = require('./lib/featureSettings');
 
 const root = path.join(__dirname + '/../'),
     staticRoot = path.join(__dirname + '/../public/');
 
-
+const FeatureSettings = FeatureSettingsApi.getInstance();
 /************************************************************************************************************
 *                                   Cloudant Database Connection
 ************************************************************************************************************/
@@ -60,6 +55,7 @@ Cloudant.init(cloudantCredentials, (err, cloudantDb) => {
         console.log("Database Singleton successfully created!");
 
         Cloudant.prefetchData();
+        FeatureSettings.setDatabase(Cloudant);
     });
 });
 
