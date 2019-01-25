@@ -13,17 +13,19 @@ const Console = (() => {
         error: clc.red
     };
 
-    ["log", "warn", "error"].forEach((method) => {
-        let oldMethod = console[method].bind(console);
-        console[method] = function(){
-            oldMethod.apply(
-                console,
-                [mapping[method](createTimeStamp())]
-                    .concat(formatCallerFile(getCaller()))
-                    .concat(formatArguments(arguments))
-            );
-        };
-    });
+    function init() {
+        ["log", "warn", "error"].forEach((method) => {
+            let oldMethod = console[method].bind(console);
+            console[method] = function(){
+                oldMethod.apply(
+                    console,
+                    [mapping[method](createTimeStamp())]
+                        .concat(formatCallerFile(getCaller()))
+                        .concat(formatArguments(arguments))
+                );
+            };
+        });
+    }
 
     `
         Creates a timestamp that looks like the following: 
@@ -103,4 +105,10 @@ const Console = (() => {
             finalPath =  fileName.replace(pathName, '');
         return `{${finalPath}}`;
     }
+
+    return {
+        init
+    }
 })();
+
+module.exports = Console;

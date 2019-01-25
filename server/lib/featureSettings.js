@@ -1,11 +1,11 @@
 const config = require('config');
-const utils = require('./utils');
+const Logger = require('./logger').createLogger("<FeatureSettings>");
 let _instance;
 
 class FeatureSettings {
     constructor() {
         this.prelog = "<FeatureSettings>";
-        this.syncIntervalMs = 30000;
+        this.syncIntervalMs = 900000;
         
         this.settings = this._getDefaultSettings();
 
@@ -35,40 +35,19 @@ class FeatureSettings {
     }
 
     getDatabaseSettings() {
-        this._log("Fetching feature settings");
+        Logger.log("Fetching feature settings");
         this.database.get("featureSettings", (err, data) => {
             if (err) {
-                this._error("Error in fetching feature settings", err);
+                Logger.error("Error in fetching feature settings", err);
                 return;
             }
-            this._log("Successfully fetched feature settings data");
+            Logger.log("Successfully fetched feature settings data");
             this.settings = data;
         })
     }
 
     _getDefaultSettings() {
         return config.defaultConfigSettings;
-    }
-
-    _log(msg) {
-        console.log(`${this.prelog}: ${this._convertToString(msg)}`);
-    }
-
-    _error(msg) {
-        console.error(`${this.prelog}: ${this._convertToString(msg)}`);
-    }
-
-    /* If an object, try to convert it to a string */
-    _convertToString(msg) {
-        if (!utils.isObject(msg)) {
-            return msg;
-        }
-
-        try {
-            return JSON.stringify(msg);
-        } catch(e) {
-            return msg;
-        }
     }
 }
 

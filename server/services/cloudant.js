@@ -13,6 +13,7 @@ const Cloudant = (() => {
     const CloudantModule = require('@cloudant/cloudant'),
     database = require("./../lib/database.js"),
     config = require('config'),
+    Logger = require('./../lib/logger').createLogger("<Cloudant>"),
     dbKeys = config.dbKeys;
 
     const uuid = require('node-uuid');
@@ -92,7 +93,7 @@ const Cloudant = (() => {
             if(err) {
                return cb({reason: err});
             }
-            console.log(`Successully set ${key} key for SHPE database`);
+            Logger.log(`Successully set ${key} key for SHPE database`);
             _cacheRevId(key, data._rev);
 
             return cb(null);
@@ -108,20 +109,20 @@ const Cloudant = (() => {
 
                 _get(name, (err, keyData) => {
                     if (err) {
-                        return console.error(err);
+                        return Logger.error(err);
                     }
 
                     database.cacheData(name, keyData, (err) => {
                         if (err) {
-                            console.error(`Error: ${err.reason}`);
+                            Logger.error(`Error: ${err.reason}`);
                             return;
                         }
-                        console.log(`Successully cached ${name} data!`);
+                        Logger.log(`Successully cached ${name} data!`);
                     });
                 });
             });
         }).catch(err => {
-            console.error("Unable to prefetch data since SHPE Database was not set ", err);
+            Logger.error("Unable to prefetch data since SHPE Database was not set ", err);
         });
     }
 
@@ -199,7 +200,7 @@ const Cloudant = (() => {
         },
         prefetchData: () => {
             if (!instance) {
-                return console.error("Must instantiate a cloudant instance first, failing gracefuly");
+                return Logger.error("Must instantiate a cloudant instance first, failing gracefuly");
             }
             return _prefetchData();
         }
@@ -250,7 +251,7 @@ function _checkNumArguments(args, expected) {
     let numArgs = args.length || 0;
 
     if(numArgs !== expected){
-        console.error(`Incorrect number of arguments! Expected ${expected} and got ${numArgs}. Request will hang and will ultimately fail.`);
+        Logger.error(`Incorrect number of arguments! Expected ${expected} and got ${numArgs}. Request will hang and will ultimately fail.`);
     }
 }
 

@@ -1,6 +1,7 @@
 const twilio = require('twilio');
 const privateCredentials = require('./../lib/credentialsBuilder.js').init();
 const { account, authToken, twilioNumber, personalNumber} = privateCredentials.twilio;
+const Logger = require('./../lib/logger').createLogger("<Twilio>");
 
 const Twilio = (() => {
     let client;
@@ -8,7 +9,7 @@ const Twilio = (() => {
     return {
         initialize: function() {
             if (!client) {
-                console.log("Initializing Twilio");
+                Logger.log("Initializing Twilio");
                 client = new twilio(account, authToken);
             }
             return client;
@@ -25,7 +26,7 @@ const Twilio = (() => {
                     }).then(_ => {
                         return resolve("Twilio message sent!");
                     }).catch(err => {
-                        console.error(err);
+                        Logger.error(err);
                         return reject("Error in sending Twiolio message");
                     });
                 }

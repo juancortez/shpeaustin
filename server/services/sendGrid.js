@@ -2,25 +2,17 @@ const sgMail = require('@sendgrid/mail');
 const config = require('config');
 const privateCredentials = require('../lib/credentialsBuilder.js').init();
 const { apiKey } = privateCredentials.sendGrid;
+const Logger = require('./../lib/logger').createLogger("<SendGrid>");
 
 const SendGrid = (() => {
     let _initialized = false;
-    let _preLog = "<SendGrid>"
     let _defaultFrom = config.sendGrid.sendGridEmail;
     let _defaultSubject = "SHPE Austin Message";
-
-    function _log(msg) {
-        console.log(`${_preLog}: ${msg}`);
-    }
-
-    function _error(msg) {
-        console.error(`${_preLog}: ${msg}`);
-    }
 
     return {
         initialize: function() {
             if (!_initialized) {
-                _log("Initializing SendGrid mail API");
+                Logger.log("Initializing SendGrid mail API");
                 sgMail.setApiKey(apiKey);
             }
             _initialized = true;
@@ -29,7 +21,7 @@ const SendGrid = (() => {
             return new Promise((resolve, reject) => {
                 if (!_initialized) {
                     const err = "Must initialize SendGrid before sending a message";
-                    _error(err);
+                    Logger.error(err);
                     return reject(err);
                 }
                 const {
@@ -42,7 +34,7 @@ const SendGrid = (() => {
 
                 if (!text || !to) {
                     const err = "Required parameters for send message not provided";
-                    _error(err);
+                    Logger.error(err);
                     return reject(err);
                 }
 
@@ -59,10 +51,10 @@ const SendGrid = (() => {
 
                   sgMail.send(msg)
                     .then(_ => {
-                        _log(`Message to ${to} successfully sent`);
+                        Logger.log(`Message to ${to} successfully sent`);
                         return resolve();
                     }).catch(err => {
-                        _error(err);
+                        Logger.error(err);
                         return reject(err);
                     });
             });

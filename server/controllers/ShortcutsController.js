@@ -1,7 +1,8 @@
 const express = require('express'),
     app = express(),
     AugustApi = require('./../services/august'),
-    { to, withTimeout } = require('../lib/utils');
+    Logger = require('./../lib/logger').createLogger("<AuthenticationController>"),
+    { to } = require('../lib/utils');
 
 const BlinkApi = require('./../services/blink');
 const middleware = require('./../middleware/ShortcutsMiddleware');
@@ -62,7 +63,7 @@ app.get('/august', middleware.shortcutsAuth, async (req, res) => {
     const [ err ] = await to(augustApi.arm(shouldArmAugustLock));
 
     if (err) {
-        console.error(err);
+        Logger.error(err);
         return res.status(400).send("Error in August API, please try again later." + err);
     }
 
@@ -75,7 +76,7 @@ app.get('/blink/isArmed', middleware.shortcutsAuth, async (req, res) => {
     const [err, result] = await to(blinkApi.isArmed());
 
     if (err) {
-        console.error(err);
+        Logger.error(err);
         return res.status(400).send("Unable to detect, please try again later.");
     } else {
         return res.status(200).send(`Blink is armed: ${result}`);
@@ -98,13 +99,13 @@ app.get('/blink/setArm', middleware.shortcutsAuth, async (req, res) => {
 });
 
 async function _disarmBlink() {
-    console.log("Attempt to disarm Blink...");
+    Logger.log("Attempt to disarm Blink...");
     const blinkApi = _getBlinkInstance();
     const [err] = await to(blinkApi.setArmed(false));
     if (err) {
-        console.error(`Unable to unarm blink ${err}`);
+        Logger.error(`Unable to unarm blink ${err}`);
     } else {
-        console.log(`Successfully disarmed blink`);
+        Logger.log(`Successfully disarmed blink`);
     }
 }
 

@@ -6,6 +6,7 @@ const Blink = require('node-blink-security');
 const { to, getNestedProperty, isEmptyObject, withTimeout } = require('../lib/utils');
 const config = require('config');
 const privateCredentials = require('./../lib/credentialsBuilder.js').init();
+const Logger = require('./../lib/logger').createLogger("<Blink>");
 
 let _blink;
 let _instance;
@@ -14,8 +15,6 @@ let _blinkSyncIntervalSeconds = 60 * 1000 * 30; // default value
 
 class BlinkApi {
   constructor() {
-    this.prelog = "<BlinkApi>";
-
     const { blinkSyncIntervalSeconds } = config;
     const { username, password } = privateCredentials.blink;
 
@@ -39,7 +38,7 @@ class BlinkApi {
     if (err) {
       return Promise.reject(err);
     } else {
-      this._log("Successfully initialized Blink API");
+      Logger.log("Successfully initialized Blink API");
       return Promise.resolve("Success!");
     }
   }
@@ -82,7 +81,7 @@ class BlinkApi {
               ...current
             }
           }, {});
-          this._log(`${date}: Data updated.`);
+          Logger.log(`${date}: Data updated.`);
         }
       }
       this._pollSyncData();
@@ -114,10 +113,6 @@ class BlinkApi {
   
   _pollSyncData() {
     this.synData(false);
-  }
-
-  _log(log) {
-    console.log(`${this.prelog}: ${log}`);
   }
 }
 

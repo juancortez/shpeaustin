@@ -9,6 +9,7 @@
 `
 
 const credentialsBuilder = require('./credentialsBuilder.js'),
+    Logger = require('./logger').createLogger("<Authorization>"),
     websiteLogin = credentialsBuilder.init().websiteLogin,
     database = require('./database.js'),
     basicAuth = require('basic-auth');
@@ -39,25 +40,25 @@ const authorization = (function(){
         if(queryCredentials){
             database.getCachedData('id', (err, data) => {
                 if(!!err){
-                    console.log(`Cookie unauthorized for ${method} method at url "${url}"`);
-                    console.error(err.reason);
+                    Logger.log(`Cookie unauthorized for ${method} method at url "${url}"`);
+                    Logger.error(err.reason);
                     return _unauthorized(res, false);
                 }
 
                 if(data.indexOf(queryCredentials) >= 0){
-                    console.log(`Cookie authorized for ${method} method at url "${url}"`);
+                    Logger.log(`Cookie authorized for ${method} method at url "${url}"`);
                     return next();
                 } else{
-                    console.log(`Cookie unauthorized for ${method} method at url "${url}"`);
+                    Logger.log(`Cookie unauthorized for ${method} method at url "${url}"`);
                     return _unauthorized(res, false);
                 }
             });
         } else if(user){
             if (user.name === websiteLogin.username && user.pass === websiteLogin.password) {
-                console.log(`Authorized for ${method} method at url "${url}"`);
+                Logger.log(`Authorized for ${method} method at url "${url}"`);
                 return next();
             } else {
-                console.log(`Unauthorized for ${method} method at url "${url}"`);
+                Logger.log(`Unauthorized for ${method} method at url "${url}"`);
                 return _unauthorized(res, true);
             }
         } else{
@@ -101,7 +102,7 @@ const authorization = (function(){
         if(!!alert){
             res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
         }
-        console.error("[authorization.js]: Unauthorized access.");
+        Logger.error("[authorization.js]: Unauthorized access.");
         return res.sendStatus(401);
     }
 

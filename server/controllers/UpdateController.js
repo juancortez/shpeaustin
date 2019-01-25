@@ -10,6 +10,7 @@ const express = require('express'),
     path = require('path'),
     privateCredentials = require('../lib/credentialsBuilder.js').init(),
     authorization = require('../lib/authorization.js').authorization,
+    Logger = require('./../lib/logger').createLogger("<UpdateController>"),
     database = require('../lib/database.js'),
     exporter = require('../lib/exporter.js'),
     BotKitHelper = require('../services/botkit'),
@@ -27,7 +28,7 @@ app.post('/announcements', authorization.mixedAuth, (req, res) => {
         } = newAnnouncement;
 
         if (!(!!officer) || !(!!timestamp) || !(!!announcement)) {
-            console.error("Did not send appropriate inputs for a new announcement.");
+            Logger.error("Did not send appropriate inputs for a new announcement.");
             return res.status(400).send("Did not send appropriate inputs for a new announcement.");
         }
 
@@ -36,7 +37,7 @@ app.post('/announcements', authorization.mixedAuth, (req, res) => {
 
         database.setData(key, JSON.stringify(announcements), (err) => {
             if (err) {
-                console.error(`Error: ${err.reason}`);
+                Logger.error(`Error: ${err.reason}`);
                 return res.status(400).send(`Error: ${err.reason}`);
             }
             const destination = path.join(__dirname, '../metadata', 'announcements.json');
@@ -49,7 +50,7 @@ app.post('/announcements', authorization.mixedAuth, (req, res) => {
                 }, 
                 cb: (err, data) => {
                     if(err){
-                        console.error(err.reason);
+                        Logger.error(err.reason);
                     }
                     return res.json({
                         announcements: announcements
@@ -78,7 +79,7 @@ app.post('/jobs', authorization.mixedAuth, (req, res) => {
         } = newJob;
 
         if (!(!!position) || !(!!company) || !(!!description) || !(!!url) || !(!!ts) || !(!!poster)) {
-            console.error("Did not send appropriate inputs for a new job posting.");
+            Logger.error("Did not send appropriate inputs for a new job posting.");
             return res.status(400).send("Did not send appropriate inputs for a new job posting.");
         }
 
@@ -92,7 +93,7 @@ app.post('/jobs', authorization.mixedAuth, (req, res) => {
 
         database.setData(key, JSON.stringify(jobs), (err) => {
             if (err) {
-                console.error(`Error: ${err.reason}`);
+                Logger.error(`Error: ${err.reason}`);
                 return res.status(400).send(`Error: ${err.reason}`);
             }
             
@@ -105,7 +106,7 @@ app.post('/jobs', authorization.mixedAuth, (req, res) => {
                 }, 
                 cb: (err, data) => {
                     if(err){
-                        console.error(err.reason);
+                        Logger.error(err.reason);
                     }
                     return res.json({
                         jobs
@@ -121,7 +122,7 @@ app.put('/survey', (req, res) => {
     let key = "googleForm"
     database.getCachedData(key, function(err, data){
         if(!!err){
-            console.error(`${err.reason}`);
+            Logger.error(`${err.reason}`);
             return res.status(400).send(err.reason);
         }
 
@@ -129,7 +130,7 @@ app.put('/survey', (req, res) => {
         let redisData = data;
 
         if(!newLink.includes('viewform?embedded=true')){
-            console.error(`Link did not contain an embedded flag for an iframe.`);
+            Logger.error(`Link did not contain an embedded flag for an iframe.`);
             return res.status(400).send(`Link did not contain an embedded flag for an iframe.`);
         }
         
@@ -139,10 +140,10 @@ app.put('/survey', (req, res) => {
 
         database.setData(key, JSON.stringify(redisData), (err) => {
             if (!!err) {
-                console.error(`Error: ${err.reason}`);
+                Logger.error(`Error: ${err.reason}`);
                 return res.status(400).send(err.reason);
             }
-            console.log("Successully saved and cached calendar to Redis!");
+            Logger.log("Successully saved and cached calendar to Redis!");
             res.setHeader('Content-Type', 'application/json');
             return res.status(200).send(redisData);
         });
@@ -157,16 +158,16 @@ app.post('/calendar', authorization.auth, (req, res) => {
 
     google_calendar.authorize(google_content, (err, results) => {
         if (!!err) {
-            console.error(`${err.reason}`);
+            Logger.error(`${err.reason}`);
             return res.status(400).send(err.reason);
         }
 
         database.setData('calendar', JSON.stringify(results), (err) => {
             if (!!err) {
-                console.error(`Error: ${err.reason}`);
+                Logger.error(`Error: ${err.reason}`);
                 return res.status(400).send(err.reason);
             }
-            console.log("Successully saved and cached calendar to Redis!");
+            Logger.log("Successully saved and cached calendar to Redis!");
             res.setHeader('Content-Type', 'application/json');
             return res.status(200).send(results);
         });
@@ -178,10 +179,10 @@ app.post('/cache', (req, res) => {
     if (!!key) {
         database.updateCache(key, (err, response) => {
             if (err) {
-                console.error(`Error: ${err.reason}`);
+                Logger.error(`Error: ${err.reason}`);
                 return res.status(400).send(`Error: ${err.reason}`);
             }
-            console.log("Successfully updated local cache from Redis database.");
+            Logger.log("Successfully updated local cache from Redis database.");
             res.status(200).send(response);
         });
     } else {
@@ -206,8 +207,8 @@ function _sendToSlack({officer,timestamp, announcement}){
             'announcement': announcement
         },
         cb: (err) => {
-            if(err) return console.error(err);
-            console.log("Successully posted announcement on Slack!");
+            if(err) return Logger.error(err);
+            Logger.log("Successully posted announcement on Slack!");
         }
     });
 }

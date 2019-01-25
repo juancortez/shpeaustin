@@ -26,7 +26,8 @@ const cfenv = require('cfenv'),
 
 const Database = (() => {
     const uuid = require('node-uuid'),
-        exporter = require('../lib/exporter.js');
+        Logger = require('./logger').createLogger("<Database>"),
+        exporter = require('./exporter.js');
     let instance; // Instance stores a reference to the Singleton
 
     // Singleton
@@ -48,12 +49,12 @@ const Database = (() => {
 
             if(!!deleteKey){
                 delete cachedData[key];
-                console.log(`Successfully deleted key, ${key}, from cache!`);
+                Logger.log(`Successfully deleted key, ${key}, from cache!`);
                 return _sendWebsiteRequest(key, callback);
             }
 
         	if(data && typeof data === "string"){
-        		console.log("Converting " + key + " data to an object");
+        		Logger.log("Converting " + key + " data to an object");
                 try{
                     data = JSON.parse(data);
                 } catch(e){
@@ -124,7 +125,7 @@ const Database = (() => {
                     if(err){
                         return callback({reason: `Was not able to store  ${key} in Redis database.`});
                     }
-                    console.log(`Successfully set database key, ${key}`);
+                    Logger.log(`Successfully set database key, ${key}`);
                     return callback(null);
                 }); 
             } else{
@@ -139,7 +140,7 @@ const Database = (() => {
 
             _backupKey(key, (err) =>{
                 if(!!err){
-                    console.error(err.reason);
+                    Logger.error(err.reason);
                 }
                 client.del(key, (err, reply) => {
                     if (err) {
@@ -208,7 +209,7 @@ const Database = (() => {
             // if(isLocal) return callback(false);
             // const request = require("request");
 
-            // console.log("Sending update to Bluemix website");
+            // Logger.log("Sending update to Bluemix website");
 
             // let options = { 
             //     method: 'POST',
@@ -227,7 +228,7 @@ const Database = (() => {
             //     if (error){
             //         return callback({reason: error});
             //     }
-            //     console.log(`Successfully updated ${key} on Bluemix!`);
+            //     Logger.log(`Successfully updated ${key} on Bluemix!`);
             //     return callback(false);
             // });
         }
@@ -268,28 +269,28 @@ const Database = (() => {
             },
             setData(key, data, callback){
 	        	if(!(!!client)){
-	        		console.error({reason: "Client not defined! Not able to cache data!"});
+	        		Logger.error({reason: "Client not defined! Not able to cache data!"});
 	        		return;
 	        	}
 	        	_setData(key, data, callback);
             }, 
             deleteData(key, callback){
                 if(!(!!client)){
-                    console.error({reason: "Client not defined! Not able to cache data!"});
+                    Logger.error({reason: "Client not defined! Not able to cache data!"});
                     return;
                 }
                 _deleteData(key, callback);
             },
             getKeys(callback){
                 if(!(!!client)){
-                    console.error({reason: "Client not defined! Not able to view keys!"});
+                    Logger.error({reason: "Client not defined! Not able to view keys!"});
                     return;
                 }
                 _getKeys(callback);
             },
             updateCache(key, callback){
                 if(!(!!client)){
-                    console.error({reason: "Client not defined! Not able fetch from database!"});
+                    Logger.error({reason: "Client not defined! Not able fetch from database!"});
                     return;
                 }
                 _updateCache(key, callback);
@@ -345,10 +346,10 @@ function getUUID() {
 
 	database.getAllCachedData(function(err, data){
 		if(!!err){
-			console.error(err.reason);
+			Logger.error(err.reason);
 			return;
 		}
-		console.log(JSON.stringify(data, null, 4));
+		Logger.log(JSON.stringify(data, null, 4));
 	});
 `
 function getAllCachedData(callback) {
@@ -367,10 +368,10 @@ function getAllCachedData(callback) {
 
     database.cacheData(key, data, function(err){
         if(!!err){
-            console.error(err.reason);
+            Logger.error(err.reason);
             return;
         }
-        console.log("Successully cached " + key + " data!");
+        Logger.log("Successully cached " + key + " data!");
     });
 `
 function cacheData(key = null, data = "", callback) {
@@ -380,7 +381,7 @@ function cacheData(key = null, data = "", callback) {
     }    
     var database = Database.getInstance();
     if (!database) {
-        return console.error("AN ERRORRRR");
+        return Logger.error("AN ERRORRRR");
     }
     database.cacheData(key, data, callback);
 }
@@ -397,19 +398,19 @@ function cacheData(key = null, data = "", callback) {
 	For a Single Key:
 	database.getCachedData(key, function(err, data){
 	    if(!!err){
-	        console.error(err.reason);
+	        Logger.error(err.reason);
 	        return;
 	    }
-	    console.log(data);
+	    Logger.log(data);
 	});
 
 	For an Array of Keys:
 	database.getCachedData([key1, key2], function(err, data){
 	    if(!!err){
-	        console.error(err.reason);
+	        Logger.error(err.reason);
 	        return;
 	    }
-	    console.log(JSON.stringify(data, null, 4));
+	    Logger.log(JSON.stringify(data, null, 4));
 	});
 `
 function getCachedData(key = null, callback){
@@ -442,10 +443,10 @@ function getCachedData(key = null, callback){
 
     database.setData(key, JSON.stringify(data), function(err){
         if(err){
-            console.error("Error: " + err.reason);
+            Logger.error("Error: " + err.reason);
             return;
         }
-        console.log("Successully saved and cached " + key + " to Redis!");
+        Logger.log("Successully saved and cached " + key + " to Redis!");
     });
 `
 function setData(key = null, data = "", callback){
@@ -467,10 +468,10 @@ function setData(key = null, data = "", callback){
 
     database.deleteData(key, function(err){
         if(err){
-            console.error("Error: " + err.reason);
+            Logger.error("Error: " + err.reason);
             return;
         }
-        console.log("Successfully removed " + key  + " from database!");
+        Logger.log("Successfully removed " + key  + " from database!");
     });
 `
 function deleteData(key = null, callback){
@@ -491,10 +492,10 @@ function deleteData(key = null, callback){
 
     database.getKeys(function(err, keys){
         if(err){
-            console.error("Error: " + err.reason);
+            Logger.error("Error: " + err.reason);
             return;
         }
-        console.log("Successfully fetched keys in array format: " + keys);
+        Logger.log("Successfully fetched keys in array format: " + keys);
     });
 `
 function getKeys(callback){
@@ -514,10 +515,10 @@ function getKeys(callback){
 
     database.updateCache(key, function(err, response){
         if(err){
-            console.error("Error: " + err.reason);
+            Logger.error("Error: " + err.reason);
             return;
         }
-        console.log("Successfully updated local cache from Redis database.");
+        Logger.log("Successfully updated local cache from Redis database.");
     });
 `
 function updateCache(key = null, callback){
@@ -533,7 +534,7 @@ function _checkNumArguments(args, expected){
     let numArgs = args.length || 0;
 
     if(numArgs !== expected){
-        console.error(`Incorrect number of arguments! Expected ${expected} and got ${numArgs}. Request will hang and will ultimately fail.`);
+        Logger.error(`Incorrect number of arguments! Expected ${expected} and got ${numArgs}. Request will hang and will ultimately fail.`);
     }
 }
 

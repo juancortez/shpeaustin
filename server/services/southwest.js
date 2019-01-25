@@ -5,8 +5,8 @@
 const request = require("request");
 const TwilioApi = require('./twilio');
 const FeatureSettingsApi = require('./../lib/featureSettings');
-
 const FeatureSettings = FeatureSettingsApi.getInstance();
+const Logger = require('./../lib/logger').createLogger("<Southwest>");
 let { intervalCheck: INTERVAL_CHECK = 3600000, lowestFarePrice: LOWEST_FARE_PRICE = 300 } = FeatureSettings.getSetting("southWest");
 
 /* If API Fails more than MAX_FAILURES times, stop invoking API */
@@ -55,7 +55,7 @@ function _performSouthwestRequest() {
     
     request(options, function (error, response, body) {
       if (error) {
-          console.error("Invalid request ", error);
+          Logger.error("Invalid request ", error);
           NUM_FAILURES++;
           return;
       }
@@ -83,7 +83,7 @@ function _findLowestPrice(result) {
             _sendNotification(currentLowestPrice);
             return;
         } else {
-            console.error("Fare not found for value under " + LOWEST_FARE_PRICE);
+            Logger.error("Fare not found for value under " + LOWEST_FARE_PRICE);
             return;
         }
     }

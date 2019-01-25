@@ -4,6 +4,7 @@
 const { isEmptyObject } = require('../lib/utils');
 const privateCredentials = require('./../lib/credentialsBuilder.js').init();
 const request = require('request');
+const Logger = require('./../lib/logger').createLogger("<August>");
 
 const LockStates = Object.freeze({
     Locked: "kAugLockState_Locked",
@@ -43,7 +44,7 @@ class AugustApi {
 
         request(options, (err, result) => {
             if (err) {
-                this._log(err);
+                Logger.log(err);
                 return cb(err);
             } else {
                 try {
@@ -51,15 +52,15 @@ class AugustApi {
                     if (augustResponse && !isEmptyObject(augustResponse)) {
                         const keys = Object.keys(augustResponse);
                         this._augustLockId = keys.shift();
-                        this._log(`Successfully initialized with August lock id, ${this._augustLockId}`);
+                        Logger.log(`Successfully initialized with August lock id, ${this._augustLockId}`);
                         return cb(null);
                     } else {
                         const error = "Did not find any August locks...";
-                        this._log(error);
+                        Logger.log(error);
                         return cb(err);
                     }
                 } catch(e) {
-                    this._log(e);
+                    Logger.error(e);
                     return cb(err);
                 }
             }
@@ -70,7 +71,7 @@ class AugustApi {
         return new Promise((resolve, reject) => {
             if (!this._augustLockId) {
                 const err = "August has not yet successfully initialized, unable to lock system";
-                this._log(err);
+                Logger.log(err);
                 return reject(err);
             }
 
@@ -84,7 +85,7 @@ class AugustApi {
 
             request(options, (err, request, body) => {
                 if (err) {
-                    this._log(err);
+                    Logger.error(err);
                     return reject(err);
                 }
 
@@ -99,12 +100,12 @@ class AugustApi {
                 const augustState = augustResponse.status || "";
 
                 if (lock && augustState === LockStates.Locked) {
-                    this._log("Successfully locked August lock");
+                    Logger.log("Successfully locked August lock");
                     return resolve();
                 }
 
                 if (!lock && augustState === LockStates.Unlocked) {
-                    this._log("Successfully unlocked August lock");
+                    Logger.log("Successfully unlocked August lock");
                     return resolve();
                 }
 
@@ -112,10 +113,6 @@ class AugustApi {
             });
         });
     }
-
-  _log(log) {
-    console.log(`${this.prelog}: ${log}`);
-  }
 
   _getHeaders() {
       const augustApiKey = "79fd0eb6-381d-4adf-95a0-47721289d1d9";

@@ -10,6 +10,7 @@ const express = require('express'),
     config = require('config'),
     database = require('../lib/database.js'),
     privateCredentials = require('../lib/credentialsBuilder.js').init(),
+    Logger = require('./../lib/logger').createLogger("<CommunicationController>"),
     SendGridApi = require('./../services/sendGrid');
 
 const sendGridEmail = config.sendGrid.sendGridEmail,
@@ -39,7 +40,7 @@ app.post('/contact', (req, res) => {
         messageSent = `Name:${name}, Phone Number: ${phone}, E-mail Address: ${email}, Subject: ${subject}, Message: ${message}.`;;
     }
 
-    console.log(`Sending the following message to: ${sendGridEmail}: ${messageSent}`);
+    Logger.log(`Sending the following message to: ${sendGridEmail}: ${messageSent}`);
     
     SendGridApi.sendMessage({
         to: sendGridEmail,
@@ -52,14 +53,14 @@ app.post('/contact', (req, res) => {
         let success = `E-mail sent successfully. \nSent to: ${sendGridEmail}`;
         return res.status(200).send(success);
     }).catch(err => {
-        console.error(err);
+        Logger.error(err);
         return res.sendStatus(400);
     });
 });
 
 // Outgoing Webhook provided by the SHPE Austin Bot
 app.post('/bot/officers', (req, res) => {
-    console.log("Slackbot message received!");
+    Logger.log("Slackbot message received!");
     const botToken = privateCredentials.slack.outgoingToken;
     let outgoingHook = req.body,
         triggerWord = outgoingHook && outgoingHook.trigger_word && outgoingHook.trigger_word.toLocaleLowerCase() || "";
@@ -75,7 +76,7 @@ app.post('/bot/officers', (req, res) => {
 
         database.getCachedData("officerList", (err, officerList) => {
             if (!!err || !(!!officerList)) {
-                if (!!err) console.error(`Error: ${err.reason}`);
+                if (!!err) Logger.error(`Error: ${err.reason}`);
                 return res.send({
                     "text": "Sorry, I was not able to find any officer data. Please contact your webmaster."
                 });
@@ -149,10 +150,10 @@ app.post('/mailchimp/lists/:id/subscribe', (req, res) => {
             email: req.body.email
         }
     }, (data) => {
-        console.log(`Successfully subscribed ${req.body.email}!`);
+        Logger.log(`Successfully subscribed ${req.body.email}!`);
         res.sendStatus(200);
     }, (error) => {
-        console.error(error);
+        Logger.error(error);
         res.status(400).send('There was an error subscribing that user');
     });
 });

@@ -12,12 +12,15 @@
 		chat message	: 	used in contact.html whenever a user sends a message in the chat log
 `
 const database = require('../lib/database.js'),
+	Logger = require('./../lib/logger').createLogger("<Socket>"),
 	config = require('config');
 let revision = config.revision;
 
 function initiateSocket(io){
 	let usersOnline = 0;
-	io.on('connection', (socket) =>{
+	io.on('connection', (socket) => {
+		Logger.info("New socket connection");
+
 		usersOnline++;
 
 		io.emit('usersOnline', usersOnline);
@@ -34,7 +37,7 @@ function initiateSocket(io){
 	    socket.on('disconnect', () =>{
 	    	usersOnline--;
 	    	io.emit('usersOnline', usersOnline);
-	        // disconnection logic
+			Logger.info("Socket connection left");
 	    });
 	});
 }

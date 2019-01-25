@@ -21,6 +21,7 @@ This file exports data and saves it to the local disk. This module currenty supp
 	    }
 	});
 `
+const Logger = require('./logger').createLogger("<Exporter>");
 const jsonfile = require('jsonfile');
 jsonfile.spaces = 4;
 
@@ -35,14 +36,14 @@ const save = (function(){
         	} = args;
 
         	if(!destination || !data || !cb){
-        		return console.error("Insufficient parameters passed, saving failed.");
+        		return Logger.error("Insufficient parameters passed, saving failed.");
         	}
 
         	jsonfile.writeFile(destination, data, (err) => {
 		        if(err){
 		            return cb({reason: "Unable to write file." + err});
 		        }
-		        console.log(`Successfully saved ${filename ? filename + " ": ""}data under the ${destination} directory.`);
+		        Logger.log(`Successfully saved ${filename ? filename + " ": ""}data under the ${destination} directory.`);
 		        cb(false, data);
 		    });
 		}

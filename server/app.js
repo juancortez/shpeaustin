@@ -2,15 +2,6 @@
     Author: Juan Cortez
 
     This node.js application serves both the client and server side of the SHPE Austin Website (austinshpe.org).
-
-    When running locally without Docker, run the following:
-        $npm start
-    When running locally with Docker, run the following:
-        In one tab: $chmod 777 docker/redis_start.sh && ./docker/redis_start.sh
-        In another tab: $npm start
-    Deploying application to Bluemix:
-        $cf push
-
 `
 
 const express = require('express'),
@@ -22,42 +13,14 @@ const express = require('express'),
     favicon = require('serve-favicon'),
     compression = require('compression'),
     privateCredentials = require('./lib/credentialsBuilder.js').init(),
-    cloudantCredentials = privateCredentials.shpeaustincloudant,
-    socket_connect = require("./services/socket.js"),
-    socket = require('socket.io'),
-    database = require("./lib/database.js"),
-    Cloudant = require("./services/cloudant.js"),
-    BlinkApi = require('./services/blink'),
-    mcapi = require('mailchimp-api'),
-    AugustApi = require('./services/august'),
-    Southwest = require('./services/southwest').Southwest,
     path = require('path'),
-    TwilioApi = require('./services/twilio'),
-    SendGridApi = require('./services/sendGrid'),
-    FeatureSettingsApi = require('./lib/featureSettings');
+    Services = require('./services/index'),
+    ExpressControllers = require('./router/main'),
+    Logger = require('./lib/logger').createLogger("<App>"),
+    Console = require('./lib/console').init();
 
 const root = path.join(__dirname + '/../'),
     staticRoot = path.join(__dirname + '/../public/');
-
-const FeatureSettings = FeatureSettingsApi.getInstance();
-/************************************************************************************************************
-*                                   Cloudant Database Connection
-************************************************************************************************************/
-Cloudant.init(cloudantCredentials, (err, cloudantDb) => {
-    if (err) {
-        return console.error(err);
-    }
-    
-    database.create(Cloudant, (err, dbInstance) => {
-        if(err) {
-            return console.error(err);
-        }
-        console.log("Database Singleton successfully created!");
-
-        Cloudant.prefetchData();
-        FeatureSettings.setDatabase(Cloudant);
-    });
-});
 
 /***********************************************************************************************************
 *                                  Express App Configuration
@@ -83,49 +46,13 @@ if (isLocal) {
     });
 }
 
-require('./router/main')(app, express); // adds the main.js file to send response to browser
+// Add all other routes to express application
+ExpressControllers(app, express);
 
 // start server on the specified port and binding host
 const server = app.listen(appEnv.port, () => {
-    console.log(`Server starting on ${appEnv.url}`);
+    Logger.log(`Server starting on ${appEnv.url}`);
 });
 
-/************************************************************************************************************
-*                                  Web Socket Configuration
-************************************************************************************************************/
-const io = socket.listen(server);
-socket_connect.initiateSocket(io);
-
-/************************************************************************************************************
-*                                  MailChimp Configuration
-* Basic Subscribe Form: https://apidocs.mailchimp.com/api/how-to/basic-subscribe.php
-************************************************************************************************************/
-const mc = new mcapi.Mailchimp(privateCredentials.mailchimp.api_key);
-app.set('mc', mc);
-
-/************************************************************************************************************
-*                                  Blink Api Configuration
-************************************************************************************************************/
-const blinkApi = BlinkApi.getInstance();
-blinkApi.initialize().then(async (_) => {
-    console.log("Blink API successfully initialized");
-    blinkApi.synData();
-}).catch(err => {
-    console.error("Blink API initialization failed");
-    console.error(err);
-});
-
-/************************************************************************************************************
-*                                  August Api Configuration
-************************************************************************************************************/
-const augustApi = AugustApi.getInstance();
-augustApi.initialize((err, result) => {
-    if (err) {
-        return console.error("Unable to initialize August API...", err);
-    }
-    console.log("Successfully initialized August API");
-});
-
-TwilioApi.initialize();
-Southwest.checkFares();
-SendGridApi.initialize();
+// initialize all services
+Services(server, app);
