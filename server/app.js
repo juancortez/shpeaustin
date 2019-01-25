@@ -16,8 +16,12 @@ const express = require('express'),
     path = require('path'),
     Services = require('./services/index'),
     ExpressControllers = require('./router/main'),
-    Logger = require('./lib/logger').createLogger("<App>"),
-    Console = require('./lib/console').init();
+    Logger = require('./lib/logger').createLogger("<App>");
+
+if (isLocal) {
+    const Console = require('./lib/console');
+    Console.init();
+}
 
 const root = path.join(__dirname + '/../'),
     staticRoot = path.join(__dirname + '/../public/');
