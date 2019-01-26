@@ -12,7 +12,7 @@ const express = require('express'),
     authorization = require('../lib/authorization.js').authorization,
     database = require('../lib/database.js'),
     Logger = require('./../lib/logger').createLogger("<DataController>"),
-    privateCredentials = require('../lib/credentialsBuilder.js').init();
+    SettingsProvider = require('../lib/settingsProvider');
 
 // determines whether or not someone has logged in to the website
 app.get('/officerlogin', authorization.mixedAuth, (req, res) => { 
@@ -81,8 +81,8 @@ app.put('/:key', authorization.mixedAuth, (req, res) => {
     }
 
     if(key === "calendar"){
-        const credentials = privateCredentials.websiteLogin,
-            authorizationToken = credentials.username + ":" + credentials.password;
+        const credentials = SettingsProvider.getCredentialByPath(["websiteLogin"]) || {};
+        const authorizationToken = credentials.username + ":" + credentials.password;
 
         const request = require("request"),
             authorization = "Basic " + new Buffer(authorizationToken).toString('base64'),

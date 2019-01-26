@@ -2,7 +2,7 @@
   API documentation: https://medium.com/@nolanbrown/august-lock-rest-apis-the-basics-7ec7f31e7874
 */
 const { isEmptyObject } = require('../lib/utils');
-const privateCredentials = require('./../lib/credentialsBuilder.js').init();
+const SettingsProvider = require('../lib/settingsProvider');
 const request = require('request');
 const Logger = require('./../lib/logger').createLogger("<August>");
 
@@ -16,7 +16,7 @@ let _instance;
 class AugustApi {
   constructor() {
     this.prelog = "<AugustApi>";
-    this._authToken = privateCredentials.august.token;
+    this._authToken = SettingsProvider.getCredentialByPath(["august", "token"]);
     this._augustLockId = null;
 
     return _instance = this;

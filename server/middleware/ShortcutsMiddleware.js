@@ -1,10 +1,11 @@
-const privateCredentials = require('./../lib/credentialsBuilder.js').init();
+const SettingsProvider = require('./../lib/settingsProvider');
 
 module.exports = {
     shortcutsAuth: (req, res, next) => {
         const authorizationHeader = req.get('Authorization') || "";
+        const password = SettingsProvider.getCredentialByPath(["blink", "password"]);
 
-        if (!authorizationHeader || authorizationHeader !== privateCredentials.blink.password) {
+        if (!authorizationHeader || authorizationHeader !== password) {
             return res.status(403).send("Request forbidden");
         }
         

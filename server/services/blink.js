@@ -5,7 +5,7 @@
 const Blink = require('node-blink-security');
 const { to, getNestedProperty, isEmptyObject, withTimeout } = require('../lib/utils');
 const config = require('config');
-const privateCredentials = require('./../lib/credentialsBuilder.js').init();
+const SettingsProvider = require('../lib/settingsProvider');
 const Logger = require('./../lib/logger').createLogger("<Blink>");
 
 let _blink;
@@ -16,7 +16,8 @@ let _blinkSyncIntervalSeconds = 60 * 1000 * 30; // default value
 class BlinkApi {
   constructor() {
     const { blinkSyncIntervalSeconds } = config;
-    const { username, password } = privateCredentials.blink;
+    const blinkCredentials = SettingsProvider.getCredentialByPath(["blink"]) || {};
+    const { username, password } = blinkCredentials;
 
     _blink = new Blink(username, password);
     _blinkSyncIntervalSeconds = blinkSyncIntervalSeconds * 1000;

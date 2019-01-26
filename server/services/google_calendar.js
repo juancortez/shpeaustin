@@ -11,10 +11,10 @@ const fs = require('fs'),
     readline = require('readline'),
     google = require('googleapis'),
     googleAuth = require('google-auth-library'),
+    SettingsProvider = require('./settingsProvider');
     exporter = require('../lib/exporter.js');
 
-const cfenv = require('cfenv'),
-    appEnv = cfenv.getAppEnv();
+const isLocal = SettingsProvider.isLocalDevelopment();
 
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
     TOKEN_DIR = __dirname + "";
@@ -36,7 +36,7 @@ function authorize(credentials, callback) {
     const auth = new googleAuth();
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
-    if(appEnv.isLocal) {
+    if(isLocal) {
         // Check if we have previously stored a token.
         fs.readFile(TOKEN_PATH, function(err, token) {
             if (err) {

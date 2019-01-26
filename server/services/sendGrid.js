@@ -1,7 +1,8 @@
 const sgMail = require('@sendgrid/mail');
 const config = require('config');
-const privateCredentials = require('../lib/credentialsBuilder.js').init();
-const { apiKey } = privateCredentials.sendGrid;
+const SettingsProvider = require('./../lib/settingsProvider');
+const sendGridCredentials = SettingsProvider.getCredentialByPath(["sendGrid"]) || {};
+const { apiKey } = sendGridCredentials;
 const Logger = require('./../lib/logger').createLogger("<SendGrid>");
 
 const SendGrid = (() => {

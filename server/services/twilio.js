@@ -1,6 +1,7 @@
 const twilio = require('twilio');
-const privateCredentials = require('./../lib/credentialsBuilder.js').init();
-const { account, authToken, twilioNumber, personalNumber} = privateCredentials.twilio;
+const SettingsProvider = require('./../lib/settingsProvider');
+const sendGridCredentials = SettingsProvider.getCredentialByPath(["twilio"]) || {};
+const { account, authToken, twilioNumber, personalNumber} = sendGridCredentials;
 const Logger = require('./../lib/logger').createLogger("<Twilio>");
 
 const Twilio = (() => {

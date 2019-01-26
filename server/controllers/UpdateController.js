@@ -8,7 +8,7 @@ const express = require('express'),
     app = express(),
     config = require('config'),
     path = require('path'),
-    privateCredentials = require('../lib/credentialsBuilder.js').init(),
+    SettingsProvider = require('../lib/settingsProvider'),
     authorization = require('../lib/authorization.js').authorization,
     Logger = require('./../lib/logger').createLogger("<UpdateController>"),
     database = require('../lib/database.js'),
@@ -153,8 +153,8 @@ app.put('/survey', (req, res) => {
 // updates Google Calendar data in the Redis Database
 app.post('/calendar', authorization.auth, (req, res) => {
     // Get access to the Google Calendar
-    const google_calendar = require('../services/google_calendar.js'),
-        google_content = privateCredentials.google_oauth;
+    const google_calendar = require('../services/google_calendar.js');
+    const google_content = SettingsProvider.getCredentialByPath(["google_oauth"]);
 
     google_calendar.authorize(google_content, (err, results) => {
         if (!!err) {

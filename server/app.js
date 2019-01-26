@@ -6,19 +6,16 @@
 
 const express = require('express'),
     app = express(),
-    cfenv = require('cfenv'),
-    appEnv = cfenv.getAppEnv(),
-    isLocal = appEnv.isLocal,
+    SettingsProvider = require('./lib/settingsProvider'),
     bodyParser = require('body-parser'),
     favicon = require('serve-favicon'),
     compression = require('compression'),
-    privateCredentials = require('./lib/credentialsBuilder.js').init(),
     path = require('path'),
-    Services = require('./services/index'),
-    ExpressControllers = require('./router/main'),
     Logger = require('./lib/logger').createLogger("<App>");
 
-if (isLocal) {
+SettingsProvider.initializeCredentials();
+
+if (SettingsProvider.isLocalDevelopment()) {
     const Console = require('./lib/console');
     Console.init();
 }
@@ -40,7 +37,7 @@ app.use(favicon(staticRoot + '/assets/shpe_austin_icon.png'));
 app.use('/', express.static(root + '/dist'));
 app.use('/scripts', express.static(root + '/node_modules'));
 
-if (isLocal) {
+if (SettingsProvider.isLocalDevelopment()) {
     app.get('/playground/react', function(req, res) {
         return res.sendFile(path.join(staticRoot + '/views/react.html'), {
             headers: {
@@ -50,12 +47,15 @@ if (isLocal) {
     });
 }
 
+const Services = require('./services/index');
+const ExpressControllers = require('./router/main');
+
 // Add all other routes to express application
 ExpressControllers(app, express);
 
 // start server on the specified port and binding host
-const server = app.listen(appEnv.port, () => {
-    Logger.log(`Server starting on ${appEnv.url}`);
+const server = app.listen(SettingsProvider.getPort(), () => {
+    Logger.log(`Server starting on ${SettingsProvider.getAppUrl()}`);
 });
 
 // initialize all services

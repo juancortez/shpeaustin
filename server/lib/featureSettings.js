@@ -41,7 +41,7 @@ class FeatureSettings {
                 Logger.error("Error in fetching feature settings", err);
                 return;
             }
-            Logger.log("Successfully fetched feature settings data");
+            Logger.log("Successfully fetched feature settings data:", data);
             this.settings = data;
         })
     }

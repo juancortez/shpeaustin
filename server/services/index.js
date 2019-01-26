@@ -11,10 +11,8 @@ const Southwest = require('./southwest').Southwest;
 const TwilioApi = require('./twilio');
 const SendGridApi = require('./sendGrid');
 const mcapi = require('mailchimp-api');
-const FeatureSettingsApi = require('./../lib/featureSettings');
-const FeatureSettings = FeatureSettingsApi.getInstance();
-const privateCredentials = require('./../lib/credentialsBuilder.js').init();
-const cloudantCredentials = privateCredentials.shpeaustincloudant;
+const SettingsProvider = require('./../lib/settingsProvider');
+const cloudantCredentials = SettingsProvider.getCredentialByPath(["shpeaustincloudant"]);
 const Logger = require('./../lib/logger').createLogger("<ServicesInitializer>");
 
 module.exports = ((server, app) => {
@@ -53,6 +51,8 @@ function _initializeCloudant() {
             Logger.log("Database Singleton successfully created!");
     
             Cloudant.prefetchData();
+
+            const FeatureSettings = SettingsProvider.getFeatureSettings();
             FeatureSettings.setDatabase(Cloudant);
         });
     });
@@ -63,7 +63,7 @@ function _initializeCloudant() {
 * Basic Subscribe Form: https://apidocs.mailchimp.com/api/how-to/basic-subscribe.php
 ************************************************************************************************************/
 function _initializeMailchimp(app) {
-    const mc = new mcapi.Mailchimp(privateCredentials.mailchimp.api_key);
+    const mc = new mcapi.Mailchimp(SettingsProvider.getCredentialByPath([" mailchimp", "api_key"]));
     app.set('mc', mc);
 }
 

@@ -9,7 +9,7 @@ const express = require('express'),
     app = express(),
     config = require('config'),
     database = require('../lib/database.js'),
-    privateCredentials = require('../lib/credentialsBuilder.js').init(),
+    SettingsProvider = require('../lib/settingsProvider');
     Logger = require('./../lib/logger').createLogger("<CommunicationController>"),
     SendGridApi = require('./../services/sendGrid');
 
@@ -61,7 +61,7 @@ app.post('/contact', (req, res) => {
 // Outgoing Webhook provided by the SHPE Austin Bot
 app.post('/bot/officers', (req, res) => {
     Logger.log("Slackbot message received!");
-    const botToken = privateCredentials.slack.outgoingToken;
+    const botToken = SettingsProvider.getCredentialByPath(["slack", "outgoingToken"]);
     let outgoingHook = req.body,
         triggerWord = outgoingHook && outgoingHook.trigger_word && outgoingHook.trigger_word.toLocaleLowerCase() || "";
 

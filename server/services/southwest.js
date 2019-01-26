@@ -4,8 +4,8 @@
 */
 const request = require("request");
 const TwilioApi = require('./twilio');
-const FeatureSettingsApi = require('./../lib/featureSettings');
-const FeatureSettings = FeatureSettingsApi.getInstance();
+const SettingsProvider = require('./../lib/settingsProvider');
+const FeatureSettings = SettingsProvider.getFeatureSettings();
 const Logger = require('./../lib/logger').createLogger("<Southwest>");
 let { intervalCheck: INTERVAL_CHECK = 3600000, lowestFarePrice: LOWEST_FARE_PRICE = 300 } = FeatureSettings.getSetting("southWest");
 

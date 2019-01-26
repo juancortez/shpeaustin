@@ -13,15 +13,16 @@
  
  If running locally, just read from the private_credentials/credentials.json file.
 `
+const Logger = require('./logger').createLogger("<CredentialsBuilder>");
 
 const Credentials = (() => {
     let instance; // Instance stores a reference to the Singleton
 
     // Singleton
     function init() {
-    	const cfenv = require('cfenv'),
-    		appEnv = cfenv.getAppEnv(),
-    		privateCredentials = _constructPrivateCredentials(appEnv.isLocal);
+		const SettingsProvider = require('./settingsProvider');
+		const isLocal = SettingsProvider.isLocalDevelopment();
+    	const privateCredentials = _constructPrivateCredentials(isLocal);
 
     	function retrieveCredentials(){
     		return privateCredentials;
@@ -30,10 +31,10 @@ const Credentials = (() => {
 
     	function _constructPrivateCredentials(isLocal){
 		    if(!!isLocal){
-		        console.log("Retrieving local credentials...");
+		        Logger.log("Retrieving local credentials...");
 		        return require('../private_credentials/credentials.json');
 		    } else{
-		        console.log("Retrieving credentials from user-defined Bluemix variables");
+		        Logger.log("Retrieving credentials from user-defined Bluemix variables");
 		        let privateCredentialsBuilder = {};
 		        privateCredentialsBuilder.redis = {};
 		        privateCredentialsBuilder.redis.credentials = {};
@@ -111,7 +112,7 @@ const Credentials = (() => {
 })();
 
 
-function init(){
+function init() {
 	var credentials = Credentials.getInstance();
 	return credentials.retrieveCredentials();
 }
