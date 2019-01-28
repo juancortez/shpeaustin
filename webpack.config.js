@@ -1,68 +1,28 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const merge = require("webpack-merge");
+const common = require("./webpack.common");
 
-module.exports = {  
-  entry:'./client/main.ts',
-  output:{  
-     path: path.resolve(__dirname, './dist'),
-     filename:'app.bundle.js'
-  },
-  module:{  
-     rules:[
-       {
-        test: /\.css$/,
-        use: ['css-loader']
-       },
-        {  
-           test:/\.ts$/,
-           use:[  
-              'ts-loader'
-           ]
-        },
-        {  
-           test:/\.html$/,
-           use:[  
-              'raw-loader'
-           ]
-        },
-        {  
-           test: /\.less$/,
-           use: [{
-              loader: 'style-loader' // creates style nodes from JS strings
-            }, {
-              loader: 'css-loader' // translates CSS into CommonJS
-            }, {
-              loader: 'less-loader' // compiles Less to CSS
-            }]
-        }
-     ]
-  },
-  resolve:{  
-     extensions:[
-        '.js',
-        '.ts',
-        '.html',
-        '.css',
-        '.less'
-     ]
-  },
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  },
-  plugins:[  
-     new HtmlWebpackPlugin({  
-      template:'./client/index.html'
-     }),
-     new webpack.DefinePlugin({  
-        'process.env.NODE_ENV':JSON.stringify("production"),
-        app:{  
-           environment:JSON.stringify(process.env.APP_ENVIRONMENT || 'development')
-        }
-     }),
-     new webpack.HotModuleReplacementPlugin()
-     //new UglifyJsPlugin()
-  ]
-};
+const environmentParam = _getParam("--env");
+console.log(`Running a ${environmentParam} build.`);
+
+switch (environmentParam) {
+    case 'production':
+         const prodWebpack = require("./webpack.prod");
+         module.exports = merge(common(environmentParam), prodWebpack);
+         break;
+    case 'development':
+    default:
+        const devWebpack = require("./webpack.dev");
+        module.exports = merge(common(environmentParam), devWebpack);
+}
+
+function _getParam(param) {
+   const argument = process.argv.find(arg => {
+      return arg.indexOf(param) >= 0;
+   }) || "";
+
+   if (argument) {
+      return argument.split("=")[1];
+   }
+
+   return argument;
+}

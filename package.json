@@ -4,10 +4,9 @@
   "description": "Node.JS Application that hosts the SHPE Austin website.",
   "main": "app.js",
   "scripts": {
-    "build": "webpack --progress",
-    "build:prod": "webpack -p --progress",
-    "postinstall": "typings install",
-    "start": "concurrently \"webpack --watch --colors\" \"node server/app.js\""
+    "build": "webpack --env=production --p",
+    "postinstall": "webpack --env=production --p",
+    "start": "webpack --env=development --progress && node server/app.js"
   },
   "author": "Juan Cortez",
   "repository": {
@@ -84,7 +83,8 @@
     "ts-loader": "^0.8.2",
     "typescript": "2.3.4",
     "uglifyjs-webpack-plugin": "1.1.2",
-    "webpack": "^2.7.0"
+    "webpack": "^2.7.0",
+    "webpack-merge": "^2.6.1"
   },
   "engines": {
     "node": "8.11.3",
