@@ -3,6 +3,8 @@ server/private_credentials
 # compiled output
 /tmp
 /out-tsc
+dist/
+.vscode/
 
 # dependencies
 /node_modules

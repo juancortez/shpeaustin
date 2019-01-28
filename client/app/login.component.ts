@@ -2,11 +2,11 @@ import { Component, OnInit }   from "@angular/core";
 import { Router }      from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { CookieService } from './services/cookie.service';
+import "./styles/login.component.less";
 
 @Component({
   selector: "login",
-  template: require("./templates/login.component.html"),
-  styles: [ require("./styles/login.component.less") ]  
+  template: require("./templates/login.component.html")
 })
 
 

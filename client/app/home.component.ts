@@ -1,13 +1,13 @@
 import { Component, OnInit } 		from '@angular/core';
 import { NewsletterService } 		from './services/newsletter.service';
 import { CalendarService } 			from './services/calendar.service';
+import "./styles/home.component.less";
 
 declare var $: any;
 
 @Component({
   selector: 'home',
-  template: require("./templates/home.component.html"),
-  styles: [ require("./styles/home.component.less") ],
+  template: require("./templates/home.component.html")
   
 })
 

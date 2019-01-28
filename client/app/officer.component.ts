@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 declare var $: any;
+import "./styles/officer.component.less";
 
 @Component({
   selector: 'officer',
-  template: require("./templates/officer.component.html"),
-  styles: [ require("./styles/officer.component.less") ]
+  template: require("./templates/officer.component.html")
 })
 
 

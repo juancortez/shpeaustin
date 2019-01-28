@@ -1,9 +1,9 @@
 import { Component, Input} from "@angular/core";
+import "./styles/job.component.less";
 
 @Component({
   selector: "job",
-  template: require("./templates/job.component.html"),
-  styles: [ require("./styles/job.component.less") ]
+  template: require("./templates/job.component.html")
 })
 
 

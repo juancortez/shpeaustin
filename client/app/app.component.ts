@@ -1,4 +1,5 @@
 import { Component }          from '@angular/core';
+import "./styles/app.component.less";
 
 @Component({
   selector: 'my-app',
@@ -6,8 +7,7 @@ import { Component }          from '@angular/core';
     <shpe-navigation></shpe-navigation>
     <router-outlet></router-outlet>
     <footer></footer>
-  `,
-  styles: [ require("./styles/app.component.less") ]
+  `
 })
 export class AppComponent {
 }

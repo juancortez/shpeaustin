@@ -10,7 +10,7 @@ class FeatureSettings {
         this.settings = this._getDefaultSettings();
 
         return _instance = this;
-      }
+    }
     
     static getInstance() {
         if (_instance) {

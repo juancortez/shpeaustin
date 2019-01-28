@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
+import "./styles/welcome.component.less"
 
 @Component({
   selector: "welcome",
-  template: require("./templates/welcome.component.html"),
-  styles: [ require("./styles/welcome.component.less") ]  
+  template: require("./templates/welcome.component.html")
 })
 
 

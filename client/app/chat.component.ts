@@ -1,14 +1,14 @@
 import { Component, OnInit } 	from "@angular/core";
 
 import { CookieService } 		from "./services/cookie.service";
+import "./styles/chat.component.less";
 
 declare var $: any;
 declare var Chat: any;
 
 @Component({
   selector: "chat-ui",
-  template: require("./templates/chat.component.html"),
-  styles: [ require("./styles/chat.component.less") ]  
+  template: require("./templates/chat.component.html")
 })
 
 

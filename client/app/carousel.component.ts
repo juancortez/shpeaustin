@@ -2,9 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'carousel',
-  template: require("./templates/carousel.component.html"),
-  styleUrls: [],
-  
+  template: require("./templates/carousel.component.html")
 })
 
 

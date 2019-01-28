@@ -1,11 +1,11 @@
 import { Component, ElementRef } from "@angular/core";
 
 import { DESCRIPTIONS } from './static/membership-info.template';
+import "./styles/modal.component.less";
 
 @Component({
   selector: "modal",
   template: require("./templates/modal.component.html"),
-  styles: [ require("./styles/modal.component.less") ]  ,
   host: {
   	'(document:keydown)': 'handleKeyboardEvents($event)'
   }
