@@ -1,9 +1,9 @@
 import { Component, Input } from "@angular/core";
+import "./styles/admin-card.component.less";
 
 @Component({
   selector: "admin-card",
-  template: require("./templates/admin-card.component.html"),
-  styles: [ require("./styles/admin-card.component.less") ]  
+  template: require("./templates/admin-card.component.html")
 })
 
 

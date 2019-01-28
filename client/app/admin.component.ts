@@ -7,13 +7,13 @@ import { OfficersService } from './services/officers.service';
 import { AnnouncementsService } from './services/announcements.service';
 import { JobService } from './services/jobs.service';
 import { DatabaseService } from './services/database.service';
+import "./styles/admin.component.less";
 
 declare var $: any;
 
 @Component({
   selector: "admin",
-  template: require("./templates/admin.component.html"),
-  styles: [ require("./styles/admin.component.less") ]  
+  template: require("./templates/admin.component.html")
 })
 
 

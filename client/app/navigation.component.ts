@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import "./styles/navigation.component.less";
 
 declare var $: any;
 
 @Component({
   selector: 'shpe-navigation',
   template: require("./templates/navigation.component.html"),
-  styles: [ require("./styles/navigation.component.less") ],
   host: {
     '(window:resize)': 'responsiveEvent($event)'
   }

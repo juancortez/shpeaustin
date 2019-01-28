@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 
 import { Http, Headers, RequestOptions } from '@angular/http';
+import "./styles/contact.component.less";
 
 @Component({
   selector: "contact",
-  template: require("./templates/contact.component.html"),
-  styles: [ require("./styles/contact.component.less") ]
+  template: require("./templates/contact.component.html")
 })
 
 export class ContactComponent {

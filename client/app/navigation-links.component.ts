@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
+import "./styles/navigation-links.component.less"
 
 @Component({
   selector: 'navigation-links',
-  template: require("./templates/navigation-links.component.html"),
-  styles: [ require("./styles/navigation-links.component.less") ]
+  template: require("./templates/navigation-links.component.html")
 })
 export class NavigationLinksComponent {
 	

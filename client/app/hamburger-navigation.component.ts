@@ -1,10 +1,10 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import "./styles/hamburger-navigation.component.less";
 
 @Component({
   selector: 'hamburger-navigation',
-  template: require("./templates/hamburger-navigation.component.html"),
-  styles: [ require("./styles/hamburger-navigation.component.less") ]
+  template: require("./templates/hamburger-navigation.component.html")
 })
 
 export class HamburgerNavigationComponent{

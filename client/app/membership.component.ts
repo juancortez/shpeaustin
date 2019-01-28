@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { CalendarService } 	 from './services/calendar.service';
 import { JobService } 		 from './services/jobs.service';
 import { ModalComponent } from './modal.component';
+import "./styles/membership.component.less";
 
 declare var $: any;
 declare var Calendar: any;
@@ -9,8 +10,7 @@ declare var Calendar: any;
 
 @Component({
   selector: "membership",
-  template: require("./templates/membership.component.html"),
-  styles: [ require("./styles/membership.component.less") ]
+  template: require("./templates/membership.component.html")
 })
 
 

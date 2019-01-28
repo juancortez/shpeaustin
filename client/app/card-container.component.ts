@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
+import "./styles/card-container.component.less";
 
 @Component({
   selector: "card-container",
-  template: require("./templates/card-container.component.html"),
-  styles: [ require("./styles/card-container.component.less") ]  
+  template: require("./templates/card-container.component.html")
 })
 
 

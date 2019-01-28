@@ -1,12 +1,11 @@
 import { Component, OnInit } 	from "@angular/core";
 import { AnnouncementsService } from "./services/announcements.service";
-
+import "./styles/announcements.component.less";
 declare var $: any;
 
 @Component({
   selector: "announcements",
-  template: require("./templates/announcements.component.html"),
-  styles: [ require("./styles/announcements.component.less") ]  
+  template: require("./templates/announcements.component.html")
 })
 
 

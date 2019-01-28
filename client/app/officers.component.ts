@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { OfficersService } from './services/officers.service';
+import "./styles/officers.component.less";
 
 @Component({
   selector: 'officers',
-  template: require("./templates/officers.component.html"),
-  styles: [ require("./styles/officers.component.less") ]
+  template: require("./templates/officers.component.html")
 })
 
 

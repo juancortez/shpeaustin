@@ -3,13 +3,13 @@ import { Component } 				from "@angular/core";
 import { FARM_CREDIT, SPONSOR_TWO } from './static/sponsors.template';
 
 import { SubscribeService } 		from './services/subscribe.service';
+import "./styles/footer.component.less";
 
 declare var $: any;
 
 @Component({
   selector: "footer",
-  template: require("./templates/footer.component.html"),
-  styles: [ require("./styles/footer.component.less") ]  
+  template: require("./templates/footer.component.html")
 })
 
 

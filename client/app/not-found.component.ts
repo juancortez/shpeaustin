@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import "./styles/not-found.component.less";
 
 @Component({
   selector: "not-found",
-  template: require("./templates/not-found.component.html"),
-  styles: [ require("./styles/not-found.component.less") ]  
+  template: require("./templates/not-found.component.html")
 })
 
 

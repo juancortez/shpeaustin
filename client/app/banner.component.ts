@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import "./styles/banner.component.less";
 
 @Component({
   selector: 'banner',
@@ -8,8 +9,7 @@ import { Component } from '@angular/core';
          <span class="small">Society of Hispanic <br> Professional Engineers</span>
         </a>
     </div>
-  `,
-  styles: [ require("./styles/banner.component.less") ]
+  `
 })
 
 

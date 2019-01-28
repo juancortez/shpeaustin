@@ -3,6 +3,9 @@ server/private_credentials
 # compiled output
 /tmp
 /out-tsc
+dist/*update.js
+dist/*update.json
+.vscode/
 
 # dependencies
 /node_modules

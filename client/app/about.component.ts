@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
-
+import "./styles/about.component.less";
 import { SHPE_MISSION, SHPE_VISION, SHPE_HISTORY, SHPE_AUSTIN_HISTORY, SHPE_BYLAWS } from './static/text.template';
 
 @Component({
   selector: "about",
-  template: require("./templates/about.component.html"),
-  styles: [ require("./styles/about.component.less") ]  
+  template: require("./templates/about.component.html")
 })
 
 
