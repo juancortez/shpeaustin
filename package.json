@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "webpack --env=production --p",
-    "postinstall": "webpack --env=production --p",
+    "postinstall": "typings install && webpack --env=production --p",
     "start": "webpack --env=development --progress && node server/app.js"
   },
   "author": "Juan Cortez",
