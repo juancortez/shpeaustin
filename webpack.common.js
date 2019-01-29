@@ -4,6 +4,7 @@ const path = require('path');
 
 module.exports = (NODE_ENV) => {
     return {
+        mode: NODE_ENV,
         entry: './client/main.ts',
         output: {
             path: path.resolve(__dirname, './dist'),
