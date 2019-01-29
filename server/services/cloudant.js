@@ -72,39 +72,91 @@ const Cloudant = (() => {
     }
 
     function _set(key, data, cb) {
-        if (!_shpeDb) {
+        if (!_shpeDb && !_shpeDbInstancePromise) {
             return cb({reason: "Shpe database has not been initialized, unable to get from Cloudant"});
         }
 
+        _shpeDbInstancePromise.then(() => {
+            _getCachedRevisionId(key, (err, cacheId) => {
+                if (err) {
+                    Logger.error(err);
+                    return cb(err);
+                }
+
+                _shpeDb.insert({
+                    [key]: data,
+                    "_id": cloudantId,
+                    "_rev": cacheId
+                }, cloudantId, function(err, doc) {
+                    if(err) {
+                    return cb({reason: err});
+                    }
+    
+                    if (doc.ok) {
+                        _cacheRevId(key, doc.rev);
+                    }
+    
+                    return cb(null);
+                });
+            });
+        });
+    }
+
+    function _delete(key, cb) {
+        if (!_shpeDb && !_shpeDbInstancePromise) {
+            return cb({reason: "Shpe database has not been initialized, unable to delete from Cloudant"});
+        }
+
+        Logger.info(`Attemping to delete ${key} key from database.`)
+
+        _shpeDbInstancePromise.then(() => {
+            _getCachedRevisionId(key, (err, cacheId) => {
+                if (err) {
+                    Logger.error(err);
+                    return cb(err);
+                }
+
+                const documentId = _findCloundantId(key);
+
+                if (!documentId) {
+                    const reason = `Unable to find document id for ${key}`; 
+                    Logger.error(reason);
+                    return cb(reason);
+                }
+
+                _shpeDb.destroy(documentId, cacheId, (err, response) => {
+                    if (err || !response.ok) {
+                        Logger.error(`Unable to remove ${key} key.`, err);
+                        return cb(err);
+                    }
+
+                    return cb(null);
+                });  
+            });      
+        })
+        .catch(err => {
+            Logger.error(err);
+            return cb(err);
+        });
+    }
+
+    function _getCachedRevisionId(key, cb) {
         const cloudantId = _findCloundantId(key);
 
         if (!cloudantId) {
-            return cb({reason: `Unable to find cloudantId for ${key} database key.`});
+            return cb({
+                reason: `Unable to find cloudantId for ${key} database key.`
+            });
         }
 
         const cacheRevId = _cachedRevId[key];
 
         if (!cacheRevId) {
             const reason = `Cache rev id for ${key} does not exist, unable to save changes`;
-            Logger.error(reason);
             return cb({ reason });
         }
 
-        _shpeDb.insert({
-            [key]: data,
-            "_id": cloudantId,
-            "_rev": cacheRevId
-        }, cloudantId, function(err, doc) {
-            if(err) {
-               return cb({reason: err});
-            }
-
-            if (doc.ok) {
-                _cacheRevId(key, doc.rev);
-            }
-
-            return cb(null);
-         });
+        return cb(null, cacheRevId);
     }
 
     function _prefetchData() {
@@ -215,6 +267,12 @@ const Cloudant = (() => {
                 return Logger.error("Must instantiate a cloudant instance first, failing gracefuly");
             }
             return _prefetchData();
+        },
+        delete: (key, cb) => {
+            if (!instance) {
+                return Logger.error("Must instantiate a cloudant instance first, failing gracefuly");
+            }
+            return _delete(key, cb);
         }
     };
 })();
@@ -256,6 +314,12 @@ function set(key, data, cb) {
     return Cloudant.set(key, data, cb);
 }
 
+function del(key, cb) {
+    _checkNumArguments(arguments, 2);
+
+    return Cloudant.delete(key, cb);
+}
+
 `
 Checks that the number of arguments matches the number of expected arguments
 `
@@ -271,5 +335,6 @@ module.exports = {
     init,
     get,
     set,
+    del,
     prefetchData
 }

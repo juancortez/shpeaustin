@@ -18,12 +18,15 @@ const Logger = require('./../lib/logger').createLogger("<ServicesInitializer>");
 module.exports = ((server, app) => {
     _initializeWebSocket(server);
     _initializeCloudant();
-    _initializeMailchimp(app);
-    _initializeBlinkApi();
-    _initializeAugustApi();
 
-    TwilioApi.initialize();
-    Southwest.checkFares();
+    if (!SettingsProvider.isLocalDevelopment()) {
+        _initializeMailchimp(app);
+        _initializeBlinkApi();
+        _initializeAugustApi();
+        TwilioApi.initialize();
+        Southwest.checkFares();
+    }
+
     SendGridApi.initialize();
 });
 

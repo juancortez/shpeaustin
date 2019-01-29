@@ -20,13 +20,10 @@
    updateCache         :   Used to update cachedData after a change in the Database
 `
 
-const cfenv = require('cfenv'),
-    appEnv = cfenv.getAppEnv(),
-    isLocal = appEnv.isLocal;
-
 const Database = (() => {
     const uuid = require('node-uuid'),
         Logger = require('./logger').createLogger("<Database>"),
+        utils = require('./utils'),
         exporter = require('./exporter.js');
     let instance; // Instance stores a reference to the Singleton
 
@@ -40,45 +37,30 @@ const Database = (() => {
             callback(false, Object.keys(cachedData));
         }
 
-        function _cacheData(key = null, data = "", callback, optional = null) {
-            if(!!optional) var {deleteKey, sendWebsiteRequest} = optional;
-
-            if(!(!!key)){
-                return callback({reason: "Key not provided!"});
+        function _cacheData(key = null, data = "", callback) {
+            if(!key) {
+                return callback({
+                    reason: "Key not provided!"
+                });
             }
 
-            if(!!deleteKey){
-                delete cachedData[key];
-                Logger.log(`Successfully deleted key, ${key}, from cache!`);
-                return _sendWebsiteRequest(key, callback);
-            }
-
-        	if(data && typeof data === "string"){
-        		Logger.log("Converting " + key + " data to an object");
-                try{
-                    data = JSON.parse(data);
-                } catch(e){
-                    return callback({reason: "Passed in JSON was not stringified JSON"});
+            _verifyIsObject(data, (err, result) => {
+                if (err) {
+                    Logger.error(err);
+                    return callback({
+                        reason: "Invalid type, must be JSON."
+                    });
                 }
-        	} 
 
-            if(typeof data === "string") data = JSON.parse(data); // last check. not sure why not working in previous step
-
-            if(typeof data === "object"){
-                cachedData[key] = data;
-                if(!!sendWebsiteRequest){
-                    return _sendWebsiteRequest(key, callback);
-                } 
-                return callback(false);
-            } else{
-                return callback({reason: "Invalid type, must be JSON."});
-            }
+                cachedData[key] = result;
+            });
         }
 
         function _getAllCachedData(callback){
-        	if(Object.keys(cachedData).length === 0 && cachedData.constructor === Object){
+        	if (utils.isEmptyObject(cachedData)) {
         		return callback({reason: "Cached data object is empty."});
-        	}
+            }
+
         	callback(false, cachedData); 
         }
 
@@ -87,54 +69,70 @@ const Database = (() => {
                 length = keys.length;
 
             if(length === 0){
-                return callback({reason: "Array of keys is 0, unable to fetch keys."});
+                return callback({
+                    reason: "Array of keys is 0, unable to fetch keys."
+                });
             }
 
         	for(let i = 0; i < length; i++){
         		let currentKey = keys[i];
-        		if(!(!!cachedData[currentKey])){
-        			return callback({reason: `${currentKey} does not exist in cache. Request failed.`});
-        		}
+        		if(!cachedData[currentKey]) {
+        			return callback({
+                        reason: `${currentKey} does not exist in cache. Request failed.`
+                    });
+                }
+
         		response[currentKey] =  cachedData[currentKey];
-        	}
+            }
+
         	callback(false, response);
         }
 
         function _getCachedData(key = null, callback){
-        	if(!(!!cachedData[key])){
-        		return callback({reason: `${key} not found in cache`});
-        	}
+        	if (!cachedData[key]) {
+        		return callback({
+                    reason: `${key} not found in cache`
+                });
+            }
+
         	return callback(false, cachedData[key]);
         }
 
-        function _setData(key = null, data = "", callback){
-            if(!(!!key)){
-                return callback({reason: "Key not provided!"});
+        function _setData(key = null, data, callback) {
+            if (!key || !data) {
+                const reason = `Unable to set data without both a key and data field.`;
+                Logger.error(reason);
+                return callback({
+                    reason
+                });
             }
 
-            if(typeof data === "string"){
-                // Redis stores JSON as a String, so we need to stringify it
-                try{
-                    JSON.parse(data);
-                } catch(e){
-                    return callback({reason: "Passed in JSON was not stringified JSON"});
+            _verifyIsObject(data, (err, result) => {
+                if (err) {
+                    Logger.error(err);
+                    return callback({
+                        reason: err
+                    });
                 }
 
-
-                client.set(key, data, (err, response) => {
-                    if(err){
-                        return callback({reason: `Was not able to store  ${key} in Redis database.`});
+                client.set(key, result, (err) => {
+                    if(err) {
+                        Logger.error(`Was not able to set database key, ${key}`);
+                        return callback({
+                            reason: `Was not able to store ${key} in database.`
+                        });
                     }
+
+                    _cacheData(key, result);
+
                     Logger.log(`Successfully set database key, ${key}`);
                     return callback(null);
                 }); 
-            } else{
-                return callback({reason: "Passed in JSON was not stringified JSON"});
-            }
+            });
         }
 
         function _deleteData(key = null, callback){
-            if(!(!!cachedData[key])){
+            if (!cachedData[key]){
                 return callback({reason: `${key} does not exist in cache. Request failed.`});
             }
 
@@ -142,14 +140,14 @@ const Database = (() => {
                 if(!!err){
                     Logger.error(err.reason);
                 }
-                client.del(key, (err, reply) => {
+
+                client.del(key, (err) => {
                     if (err) {
-                        return callback({reason: `Redis unable to remove ${key}`});
+                        return callback({reason: `Unable to remove ${key}`});
                     }
-                    return _cacheData(key, null, callback, {
-                        deleteKey: true, 
-                        sendWebsiteRequest: true
-                    });
+
+                    delete cachedData[key];
+                    return callback(null);
                 });
             });
         }
@@ -181,56 +179,53 @@ const Database = (() => {
         };
 
         function _updateCache(key = null, callback){
-            if(!(!!key)){
-                return callback({reason: "Key not provided!"});
+            if(!key){
+                return callback({
+                    reason: "Key not provided!"
+                });
             }
 
             client.get(key, (err, data) => {
                 if (err) {
-                    return callback({reason: `Error: ${err}`});
+                    return callback({
+                        reason: `Error: ${err}`
+                    });
                 } else {
                     if (data == null) {
-                        if(cachedData[key]){
+                        if (cachedData[key]){
                             delete cachedData[key];
                             return callback(false, `Successfully removed ${key} from cache!`);
                         }
-                        return callback({reason: `${key} does not exist in cache and in the Redis database.`});
+
+                        return callback({
+                            reason: `${key} does not exist in cache and in the database.`
+                        });
                     } else {
-                        cachedData[key] = JSON.parse(data); // update cache from Redis database
+                        cachedData[key] = data;
                         return callback(false, `Successfully updated ${key} from cache!`);
                     }
                 }
             });
         }
 
-        // if any changes are made locally, make update available to Bluemix, since data is cached
-        function _sendWebsiteRequest(key = null, callback){
-            return;
-            // if(isLocal) return callback(false);
-            // const request = require("request");
+        function _verifyIsObject(obj, cb) {
+            if (utils.isObject(obj)) {
+                return cb(null, obj);
+            } else if (typeof obj === "string") {
+                try {
+                    obj = JSON.parse(obj);
+                } catch(e) {
+                    return callback({
+                        reason: "Object was not valid JSON, invalid format."
+                    });
+                }
 
-            // Logger.log("Sending update to Bluemix website");
-
-            // let options = { 
-            //     method: 'POST',
-            //     url: 'http://shpeaustin.mybluemix.net/update/cache',
-            //     headers: { 
-            //         'cache-control': 'no-cache',
-            //         'content-type': 'application/json'
-            //     },
-            //     body: { 
-            //         key: key 
-            //     },
-            //     json: true 
-            // };
-
-            // request(options, (error, response, body) => {
-            //     if (error){
-            //         return callback({reason: error});
-            //     }
-            //     Logger.log(`Successfully updated ${key} on Bluemix!`);
-            //     return callback(false);
-            // });
+                return cb(null, obj);
+            } else {
+                return cb({
+                    reason: "Invalid format for data"
+                });
+            }
         }
 
         return {
@@ -381,7 +376,7 @@ function cacheData(key = null, data = "", callback) {
     }    
     var database = Database.getInstance();
     if (!database) {
-        return Logger.error("AN ERRORRRR");
+        return Logger.error("Database not instantiated, unable to cache data.");
     }
     database.cacheData(key, data, callback);
 }
@@ -415,18 +410,26 @@ function cacheData(key = null, data = "", callback) {
 `
 function getCachedData(key = null, callback){
     _checkNumArguments(arguments, 2);
-	var database = Database.getInstance();
-    if(!(!!key)){
+
+    const database = Database.getInstance();
+
+    if (!key) {
         return callback({reason: "Did not provide key"});
     }
+
 	if(typeof key === "string"){
-        if(!(!!key)){
-            return callback({reason: "Did not provide key"});
+        if (!key) {
+            return callback({
+                reason: "Did not provide key"
+            });
         }
+
 		database.getCachedData(key, callback);
-	} else if(key instanceof Array){
+	} else if (key instanceof Array){
         if(key.length === 0){
-            return callback({reason: "Empty array."});
+            return callback({
+                reason: "Empty array."
+            });
         }
 		database.getKeysCachedData(key, callback);
 	}
