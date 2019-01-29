@@ -23,7 +23,7 @@ export class NotFoundComponent implements OnInit{
 	  if (window.addEventListener) // older FF
 	      window.addEventListener('DOMMouseScroll', this.preventDefault, false);
 	  window.onwheel = this.preventDefault; // modern standard
-	  window.onmousewheel = document.onmousewheel = this.preventDefault; // older browsers, IE
+	  window.onmousewheel = (document as any).onmousewheel = this.preventDefault; // older browsers, IE
 	  window.ontouchmove  = this.preventDefault; // mobile
 	  document.onkeydown  = this.preventDefaultForScrollKeys;
 	}

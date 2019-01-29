@@ -40,7 +40,7 @@ export class HamburgerNavigationComponent{
 	private enableScroll() {
 	    if (window.removeEventListener)
 	        window.removeEventListener('DOMMouseScroll', this.preventDefault, false);
-	    window.onmousewheel = document.onmousewheel = null; 
+	    window.onmousewheel = (document as any).onmousewheel = null; 
 	    window.onwheel = null; 
 	    window.ontouchmove = null;  
 	    document.onkeydown = null;  
@@ -50,7 +50,7 @@ export class HamburgerNavigationComponent{
 	  if (window.addEventListener) // older FF
 	      window.addEventListener('DOMMouseScroll', this.preventDefault, false);
 	  window.onwheel = this.preventDefault; // modern standard
-	  window.onmousewheel = document.onmousewheel = this.preventDefault; // older browsers, IE
+	  window.onmousewheel = (document as any).onmousewheel = this.preventDefault; // older browsers, IE
 	  window.ontouchmove  = this.preventDefault; // mobile
 	  document.onkeydown  = this.preventDefaultForScrollKeys;
 	}
