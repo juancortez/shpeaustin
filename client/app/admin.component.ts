@@ -57,7 +57,7 @@ export class AdminComponent implements OnInit {
 		let keysToDelete = this.databaseKeys.filter((key: any) => {
 			return key.selected;
 		}).map((key: any) => {
-			return key.name
+			return key.name;
 		});
 		
 		keysToDelete.forEach((key:string) => {

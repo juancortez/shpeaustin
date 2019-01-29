@@ -18,16 +18,13 @@ const Cloudant = (() => {
 
     const uuid = require('node-uuid');
     let instance,
-        username = "",
-        password = "",
         _shpeDbListName = "shpe_website",
         _shpeDb,
         _shpeDbInstancePromise,
         _cachedRevId = {};
 
     function init(args, cb) {
-        let uniqueID = uuid.v4(), // give the Singleton a unique ID
-            username = args.username,
+        const username = args.username,
             password = args.password;
 
         // Initialize the library with my account.
@@ -85,16 +82,26 @@ const Cloudant = (() => {
             return cb({reason: `Unable to find cloudantId for ${key} database key.`});
         }
 
+        const cacheRevId = _cachedRevId[key];
+
+        if (!cacheRevId) {
+            const reason = `Cache rev id for ${key} does not exist, unable to save changes`;
+            Logger.error(reason);
+            return cb({ reason });
+        }
+
         _shpeDb.insert({
             [key]: data,
             "_id": cloudantId,
-            "_rev": _cachedRevId[key]
+            "_rev": cacheRevId
         }, cloudantId, function(err, doc) {
             if(err) {
                return cb({reason: err});
             }
-            Logger.log(`Successully set ${key} key for SHPE database`);
-            _cacheRevId(key, data._rev);
+
+            if (doc.ok) {
+                _cacheRevId(key, doc.rev);
+            }
 
             return cb(null);
          });
@@ -127,6 +134,11 @@ const Cloudant = (() => {
     }
 
     function _cacheRevId(id, revId) {
+        if (!revId) {
+            Logger.error(`Unable to cache revId for ${id} key with falsy value.`);
+            return;
+        }
+
         Object.assign(_cachedRevId, {
             [id]: revId
         });
