@@ -77,6 +77,7 @@ const Cloudant = (() => {
         }
 
         _shpeDbInstancePromise.then(() => {
+            const cloudantId = _findCloundantId(key);
             _getCachedRevisionId(key, (err, cacheId) => {
                 if (err) {
                     Logger.error(err);
@@ -89,7 +90,7 @@ const Cloudant = (() => {
                     "_rev": cacheId
                 }, cloudantId, function(err, doc) {
                     if(err) {
-                    return cb({reason: err});
+                        return cb({reason: err});
                     }
     
                     if (doc.ok) {

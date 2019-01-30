@@ -37,6 +37,25 @@ const Database = (() => {
             callback(false, Object.keys(cachedData));
         }
 
+        function _getData(key, callback) {
+            if(!key) {
+                return callback({
+                    reason: "Key not provided!"
+                });
+            }
+
+            client.get(key, (err, data) => {
+                if (err) {
+                    Logger.error(`Unable to retrieve ${key} key from database`);
+                    return callback(err);
+                }
+
+                _cacheData(key, data);
+
+                return callback(null, data);
+            });
+        }
+
         function _cacheData(key = null, data = "", callback) {
             if(!key) {
                 return callback({
@@ -106,6 +125,8 @@ const Database = (() => {
                     reason
                 });
             }
+
+            Logger.info(`Setting data for ${key}`);
 
             _verifyIsObject(data, (err, result) => {
                 if (err) {
@@ -289,6 +310,13 @@ const Database = (() => {
                     return;
                 }
                 _updateCache(key, callback);
+            },
+            getData(key, callback) {
+                if(!client){
+                    Logger.error({reason: "Client not defined! Not able fetch from database!"});
+                    return;
+                }
+                _getData(key, callback);
             }
         };
     };
@@ -531,6 +559,29 @@ function updateCache(key = null, callback){
 }
 
 `
+    Retrieves data from database
+
+    @params key{String}             The key to fetch
+
+    @output callback{Function}      Signature for callback is function(err, response). 
+                                    If err is truthy, it contains the property, err.reason, describing the error.
+                                    If response is truthy, the response includes the data
+
+    database.getData(key, function(err, response){
+        if(err){
+            Logger.error("Error: " + err.reason);
+            return;
+        }
+        Logger.log("Successfully retrieved data.");
+    });
+`
+function getData(key, callback) {
+    _checkNumArguments(arguments, 2);
+    var database = Database.getInstance();
+    database.getData(key, callback); 
+}
+
+`
     Checks that the number of arguments matches the number of expected arguments
 `
 function _checkNumArguments(args, expected){
@@ -546,6 +597,7 @@ module.exports = {
     getUUID,
     cacheData,
     setData,
+    getData,
     getAllCachedData,
     getCachedData,
     deleteData,

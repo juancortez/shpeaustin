@@ -56,7 +56,7 @@ function _initializeCloudant() {
             Cloudant.prefetchData();
 
             const FeatureSettings = SettingsProvider.getFeatureSettings();
-            FeatureSettings.setDatabase(Cloudant);
+            FeatureSettings.setDatabase(database);
         });
     });
 }

@@ -102,11 +102,11 @@ app.put('/:key', authorization.mixedAuth, (req, res) => {
           } 
           return res.sendStatus(200);
         });
-    } else{
-        database.setData(key, JSON.stringify(data), (err) => {
+    } else {
+        database.setData(key, data, (err) => {
             if(err){
                 Logger.error(`Error: ${err.reason}`);
-                res.status(400).send(err.reason);
+                return res.status(400).send(err.reason);
             }
             Logger.log(`Successully saved and cached ${key} to Redis!`);
             return res.sendStatus(200);

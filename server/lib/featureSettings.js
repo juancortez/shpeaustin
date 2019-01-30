@@ -36,7 +36,7 @@ class FeatureSettings {
 
     getDatabaseSettings() {
         Logger.log("Fetching feature settings");
-        this.database.get("featureSettings", (err, data) => {
+        this.database.getData("featureSettings", (err, data) => {
             if (err) {
                 Logger.error("Error in fetching feature settings", err);
                 return;
