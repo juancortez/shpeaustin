@@ -51,6 +51,7 @@ import { AnnouncementsComponent }           from './app/announcements.component'
 import { CardContainerComponent }           from './app/card-container.component';
 import { OnlyNumber }                       from './app/only-number.component';
 import { AdminCardComponent }               from './app/admin-card.component';
+import { LogInfoComponent }                 from './app/log-info.component';
 import { ChatComponent }                    from './app/chat.component';
 import { ModalComponent }                   from './app/modal.component';
 
@@ -92,6 +93,7 @@ import { AuthGuard }                        from './app/guards/auth-guard.servic
     AdminComponent,
     LoginComponent,
     AdminCardComponent,
+    LogInfoComponent,
     FooterComponent,
     ChatComponent,
     ModalComponent

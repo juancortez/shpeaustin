@@ -7,12 +7,13 @@ const { getNestedProperty } = require('./utils');
 
 class SettingsProvider {
     constructor() {
+        this.nodeProcess = process.env.NODE_ENV;
         this.isLocal = appEnv.isLocal;
         this.appUrl = appEnv.url;
         this.appPort = appEnv.port;
         this.featureSettings = FeatureSettings.getInstance();
 
-        Logger.info(`Starting a ${this.isLocal ? "local": "production"} build.`);
+        Logger.info(`Starting a ${this._isLocal() ? "local": "production"} build.`);
     }
 
     initializeCredentials() {
@@ -32,7 +33,7 @@ class SettingsProvider {
     }
 
     isLocalDevelopment() {
-        return this.isLocal;
+        return this._isLocal();
     }
 
     getAppUrl() {
@@ -41,6 +42,10 @@ class SettingsProvider {
 
     getPort() {
         return this.appPort;
+    }
+
+    _isLocal() {
+        return this.isLocal && this.nodeProcess === "development";
     }
 }
 

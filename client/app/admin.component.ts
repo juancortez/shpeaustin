@@ -1,7 +1,4 @@
 import { Component, OnInit } 		   from "@angular/core";
-import { AdminCardComponent }  from './admin-card.component';
-
-import { Observable} from 'rxjs/Rx';
 
 import { OfficersService } from './services/officers.service';
 import { AnnouncementsService } from './services/announcements.service';

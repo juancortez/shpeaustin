@@ -16,7 +16,7 @@ module.exports = (NODE_ENV) => {
                     use: ['css-loader']
                 },
                 {
-                    test: /\.ts$/,
+                    test: /\.tsx?$/,
                     use: [
                         'ts-loader'
                     ]
@@ -43,6 +43,7 @@ module.exports = (NODE_ENV) => {
             extensions: [
                 '.js',
                 '.ts',
+                '.tsx',
                 '.html',
                 '.css',
                 '.less'
