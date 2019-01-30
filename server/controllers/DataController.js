@@ -29,16 +29,12 @@ app.get('/all/keys', authorization.mixedAuth, (req, res) => {
     });
 });
 
-app.get('/:key', (req, res) => {
+app.get('/:key', authorization.dataAuth, (req, res) => {
     let key = req && req.params && req.params.key || "";
 
     Logger.info(`Attempting to retrieve, ${key} from database.`);
     
-    if(key === "id"){
-        return res.status(400).send(`Unauthorized access to this information.`);
-    }
-
-    if(!!key){
+    if(key){
         database.getCachedData(key, (err, data) => {
             if(!!err){
                 Logger.error(err.reason);

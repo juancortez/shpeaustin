@@ -30,6 +30,18 @@ const authorization = (function(){
         }
     };
 
+    const dataAuth = function (req, res, next) {
+        let key = req && req.params && req.params.key || "";
+
+        if(key === "id") {
+            return _unauthorized(res, true);
+        } else if (key === "logs") {
+            return mixedAuth(req, res, next);
+        } else {
+            return next();
+        }
+    }
+
     const mixedAuth = function (req, res, next) {
         let queryCredentials = req.query.credentials;
 
@@ -109,7 +121,8 @@ const authorization = (function(){
     return{
         auth,
         webAuth,
-        mixedAuth
+        mixedAuth,
+        dataAuth
     }
 })();
 

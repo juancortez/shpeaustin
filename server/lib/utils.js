@@ -1,3 +1,9 @@
+const Severity = Object.freeze({
+  "Log": "log",
+  "Error": "error",
+  "Info": "info"
+});
+
 module.exports = {
     to: function(promise) {
      return promise.then(data => {
@@ -24,5 +30,6 @@ module.exports = {
       });
 
       return Promise.race([promise, timeoutPromise]);
-    }
+    },
+    Severity
 }

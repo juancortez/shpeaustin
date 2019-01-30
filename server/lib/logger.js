@@ -1,14 +1,11 @@
 const utils = require('./utils');
-
-const Severity = Object.freeze({
-    "Log": "log",
-    "Error": "error",
-    "Info": "info"
-});
+const Severity = utils.Severity;
+const TelemetryLogger = require('./telemetryLogger');
 
 class Logger {
     constructor(preLog) {
         this.preLog = preLog;
+        this.telemetryLogger = TelemetryLogger.getInstance();
     }
 
     static createLogger(preLog) {
@@ -31,6 +28,8 @@ class Logger {
         messages.forEach(message => {
             message = this._convertToString(message);
             console[severity](`${this.preLog}: ${message}`);
+
+            this.telemetryLogger[severity](message);
         });
     }
 

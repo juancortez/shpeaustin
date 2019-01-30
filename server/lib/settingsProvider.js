@@ -7,7 +7,6 @@ const { getNestedProperty } = require('./utils');
 
 class SettingsProvider {
     constructor() {
-        this.nodeProcess = process.env.NODE_ENV;
         this.isLocal = appEnv.isLocal;
         this.appUrl = appEnv.url;
         this.appPort = appEnv.port;
@@ -45,7 +44,7 @@ class SettingsProvider {
     }
 
     _isLocal() {
-        return this.isLocal && this.nodeProcess === "development";
+        return this.isLocal;
     }
 }
 

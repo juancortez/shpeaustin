@@ -14,6 +14,7 @@ const mcapi = require('mailchimp-api');
 const SettingsProvider = require('./../lib/settingsProvider');
 const cloudantCredentials = SettingsProvider.getCredentialByPath(["shpeaustincloudant"]);
 const Logger = require('./../lib/logger').createLogger("<ServicesInitializer>");
+const TelemetryLogger = require('./../lib/telemetryLogger');
 
 module.exports = ((server, app) => {
     _initializeWebSocket(server);
@@ -57,6 +58,7 @@ function _initializeCloudant() {
 
             const FeatureSettings = SettingsProvider.getFeatureSettings();
             FeatureSettings.setDatabase(database);
+            TelemetryLogger.getInstance().setDatabase(database);
         });
     });
 }

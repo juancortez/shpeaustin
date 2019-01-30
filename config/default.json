@@ -58,6 +58,10 @@
         "fileName": "",
         "cloudantId": "b0f1aac329b4bb6458e9fd9ba9d85bc9",
         "name": "featureSettings"
+    }, {
+        "fileName": "",
+        "cloudantId": "b613259883b90115b7660df66f939bcd",
+        "name": "logs"
     }],
     "googleDrive": {
         "officeOnlineUrl": "https://view.officeapps.live.com/op/view.aspx?src=",
