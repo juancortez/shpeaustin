@@ -1,0 +1,38 @@
+.react-log-application {
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+
+    .log-info-header {
+        color: black;
+        text-align: center;
+    }
+    
+    table.shpe-logs {
+        border-collapse: collapse;
+        width: 100%;
+    
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+    
+        tr.error {
+            color: red;
+        }
+    
+        tr {
+            &:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+    
+            &.error {
+                color: red;
+            }
+    
+            &:info {
+                color: yellow;
+            }
+        }
+    }
+}

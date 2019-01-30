@@ -1,8 +1,7 @@
 import * as invariant from 'invariant';
 
 import { Component, OnInit, OnDestroy, OnChanges, AfterViewInit } from "@angular/core";
-import { createElement } from "./react-components/App";
-import "./styles/log-info.component.less";
+import { createElement } from "./react/App";
 
 @Component({
     selector: "log-info",
