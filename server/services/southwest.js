@@ -10,11 +10,18 @@ const FeatureSettings = SettingsProvider.getFeatureSettings();
 const Logger = require('./../lib/logger').createLogger("<Southwest>");
 let { intervalCheck: INTERVAL_CHECK = 3600000, lowestFarePrice: LOWEST_FARE_PRICE = 300 } = FeatureSettings.getSetting("southWest");
 
+let southWestPollEngine;
 /* If API Fails more than MAX_FAILURES times, stop invoking API */
 let NUM_FAILURES = 0;
 const MAX_FAILURES = 5;
 
 function _performSouthwestRequest() {
+    if (NUM_FAILURES >= MAX_FAILURES) {
+        Logger.error(`Southwest API has failed more than ${MAX_FAILURES} times, stopping poll.`);
+        southWestPollEngine && southWestPollEngine.stopPolling();
+        return;
+    }
+
     const options = {
         method: 'POST',
         url: 'https://www.southwest.com/api/air-booking/v1/air-booking/page/air/booking/shopping',
@@ -102,19 +109,10 @@ function _sendNotification(currentLowestPrice) {
     TwilioApi.sendMessage(msg);
 }
 
-function _pollSouthwest() {
-    if (NUM_FAILURES >= MAX_FAILURES) {
-        return;
-    }
-
-    _performSouthwestRequest();
-    setTimeout(_pollSouthwest, INTERVAL_CHECK);
-}
-
 module.exports.Southwest = {
     checkFares: function() {
-        const southWestPollEngine = new PollEngine({
-            fn: _pollSouthwest,
+        southWestPollEngine = new PollEngine({
+            fn: _performSouthwestRequest,
             pollMs: INTERVAL_CHECK,
             pollEngineName: "SouthwestPollEngine"
         });
