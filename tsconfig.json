@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -8,6 +8,13 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
-    "jsx": "react"
-  }
+    "jsx": "react",
+    "outDir": "dist"
+  },
+  "include": [
+    "server/**/*.ts"
+  ],
+  "exluce": [
+    "node_modules"
+  ]
 }
