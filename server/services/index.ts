@@ -2,9 +2,9 @@
     Startup all the different services
 */
 const socket = require('socket.io');
-const database = require("./../lib/database.js");
-const socket_connect = require("./socket.js");
-const Cloudant = require("./cloudant.js");
+const database = require("./../lib/database");
+const socket_connect = require("./socket");
+const Cloudant = require("./cloudant");
 const BlinkApi = require('./blink');
 const AugustApi = require('./august');
 const Southwest = require('./southwest').Southwest;

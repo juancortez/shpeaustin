@@ -39,31 +39,30 @@ namespace Application {
         app.use('/', express.static(root + '/dist'));
         app.use('/scripts', express.static(root + '/node_modules'));
 
+        if (SettingsProvider.isLocalDevelopment()) {
+            app.get('/playground/react', function(req, res) {
+                return res.sendFile(path.join(staticRoot + '/views/react.html'), {
+                    headers: {
+                        'Cache-Control': 'no-cache'
+                    }
+                });
+            });
+        }
+
+        const Services = require('./services/index');
+        const ExpressControllers = require('./router/main');
+
+        // Add all other routes to express application
+        ExpressControllers(app, express);
+
         // start server on the specified port and binding host
         const server = app.listen(SettingsProvider.getPort(), () => {
             Logger.log(`Server starting on ${SettingsProvider.getAppUrl()}`);
         });
+
+        // initialize all services
+        Services(server, app);
     }
 }
 
 Application.start();
-
-// if (SettingsProvider.isLocalDevelopment()) {
-//     app.get('/playground/react', function(req, res) {
-//         return res.sendFile(path.join(staticRoot + '/views/react.html'), {
-//             headers: {
-//                 'Cache-Control': 'no-cache'
-//             }
-//         });
-//     });
-// }
-
-// const Services = require('./services/index');
-// const ExpressControllers = require('./router/main');
-
-// // Add all other routes to express application
-// ExpressControllers(app, express);
-
-
-// // initialize all services
-// Services(server, app);
