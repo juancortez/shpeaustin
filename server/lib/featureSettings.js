@@ -1,5 +1,6 @@
 const config = require('config');
 const Logger = require('./logger').createLogger("<FeatureSettings>");
+const PollEngine = require('./pollEngine');
 let _instance;
 
 class FeatureSettings {
@@ -25,13 +26,15 @@ class FeatureSettings {
     }
 
     setDatabase(db) {
-        let self = this;
         this.database = db;
 
-        (function sync() {
-            self.getDatabaseSettings();
-            setTimeout(sync, self.syncIntervalMs);
-        })();
+        new PollEngine({
+            fn: this.getDatabaseSettings,
+            fnContext: this,
+            pollMs: this.syncIntervalMs,
+            pollEngineName: "Feature Settings",
+            startImmediate: true
+        });
     }
 
     getDatabaseSettings() {

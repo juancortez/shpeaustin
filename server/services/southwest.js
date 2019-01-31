@@ -78,6 +78,8 @@ function _checkFeatureSettingUpdates() {
     if (southWestSettings) {
         INTERVAL_CHECK = southWestSettings.intervalCheck || INTERVAL_CHECK;
         LOWEST_FARE_PRICE = southWestSettings.lowestFarePrice || LOWEST_FARE_PRICE;
+
+        PollEngine.updatePollTimeMs(INTERVAL_CHECK);
     }
 }
 

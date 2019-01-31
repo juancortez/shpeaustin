@@ -14,7 +14,7 @@
 */
 class PollEngine {
     constructor(args) {
-        const { fn, pollMs, pollEngineName, fnContext, startImmediate } = args;
+        const { fn, pollMs, pollEngineName, fnContext = null, startImmediate = false } = args;
         this._preLog = "<PollEngine>";
         this._fn = fn;
         this._pollMs = pollMs;
@@ -30,7 +30,7 @@ class PollEngine {
     }
 
     startPolling() {
-        console.log(`${this._preLog}: Starting ${this._pollEngineName} poll engine.`);
+        this._log(`Starting ${this._pollEngineName} poll engine.`);
         this._started = true;
         this._poll();
     }
@@ -40,8 +40,21 @@ class PollEngine {
             return;
         }
 
-        console.log(`${this._preLog}: Stopping ${this._pollEngineName} poll engine.`);
+        this._log(`Stopping ${this._pollEngineName} poll engine.`);
+        this._started = false;
         this._stopPoll = true;
+    }
+
+    updatePollTimeMs(pollMs) {
+        if (!this._started) {
+            this._log("Unable to update poll time on poll engine that hasn't started.");
+            return;
+        }
+        this._pollMs = pollMs;
+    }
+
+    _log(msg) {
+        console.log(`${this._preLog}: ${msg}`);
     }
 
     _poll() {

@@ -15,7 +15,7 @@ class TelemetryLogger {
         new PollEngine({
             fn: this._flush,
             fnContext: this,
-            pollMs: 1000,
+            pollMs: this._flushTimeoutMs,
             pollEngineName: "TelemetryPollEngine",
             startImmediate: true
         });
@@ -61,7 +61,7 @@ class TelemetryLogger {
                 let logs = [...data, ...this._logs];
                 
                 if (logs.length > this._maxLogs) {
-                    logs = _removeElementsFromStart(logs);
+                    logs = this._removeElementsFromStart(logs);
                 }
 
                 this._db.setData(this._dbKey, logs, (err) => {
