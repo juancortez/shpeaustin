@@ -7,6 +7,7 @@
 /// <reference path="../router/main.ts" />
 namespace Routes {
     const express = require('express'),
+        google_calendar = require('../services/google_calendar'),
         app = express(),
         config = require('config'),
         path = require('path'),
@@ -155,7 +156,6 @@ namespace Routes {
     // updates Google Calendar data in the Redis Database
     app.post('/calendar', authorization.auth, (req, res) => {
         // Get access to the Google Calendar
-        const google_calendar = require('../services/google_calendar.js');
         const google_content = SettingsProvider.getCredentialByPath(["google_oauth"]);
 
         google_calendar.authorize(google_content, (err, results) => {

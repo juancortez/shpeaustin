@@ -32,13 +32,6 @@ namespace Routes {
         /*************************************************************************/
         app.use('/communication',  require('../controllers/CommunicationController'));
     
-        // /*************************************************************************/
-        // // HackathonController.ts
-        // //
-        // // The /hackathon endpoint is used for hackathon related material
-        // /*************************************************************************/
-        // app.use('/hackathon',  require('../controllers/HackathonController'));
-    
         /*************************************************************************/
         // ShortcutsController.ts
         //
