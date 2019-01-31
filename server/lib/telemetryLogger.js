@@ -1,5 +1,6 @@
 const { Severity } = require('./utils');
 const uuid = require('node-uuid');
+const PollEngine = require('./pollEngine');
 
 class TelemetryLogger {
     constructor() {
@@ -10,7 +11,14 @@ class TelemetryLogger {
         this._flushTimeoutMs = 30 * 1000;
         this._dbKey = "logs";
         this._db = null;
-        this._flushPoll();
+
+        new PollEngine({
+            fn: this._flush,
+            fnContext: this,
+            pollMs: 1000,
+            pollEngineName: "TelemetryPollEngine",
+            startImmediate: true
+        });
     }
 
     flush() {
@@ -40,11 +48,6 @@ class TelemetryLogger {
             ...this._baseMessage(message),
             severity: Severity.Log
         });
-    }
-
-    _flushPoll() {
-        this._flush();
-        setTimeout(this._flushPoll.bind(this), this._flushTimeoutMs);
     }
 
     _flush() {

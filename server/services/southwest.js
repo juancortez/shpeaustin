@@ -4,6 +4,7 @@
 */
 const request = require("request");
 const TwilioApi = require('./twilio');
+const PollEngine = require('./../lib/pollEngine');
 const SettingsProvider = require('./../lib/settingsProvider');
 const FeatureSettings = SettingsProvider.getFeatureSettings();
 const Logger = require('./../lib/logger').createLogger("<Southwest>");
@@ -112,6 +113,11 @@ function _pollSouthwest() {
 
 module.exports.Southwest = {
     checkFares: function() {
-        _pollSouthwest();
+        const southWestPollEngine = new PollEngine({
+            fn: _pollSouthwest,
+            pollMs: INTERVAL_CHECK,
+            pollEngineName: "SouthwestPollEngine"
+        });
+        southWestPollEngine.startPolling();
     }
 }

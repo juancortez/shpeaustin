@@ -27,9 +27,10 @@ class Logger {
     _logMessage(severity, messages) {
         messages.forEach(message => {
             message = this._convertToString(message);
-            console[severity](`${this.preLog}: ${message}`);
+            const msg = `${this.preLog}: ${message}`;
+            console[severity](msg);
 
-            this.telemetryLogger[severity](message);
+            this.telemetryLogger[severity](msg);
         });
     }
 
