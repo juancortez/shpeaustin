@@ -14,7 +14,7 @@
   "include": [
     "server/**/*.ts"
   ],
-  "exluce": [
+  "exclude": [
     "node_modules"
   ]
 }
