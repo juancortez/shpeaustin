@@ -6,4 +6,4 @@ applications:
   name: shpeaustin
   host: shpeaustin
   disk_quota: 1024M
-  command: node server/app.js
+  command: node dist/app
