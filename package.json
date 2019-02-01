@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "tsc && npm run buildProdClient",
-    "postinstall": "typings install && npm run build",
+    "postinstall": "typings install",
     "buildProdClient": "webpack --env=production --progress --p",
     "buildStartServer": "tsc && node dist/app",
     "start": "concurrently \"webpack --env=development --watch --colors\" \"npm run buildStartServer\""
@@ -68,7 +68,6 @@
     "twilio": "^3.27.1",
     "typescript": "^3.2.4",
     "typings": "1.3.2",
-    "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
     "webpack-merge": "^4.2.1",
     "zone.js": "^0.8.29"
@@ -89,7 +88,8 @@
     "gulp-uglify": "1.5.3",
     "jshint": "2.9.4",
     "nodemon": "1.10.2",
-    "readline-sync": "^1.4.9"
+    "readline-sync": "^1.4.9",
+    "webpack": "^4.29.0"
   },
   "engines": {
     "node": "8.11.3",
