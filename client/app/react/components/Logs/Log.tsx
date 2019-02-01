@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ILog } from "./Logs";
+import { ILog } from "./../../models/Logs";
 
 interface ILogProps {
     logs: ILog[];
