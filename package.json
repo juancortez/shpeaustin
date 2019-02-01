@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "tsc && npm run buildProdClient",
-    "postinstall": "typings install && npm run build",
+    "postinstall": "typings install",
     "buildProdClient": "webpack --env=production --progress --p",
     "buildStartServer": "tsc && node dist/app",
     "start": "concurrently \"webpack --env=development --watch --colors\" \"npm run buildStartServer\""
