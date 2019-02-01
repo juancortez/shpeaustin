@@ -6,5 +6,4 @@ applications:
   name: shpeaustin
   host: shpeaustin
   disk_quota: 1024M
-  command: npm run build
   command: node dist/app
