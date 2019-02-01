@@ -139,18 +139,17 @@
 		    </admin-card>
 		</div>
 	</div>
+	<div class ="json-container">
+		<div class="output-container">
+		   <p class="copy-status"></p>
+		   <i (click)="copy()" class="fa fa-files-o" id="copy-text" title="Copy JSON" aria-hidden="true"></i>
+		   <pre>
+		   <code class="output">
+		   </code>
+		 </pre>
+		</div>
+		<div id="hidden-output"></div>
+	</div>
 
 	<log-info></log-info>
-
-	<div class ="json-container">
-	 <div class="output-container">
-	    <p class="copy-status"></p>
-	    <i (click)="copy()" class="fa fa-files-o" id="copy-text" title="Copy JSON" aria-hidden="true"></i>
-	    <pre>
-	    <code class="output">
-	    </code>
-	  </pre>
-	 </div>
-	 <div id="hidden-output"></div>
-	</div>
 </div>

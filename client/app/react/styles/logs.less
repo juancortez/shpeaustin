@@ -1,44 +1,53 @@
-.logs-container {
-    padding: 25px;
-
-    .search-log-container {
-        text-align: right;
-    }
-
-    .log-info-header {
-        color: black;
-        text-align: center;
-    }
-
-    .logs-provider {
-        padding-top: 5px;
-        text-align: center;
-    }
+.react-log-application {
+    padding: 15px 0px;
+    .logs-container {
+        padding: 25px;
     
-    table.shpe-logs {
-        border-collapse: collapse;
-        width: 100%;
-    
-        th, td {
-            text-align: left;
-            padding: 8px;
+        .search-log-container {
+            text-align: right;
         }
     
-        tr.error {
-            color: red;
+        .log-info-header {
+            color: black;
+            text-align: center;
         }
     
-        tr {
-            &:nth-child(even) {
-                background-color: #f2f2f2;
+        .logs-provider {
+            padding-top: 5px;
+            text-align: center;
+    
+            .show-more-logs {
+                text-align: center;
+                cursor: pointer;
+                padding: 10px 0px;
             }
-    
-            &.error {
+        }
+        
+        table.shpe-logs {
+            border-collapse: collapse;
+            width: 100%;
+        
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+        
+            tr.error {
                 color: red;
             }
-    
-            &:info {
-                color: yellow;
+        
+            tr {
+                &:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+        
+                &.error {
+                    color: red;
+                }
+        
+                &:info {
+                    color: yellow;
+                }
             }
         }
     }
