@@ -58,7 +58,7 @@ function _initializeCloudant() {
 
             const FeatureSettings = SettingsProvider.getFeatureSettings();
             FeatureSettings.setDatabase(database);
-            TelemetryLogger.getInstance().setDatabase(database);
+            TelemetryLogger.getInstance().setDatabase(database);            
         });
     });
 }
