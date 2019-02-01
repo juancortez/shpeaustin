@@ -1,7 +1,12 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-    plugins: [
-        new UglifyJsPlugin()
-    ]
+    optimization: {
+        minimizer: [new TerserPlugin({
+            parallel: true,
+            terserOptions: {
+              ecma: 6,
+            }
+        })],
+      }
 }
