@@ -4,3 +4,10 @@ export interface ILog {
     log: string;
     severity: string;
 }
+
+export enum LogTypes {
+    All,
+    Regular,
+    Error,
+    Info
+}
