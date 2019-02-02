@@ -16,7 +16,7 @@ namespace Routes {
     app.post('/login', authorization.webAuth, (req, res) => {
         Logger.log("Login successful!");
         const key = "id";
-        let uniqueId = uuid.v4();
+        const uniqueId = uuid.v4();
 
         //store all users that have logged in
         database.getCachedData(key, (err, data) => {
@@ -25,7 +25,12 @@ namespace Routes {
                 return res.status(400).send(`Database error, cannot find ${key} key.`);
             }
 
-            let result = [...data, uniqueId];
+            const uniqueIdDb = {
+                ts: +new Date(),
+                id: uniqueId
+            }
+
+            let result = [...data, uniqueIdDb];
 
             database.setData(key, JSON.stringify(result), (err) => {
                 if (err) {
