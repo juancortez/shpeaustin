@@ -57,7 +57,7 @@ namespace Authorization {
                         return _unauthorized(res, false);
                     }
 
-                    if(data.indexOf(queryCredentials) >= 0){
+                    if (_idExists(data, queryCredentials)){
                         Logger.log(`Cookie authorized for ${method} method at url "${url}"`);
                         return next();
                     } else{
@@ -77,6 +77,15 @@ namespace Authorization {
                 return _unauthorized(res, false);
             }
         };
+
+        function _idExists(data, queryCredentials) {
+            const match = data.filter((ids) => {
+                const { id } = ids;
+                return id === queryCredentials;
+            });
+
+            return match.length > 0;
+        }
 
         // logs in with POST method and doesnt use basic-auth
         const webAuth = function(req, res, next) {

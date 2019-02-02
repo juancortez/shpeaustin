@@ -7,7 +7,7 @@ namespace Settings {
     const Logger = require('./logger').createLogger("<SettingsProvider>");
     const FeatureSettings = require('./../lib/featureSettings');
     const Credentials = require('./../lib/credentialsBuilder');
-    const { ExpiryEngine } = require('./../lib/expiryEngine');
+    const ExpiryEngine = require('./../lib/expiryEngine');
     const { getNestedProperty } = require('./utils');
 
     export class SettingsProvider {
@@ -42,8 +42,12 @@ namespace Settings {
             Example:
             SettingsProvider.getCredentialByPath(["google_onedrive_oath", "installed", "client_secret"]);
         */
-       getCredentialByPath(path) {
+        getCredentialByPath(path) {
             return getNestedProperty(path, this.credentials);
+        }
+
+        getExpiryEngine() {
+            return this.expiryEngine;
         }
     
         getFeatureSettings() {
