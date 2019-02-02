@@ -57,7 +57,7 @@ namespace Application {
 
         // start server on the specified port and binding host
         const server = app.listen(SettingsProvider.getPort(), () => {
-            Logger.log(`Server starting on ${SettingsProvider.getAppUrl()}`);
+            Logger.info(`Server starting on ${SettingsProvider.getAppUrl()}`);
         });
 
         // initialize all services

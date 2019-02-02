@@ -21,22 +21,52 @@ namespace ExpiryEngine {
         }
 
         public startExpiryEngine() {
+            Logger.log("Starting expiry engine...");
             this._expiryPoll.startPolling();
         }
 
-        private _checkForExpiry () {
+        private _checkForExpiry() {
+            Logger.info("Checking for expiry...");
             this._expiry.forEach((expiry: IExpiry) => {
                 const { expiryTime, keyName } = expiry;
  
-                database.getCachedData(keyName, function(err, data){
-                    if(err){
+                database.getCachedData(keyName, (err, data) => {
+                    if (err){
                         Logger.error(err.reason);
                         return;
                     }
 
-                    // TODO: expiryTime logic
+                    const currentDate = +new Date();
+                    const isExpiredData = data.some((dbData) => {
+                        const { ts } = dbData;
+                        if (this._isExpired(ts, expiryTime, currentDate)) {
+                            Logger.log(`Data in ${keyName} has expired`);
+                            return true;
+                        }
+                        return false;
+                    });
+
+                    if (isExpiredData) {
+                        Logger.log(`Pruning expired data from ${keyName}`);
+                        const unexpiredData = data.filter((dbData) => {
+                            const { ts } = dbData;
+                            return !this._isExpired(ts, expiryTime, currentDate);
+                        });
+
+                        database.setData(keyName, unexpiredData, function(err) {
+                            if (err){
+                                Logger.error("Error: " + err.reason);
+                                return;
+                            }
+                            Logger.log(`Filtered out old ${keyName} data.`);
+                        });
+                    }
                 });
             });
+        }
+
+        private _isExpired(currentTs, expiryTime, currentDate: number): boolean {
+            return (currentTs + expiryTime) <= +currentDate;
         }
     }
 }

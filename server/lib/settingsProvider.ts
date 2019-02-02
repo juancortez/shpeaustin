@@ -25,7 +25,7 @@ namespace Settings {
             this.featureSettings = FeatureSettings.getInstance();
 
             const idExpiry: IExpiry = {
-                expiryTime: ONE_DAY_MS,
+                expiryTime: ONE_DAY_MS * 30,
                 keyName: "id"
             };
 
