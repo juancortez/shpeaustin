@@ -44,3 +44,5 @@ Thumbs.db
 
 # Typings
 typings/
+
+package-lock.json
