@@ -1,8 +1,11 @@
+import { HueLight } from "./../models";
+
 /// <reference path="../router/main.ts" />
 namespace Routes {        
     const express = require('express'),
         app = express(),
         AugustApi = require('./../services/august'),
+        HueApi = require('./../services/hue'),
         Logger = require('./../lib/logger').createLogger("<AuthenticationController>"),
         { to } = require('../lib/utils');
 
@@ -55,10 +58,14 @@ namespace Routes {
         const shouldArmAugustLock = _shouldArm(req);
         const armModeStr = shouldArmAugustLock ? "locked" : "unlocked";
 
-        /* Extra feature: Disarm blink when august door gets unlocked */
-        const shouldDisarmBlink = req.query.disarmBlink == 'true';
-        if(!shouldArmAugustLock && shouldDisarmBlink) {
-            await to(_disarmBlink());
+        if(!shouldArmAugustLock) {
+            const shouldDisarmBlink = req.query.disarmBlink == 'true';
+            /* Extra feature: Disarm blink when august door gets unlocked */
+            if (shouldDisarmBlink) {
+                await to(_disarmBlink());
+            }
+
+            _turnOnBedroomLights();
         }
 
         const augustApi = AugustApi.getInstance();
@@ -109,6 +116,12 @@ namespace Routes {
         } else {
             Logger.log(`Successfully disarmed blink`);
         }
+    }
+
+    function _turnOnBedroomLights() {
+        const hueApi = HueApi.getInstance();
+        hueApi.turnOn(HueLight.Bed);
+        hueApi.turnOn(HueLight.Bedside);
     }
 
     function _getBlinkInstance() {

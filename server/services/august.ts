@@ -27,7 +27,7 @@ namespace ConnectedHome {
         
         static getInstance() {
             if (_instance) {
-            return _instance;
+                return _instance;
             }
         
             return new AugustApi();

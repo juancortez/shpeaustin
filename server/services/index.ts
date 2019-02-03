@@ -7,6 +7,7 @@ const socket_connect = require("./socket");
 const Cloudant = require("./cloudant");
 const BlinkApi = require('./blink');
 const AugustApi = require('./august');
+const HueApi = require('./hue');
 const Southwest = require('./southwest').Southwest;
 const TwilioApi = require('./twilio');
 const SendGridApi = require('./sendGrid');
@@ -22,8 +23,7 @@ module.exports = ((server, app) => {
 
     if (!SettingsProvider.isLocalDevelopment()) {
         _initializeMailchimp(app);
-        _initializeBlinkApi();
-        _initializeAugustApi();
+        _initializeSmartHome();
         TwilioApi.initialize();
         Southwest.checkFares();
     }
@@ -76,6 +76,15 @@ function _initializeMailchimp(app) {
 }
 
 /************************************************************************************************************
+*                                  Smart home Configuration
+************************************************************************************************************/
+function _initializeSmartHome() {
+    _initializeBlinkApi();
+    _initializeAugustApi();
+    _initializeHueApi();
+}
+
+/************************************************************************************************************
 *                                  Blink Api Configuration
 ************************************************************************************************************/
 function _initializeBlinkApi() {
@@ -100,4 +109,8 @@ function _initializeAugustApi() {
         }
         Logger.log("Successfully initialized August API");
     });
+}
+
+function _initializeHueApi() {
+    HueApi.getInstance();
 }

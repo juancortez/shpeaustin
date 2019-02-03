@@ -53,7 +53,7 @@ namespace Telemetry {
         info(message) {
             this._logs.push({
                 ...this._baseMessage(message),
-                severity: Severity.Log
+                severity: Severity.Info
             });
         }
     

@@ -10,6 +10,7 @@
  The only way the Travis build will work is if the private credentials are stored on GitHub, but I do not want to expose 
  API keys or passwords. The way I solved this was by storing all of the important keys on BlueMix User-Defined Environment Variables. 
  They can be accessed by looking into the process.env.NAME property.
+ https://console.bluemix.net/dashboard/apps
  
  If running locally, just read from the private_credentials/credentials.json file.
 `
@@ -90,6 +91,9 @@ namespace PrivateCredentials {
 					privateCredentialsBuilder.twilio.authToken = process.env.twilioToken;
 					privateCredentialsBuilder.twilio.twilioNumber = process.env.twilioNumber;
 					privateCredentialsBuilder.twilio.personalNumber = process.env.twilioPersonalNumber;
+					privateCredentialsBuilder.hue = {};
+					privateCredentialsBuilder.hue.bridge = process.env.hueBridge;
+					privateCredentialsBuilder.hue.username = process.env.hueUsername;
 	
 					return privateCredentialsBuilder;
 				}

@@ -53,6 +53,7 @@
     "node-blink-security": "^2.0.2",
     "node-uuid": "1.4.7",
     "owl.carousel": "2.2.0",
+    "philips-hue": "^1.2.0",
     "raw-loader": "0.5.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

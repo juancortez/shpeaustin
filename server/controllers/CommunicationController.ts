@@ -27,7 +27,7 @@ namespace Routes {
         let {
             name = "SHPE-BOT",
             phone = "",
-            email = sendGridEmail,
+            email,
             subject = "SHPE Austin Website Message",
             message = "",
             subscribe = false
