@@ -74,5 +74,13 @@
             "intervalCheck": 3600000,
             "lowestFarePrice": 400
         }
+    },
+    "rei": {
+        "items": [{
+            "productId": 106341,
+            "productName": "Co-op Cycles ARD 1.1 Bike",
+            "productSellingPrice": 899,
+            "thresholdDifference": 50
+        }]
     }
 }

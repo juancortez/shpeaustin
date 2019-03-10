@@ -16,6 +16,7 @@ const SettingsProvider = require('./../lib/settingsProvider');
 const cloudantCredentials = SettingsProvider.getCredentialByPath(["shpeaustincloudant"]);
 const Logger = require('./../lib/logger').createLogger("<ServicesInitializer>");
 const TelemetryLogger = require('./../lib/telemetryLogger');
+const ReiApi = require('./rei');
 
 module.exports = ((server, app) => {
     _initializeWebSocket(server);
@@ -26,6 +27,7 @@ module.exports = ((server, app) => {
         _initializeSmartHome();
         TwilioApi.initialize();
         Southwest.checkFares();
+        _initializeReiApi();
     }
 
     SendGridApi.initialize();
@@ -113,4 +115,9 @@ function _initializeAugustApi() {
 
 function _initializeHueApi() {
     HueApi.getInstance();
+}
+
+function _initializeReiApi() {
+    Logger.log("Initializing REI API...");
+    ReiApi.getInstance();
 }
