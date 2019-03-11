@@ -11,6 +11,7 @@ namespace ReiPriceBot {
     const request = require('request');
     const { getNestedProperty } = require('./../lib/utils');
     const reiProducts: IReiProducts = config.rei;
+    const convert = require('xml-js');
 
     export class ReiBot {
         private _numFailures: number = 0;
@@ -59,10 +60,9 @@ namespace ReiPriceBot {
                 return;
             }
 
-            // TODO: Instead of checking comparable, get XML of actual product https://www.rei.com/rest/products/106309
             const options = {
                 method: 'GET',
-                url: `https://www.rei.com/rest/products/associated/${productId}/COMPARABLE_PRODUCT`,
+                url: `https://www.rei.com/rest/products/${productId}`,
                 headers: {
                     'User-Agent': 'curl/7.47.0'
                 }
@@ -74,26 +74,44 @@ namespace ReiPriceBot {
                     this._numFailures++;
                     return;
                 }
-            
-                let jsonResponse = null;
+                
                 try {
-                    jsonResponse = JSON.parse(body);
+                    // REI API is not consistent, check if xml or stringified JSON
+                    const bodyIsXml = typeof body === "string" && /\?xml/.test(body);
+                    let resultJson;
+
+                    if (bodyIsXml) {
+                        const options = {
+                            sanitize: true,
+                            trim: true
+                        };
+                        resultJson = convert.xml2json(body, options);
+                    } else {
+                        resultJson = JSON.parse(body);
+                    }
+
+                    const originalSellingPrice = getNestedProperty(["displayPrice", "compareAt"], resultJson) || Infinity;
+                    const minSellingPrice = getNestedProperty(["displayPrice", "min"], resultJson) || Infinity;
+
+                    if (originalSellingPrice === Infinity) {
+                        Logger.error(`Unable to parse displayPrice for ${productName}.`);
+                        return;
+                    }
+
+                    if (originalSellingPrice >= minSellingPrice) {
+                        Logger.log(`${productName} is still the same price, checking back later.`);
+                        return;
+                    }
+
+                    /* Check if item is as cheap as the lowestThresholdPricing price */
+                    if (minSellingPrice <= lowestThresholdPricing) {
+                        this._sendNotification(productName, minSellingPrice);
+                    } else {
+                        Logger.log(`No lower price found for ${productName}.`)
+                    }
                 } catch(e) {
-                    jsonResponse = null;
-                    Logger.error("Invalid response....")
-                }
-
-                if (jsonResponse && Array.isArray(jsonResponse)) {
-                    jsonResponse.forEach(product => {
-                        const sellingPrice = getNestedProperty(["product", "sellingPrice"], product) || {};
-                        const { min = Infinity } = sellingPrice;
-
-                        if (min <= lowestThresholdPricing) {
-                            this._sendNotification(productName, min);
-                        } else {
-                            Logger.info(`No lower price found for ${productName}.`)
-                        }
-                    });
+                    Logger.error(`Erorr in checking prices for ${productName}`);
+                    Logger.error(e);
                 }
             });
         }

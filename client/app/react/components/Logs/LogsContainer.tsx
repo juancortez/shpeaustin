@@ -100,7 +100,10 @@ export class LogsContainer extends React.Component<{}, ILogsContainerState> {
                                                 </>
                                             </LogTabs.LogTab>
                                         </LogTabs>
-                                        <span onClick={this._onShowMore} className="show-more-logs dark-shpe-blue">Show more</span>
+                                        {this.state.logTypes === LogTypes.All ?
+                                            <span onClick={this._onShowMore} className="show-more-logs dark-shpe-blue">Show more</span>
+                                            : null
+                                        }
                                     </div>
                                 </div>
                             );
