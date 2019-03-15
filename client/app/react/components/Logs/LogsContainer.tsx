@@ -5,8 +5,8 @@ import { LogTabs } from "./LogTabs";
 import { LogTypes, ILog } from "./../../models/Logs/index";
 import "./../../styles/logs.less";
 
-const logCountInterval: number = 10;
-const defaultLogsToShow: number = 20;
+const LOG_COUNT_INTERVAL: number = 50;
+const DEFAULT_LOGS_TO_SHOW: number = 50;
 
 interface ILogsContainerState {
     logsToShow: number;
@@ -15,7 +15,7 @@ interface ILogsContainerState {
 
 export class LogsContainer extends React.Component<{}, ILogsContainerState> {
     state = {
-        logsToShow: defaultLogsToShow,
+        logsToShow: DEFAULT_LOGS_TO_SHOW,
         logTypes: LogTypes.All
     };
 
@@ -164,7 +164,7 @@ export class LogsContainer extends React.Component<{}, ILogsContainerState> {
 
     _onShowMore() {
         this.setState((prevState) => ({
-            logsToShow: prevState.logsToShow + logCountInterval
+            logsToShow: prevState.logsToShow + LOG_COUNT_INTERVAL
         }));
     }
 }

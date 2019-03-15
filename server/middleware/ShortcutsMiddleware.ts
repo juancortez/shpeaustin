@@ -13,6 +13,12 @@ namespace Middleware {
             }
             
             return next();
+        },
+        middlewareLogger: (req, res, next) => {
+            const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+            const requestedPath = req.path;
+            Logger.log(`Incoming request from ${fullUrl} for shortcuts, ${requestedPath} path.`);
+            next();
         }
     }
 }

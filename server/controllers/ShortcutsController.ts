@@ -54,7 +54,7 @@ namespace Routes {
         }
     });
 
-    app.get('/august', middleware.shortcutsAuth, async (req, res) => {
+    app.get('/august', middleware.middlewareLogger, middleware.shortcutsAuth, async (req, res) => {
         const shouldArmAugustLock = _shouldArm(req);
         const armModeStr = shouldArmAugustLock ? "locked" : "unlocked";
 
@@ -80,7 +80,7 @@ namespace Routes {
     });
 
 
-    app.get('/blink/isArmed', middleware.shortcutsAuth, async (req, res) => {
+    app.get('/blink/isArmed', middleware.middlewareLogger, middleware.shortcutsAuth, async (req, res) => {
         const blinkApi = _getBlinkInstance();
         const [err, result] = await to(blinkApi.isArmed());
 
@@ -92,7 +92,7 @@ namespace Routes {
         }
     });
 
-    app.get('/blink/setArm', middleware.shortcutsAuth, async (req, res) => {
+    app.get('/blink/setArm', middleware.middlewareLogger, middleware.shortcutsAuth, async (req, res) => {
         const shouldArm = _shouldArm(req);
         const armModeStr = shouldArm ? "armed mode" : "unarmed mode";
 
@@ -104,6 +104,22 @@ namespace Routes {
             return res.status(400).send(`Unable to perform operation to arm the system to ${armModeStr}`);
         } else {
             return res.status(200).send(`Blink successful set to: ${armModeStr}`);
+        }
+    });
+
+    app.get('/full/security', middleware.middlewareLogger, middleware.shortcutsAuth, async (req, res) => {
+        const augustApi = AugustApi.getInstance();
+        const [ augustErr ] = await to(augustApi.arm(true));
+
+        const blinkApi = _getBlinkInstance();
+        const [ blinkErr ] = await to(blinkApi.setArmed(true));
+
+        if (augustErr || blinkErr) {
+            return res.status(400).send(`An operation failed. August: ${augustErr}, Blink: ${blinkErr}`);
+        } else {
+            const msg = `Security system fully armed.`;
+            Logger.log(msg);
+            return res.status(200).send(msg);
         }
     });
 

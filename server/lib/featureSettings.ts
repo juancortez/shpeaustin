@@ -42,13 +42,13 @@ namespace FeatureSettings {
         }
     
         getDatabaseSettings() {
-            Logger.log("Fetching feature settings");
+            Logger.info("Fetching feature settings");
             this.database.getData("featureSettings", (err, data) => {
                 if (err) {
                     Logger.error("Error in fetching feature settings", err);
                     return;
                 }
-                Logger.log("Successfully fetched feature settings data:", data);
+                Logger.info("Successfully fetched feature settings data:", data);
                 this.settings = data;
             })
         }
