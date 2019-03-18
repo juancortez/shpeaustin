@@ -107,6 +107,8 @@ namespace SouthwestApi {
                     stopPoll: false
                 }
             }
+        } else {
+            return {};
         }
     }
     
