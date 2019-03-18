@@ -70,7 +70,13 @@ namespace SouthwestApi {
             json: true
         };
     
-        _checkFeatureSettingUpdates();
+        const { stopPoll = false } = _checkFeatureSettingUpdates();
+
+        if (stopPoll) {
+            Logger.info("Stopping Southwest Polling...");
+            southWestPollEngine.stopPollling();
+            return;
+        }
         
         request(options, function (error, response, body) {
           if (error) {
@@ -91,6 +97,16 @@ namespace SouthwestApi {
             LOWEST_FARE_PRICE = southWestSettings.lowestFarePrice || LOWEST_FARE_PRICE;
     
             southWestPollEngine.updatePollTimeMs(INTERVAL_CHECK);
+
+            if (southWestSettings.stopPoll) {
+                return {
+                    stopPoll: true
+                };
+            } else {
+                return {
+                    stopPoll: false
+                }
+            }
         }
     }
     
