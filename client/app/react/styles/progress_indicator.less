@@ -17,13 +17,17 @@ p {
 
 div.progress-indicator-container {
     .all-flex-center();
+    max-width: 800px;
+    min-width: 320px;
+    display: block;
+    margin: 0;
     
     ul.progress-indicator {
         .all-flex-center();
         list-style-type: none;
         padding: 0px;
         margin: 0px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         height: 100px;
 
         li.progress-indicator-step {
@@ -95,6 +99,7 @@ div.progress-indicator-container {
         }
     }
     
-    ul.progress-indicator > li.progress-indicator-step:first-child { &:after { content: none !important;  }}
-    ul.progress-indicator > li.progress-indicator-step:last-child > div.indicator-step { &:after { content: none !important;  }}
+    ul.progress-indicator > li.progress-indicator-step:first-child { &:after { content: none;  }}
+    ul.progress-indicator > li.progress-indicator-step:last-child > div.indicator-step { &:after { content: none;  }}
 }
+
