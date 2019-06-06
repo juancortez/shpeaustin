@@ -94,4 +94,7 @@ div.progress-indicator-container {
             }
         }
     }
+    
+    ul.progress-indicator > li.progress-indicator-step:first-child { &:after { content: none !important;  }}
+    ul.progress-indicator > li.progress-indicator-step:last-child > div.indicator-step { &:after { content: none !important;  }}
 }
