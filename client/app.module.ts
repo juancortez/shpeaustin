@@ -33,6 +33,7 @@ import { ContactComponent }                 from './app/contact.component';
 import { NotFoundComponent }                from './app/not-found.component';
 import { AdminComponent }                   from './app/admin.component';
 import { LoginComponent }                   from './app/login.component';
+import { InterviewComponent }               from './app/interview.component';
 
 /* Navigation Components */
 import { NavigationComponent }              from './app/navigation.component';
@@ -79,6 +80,7 @@ import { AuthGuard }                        from './app/guards/auth-guard.servic
     SmallCardComponent,
     OfficersComponent,
     OfficerComponent,
+    InterviewComponent,
     HamburgerNavigationComponent,
     MembershipComponent,
     ContactComponent,

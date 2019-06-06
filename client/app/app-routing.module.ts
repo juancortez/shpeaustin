@@ -8,7 +8,7 @@ import { MembershipComponent } 	from './membership.component';
 import { ContactComponent } 	  from './contact.component';
 import { NotFoundComponent }	  from './not-found.component';
 import { AdminComponent }       from './admin.component';
-
+import { InterviewComponent }   from './interview.component';
 import { LoginComponent }       from './login.component';
 import { AuthGuard }            from './guards/auth-guard.service';
 
@@ -21,7 +21,9 @@ const routes: Routes = [
   { path: 'contact',  	 component: ContactComponent },
   { path: 'login',       component: LoginComponent },
   { path: 'admin',       component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'interview',   component: InterviewComponent},
   { path: '404',			   component: NotFoundComponent },
+
   { path: '**', 			   redirectTo: '/404' }
 ];
 

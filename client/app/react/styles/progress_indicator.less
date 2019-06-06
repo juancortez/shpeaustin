@@ -1,0 +1,97 @@
+@import "./../styles/mixins.less";
+@import "./../styles//colors.less";
+
+@arrow-size: 15px;
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0px;
+}
+
+.react-container {
+    height: 100%;
+}
+
+div.progress-indicator-container {
+    .all-flex-center();
+    
+    ul.progress-indicator {
+        .all-flex-center();
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        flex-wrap: wrap;
+        height: 100px;
+
+        li.progress-indicator-step {
+            width: 200px;
+            height: 30px;
+            background: @regular-progress-container;
+            color: @regular-text-color;
+            position: relative;
+
+            @media only screen and (max-width: 600px) {
+                &:not(.active-indicator) {
+                    &:after {
+                        right: 75%;
+                    }
+                    width: 60px;
+
+                    p {
+                        color: transparent;
+                    }
+                }
+            }
+
+            &:after {
+                content: '';
+                top: 0px;
+                right: 90%;
+                transform: rotate(90deg);
+                background: @regular-progress-container;
+                position: absolute;
+                width: 0;
+                border: @arrow-size solid transparent;
+                border-bottom-color: white;
+            }
+            
+            &.active-indicator {
+                background: @active-progress-container;
+                color: @active-text-color;
+
+                &:after {
+                    background: @active-progress-container;
+                }
+
+                div.indicator-step {
+                    &:after {
+                        border-bottom-color: @active-progress-container;
+                    }
+                }
+            }
+
+            div.indicator-step {
+                .all-flex-center();
+                position: relative;
+                height: 100%;
+
+
+                &:after {
+                    content: '';
+                    height: 0;
+                    width: 0;
+                    border: @arrow-size solid transparent;
+                    border-bottom-color: @regular-progress-container;
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    transform: rotate(90deg);
+                    background: white;
+                }
+            }
+        }
+    }
+}
